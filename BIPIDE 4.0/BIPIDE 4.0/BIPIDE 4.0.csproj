@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C8F144CB-8C0C-4920-BC89-F417AA8B2DC2}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BIPIDE_4._0</RootNamespace>
+    <AssemblyName>BIPIDE 4.0</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.AvalonEdit">
+      <HintPath>..\ICSharpCode.AvalonEdit\bin\Debug\ICSharpCode.AvalonEdit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Windows.Shell, Version=3.5.41019.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Controls.Ribbon" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="ucBipI">
+      <HintPath>..\ucBip\bin\Debug\ucBipI.dll</HintPath>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=2.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Xceed.Wpf.AvalonDock\bin\Debug\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero">
+      <HintPath>..\Xceed.Wpf.AvalonDock.Themes.Aero\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="ControlResources\SimulationControl.cs" />
+    <Compile Include="ViewResources\FormNewDocument.xaml.cs">
+      <DependentUpon>FormNewDocument.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewResources\UCHelp.xaml.cs">
+      <DependentUpon>UCHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewResources\UCProgrammingDocument.xaml.cs">
+      <DependentUpon>UCProgrammingDocument.xaml</DependentUpon>
+    </Compile>
+    <Page Include="LanguageResources\Component\Portuguese.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LanguageResources\Tips\Portuguese.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="ViewResources\FormNewDocument.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewResources\UCHelp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewResources\UCProgrammingDocument.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImageResources\files16.png" />
+    <Resource Include="ImageResources\files32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImageResources\accept.png" />
+    <Resource Include="ImageResources\alert.gif" />
+    <Resource Include="ImageResources\black.png" />
+    <Resource Include="ImageResources\blue.png" />
+    <Resource Include="ImageResources\blue1.png" />
+    <Resource Include="ImageResources\compiler16.png" />
+    <Resource Include="ImageResources\compiler32.png" />
+    <Resource Include="ImageResources\configuration16.png" />
+    <Resource Include="ImageResources\continue32.png" />
+    <Resource Include="ImageResources\continue16.png" />
+    <Resource Include="ImageResources\en.png" />
+    <Resource Include="ImageResources\error.png" />
+    <Resource Include="ImageResources\examples16.png" />
+    <Resource Include="ImageResources\examples32.png" />
+    <Resource Include="ImageResources\export16.png" />
+    <Resource Include="ImageResources\export32.png" />
+    <Resource Include="ImageResources\find16.png" />
+    <Resource Include="ImageResources\find32.png" />
+    <Resource Include="ImageResources\help16.png" />
+    <Resource Include="ImageResources\help32.png" />
+    <Resource Include="ImageResources\helpSistema16.png" />
+    <Resource Include="ImageResources\helpSistema32.png" />
+    <Resource Include="ImageResources\info16.png" />
+    <Resource Include="ImageResources\info32.png" />
+    <Resource Include="ImageResources\new16.png" />
+    <Resource Include="ImageResources\new32.png" />
+    <Resource Include="ImageResources\newAsm16.png" />
+    <Resource Include="ImageResources\next32.png" />
+    <Resource Include="ImageResources\next16.png" />
+    <Resource Include="ImageResources\open16.png" />
+    <Resource Include="ImageResources\open32.png" />
+    <Resource Include="ImageResources\pause16.png" />
+    <Resource Include="ImageResources\pause32.png" />
+    <Resource Include="ImageResources\pe32.ico" />
+    <Resource Include="ImageResources\play16.png" />
+    <Resource Include="ImageResources\play32.png" />
+    <Resource Include="ImageResources\print16.png" />
+    <Resource Include="ImageResources\print32.png" />
+    <Resource Include="ImageResources\pt.png" />
+    <Resource Include="ImageResources\redo16.png" />
+    <Resource Include="ImageResources\repeat32.png" />
+    <Resource Include="ImageResources\repeat16.png" />
+    <Resource Include="ImageResources\save16.png" />
+    <Resource Include="ImageResources\save32.png" />
+    <Resource Include="ImageResources\saveAs16.png" />
+    <Resource Include="ImageResources\saveAs32.png" />
+    <Resource Include="ImageResources\simulator16.png" />
+    <Resource Include="ImageResources\simulator32.png" />
+    <Resource Include="ImageResources\speed16.png" />
+    <Resource Include="ImageResources\splash.jpg" />
+    <Resource Include="ImageResources\splashInfo.jpg" />
+    <Resource Include="ImageResources\statistics16.png" />
+    <Resource Include="ImageResources\statistics32.png" />
+    <Resource Include="ImageResources\stop16.png" />
+    <Resource Include="ImageResources\stop32.png" />
+    <Resource Include="ImageResources\undo16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImageResources\logout16.png" />
+    <Resource Include="ImageResources\logout32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="LanguageResources\Help\HelpFundamentals\" />
+    <Folder Include="LanguageResources\Help\HelpProcessor\" />
+    <Folder Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\InputOutput\" />
+    <Folder Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Operations\" />
+    <Folder Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Statements\" />
+    <Folder Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Structures\Control\" />
+    <Folder Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Structures\Loop\" />
+    <Folder Include="LanguageResources\Help\HelpSystem\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImageResources\instruction16.png" />
+    <Resource Include="ImageResources\instruction32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImageResources\speed32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImageResources\instructionCommand16.png" />
+    <Resource Include="ImageResources\instructionCommand32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImageResources\processorBipI32.png" />
+    <Resource Include="ImageResources\processorBipII32.png" />
+    <Resource Include="ImageResources\processorBipIII32.png" />
+    <Resource Include="ImageResources\processorBipIV32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImageResources\fundamentals16.png" />
+    <Resource Include="ImageResources\fundamentals32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImageResources\system16.png" />
+    <Resource Include="ImageResources\system32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImageResources\about16.png" />
+    <Resource Include="ImageResources\about32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ImageResources\HelpBook16.png" />
+    <Resource Include="ImageResources\HelpBookOpen16.png" />
+    <Resource Include="ImageResources\HelpDocument16.png" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\DataTypes\PortugueseInteger.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\PortugueseProgramStructure.html" />
+    <Content Include="LanguageResources\Help\Resources\Scripts\shAutoloader.js" />
+    <Content Include="LanguageResources\Help\Resources\Scripts\shBrushAppleScript.js" />
+    <Content Include="LanguageResources\Help\Resources\Scripts\shBrushAS3.js" />
+    <Content Include="LanguageResources\Help\Resources\Scripts\shBrushBash.js" />
+    <Content Include="LanguageResources\Help\Resources\Scripts\shBrushColdFusion.js" />
+    <Content Include="LanguageResources\Help\Resources\Scripts\shBrushCpp.js" />
+    <Content Include="LanguageResources\Help\Resources\Scripts\shBrushCSharp.js" />
+    <Content Include="LanguageResources\Help\Resources\Scripts\shBrushCss.js" />
+    <Content Include="LanguageResources\Help\Resources\Scripts\shBrushDelphi.js" />
+    <Content Include="LanguageResources\Help\Resources\Scripts\shBrushDiff.js" />
+    <Content Include="LanguageResources\Help\Resources\Scripts\shBrushErlang.js" />
+    <Content Include="LanguageResources\Help\Resources\Scripts\shBrushGroovy.js" />
+    <Content Include="LanguageResources\Help\Resources\Scripts\shBrushJava.js" />
+    <Content Include="LanguageResources\Help\Resources\Scripts\shBrushJavaFX.js" />
+    <Content Include="LanguageResources\Help\Resources\Scripts\shBrushJScript.js" />
+    <Content Include="LanguageResources\Help\Resources\Scripts\shBrushPerl.js" />
+    <Content Include="LanguageResources\Help\Resources\Scripts\shBrushPhp.js" />
+    <Content Include="LanguageResources\Help\Resources\Scripts\shBrushPlain.js" />
+    <Content Include="LanguageResources\Help\Resources\Scripts\shBrushPortugol.js" />
+    <Content Include="LanguageResources\Help\Resources\Scripts\shBrushPowerShell.js" />
+    <Content Include="LanguageResources\Help\Resources\Scripts\shBrushPython.js" />
+    <Content Include="LanguageResources\Help\Resources\Scripts\shBrushRuby.js" />
+    <Content Include="LanguageResources\Help\Resources\Scripts\shBrushSass.js" />
+    <Content Include="LanguageResources\Help\Resources\Scripts\shBrushScala.js" />
+    <Content Include="LanguageResources\Help\Resources\Scripts\shBrushSql.js" />
+    <Content Include="LanguageResources\Help\Resources\Scripts\shBrushVb.js" />
+    <Content Include="LanguageResources\Help\Resources\Scripts\shBrushXml.js" />
+    <Content Include="LanguageResources\Help\Resources\Scripts\shCore.js" />
+    <Content Include="LanguageResources\Help\Resources\Scripts\shLegacy.js" />
+    <Content Include="LanguageResources\Help\Resources\Styles\shCore.css" />
+    <Content Include="LanguageResources\Help\Resources\Styles\shCoreDefault.css" />
+    <Content Include="LanguageResources\Help\Resources\Styles\shCoreDjango.css" />
+    <Content Include="LanguageResources\Help\Resources\Styles\shCoreEclipse.css" />
+    <Content Include="LanguageResources\Help\Resources\Styles\shCoreEmacs.css" />
+    <Content Include="LanguageResources\Help\Resources\Styles\shCoreFadeToGrey.css" />
+    <Content Include="LanguageResources\Help\Resources\Styles\shCoreMDUltra.css" />
+    <Content Include="LanguageResources\Help\Resources\Styles\shCoreMidnight.css" />
+    <Content Include="LanguageResources\Help\Resources\Styles\shCoreRDark.css" />
+    <Content Include="LanguageResources\Help\Resources\Styles\shThemeDefault.css" />
+    <Content Include="LanguageResources\Help\Resources\Styles\shThemeDjango.css" />
+    <Content Include="LanguageResources\Help\Resources\Styles\shThemeEclipse.css" />
+    <Content Include="LanguageResources\Help\Resources\Styles\shThemeEmacs.css" />
+    <Content Include="LanguageResources\Help\Resources\Styles\shThemeFadeToGrey.css" />
+    <Content Include="LanguageResources\Help\Resources\Styles\shThemeMDUltra.css" />
+    <Content Include="LanguageResources\Help\Resources\Styles\shThemeMidnight.css" />
+    <Content Include="LanguageResources\Help\Resources\Styles\shThemeRDark.css" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,55 @@
+﻿<Window x:Class="BIPIDE_4._0.ViewResources.FormNewDocument"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Width="600"  
+        Height="500"
+        Icon="/BIPIDE 4.0;component/ImageResources/new16.png"
+        Title="{DynamicResource ResourceKey=NDFormTitle}"  
+        ResizeMode="NoResize">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="..\LanguageResources\Component\Portuguese.xaml"/>
+                <ResourceDictionary Source="..\LanguageResources\Tips\Portuguese.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    
+    <Grid>
+        <TreeView x:Name="_TreeView"
+                  HorizontalAlignment="Left" 
+                  Width="221" 
+                  Margin="5,5,0,37"/>
+        <ListView x:Name="_ListView" 
+                  Margin="231,5,5,37">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
+        <Label Content="{DynamicResource ResourceKey=NDLabelNewName}" 
+               HorizontalAlignment="Left"
+               VerticalAlignment="Bottom"               
+               Margin="10,0,0,10" 
+               Width="85" 
+               Height="25" />
+        <TextBox Margin="100,0,169,10" 
+                 TextWrapping="Wrap" 
+                 Height="22" 
+                 VerticalAlignment="Bottom"/>
+        <Button Content="{DynamicResource ResourceKey=NDButtonAdd}" 
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Bottom" 
+                Margin="0,0,90,10" 
+                Width="74"/>
+        <Button Content="{DynamicResource ResourceKey=NDButtonCancel}" 
+                Margin="0,0,10,10" 
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Bottom"
+                Width="75" 
+                Height="20" />
+    </Grid>
+</Window>

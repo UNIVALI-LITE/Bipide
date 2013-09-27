@@ -1,0 +1,475 @@
+﻿<RibbonWindow x:Name="Bipide"
+              x:Class="BIPIDE_4._0.MainWindow"
+              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:AvalonDock="clr-namespace:Xceed.Wpf.AvalonDock;assembly=Xceed.Wpf.AvalonDock"
+              xmlns:AvalonDockLayout="clr-namespace:Xceed.Wpf.AvalonDock.Layout;assembly=Xceed.Wpf.AvalonDock"
+              xmlns:AvalonDockThemes="clr-namespace:Xceed.Wpf.AvalonDock.Themes;assembly=Xceed.Wpf.AvalonDock.Themes.Aero"
+              Title="Bipide 4.0" 
+              Width="800" 
+              Height="600" 
+              MinWidth="800" 
+              MinHeight="600"
+              Icon="ImageResources/pe32.ico"
+              WindowState="Maximized">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="LanguageResources\Component\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\Tips\Portuguese.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <Ribbon x:Name="_RibbonMain" 
+                VerticalAlignment="Top" 
+                Grid.Row="0">
+
+            <!-- Tool Bar -->
+            <Ribbon.QuickAccessToolBar>
+                <RibbonQuickAccessToolBar>
+                    <RibbonButton x:Name ="_ButtonUndo" 
+                                  SmallImageSource="ImageResources\undo16.png"
+                                  ToolTipTitle="{DynamicResource ResourceKey=TipTitleButtonUndo}"
+                                  ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonUndo}"
+                                  ToolTipFooterImageSource="ImageResources/help32.png"
+                                  ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"/>
+                    <RibbonButton x:Name="_ButtonRedo" 
+                                  SmallImageSource="ImageResources\redo16.png"
+                                  ToolTipTitle="{DynamicResource ResourceKey=TipTitleButtonRedo}"
+                                  ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonRedo}"
+                                  ToolTipFooterImageSource="ImageResources/help32.png"
+                                  ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"/>
+                </RibbonQuickAccessToolBar>
+            </Ribbon.QuickAccessToolBar>
+
+            <!-- Menu -->
+            <Ribbon.ApplicationMenu>
+                <RibbonApplicationMenu SmallImageSource="ImageResources/files16.png"
+                                       KeyTip="F">
+                    <RibbonApplicationMenuItem Header="{DynamicResource ResourceKey=ButtonNew}"
+                                               x:Name="_MenuItemNew"
+                                               ImageSource="ImageResources/new32.png" 
+                                               ToolTipTitle="{DynamicResource ResourceKey=TipTitleButtonNew}"
+                                               ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonNew}"
+                                               ToolTipFooterImageSource="ImageResources/help32.png"
+                                               ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}" 
+                                               Click="_MenuItemNew_Click" 
+                                               KeyTip="N"/>
+                    
+                    <RibbonApplicationMenuItem Header="{DynamicResource ResourceKey=ButtonOpen}"
+                                               x:Name="_MenuItemOpen"
+                                               ImageSource="ImageResources/open32.png"
+                                               ToolTipTitle="{DynamicResource ResourceKey=TipTitleButtonOpen}"
+                                               ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonOpen}"
+                                               ToolTipFooterImageSource="ImageResources/help32.png"
+                                               ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                               KeyTip="O"/>
+                    
+                    <RibbonApplicationMenuItem Header="{DynamicResource ResourceKey=ButtonSave}"
+                                               x:Name="_MenuItemSave"
+                                               ImageSource="ImageResources/save32.png"
+                                               ToolTipTitle="{DynamicResource ResourceKey=TipTitleButtonSave}"
+                                               ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonSave}"
+                                               ToolTipFooterImageSource="ImageResources/help32.png"
+                                               ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                               KeyTip="SV"/>
+                    
+                    <RibbonApplicationMenuItem Header="{DynamicResource ResourceKey=ButtonSaveAs}"
+                                               x:Name="_MenuItemSaveAs"
+                                               ImageSource="ImageResources/saveAs32.png"
+                                               ToolTipTitle="{DynamicResource ResourceKey=TipTitleButtonSaveAs}"
+                                               ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonSaveAs}"
+                                               ToolTipFooterImageSource="ImageResources/help32.png"
+                                               ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                               KeyTip="SA"/>
+                    
+                    <RibbonApplicationMenuItem Header="{DynamicResource ResourceKey=ButtonPrint}"
+                                               x:Name="_MenuItemPrint"
+                                               ImageSource="ImageResources/print32.png"
+                                               ToolTipTitle="{DynamicResource ResourceKey=TipTitleButtonPrint}"
+                                               ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonPrint}"
+                                               ToolTipFooterImageSource="ImageResources/help32.png"
+                                               ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                               KeyTip="P"/>
+
+                    <RibbonApplicationMenu.FooterPaneContent>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <RibbonButton x:Name="_ButtonExit" 
+                                          Label="{DynamicResource ResourceKey=ButtonExit}" 
+                                          Width="60" 
+                                          Grid.Column="2"
+                                          HorizontalAlignment="Right"
+                                          SmallImageSource="ImageResources/logout16.png"
+                                          ToolTipTitle="{DynamicResource ResourceKey=TipTitleButtonExit}"
+                                          ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonExit}"
+                                          ToolTipFooterImageSource="ImageResources/help32.png"
+                                          ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                          KeyTip="EX"/>
+                        </Grid>
+                    </RibbonApplicationMenu.FooterPaneContent>
+                </RibbonApplicationMenu>
+            </Ribbon.ApplicationMenu>
+
+            <!-- Ribbon -->
+            <RibbonTab x:Name="_TabProgramming" 
+                       Header="{DynamicResource ResourceKey=TabProgramming}" KeyTip="P">
+                <RibbonGroup x:Name="_GroupFile" 
+                             Header="{DynamicResource ResourceKey=GroupFiles}">
+                    <RibbonButton x:Name="_ButtonNew" 
+                                  Label="{DynamicResource ResourceKey=ButtonNew}" 
+                                  Width="60" 
+                                  LargeImageSource="ImageResources/new32.png" 
+                                  SmallImageSource="ImageResources/new16.png" 
+                                  ToolTipTitle="{DynamicResource ResourceKey=TipTitleButtonNew}"
+                                  ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonNew}"
+                                  ToolTipFooterImageSource="ImageResources/help32.png"
+                                  ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}" 
+                                  Click="_MenuItemNew_Click" 
+                                  KeyTip="N"/>
+                    
+                    <RibbonButton x:Name="_ButtonOpen" 
+                                  Label="{DynamicResource ResourceKey=ButtonOpen}" 
+                                  Width="100" 
+                                  SmallImageSource="ImageResources/open16.png"
+                                  ToolTipTitle="{DynamicResource ResourceKey=TipTitleButtonOpen}"
+                                  ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonOpen}"
+                                  ToolTipFooterImageSource="ImageResources/help32.png"
+                                  ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                  KeyTip="O"/>
+                    
+                    <RibbonButton x:Name="_ButtonSave" 
+                                  Label="{DynamicResource ResourceKey=ButtonSave}" 
+                                  Width="100" 
+                                  SmallImageSource="ImageResources/save16.png"
+                                  ToolTipTitle="{DynamicResource ResourceKey=TipTitleButtonSave}"
+                                  ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonSave}"
+                                  ToolTipFooterImageSource="ImageResources/help32.png"
+                                  ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                  KeyTip="SV"/>
+                    
+                    <RibbonButton x:Name="_ButtonSaveAs" 
+                                  Label="{DynamicResource ResourceKey=ButtonSaveAs}" 
+                                  Width="100" 
+                                  SmallImageSource="ImageResources/saveAs16.png"
+                                  ToolTipTitle="{DynamicResource ResourceKey=TipTitleButtonSaveAs}"
+                                  ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonSaveAs}"
+                                  ToolTipFooterImageSource="ImageResources/help32.png"
+                                  ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                  KeyTip="SA"/>
+
+                    <RibbonButton x:Name="_ButtonPrint"
+                                  Label="{DynamicResource ResourceKey=ButtonPrint}"
+                                  Width="60" 
+                                  LargeImageSource="ImageResources/print32.png"
+                                  SmallImageSource="ImageResources/print16.png"
+                                  ToolTipTitle="{DynamicResource ResourceKey=TipTitleButtonPrint}"
+                                  ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonPrint}"
+                                  ToolTipFooterImageSource="ImageResources/help32.png"
+                                  ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                  KeyTip="P"/>
+
+                    <RibbonButton x:Name="_ButtonExport"
+                                  Label="{DynamicResource ResourceKey=ButtonExport}"
+                                  Width="60" 
+                                  LargeImageSource="ImageResources/export32.png"
+                                  SmallImageSource="ImageResources/export16.png"
+                                  ToolTipTitle="{DynamicResource ResourceKey=TipTitleButtonExport}"
+                                  ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonExport}"
+                                  ToolTipFooterImageSource="ImageResources/help32.png"
+                                  ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                  KeyTip="E"/>
+
+                </RibbonGroup>
+                <RibbonGroup x:Name="_GroupBuild" 
+                             Header="{DynamicResource ResourceKey=GroupExecut}">
+                    
+                    <RibbonButton x:Name="_ButtonBuild" 
+                                  Label="{DynamicResource ResourceKey=ButtonCompile}" 
+                                  Width="60" 
+                                  LargeImageSource="ImageResources/compiler32.png" 
+                                  SmallImageSource="ImageResources/compiler16.png"
+                                  ToolTipTitle="{DynamicResource ResourceKey=TipTitleButtonCompile}"
+                                  ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonCompile}"
+                                  ToolTipFooterImageSource="ImageResources/help32.png"
+                                  ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                  KeyTip="B"/>
+                    
+                </RibbonGroup>
+            </RibbonTab>
+
+            <RibbonTab x:Name="_TabLearn" 
+                       Header="{DynamicResource ResourceKey=TabLearn}"
+                       KeyTip="L">
+
+                <RibbonGroup x:Name="_GroupHelp" 
+                             Header="{DynamicResource ResourceKey=GroupHelp}">
+
+                    <RibbonButton x:Name="_ButtonFundamentals" 
+                                  Label="{DynamicResource ResourceKey=ButtonFundamentals}" 
+                                  Width="80" 
+                                  LargeImageSource="ImageResources/fundamentals32.png" 
+                                  SmallImageSource="ImageResources/fundamentals16.png"
+                                  ToolTipTitle="{DynamicResource ResourceKey=TipTitleButtonFundamentals}"
+                                  ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonFundamentals}"
+                                  ToolTipFooterImageSource="ImageResources/help32.png"
+                                  ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                  Click="_ButtonFundamentals_Click"
+                                  KeyTip="F" />
+
+                    <RibbonButton x:Name="_ButtonSystem" 
+                                  Label="{DynamicResource ResourceKey=ButtonSystem}" 
+                                  Width="80" 
+                                  LargeImageSource="ImageResources/system32.png" 
+                                  SmallImageSource="ImageResources/system16.png"
+                                  ToolTipTitle="{DynamicResource ResourceKey=TipTitleButtonSystem}"
+                                  ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonSystem}"
+                                  ToolTipFooterImageSource="ImageResources/help32.png"
+                                  ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                  KeyTip="S"/>
+
+                </RibbonGroup>
+
+                <RibbonGroup x:Name="_GroupInformation" 
+                             Header="{DynamicResource ResourceKey=GroupInformation}">
+                    
+                    <RibbonButton x:Name="_ButtonAbout" 
+                                  Label="{DynamicResource ResourceKey=ButtonAbout}" 
+                                  Width="80" 
+                                  LargeImageSource="ImageResources/about32.png" 
+                                  SmallImageSource="ImageResources/about16.png"
+                                  ToolTipTitle="{DynamicResource ResourceKey=TipTitleButtonAbout}"
+                                  ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonAbout}"
+                                  ToolTipFooterImageSource="ImageResources/help32.png"
+                                  ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                  KeyTip="A"/>
+                    
+                </RibbonGroup>
+            </RibbonTab>
+
+            <RibbonTab x:Name="_TabSimulation" 
+                       Header="{DynamicResource ResourceKey=TabSimulation}"
+                       ContextualTabGroupHeader="{DynamicResource ResourceKey=ContextualTabSimulation}" KeyTip="S">
+                
+                <RibbonGroup x:Name="_GroupExecution" 
+                             Header="{DynamicResource ResourceKey=GroupExecution}">
+                    <RibbonButton x:Name="_ButtonStart" 
+                                  Label="{DynamicResource ResourceKey=ButtonStart}" 
+                                  Width="60" 
+                                  LargeImageSource="ImageResources/play32.png" 
+                                  SmallImageSource="ImageResources/play16.png"
+                                  ToolTipTitle="{DynamicResource ResourceKey=TipTitleButtonStart}"
+                                  ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonStart}"
+                                  ToolTipFooterImageSource="ImageResources/help32.png"
+                                  ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}" 
+                                  Click="_ButtonStart_Click" 
+                                  KeyTip="ST"/>
+                    
+                    <RibbonButton x:Name="_ButtonPause" 
+                                  Label="{DynamicResource ResourceKey=ButtonPause}" 
+                                  Width="60" 
+                                  LargeImageSource="ImageResources/pause32.png" 
+                                  SmallImageSource="ImageResources/pause16.png"
+                                  ToolTipTitle="{DynamicResource ResourceKey=TipTitleButtonPause}"
+                                  ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonPause}"
+                                  ToolTipFooterImageSource="ImageResources/help32.png"
+                                  ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}" 
+                                  Click="_ButtonPause_Click" 
+                                  KeyTip="P"/>
+                    
+                    <RibbonButton x:Name="_ButtonRepeat" 
+                                  Label="{DynamicResource ResourceKey=ButtonRepeat}" 
+                                  Width="60" 
+                                  LargeImageSource="ImageResources/repeat32.png" 
+                                  SmallImageSource="ImageResources/repeat16.png"
+                                  ToolTipTitle="{DynamicResource ResourceKey=TipTitleButtonRepeat}"
+                                  ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonRepeat}"
+                                  ToolTipFooterImageSource="ImageResources/help32.png"
+                                  ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}" 
+                                  Click="_ButtonRepeat_Click" 
+                                  KeyTip="R"/>
+                    
+                    <RibbonButton x:Name="_ButtonNext" 
+                                  Label="{DynamicResource ResourceKey=ButtonNext}" 
+                                  Width="60" 
+                                  LargeImageSource="ImageResources/next32.png" 
+                                  SmallImageSource="ImageResources/next16.png"
+                                  ToolTipTitle="{DynamicResource ResourceKey=TipTitleButtonNext}"
+                                  ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonNext}"
+                                  ToolTipFooterImageSource="ImageResources/help32.png"
+                                  ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}" 
+                                  Click="_ButtonNext_Click" 
+                                  KeyTip="N"/>
+                    
+                    <RibbonButton x:Name="_ButtonContinue" 
+                                  Label="{DynamicResource ResourceKey=ButtonContinue}" 
+                                  Width="60" 
+                                  LargeImageSource="ImageResources/continue32.png" 
+                                  SmallImageSource="ImageResources/continue16.png"
+                                  ToolTipTitle="{DynamicResource ResourceKey=TipTitleButtonContinue}"
+                                  ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonContinue}"
+                                  ToolTipFooterImageSource="ImageResources/help32.png"
+                                  ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}" 
+                                  Click="_ButtonContinue_Click" 
+                                  KeyTip="C"/>
+                    
+                    <RibbonButton x:Name="_ButtonStop" 
+                                  Label="{DynamicResource ResourceKey=ButtonStop}" 
+                                  Width="60" 
+                                  LargeImageSource="ImageResources/stop32.png" 
+                                  SmallImageSource="ImageResources/stop16.png"
+                                  ToolTipTitle="{DynamicResource ResourceKey=TipTitleButtonStop}"
+                                  ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonStop}"
+                                  ToolTipFooterImageSource="ImageResources/help32.png"
+                                  ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}" 
+                                  Click="_ButtonStop_Click" 
+                                  KeyTip="SP"/>
+                    
+                </RibbonGroup>
+
+                <RibbonGroup x:Name="_GroupSpeed" 
+                             Header="{DynamicResource ResourceKey=GroupSpeed}">
+
+                    <RibbonComboBox x:Name="_ComboBoxSpeedSimulation"
+                                    LargeImageSource="ImageResources/speed32.png"
+                                    SmallImageSource="ImageResources/speed16.png"
+                                    ToolTipTitle="{DynamicResource ResourceKey=TipTitleComboBoxSpeed}"
+                                    ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionComboBoxSpeed}"
+                                    ToolTipFooterImageSource="ImageResources/help32.png"
+                                    ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                    KeyTip="SD">
+                        
+                        <RibbonGallery x:Name="_GallerySpeedSimulation"
+                                       SelectedValue="{DynamicResource ResourceKey=GalleryItemNormal}"
+                                       SelectedValuePath="Content">
+                            
+                            <RibbonGalleryCategory>
+                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemVerySlow}"/>
+                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemSlow}"/>
+                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemNormal}"/>
+                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemAccelerated}"/>
+                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemFast}"/>
+                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemVeryFast}"/>
+                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemUltraFast}"/>
+                            </RibbonGalleryCategory>
+                            
+                        </RibbonGallery>
+                    </RibbonComboBox>
+                </RibbonGroup>
+
+                <RibbonGroup x:Name="_GroupSimulationProcessor" 
+                             Header="{DynamicResource ResourceKey=GroupProcessor}">
+                    
+                    <RibbonRadioButton x:Name="_RadioButtonSimulationBipI"
+                                       Label="BIP I"
+                                       Width="60"
+                                       LargeImageSource="ImageResources/processorBipI32.png"
+                                       ToolTipTitle="BIP I"
+                                       ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionRadioButtonBipI}"
+                                       ToolTipFooterImageSource="ImageResources/help32.png"
+                                       ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                       Checked="_RadioButtonSimulationBipI_Checked"
+                                       KeyTip="B1"/>
+                    
+                    <RibbonRadioButton x:Name="_RadioButtonSimulationBipII"
+                                       Label="BIP II"
+                                       Width="60"
+                                       LargeImageSource="ImageResources/processorBipII32.png"
+                                       ToolTipTitle="BIP II"
+                                       ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionRadioButtonBipII}"
+                                       ToolTipFooterImageSource="ImageResources/help32.png"
+                                       ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                       Checked="_RadioButtonSimulationBipII_Checked"
+                                       KeyTip="B2"/>
+                    
+                    <RibbonRadioButton x:Name="_RadioButtonSimulationBipIII"
+                                       Label="BIP III"
+                                       Width="60"
+                                       LargeImageSource="ImageResources/processorBipIII32.png"
+                                       ToolTipTitle="BIP III"
+                                       ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionRadioButtonBipIII}"
+                                       ToolTipFooterImageSource="ImageResources/help32.png"
+                                       ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                       Checked="_RadioButtonSimulationBipIII_Checked"
+                                       KeyTip="B3"/>
+                    
+                    <RibbonRadioButton x:Name="_RadioButtonSimulationBipIV"
+                                       Label="BIP IV"
+                                       Width="60"
+                                       LargeImageSource="ImageResources/processorBipIV32.png"
+                                       ToolTipTitle="BIP IV"
+                                       ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionRadioButtonBipIV}"
+                                       ToolTipFooterImageSource="ImageResources/help32.png"
+                                       ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                       Checked="_RadioButtonSimulationBipIV_Checked"
+                                       KeyTip="B4"/>
+                    
+                </RibbonGroup>
+            </RibbonTab>
+
+            <Ribbon.ContextualTabGroups>
+                <RibbonContextualTabGroup x:Name="_ContextualTabGroupSimulation"
+                                          Header="{DynamicResource ResourceKey=ContextualTabSimulation}"
+                                          Visibility="Collapsed"
+                                          Background="Red"/>
+            </Ribbon.ContextualTabGroups>
+        </Ribbon>
+
+        <AvalonDock:DockingManager Grid.Row="1"
+                                   AllowMixedOrientation="True"
+                                   BorderThickness="1" Margin="0,0,0,23">
+            <!-- Tema Selecionado (Aero) -->
+            <AvalonDock:DockingManager.Theme>
+                <AvalonDockThemes:AeroTheme/>
+            </AvalonDock:DockingManager.Theme>
+            
+            <AvalonDockLayout:LayoutRoot x:Name="_LayoutRoot">
+                <AvalonDockLayout:LayoutPanel Orientation="Vertical">
+                    <AvalonDockLayout:LayoutDocumentPaneGroup>
+                        <AvalonDockLayout:LayoutDocumentPane x:Name="_DocumentPane">
+
+                        </AvalonDockLayout:LayoutDocumentPane>
+                    </AvalonDockLayout:LayoutDocumentPaneGroup>
+                </AvalonDockLayout:LayoutPanel>
+
+                <AvalonDockLayout:LayoutRoot.BottomSide>
+                    <AvalonDockLayout:LayoutAnchorSide>
+                        <AvalonDockLayout:LayoutAnchorGroup>
+                            <AvalonDockLayout:LayoutAnchorable ContentId="ContentIdError"
+                                                               AutoHideHeight="200"
+                                                               AutoHideMinHeight="200"
+                                                               IconSource="ImageResources/error.png" >
+                                <DataGrid>
+                                    <DataGrid.Columns>
+                                        <DataGridTemplateColumn ClipboardContentBinding="{x:Null}"/>
+                                        <DataGridTextColumn x:Name="_ErrorLine"
+                                                            Header="{DynamicResource ResourceKey=GridErrorColumnLines}"
+                                                            Binding="{x:Null}" 
+                                                            ClipboardContentBinding="{x:Null}"/>
+                                        <DataGridTextColumn x:Name="_ErrorDescription" 
+                                                            Header="{DynamicResource ResourceKey=GridErrorColumnDescription}"
+                                                            Binding="{x:Null}"
+                                                            Width="*"
+                                                            ClipboardContentBinding="{x:Null}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </AvalonDockLayout:LayoutAnchorable>
+                        </AvalonDockLayout:LayoutAnchorGroup>
+                    </AvalonDockLayout:LayoutAnchorSide>
+                </AvalonDockLayout:LayoutRoot.BottomSide>
+            </AvalonDockLayout:LayoutRoot>
+        </AvalonDock:DockingManager>
+        <StatusBar Grid.Row="1" Height="23" VerticalAlignment="Bottom"/>
+    </Grid>
+</RibbonWindow>

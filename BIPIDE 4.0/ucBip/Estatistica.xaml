@@ -1,0 +1,29 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="ucBip.Estatistica" WindowStyle="ToolWindow"
+        Title="Contador de Instruções" Height="499" Width="702" Deactivated="Window_Deactivated" ResizeMode="NoResize">
+    <Grid>
+        <Image Height="379" HorizontalAlignment="Left" Margin="0,173,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="428" Source="/ucBipI;component/Images/statistic2.png" Opacity="0.13" />
+        <TextBox x:Name="txtTotalInst" TextWrapping="Wrap" IsReadOnly="True" Margin="442,20,0,0" BorderBrush="#FF9EABB5" Opacity="0.7" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="43" />
+        <Label x:Name="lblTotalMemoria" Content="Posições Ocupadas na Memória de Dados:" Height="27" Margin="-4,77,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Width="263" Opacity="0.9" />
+        <TextBox x:Name="txtTotalMemoria" TextWrapping="Wrap" Height="25" IsReadOnly="True" Margin="259,79,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="43" BorderBrush="#FF9EABB5" Opacity="0.7" />
+        <Label x:Name="lblTotalVariaveis" Content="Quantidade de Variáveis Utilizadas:" Height="25" Margin="34,48,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="225" HorizontalContentAlignment="Right" Opacity="0.9" />
+        <TextBox x:Name="txtTotalVariaveis" TextWrapping="Wrap" Height="25" IsReadOnly="True" Margin="259,50,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="43" BorderBrush="#FF9EABB5" Opacity="0.7" />
+        <Image x:Name="imgHelp1" Height="16" Margin="303,84,0,0" Stretch="Fill" VerticalAlignment="Top" ToolTip="O valor será atualizado após a execução do programa." Source="/ucBipI;component/Images/help2.png" HorizontalAlignment="Left" Width="16" />
+        <Label x:Name="lblTotalPrograma" Content="Posições Ocupadas na Memória de Programa:" Height="27" HorizontalContentAlignment="Right" Margin="-4,110,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="263" Opacity="0.9" />
+        <TextBox Height="25" IsReadOnly="True" Margin="259,110,0,0" Name="txtTotalPrograma" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="43" BorderBrush="#FF9EABB5" Opacity="0.7" />
+        <Label x:Name="lblTotalInst" Content="Instruções Utilizadas:" Height="25" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="317,19,0,0" VerticalAlignment="Top" Width="123" Opacity="0.9" />
+        <ListBox Height="398" HorizontalAlignment="Left" Margin="322,50,0,0" x:Name="listaInstrucoes" VerticalAlignment="Top" Width="165" Opacity="0.7" BorderBrush="#FF9EABB5" />
+        <ListBox BorderBrush="#FF9EABB5" Height="398" HorizontalAlignment="Left" Margin="490,50,0,0" Name="listaExecucao" Opacity="0.7" VerticalAlignment="Top" Width="165" />
+        <Label x:Name="lblTotalExec" Content="Instruções Executadas:" Height="25" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="485,19,0,0" Opacity="0.9" VerticalAlignment="Top" Width="132" />
+        <TextBox BorderBrush="#FF9EABB5" Height="25" HorizontalAlignment="Left" IsReadOnly="True" Margin="612,19,0,0" Name="txtTotalExec" Opacity="0.7" TextWrapping="Wrap" VerticalAlignment="Top" Width="43" />
+        <Image x:Name="imgHelp2" Height="16" HorizontalAlignment="Left" Margin="656,23,0,0" Source="/ucBipI;component/Images/help2.png" Stretch="Fill" ToolTip="O valor será atualizado após a execução do programa." VerticalAlignment="Top" Width="16" />
+    </Grid>
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="WhiteSmoke" Offset="0.355" />
+            <GradientStop Color="#FFD3E3E8" Offset="1" />
+        </LinearGradientBrush>
+    </Window.Background>
+</Window>

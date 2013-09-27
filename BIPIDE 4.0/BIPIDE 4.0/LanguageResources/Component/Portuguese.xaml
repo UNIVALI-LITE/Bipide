@@ -1,0 +1,58 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <!-- Main Window -->
+    <system:String x:Key="TabProgramming">Programar</system:String>
+    <system:String x:Key="GroupFiles">Arquivos</system:String>
+    <system:String x:Key="ButtonNew">Novo</system:String>
+    <system:String x:Key="ButtonOpen">Abrir</system:String>
+    <system:String x:Key="ButtonSave">Salvar</system:String>
+    <system:String x:Key="ButtonSaveAs">Salvar Como</system:String>
+    <system:String x:Key="ButtonPrint">Imprimir</system:String>
+    <system:String x:Key="ButtonExamples">Exemplos</system:String>
+    <system:String x:Key="ButtonExport">Exportar</system:String>
+    <system:String x:Key="GroupExecut">Executar</system:String>
+    <system:String x:Key="ButtonCompile">Compilar</system:String>
+
+    <system:String x:Key="TabLearn">Aprender</system:String>
+    <system:String x:Key="GroupHelp">Ajuda</system:String>
+    <system:String x:Key="ButtonFundamentals">Fundamentos</system:String>
+    <system:String x:Key="ButtonSystem">Sistema</system:String>
+    <system:String x:Key="GroupInformation">Informações</system:String>
+    <system:String x:Key="ButtonAbout">Sobre</system:String>
+    
+    <system:String x:Key="ContextualTabSimulation">Ferramentas de Simulação</system:String>
+    <system:String x:Key="TabSimulation">Simular</system:String>
+    <system:String x:Key="GroupExecution">Execução</system:String>
+    <system:String x:Key="ButtonStart">Iniciar</system:String>
+    <system:String x:Key="ButtonPause">Pausar</system:String>
+    <system:String x:Key="ButtonRepeat">Repitir</system:String>
+    <system:String x:Key="ButtonNext">Próximo</system:String>
+    <system:String x:Key="ButtonContinue">Continuar</system:String>
+    <system:String x:Key="ButtonStop">Parar</system:String>
+    <system:String x:Key="GroupProcessor">Processador</system:String>
+    <system:String x:Key="GroupSpeed">Velocidade</system:String>
+    <system:String x:Key="GalleryItemVerySlow">Muito Lento</system:String>
+    <system:String x:Key="GalleryItemSlow">Lento</system:String>
+    <system:String x:Key="GalleryItemNormal">Normal</system:String>
+    <system:String x:Key="GalleryItemAccelerated">Acelerado</system:String>
+    <system:String x:Key="GalleryItemFast">Rápido</system:String>
+    <system:String x:Key="GalleryItemVeryFast">Muito Rápido</system:String>
+    <system:String x:Key="GalleryItemUltraFast">Ultra Rápido</system:String>
+
+    
+
+    <system:String x:Key="ButtonExit">Sair</system:String>
+
+    <system:String x:Key="GridErrorName">Erros</system:String>
+    <system:String x:Key="GridErrorColumnLines">Linha</system:String>
+    <system:String x:Key="GridErrorColumnDescription">Descrição</system:String>
+    
+    <!-- New Document Window -->
+    <system:String x:Key="NDFormTitle">Novo Documento</system:String>
+    <system:String x:Key="NDLabelNewName">Nome:</system:String>
+    <system:String x:Key="NDButtonAdd">Adicionar</system:String>
+    <system:String x:Key="NDButtonCancel">Cancelar</system:String>
+    
+</ResourceDictionary>
