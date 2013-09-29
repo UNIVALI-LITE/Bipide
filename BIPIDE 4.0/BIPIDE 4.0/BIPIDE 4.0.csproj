@@ -213,11 +213,6 @@
   <ItemGroup>
     <Folder Include="LanguageResources\Help\HelpFundamentals\" />
     <Folder Include="LanguageResources\Help\HelpProcessor\" />
-    <Folder Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\InputOutput\" />
-    <Folder Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Operations\" />
-    <Folder Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Statements\" />
-    <Folder Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Structures\Control\" />
-    <Folder Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Structures\Loop\" />
     <Folder Include="LanguageResources\Help\HelpSystem\" />
   </ItemGroup>
   <ItemGroup>
@@ -253,8 +248,43 @@
     <Resource Include="ImageResources\HelpBook16.png" />
     <Resource Include="ImageResources\HelpBookOpen16.png" />
     <Resource Include="ImageResources\HelpDocument16.png" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\DataTypes\PortugueseDataTypes.html" />
     <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\DataTypes\PortugueseInteger.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\DataTypes\PortugueseVoid.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Expression\Operations\Arithmetic\PortugueseAddition.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Expression\Operations\Arithmetic\PortugueseSubtraction.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Expression\Operations\Arithmetic\PotugueseArithmetic.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Expression\Operations\Bitwise\PortugueseAND.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Expression\Operations\Bitwise\PortugueseBitwise.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Expression\Operations\Bitwise\PortugueseNOT.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Expression\Operations\Bitwise\PortugueseOR.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Expression\Operations\Bitwise\PortugueseShift.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Expression\Operations\Bitwise\PortugueseXOR.html" />
+    <Resource Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Expression\Operations\Bitwise\Resources\BinaryZero.png" />
+    <Resource Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Expression\Operations\Bitwise\Resources\LeftShift.png" />
+    <Resource Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Expression\Operations\Bitwise\Resources\One.png" />
+    <Resource Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Expression\Operations\Bitwise\Resources\RightShift.png" />
+    <Resource Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Expression\Operations\Bitwise\Resources\Zero.png" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Expression\Operations\PotugueseAttribution.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Expression\Operations\PotugueseOperation.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Expression\Operations\PotugueseRelational.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Expression\PotugueseExpression.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Expression\PotugueseFunctionCall.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\InputOutput\PortugueseInputOutput.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\InputOutput\PortugueseRead.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\InputOutput\PortugueseWrite.html" />
     <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\PortugueseProgramStructure.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Statements\PortugueseConstant.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Statements\PortugueseFunction.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Statements\PortugueseStatements.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Statements\PortugueseVariable.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Statements\PortugueseVector.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Structures\Control\PortugueseControl.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Structures\Control\PortugueseIf.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Structures\Loop\PortugueseDoWhile.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Structures\Loop\PortugueseFor.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Structures\Loop\PortugueseLoop.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Structures\Loop\PortugueseWhile.html" />
     <Content Include="LanguageResources\Help\Resources\Scripts\shAutoloader.js" />
     <Content Include="LanguageResources\Help\Resources\Scripts\shBrushAppleScript.js" />
     <Content Include="LanguageResources\Help\Resources\Scripts\shBrushAS3.js" />

@@ -22,10 +22,11 @@
 	function Brush()
 	{
 
-		var keywords =	'inteiro se senao fimse para fimpara enquanto ' +
-						'fimenquanto faca repita quando programa '      +
-						'declaracoes defina inicio fim entao ate '      +
-						'passo leia escreva retornar procedimento'      ;
+	    var keywords = 'programa real vazio logico cadeia inteiro caracter ' +
+                       'escolha caso contrario const funcao retorne para ' +
+                       'pare faca enquanto se senao inclua biblioteca ';
+
+	    var functions = 'leia escreva';
 
 		function fixComments(match, regexInfo)
 		{
@@ -42,10 +43,10 @@
 			{ regex: SyntaxHighlighter.regexLib.multiLineCComments,		css: 'comments'    },		// multiline comments
 			{ regex: /\b([\d]+(\.[\d]+)?|0x[a-f0-9]+)\b/gi,				css: 'value'       },		// numbers
 			{ regex: /@"(?:[^"]|"")*"/g,								css: 'string'      },		// @-quoted strings
-			{ regex: /@"(?:\-])*"/gi,								css: 'color1 bold'      },		// @-quoted strings
 			{ regex: SyntaxHighlighter.regexLib.doubleQuotedString,		css: 'string'      },		// strings
 			{ regex: SyntaxHighlighter.regexLib.singleQuotedString,		css: 'string'      },		// strings
-			{ regex: new RegExp(this.getKeywords(keywords), 'gm'),		css: 'keyword'     },		// c# keyword
+			{ regex: new RegExp(this.getKeywords(keywords), 'gm'),      css: 'keyword'     },		// portugol keyword
+            { regex: new RegExp(this.getKeywords(functions), 'gm'),     css: 'color1'      },		// portugol functions
 			];
 		
 		this.forHtmlScript(SyntaxHighlighter.regexLib.aspScriptTags);
