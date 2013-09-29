@@ -273,7 +273,7 @@
     <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\InputOutput\PortugueseInputOutput.html" />
     <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\InputOutput\PortugueseRead.html" />
     <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\InputOutput\PortugueseWrite.html" />
-    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\PortugueseProgramStructure.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\PortugueseLanguagePortugol.html" />
     <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Statements\PortugueseConstant.html" />
     <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Statements\PortugueseFunction.html" />
     <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Statements\PortugueseStatements.html" />
