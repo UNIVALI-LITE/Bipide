@@ -246,6 +246,7 @@
     <Resource Include="ImageResources\HelpBook16.png" />
     <Resource Include="ImageResources\HelpBookOpen16.png" />
     <Resource Include="ImageResources\HelpDocument16.png" />
+    <Resource Include="LanguageResources\Help\PortugueseHelpMapping.xml" />
     <Content Include="LanguageResources\Help\HelpProcessor\PortugueseBIPI.html" />
     <Content Include="LanguageResources\Help\HelpProcessor\PortugueseBIPII.html" />
     <Content Include="LanguageResources\Help\HelpProcessor\PortugueseBIPIII.html" />
