@@ -211,7 +211,6 @@
     <Resource Include="ImageResources\logout32.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="LanguageResources\Help\HelpProcessor\" />
     <Folder Include="LanguageResources\Help\HelpSystem\" />
   </ItemGroup>
   <ItemGroup>
@@ -247,18 +246,18 @@
     <Resource Include="ImageResources\HelpBook16.png" />
     <Resource Include="ImageResources\HelpBookOpen16.png" />
     <Resource Include="ImageResources\HelpDocument16.png" />
-    <Content Include="LanguageResources\Help\HelpFundamentals\PortugueseBIPI.html" />
-    <Content Include="LanguageResources\Help\HelpFundamentals\PortugueseBIPII.html" />
-    <Content Include="LanguageResources\Help\HelpFundamentals\PortugueseBIPIII.html" />
-    <Content Include="LanguageResources\Help\HelpFundamentals\PortugueseBIPInstructions.html" />
-    <Content Include="LanguageResources\Help\HelpFundamentals\PortugueseBIPIV.html" />
+    <Content Include="LanguageResources\Help\HelpProcessor\PortugueseBIPI.html" />
+    <Content Include="LanguageResources\Help\HelpProcessor\PortugueseBIPII.html" />
+    <Content Include="LanguageResources\Help\HelpProcessor\PortugueseBIPIII.html" />
+    <Content Include="LanguageResources\Help\HelpProcessor\PortugueseBIPInstructions.html" />
+    <Content Include="LanguageResources\Help\HelpProcessor\PortugueseBIPIV.html" />
     <Content Include="LanguageResources\Help\HelpFundamentals\PortugueseFundamentals.html" />
-    <Resource Include="LanguageResources\Help\HelpFundamentals\Resources\Memory.gif" />
-    <Resource Include="LanguageResources\Help\HelpFundamentals\Resources\BIPIOrganization.png" />
-    <Resource Include="LanguageResources\Help\HelpFundamentals\Resources\BIPIIOrganization.png" />
-    <Resource Include="LanguageResources\Help\HelpFundamentals\Resources\BIPIIIOrganization.png" />
-    <Resource Include="LanguageResources\Help\HelpFundamentals\Resources\BIPIIIULA.png" />
-    <Resource Include="LanguageResources\Help\HelpFundamentals\Resources\BIPIVOrganization.png" />
+    <Resource Include="LanguageResources\Help\HelpProcessor\Resources\Memory.gif" />
+    <Resource Include="LanguageResources\Help\HelpProcessor\Resources\BIPIOrganization.png" />
+    <Resource Include="LanguageResources\Help\HelpProcessor\Resources\BIPIIOrganization.png" />
+    <Resource Include="LanguageResources\Help\HelpProcessor\Resources\BIPIIIOrganization.png" />
+    <Resource Include="LanguageResources\Help\HelpProcessor\Resources\BIPIIIULA.png" />
+    <Resource Include="LanguageResources\Help\HelpProcessor\Resources\BIPIVOrganization.png" />
     <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\DataTypes\PortugueseDataTypes.html" />
     <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\DataTypes\PortugueseInteger.html" />
     <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\DataTypes\PortugueseVoid.html" />
