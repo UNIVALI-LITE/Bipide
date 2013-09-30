@@ -1,0 +1,99 @@
+﻿<!doctype html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="../Resources/Scripts/shCore.js"></script>
+	<script type="text/javascript" src="../Resources/Scripts/shBrushPortugol.js"></script>
+	<link type="text/css" rel="stylesheet" href="../Resources/Styles/shCoreDefault.css"/>
+    <link type="text/css" rel="stylesheet" href="../Resources/Styles/HelpStyle.css"/>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+
+    <body style="background: white; font-family: Helvetica">
+        <h1>BIP IV</h1>
+		<div class="conteudo">
+			<h2>Arquitetura</h2>
+            <p>A arquitetura do BIP IV entende a arquitetura dos seus predecessores, acrescentando ainda, o suporte a procedimentos, a possibilidade de realizar manipulação de vetores e o controle de entrada e saída. Para dar suporte a tais funcionalidade houve a necessidade de acrescentar mais quatro registradores, que são eles, (i) o registrador INDR, responsável por armazenar o índicie base no suporte a vetores; (ii) o registrador SP, que tem a função de indicar o topo da pilha quando há a chamada de um procedimento; (iii) os registradores IN_PORT e (iv) OUT_PORT responsáveis pelo mapeamento de entrada e saída, respectivamente. (RECH, 2011).</p>
+            <p>A tabela abaixo contém o conjunto de instruções utilizadas pelo BIP IV para realizar as operações acrescentadas a ele.</p>
+			
+            <table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>Código da operação</th>
+						<th>Instrução</th>
+						<th>Operação</th>
+						<th>Classe</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>00000 - 00111</td>
+                        <td>Conjunto de instruções referentes ao BIP I. </td>
+						<td/>
+						<td/>
+                    </tr>
+                    <tr>
+                        <td>01000 - 01110</td>
+                        <td>Conjunto de instruções referentes ao BIP II. </td>
+						<td/>
+						<td/>
+                    </tr>
+                    <tr>
+                        <td>01111 - 10111</td>
+                        <td>Conjunto de instruções referentes ao BIP III. </td>
+						<td/>
+						<td/>
+                    </tr>
+                    <tr>
+                        <td>11000</td>
+                        <td>STOV</td>
+						<td>(endereço + INDR) &larr; ACC</td>
+						<td>Manipulação de Vetores</td>
+                    </tr>
+                    <tr>
+                        <td>11001</td>
+                        <td>LDV</td>
+						<td>ACC &larr; (endereço + INDR)</td>
+						<td>Manipulação de Vetores</td>
+                    </tr>
+                    <tr>
+                        <td>11010</td>
+                        <td>RETURN</td>
+						<td>PC &larr; (Topo da Pilha)</td>
+						<td>Suporte a Procedimentos</td>
+                    </tr>
+                    <tr>
+                        <td>11011</td>
+                        <td>Não utilizado</td>
+						<td/>
+						<td/>
+                    </tr>
+                    <tr>
+                        <td>11100</td>
+                        <td>CALL</td>
+						<td>
+                            <p>PC &larr; constante</p>
+                            <p>(Topo da Pilha) &larr; PC+1</p>
+						</td>
+						<td>Suporte a Procedimentos</td>
+                    </tr>
+                    <tr>
+                        <td>11101 - 11111</td>
+                        <td>Reservado</td>
+						<td/>
+						<td/>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Fonte: Adaptado de Rech (2011).</p>
+			
+			<hr class="separador-topico"/>
+			<h2>Organização</h2>
+
+			<p>A organização do BIP IV foi especificada tendo como base a organização do BIP III. Para a especificação do BIP IV, além da especificação do BIP III, foram utilizados alguns componentes do µBIP. Tais componentes, como a pilha, que é responsável por dar suporte a procedimentos e a unidade de manipulação de vetores podem ser encontrados na figura abaixo que ilustra a organização do BIP IV. (RECH, 2011).</p>
+			<img src="Resources/BIPIVOrganization.png"/>
+            <p>Fonte: Vieira (2012).</p>
+		</div>
+    </body>
+</html>

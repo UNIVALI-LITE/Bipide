@@ -1,0 +1,135 @@
+﻿<!doctype html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="../Resources/Scripts/shCore.js"></script>
+	<script type="text/javascript" src="../Resources/Scripts/shBrushPortugol.js"></script>
+	<link type="text/css" rel="stylesheet" href="../Resources/Styles/shCoreDefault.css"/>
+    <link type="text/css" rel="stylesheet" href="../Resources/Styles/HelpStyle.css"/>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+
+    <body style="background: white; font-family: Helvetica">
+        <h1>BIP I</h1>
+		<div class="conteudo">
+			<h2>Arquitetura</h2>
+            <p>O BIP I possui uma arquitetura embasada na arquitetura RISC (Reduced Instruction-Set Computer) do microcontrolador PIC. Este processador é orientado a acumulador e não possui banco de registradores como o processador MIPS (Microprocessor without Interlocked Pipeline Stages). Todas as operações realizadas no BIP I se utilizam do acumulador, pois ele apresenta apenas um registrador para realizar o armazenamento de dados, com tudo, algumas operações aritméticas necessitam utilizar operandos posicionados em memória. (MORANDI et al. 2006).</p>
+            <p>A arquitetura do BIP I possui poucos modos de endereçamento, sendo que todas as instruções possuem o mesmo formato. O formato de instrução é composto por um código de operação com o tamanho de 5 bits e um operando no tamanho de 11 bits, totalizando 16 bits de instrução. (MORANDI; RAABE; ZEFERINO, 2006).</p>
+			<table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>Arquitetura BIP I.</th>
+                        <th/>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Tamanho da palavra de dados</td>
+                        <td>16 bits</td>
+                    </tr>
+                    <tr>
+                        <td>Tipo de dados</td>
+                        <td>Inteiro de 16 bits com sinal: -32768 a +32767</td>
+                    </tr>
+                    <tr>
+                        <td>Tamanho da palavra de instrução</td>
+                        <td>16 bits</td>
+                    </tr>
+					<tr>
+                        <td>Registradores</td>
+                        <td>
+							<p>ACC: Acumulador</p>
+							<p>IR: Registrador de Instrução</p>
+							<p>PC: Contador de Programa</p>
+						</td>
+                    </tr>
+					<tr>
+                        <td>Classes de instrução</td>
+                        <td>
+							<p>Acesso a Memória: STO, LD, LDI</p>
+							<p>Aritmética: ADD, ADDI, SUB, SUBI</p>
+							<p>Controle: HLT</p>
+						</td>
+                    </tr>
+                </tbody>
+            </table>
+			<p>Fonte: Adaptado de Morandi (et al., 2006).</p>
+
+			<p>Os registradores que compõe a arquitetura do BIP I são os registradores (i) PC (Program Counter) que aponta para a próxima instrução a ser executada; (ii) IR (Instruction Register) que armazena a instrução em execução; e o (iii) ACC (Accumulator) que é utilizado para armazenar dados durante a execução de uma operação aritmética ou de atribuição. (MORANDI; RAABE; ZEFERINO, 2006).</p>
+			<p>O conjunto de instruções do BIP I é composto por oito instruções sendo uma instrução de controle, três instruções de transferência e quatro instruções de aritmética. Este conjunto de instruções pode ser observado abaixo.</p>
+			<table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>Código da operação</th>
+						<th>Instrução</th>
+						<th>Operação</th>
+						<th>Classe</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>00000</td>
+                        <td>HLT</td>
+						<td>Paralisa a execução</td>
+						<td>Controle</td>
+                    </tr>
+                    <tr>
+                        <td>00001</td>
+                        <td>STO</td>
+						<td>(endereço) &larr; ACC</td>
+						<td>Transferência</td>
+                    </tr>
+                    <tr>
+                        <td>00010</td>
+                        <td>LD</td>
+						<td>ACC &larr; (endereço)</td>
+						<td>Transferência</td>
+                    </tr>
+                    <tr>
+                        <td>00011</td>
+                        <td>LDI</td>
+						<td>ACC &larr; constante</td>
+						<td>Transferência</td>
+                    </tr>
+					<tr>
+                        <td>00100</td>
+                        <td>ADD</td>
+						<td>ACC &larr; ACC + (endereço)</td>
+						<td>Aritmética</td>
+                    </tr>
+					<tr>
+                        <td>00101</td>
+                        <td>ADDI</td>
+						<td>ACC &larr; ACC + constante</td>
+						<td>Aritmética</td>
+                    </tr>
+					<tr>
+                        <td>00110</td>
+                        <td>SUB</td>
+						<td>ACC &larr; ACC - (endereço)</td>
+						<td>Aritmética</td>
+                    </tr>
+					<tr>
+                        <td>00111</td>
+                        <td>SUBI</td>
+						<td>ACC &larr; ACC - constante</td>
+						<td>Aritmética</td>
+                    </tr>
+					<tr>
+                        <td>01000 - 11111</td>
+                        <td>Reservado</td>
+                        <td/>
+                        <td/>
+                    </tr>
+                </tbody>
+            </table>
+			
+			<hr class="separador-topico"/>
+			<h2>Organização</h2>
+			<p>O BIP I possui duas especificações de organização uma utilizando a estrutura do tipo Princeton, com uma única memória para armazenamento de dados de instrução e outra organização utilizando a estrutura do tipo Harvard com memórias separadas para instruções e dados. (MORANDI et al. 2006). Apesar de possuir duas especificações diferentes, a mais utilizada é a estrutura de Harvard, ilustrada na imagem abaixo.</p>
+			<img src="Resources/BIPIOrganization.png"/>
+            <p>Fonte: Vieira (2012).</p>
+		</div>
+    </body>
+</html>

@@ -1,0 +1,127 @@
+﻿<!doctype html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="../Resources/Scripts/shCore.js"></script>
+	<script type="text/javascript" src="../Resources/Scripts/shBrushPortugol.js"></script>
+	<link type="text/css" rel="stylesheet" href="../Resources/Styles/shCoreDefault.css"/>
+    <link type="text/css" rel="stylesheet" href="../Resources/Styles/HelpStyle.css"/>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+
+    <body style="background: white; font-family: Helvetica">
+        <h1>BIP II</h1>
+		<div class="conteudo">
+			<h2>Arquitetura</h2>
+            <p>O BIP II consiste em uma extensão do BIP I, sendo assim, ele possui as mesmas características arquiteturais. Sua especificação foi idealizada para incluir o suporte a estruturas de controle, com tal suporte tornou-se possível a implementação de desvios condicionais, desvios incondicionais e laços de repetição. Com isso o conjunto de instruções foi complementado, realizando a adição da Classe de instruções para desvios composta por instruções de comparação, instruções de desvio condicional e uma instrução de desvio incondicional, descritas na tabela abaixo. As instruções do BIP II herdaram o formato de instruções especificados no BIP I. (MORANDI; RAABE; ZEFERINO, 2006).</p>
+            <p>Para que fosse possível realizar as operações acrescentadas ao BIP II a adição de um novo registrador também se fez necessária. O registrador em questão é um registrador de status, o qual possui duas flags, são elas Z (Zero) e N (Negative). Toda instrução de comparação e desvio condicional devem ser realizadas após uma instrução de subtração e dependendo do resultado da subtração as flags são acionadas. Os valores das flags são verificados pelas instruções de comparação e desvio para determinar se o desvio deve ser realizado ou não, de acordo com o tipo de comparação associado. (MORANDI; RAABE; ZEFERINO, 2006).</p>
+			
+			<table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>Código da operação</th>
+						<th>Instrução</th>
+						<th>Operação</th>
+						<th>Classe</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>00000 - 00111</td>
+                        <td>Conjunto de instruções referentes ao BIP I. </td>
+						<td/>
+						<td/>
+                    </tr>
+                    <tr>
+                        <td>01000</td>
+                        <td>BEQ</td>
+						<td>
+                            <p>Se (STATUS.Z=1) então</p>
+                            <p>  PC &larr; (endereço) </p>
+                            <p>Se não </p>
+                            <p>  PC &larr; PC + 1</p>
+						</td>
+						<td>Desvio Condicional</td>
+                    </tr>
+                    <tr>
+                        <td>01001</td>
+                        <td>BNE</td>
+						<td>
+                            <p>Se (STATUS.Z=0) então</p>
+                            <p>  PC &larr; (endereço) </p>
+                            <p>Se não </p>
+                            <p>  PC &larr; PC + 1</p>
+						</td>
+						<td>Desvio Condicional</td>
+                    </tr>
+                    <tr>
+                        <td>01010</td>
+                        <td>BGT</td>
+						<td>
+                            <p>Se (STATUS.Z=0) e (STATUS.N=0) então</p>
+                            <p>  PC &larr; (endereço) </p>
+                            <p>Se não </p>
+                            <p>  PC &larr; PC + 1</p>
+						</td>
+						<td>Desvio Condicional</td>
+                    </tr>
+                    <tr>
+                        <td>01011</td>
+                        <td>BGE</td>
+						<td>
+                            <p>Se (STATUS.N=0) então</p>
+                            <p>  PC &larr; (endereço) </p>
+                            <p>Se não </p>
+                            <p>  PC &larr; PC + 1</p>
+						</td>
+						<td>Desvio Condicional</td>
+                    </tr>
+                    <tr>
+                        <td>01100</td>
+                        <td>BLT</td>
+						<td>
+                            <p>Se (STATUS.N=1) então</p>
+                            <p>  PC &larr; (endereço) </p>
+                            <p>Se não </p>
+                            <p>  PC &larr; PC + 1</p>
+						</td>
+						<td>Desvio Condicional</td>
+                    </tr>
+                    <tr>
+                        <td>01101</td>
+                        <td>BLE</td>
+						<td>
+                            <p>Se (STATUS.Z=1) ou (STATUS.N=1) então</p>
+                            <p>  PC &larr; (endereço) </p>
+                            <p>Se não </p>
+                            <p>  PC &larr; PC + 1</p>
+						</td>
+						<td>Desvio Condicional</td>
+                    </tr>
+                    <tr>
+                        <td>01110</td>
+                        <td>JMP</td>
+						<td>
+                            <p>PC &larr; (endereço) </p>
+						</td>
+						<td>Desvio Incondicional</td>
+                    </tr>
+                    <tr>
+                        <td>01111 - 11111</td>
+                        <td>Reservado</td>
+						<td/>
+						<td/>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Fonte: Adaptado de Morandi, Raabe e Zeferino (2006).</p>
+			
+			<hr class="separador-topico"/>
+			<h2>Organização</h2>
+			<p>A organização do BIP II, assim como a arquitetura, é uma extensão do BIP I, aonde foi incluído o registrador status e realizadas algumas modificações no circuito de atualização do PC, como pode ser visualizado na figura abaixo. Tais alterações acrescentaram um grau de complexidade adicional, porém ainda com uma fácil compreensão. (MORANDI; RAABE; ZEFERINO, 2006).</p>
+			<img src="Resources/BIPIIOrganization.png"/>
+            <p>Fonte: Vieira (2012).</p>
+		</div>
+    </body>
+</html>

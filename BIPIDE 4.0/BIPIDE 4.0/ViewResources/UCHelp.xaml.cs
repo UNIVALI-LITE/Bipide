@@ -40,37 +40,56 @@ namespace BIPIDE_4._0.ViewResources
             DeviceGroups = (ArrayList)SerializerObj.Deserialize(Reader);
 
             InitializeComponent();
-            _WebBrowser.Navigate(new Uri(@"file://127.0.0.1/d$/Users/Nereu/Documents/Visual Studio 2012/Projects/BIPIDE 4.0/BIPIDE 4.0/LanguageResources/Help/HelpProgrammingLanguages/LanguagePortugol/PortugueseProgramStructure.html"));
         }
 
-        [XmlInclude(typeof(TreeItem))]
-        public class TreeItem
+        private void _TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            private string _Name;
+            String iPartialUri = ( ( TreeItem ) _TreeView.SelectedItem ).UriString;
+            Uri iHelpFileUri = GetUri( iPartialUri );
+            
+            if ( iPartialUri == String.Empty )
+                _WebBrowser.Navigate("about:blank");
+            else
+                _WebBrowser.Navigate( iHelpFileUri );
+        }
 
-            public string Name
-            {
-                get { return _Name; }
-                set { _Name = value; }
-            }
+        private Uri GetUri(String pPartialUri)
+        {
+            String iAssemblyPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            iAssemblyPath = iAssemblyPath.Replace('\\', '/');
+            iAssemblyPath = "file://127.0.0.1/" + iAssemblyPath[0] + "$/" + iAssemblyPath.Substring(3) + pPartialUri;
 
-            [XmlIgnore]
-            private Uri _Uri { get; set; }
+            return new Uri(iAssemblyPath);
+        }
+    }
 
-            [XmlAttribute("Uri")]
-            public string UriString
-            {
-                get { return (_Uri == null ? null : _Uri.ToString()); }
-                set { _Uri = (value == null ? null : new Uri(value)); }
-            }
+    [XmlInclude(typeof(TreeItem))]
+    public class TreeItem
+    {
+        private string _Name;
 
-            private ArrayList _Items;
+        public string Name
+        {
+            get { return _Name; }
+            set { _Name = value; }
+        }
 
-            public ArrayList Items
-            {
-                get { return _Items; }
-                set { _Items = value; }
-            }
+        [XmlIgnore]
+        private String _Uri { get; set; }
+
+        [XmlAttribute("Uri")]
+        public String UriString
+        {
+            get { return _Uri; }
+            set { _Uri = value; }
+        }
+
+        private ArrayList _Items;
+
+        public ArrayList Items
+        {
+            get { return _Items; }
+            set { _Items = value; }
         }
     }
 

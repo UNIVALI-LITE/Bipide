@@ -33,7 +33,7 @@
                   Grid.Column="0" 
                   HorizontalAlignment="Stretch" 
                   VerticalAlignment="Stretch"
-                  ItemsSource="{Binding DeviceGroups}">
+                  ItemsSource="{Binding DeviceGroups}" SelectedItemChanged="_TreeView_SelectedItemChanged">
             
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding Items}">
@@ -60,11 +60,19 @@
                                                 <TextBlock Text="{Binding Name}"/>
                                             </StackPanel>
                                             <HierarchicalDataTemplate.ItemTemplate>
-                                                <HierarchicalDataTemplate>
+                                                <HierarchicalDataTemplate ItemsSource="{Binding Items}">
                                                     <StackPanel Orientation="Horizontal" Width="Auto">
-                                                        <Image Width="16" Height="16" Margin="3,0" Style="{StaticResource StyleOpenBook}" />
+                                                        <Image Width="16" Height="16" Margin="3,0" Style="{StaticResource StyleOpenBook}"/>
                                                         <TextBlock Text="{Binding Name}"/>
                                                     </StackPanel>
+                                                    <HierarchicalDataTemplate.ItemTemplate>
+                                                        <HierarchicalDataTemplate>
+                                                            <StackPanel Orientation="Horizontal" Width="Auto">
+                                                                <Image Width="16" Height="16" Margin="3,0" Style="{StaticResource StyleOpenBook}" />
+                                                                <TextBlock Text="{Binding Name}"/>
+                                                            </StackPanel>
+                                                        </HierarchicalDataTemplate>
+                                                    </HierarchicalDataTemplate.ItemTemplate>
                                                 </HierarchicalDataTemplate>
                                             </HierarchicalDataTemplate.ItemTemplate>
                                         </HierarchicalDataTemplate>

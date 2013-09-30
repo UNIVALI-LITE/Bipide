@@ -71,7 +71,7 @@ namespace BIPIDE_4._0
             iLayoutDocument.Title           = "Documento";
             iLayoutDocument.Content         = iProgrammingDocument;
             iLayoutDocument.IsSelectedChanged += iLayoutDocument_IsSelectedChanged;
-            
+
             _DocumentPane.Children.Add(iLayoutDocument);
         }
 
@@ -179,7 +179,8 @@ namespace BIPIDE_4._0
             iLayoutDocument.Title = "Fundamentos";
             iLayoutDocument.Content = iHelp;
 
-            _DocumentPane.Children.Add(iLayoutDocument);
+            if (_DocumentPane.Children.Count(x => x.Content.GetType() == typeof(UCHelp)) == 0)
+                _DocumentPane.Children.Add(iLayoutDocument);
         }
     }
 }

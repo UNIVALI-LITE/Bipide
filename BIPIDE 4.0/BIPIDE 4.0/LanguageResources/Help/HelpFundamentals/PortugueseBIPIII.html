@@ -1,0 +1,118 @@
+﻿<!doctype html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="../Resources/Scripts/shCore.js"></script>
+	<script type="text/javascript" src="../Resources/Scripts/shBrushPortugol.js"></script>
+	<link type="text/css" rel="stylesheet" href="../Resources/Styles/shCoreDefault.css"/>
+    <link type="text/css" rel="stylesheet" href="../Resources/Styles/HelpStyle.css"/>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+
+    <body style="background: white; font-family: Helvetica">
+        <h1>BIP III</h1>
+		<div class="conteudo">
+			<h2>Arquitetura</h2>
+            <p>Assim com o BIP II é uma extensão do BIP I, o BIP III é uma extensão do BIP II, vindo por adicionar novas funcionalidades ao processador. As implementações realizadas no modelo do BIP II que vieram a dar origem ao BIP III tiveram como principal objetivo oferecer o suporte a operações de lógica bit a bit. Para que isso fosse possível, foi necessária a expansão da Classe de instruções existente até então. Na expansão realizada foram adicionadas a Classe de instruções referente à lógica booleana e deslocamento lógico de acordo com a tabela abaixo. (RECH, 2011).</p>
+            
+			<table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>Código da operação</th>
+						<th>Instrução</th>
+						<th>Operação</th>
+						<th>Classe</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>00000 - 00111</td>
+                        <td>Conjunto de instruções referentes ao BIP I. </td>
+						<td/>
+						<td/>
+                    </tr>
+                    <tr>
+                        <td>01000 - 01110</td>
+                        <td>Conjunto de instruções referentes ao BIP II. </td>
+						<td/>
+						<td/>
+                    </tr>
+                    <tr>
+                        <td>01111</td>
+                        <td>NOT</td>
+						<td>ACC &larr; NOT (ACC)</td>
+						<td>Lógica booleana</td>
+                    </tr>
+                    <tr>
+                        <td>10000</td>
+                        <td>AND</td>
+						<td>ACC &larr; ACC AND (endereço)</td>
+						<td>Lógica booleana</td>
+                    </tr>
+                    <tr>
+                        <td>10001</td>
+                        <td>ANDI</td>
+						<td>ACC &larr; ACC ANDI constante</td>
+						<td>Lógica booleana</td>
+                    </tr>
+                    <tr>
+                        <td>10010</td>
+                        <td>OR</td>
+						<td>ACC &larr; ACC OR (endereço)</td>
+						<td>Lógica booleana</td>
+                    </tr>
+                    <tr>
+                        <td>10011</td>
+                        <td>ORI</td>
+						<td>ACC &larr; ACC ORI constante</td>
+						<td>Lógica booleana</td>
+                    </tr>
+                    <tr>
+                        <td>10100</td>
+                        <td>XOR</td>
+						<td>ACC &larr; ACC XOR (endereço)</td>
+						<td>Lógica booleana</td>
+                    </tr>
+                    <tr>
+                        <td>10101</td>
+                        <td>XORI</td>
+						<td>ACC &larr; ACC XORI constante</td>
+						<td>Lógica booleana</td>
+                    </tr>
+                    <tr>
+                        <td>10110</td>
+                        <td>SLL</td>
+						<td>ACC &larr; ACC SLL constante</td>
+						<td>Deslocamento lógico</td>
+                    </tr>
+                    <tr>
+                        <td>10111</td>
+                        <td>SLR</td>
+						<td>ACC &larr; ACC SLR constante</td>
+						<td>Deslocamento lógico</td>
+                    </tr>
+                    <tr>
+                        <td>01111 - 11111</td>
+                        <td>Reservado</td>
+						<td/>
+						<td/>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Fonte: Adaptado de Pereira (2008).</p>
+			
+			<hr class="separador-topico"/>
+			<h2>Organização</h2>
+
+			<p>Conforme pode ser observado na figura abaixo, a estrutura da organização do BIP III é muito similar à estrutura da organização do BIP II, diferenciando-se uma da outra apenas na ULA (Unidade Lógica Aritmética).</p>
+			<img src="Resources/BIPIIIOrganization.png"/>
+            <p>Fonte: Vieira (2012).</p>
+
+            <p>No BIP II a ULA realizava apenas operações aritméticas de soma e subtração, com a adição de novas funções de controle lógico a ULA precisou ser alterada para que o suporte a tais operações fosse possível. Com a união da unidade aritmética presente no BIP II e a adição das funcionalidades de lógica booleana e deslocamento lógico propostas pelo BIP III a ULA passa a ter uma identidade de Unidade Funcional apresentada na figura abaixo. (PEREIRA, 2008).</p>
+            <img src="Resources/BIPIIIULA.png">
+            <p>Fonte: Adaptado de Pereira (2008).</p>
+
+		</div>
+    </body>
+</html>

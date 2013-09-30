@@ -1,0 +1,1364 @@
+﻿<!doctype html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="../Resources/Scripts/shCore.js"></script>
+	<script type="text/javascript" src="../Resources/Scripts/shBrushPortugol.js"></script>
+	<link type="text/css" rel="stylesheet" href="../Resources/Styles/shCoreDefault.css"/>
+    <link type="text/css" rel="stylesheet" href="../Resources/Styles/HelpStyle.css"/>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+
+    <body style="background: white; font-family: Helvetica">
+        <h1>Controle</h1>
+		<div class="conteudo">
+            <table class="box-table-a">
+                <thead>
+                    <tr>
+                        <th>HLT</th>
+                        <th>Halts</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sintaxe:</td>
+                        <td>HLT</td>
+                    </tr>
+                    <tr>
+                        <td>Descrição:</td>
+                        <td>Desabilita a atualização do PC</td>
+                    </tr>
+                    <tr>
+                        <td>Opcode:</td>
+                        <td>00000</td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td>Nenhum bit afetado</td>
+                    </tr>
+					<tr>
+                        <td>PC:</td>
+                        <td>Não é atualizado</td>
+                    </tr>
+					<tr>
+                        <td>Operação:</td>
+                        <td>Nenhuma operação é realizada</td>
+                    </tr>
+					<tr>
+                        <td>Exemplo:</td>
+                        <td>
+							<p>HLT</p>
+							<p>Antes da instrução: PC = 0x0100</p>
+							<p>Após a instrução: PC = 0x0100</p>	
+						</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+		
+		<h1>Armazenamento</h1>
+		<div class="conteudo">
+            <table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>STO</th>
+                        <th>Store</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sintaxe:</td>
+                        <td>STO operand</td>
+                    </tr>
+                    <tr>
+                        <td>Descrição:</td>
+                        <td>Armazena o conteúdo do ACC em uma posição da memória indicada pelo operand.</td>
+                    </tr>
+                    <tr>
+                        <td>Opcode:</td>
+                        <td>00001</td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td>Nenhum bit afetado</td>
+                    </tr>
+					<tr>
+                        <td>PC:</td>
+                        <td>PC &larr; PC + 1</td>
+                    </tr>
+					<tr>
+                        <td>Operação:</td>
+                        <td>Memory[operand] &larr; ACC</td>
+                    </tr>
+					<tr>
+                        <td>Exemplo:</td>
+                        <td>
+							<p>STO 0x0002</p>
+							<p>Antes da instrução: ACC = 0x0005</p>
+							<p>MEM[2] = 0x0000</p>	
+							<p>Após a instrução: ACC = 0x0005</p>
+							<p>MEM[2] = 0x0005</p>	
+						</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+		
+		<h1>Carga</h1>
+		<div class="conteudo">
+            <table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>LD</th>
+                        <th>Load</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sintaxe:</td>
+                        <td>LD operand</td>
+                    </tr>
+                    <tr>
+                        <td>Descrição:</td>
+                        <td>Carrega um valor armazenado em uma posição de memória indicado pelo operand para o registrador ACC .</td>
+                    </tr>
+                    <tr>
+                        <td>Opcode:</td>
+                        <td>00010</td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td>Nenhum bit afetado</td>
+                    </tr>
+					<tr>
+                        <td>PC:</td>
+                        <td>PC &larr; PC + 1</td>
+                    </tr>
+					<tr>
+                        <td>Operação:</td>
+                        <td>ACC &larr; Memory[operand]</td>
+                    </tr>
+					<tr>
+                        <td>Exemplo:</td>
+                        <td>
+							<p>LD 0x0002</p>
+							<p>Antes da instrução: ACC = 0x0000</p>
+							<p>MEM[2] = 0x0002</p>	
+							<p>Após a instrução: ACC = 0x0002</p>
+							<p>MEM[2] = 0x0002</p>	
+						</td>
+                    </tr>
+                </tbody>
+            </table>
+			
+            <br/>
+
+			<table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>LDI</th>
+                        <th>Load Immediate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sintaxe:</td>
+                        <td>LDI operand</td>
+                    </tr>
+                    <tr>
+                        <td>Descrição:</td>
+                        <td>Carrega o valor de um operando imediato para o registrador ACC.</td>
+                    </tr>
+                    <tr>
+                        <td>Opcode:</td>
+                        <td>00011</td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td>Nenhum bit afetado</td>
+                    </tr>
+					<tr>
+                        <td>PC:</td>
+                        <td>PC &larr; PC + 1</td>
+                    </tr>
+					<tr>
+                        <td>Operação:</td>
+                        <td>ACC &larr; operand</td>
+                    </tr>
+					<tr>
+                        <td>Exemplo:</td>
+                        <td>
+							<p>LDI 0x0005</p>
+							<p>Antes da instrução: ACC = 0x0000</p>
+							<p>Após a instrução: ACC = 0x0005</p>
+						</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+		
+		<h1>Aritmética</h1>
+		<div class="conteudo">
+            <table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>ADD</th>
+                        <th>Add</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sintaxe:</td>
+                        <td>ADD operand</td>
+                    </tr>
+                    <tr>
+                        <td>Descrição:</td>
+                        <td>O valor do registrador ACC é somado com o valor armazenado na posição de memória indicado pelo campo operand e o resultado armazenado no ACC .</td>
+                    </tr>
+                    <tr>
+                        <td>Opcode:</td>
+                        <td>00100</td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td>Z e N são afetados por esta operação</td>
+                    </tr>
+					<tr>
+                        <td>PC:</td>
+                        <td>PC &larr; PC + 1</td>
+                    </tr>
+					<tr>
+                        <td>Operação:</td>
+                        <td>ACC &larr; ACC + Memory[operand]</td>
+                    </tr>
+					<tr>
+                        <td>Exemplo:</td>
+                        <td>
+							<p>ADD 0x0002</p>
+							<p>Antes da instrução: ACC = 0x0004</p>
+							<p>MEM[2] = 0x0003</p>	
+							<p>Após a instrução: ACC = 0x0007</p>
+							<p>MEM[2] = 0x0003</p>	
+						</td>
+                    </tr>
+                </tbody>
+            </table>
+			
+            <br/>
+
+			<table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>ADDI</th>
+                        <th>Add Immediate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sintaxe:</td>
+                        <td>ADDI operand</td>
+                    </tr>
+                    <tr>
+                        <td>Descrição:</td>
+                        <td>O valor do registrador ACC é somado com o valor operando imediato e o resultado armazenado no ACC .</td>
+                    </tr>
+                    <tr>
+                        <td>Opcode:</td>
+                        <td>00101</td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td>Z e N são afetados por esta operação</td>
+                    </tr>
+					<tr>
+                        <td>PC:</td>
+                        <td>PC &larr; PC + 1</td>
+                    </tr>
+					<tr>
+                        <td>Operação:</td>
+                        <td>ACC &larr; ACC + operand</td>
+                    </tr>
+					<tr>
+                        <td>Exemplo:</td>
+                        <td>
+							<p>ADDI 0x0002</p>
+							<p>Antes da instrução: ACC = 0x0004</p>
+							<p>Antes da instrução: ACC = 0x0006</p>		
+						</td>
+                    </tr>
+                </tbody>
+            </table>
+			
+            <br/>
+
+			<table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>SUB</th>
+                        <th>Subtract</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sintaxe:</td>
+                        <td>SUB operand</td>
+                    </tr>
+                    <tr>
+                        <td>Descrição:</td>
+                        <td>O valor do registrador ACC é subtraído pelo valor armazenado na posição de memória indicado pelo campo operand e o resultado armazenado no ACC .</td>
+                    </tr>
+                    <tr>
+                        <td>Opcode:</td>
+                        <td>00110</td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td>Z e N são afetados por esta operação</td>
+                    </tr>
+					<tr>
+                        <td>PC:</td>
+                        <td>PC &larr; PC + 1</td>
+                    </tr>
+					<tr>
+                        <td>Operação:</td>
+                        <td>ACC &larr; ACC - Memory[operand]</td>
+                    </tr>
+					<tr>
+                        <td>Exemplo:</td>
+                        <td>
+							<p>ADD 0x0002</p>
+							<p>Antes da instrução: ACC = 0x0004</p>
+							<p>MEM[2] = 0x0003</p>	
+							<p>Após a instrução: ACC = 0x0001</p>
+							<p>MEM[2] = 0x0003</p>	
+						</td>
+                    </tr>
+                </tbody>
+            </table>
+			
+            <br/>
+
+			<table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>SUBI</th>
+                        <th>Subtract Immediate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sintaxe:</td>
+                        <td>SUBI operand</td>
+                    </tr>
+                    <tr>
+                        <td>Descrição:</td>
+                        <td>O valor do registrador ACC é subtraído pelo valor do operando imediato e o resultado armazenado no ACC .</td>
+                    </tr>
+                    <tr>
+                        <td>Opcode:</td>
+                        <td>00111</td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td>Z e N são afetados por esta operação</td>
+                    </tr>
+					<tr>
+                        <td>PC:</td>
+                        <td>PC &larr; PC + 1</td>
+                    </tr>
+					<tr>
+                        <td>Operação:</td>
+                        <td>ACC &larr; ACC - operand</td>
+                    </tr>
+					<tr>
+                        <td>Exemplo:</td>
+                        <td>
+							<p>ADDI 0x0002</p>
+							<p>Antes da instrução: ACC = 0x0004</p>
+							<p>Antes da instrução: ACC = 0x0002</p>		
+						</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+		
+		<h1>Desvio</h1>
+		<div class="conteudo">
+            <table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>BEQ</th>
+                        <th>Branch Equal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sintaxe:</td>
+                        <td>BEQ operand</td>
+                    </tr>
+                    <tr>
+                        <td>Descrição:</td>
+                        <td>Atualiza o valor do PC com o valor do campo operand caso o resultado da operação anterior na ULA foi zero.</td>
+                    </tr>
+                    <tr>
+                        <td>Opcode:</td>
+                        <td>01000</td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td>Nenhum bit é afetado</td>
+                    </tr>
+					<tr>
+                        <td>PC:</td>
+                        <td>
+							<p>Se (STATUS.Z=1) então</p>
+							<p>  PC &larr; endereço</p>
+							<p>Se não </p>	
+							<p>  PC &larr; PC + 1</p>							
+						</td>
+                    </tr>
+					<tr>
+                        <td>Operação:</td>
+                        <td>Nenhuma Operação Realizada</td>
+                    </tr>
+					<tr>
+                        <td>Exemplo:</td>
+                        <td>
+							<p>LDI 0x0005</p>
+							<p>SUB 0x0008</p>
+							<p>BEQ 0x0002</p>	
+							<p>Antes da instrução: PC = 0x000A MEM[8] = 0x0005</p>
+							<p>STATUS.Z = 1 STATUS.N = 0</p>
+							<p>Após a instrução: PC = 0x0002</p>
+						</td>
+                    </tr>
+                </tbody>
+            </table>
+			
+            <br/>
+
+			<table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>BNE</th>
+                        <th>Branch Non-Equal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sintaxe:</td>
+                        <td>BNE operand</td>
+                    </tr>
+                    <tr>
+                        <td>Descrição:</td>
+                        <td>Atualiza o valor do PC com o valor do campo operand caso o resultado da operação anterior na ULA tenha sido diferente de zero.</td>
+                    </tr>
+                    <tr>
+                        <td>Opcode:</td>
+                        <td>01001</td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td>Nenhum bit é afetado</td>
+                    </tr>
+					<tr>
+                        <td>PC:</td>
+                        <td>
+							<p>Se (STATUS.Z=0) então</p>
+							<p>  PC &larr; endereço</p>
+							<p>Se não </p>	
+							<p>  PC &larr; PC + 1</p>							
+						</td>
+                    </tr>
+					<tr>
+                        <td>Operação:</td>
+                        <td>Nenhuma Operação Realizada</td>
+                    </tr>
+					<tr>
+                        <td>Exemplo:</td>
+                        <td>
+							<p>LDI 0x0005</p>
+							<p>SUB 0x0008</p>
+							<p>BNE 0x0002</p>	
+							<p>Antes da instrução: PC = 0x000A MEM[8] = 0x0006</p>
+							<p>STATUS.Z = 0 STATUS.N = 1</p>
+							<p>Após a instrução: PC = 0x0002</p>
+						</td>
+                    </tr>
+                </tbody>
+            </table>
+			
+            <br/>
+
+			<table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>BGT</th>
+                        <th>Branch Greater Than</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sintaxe:</td>
+                        <td>BGT operand</td>
+                    </tr>
+                    <tr>
+                        <td>Descrição:</td>
+                        <td>Atualiza o valor do PC com o valor do campo operand caso o resultado da operação anterior na ULA tenha sido maior que zero.</td>
+                    </tr>
+                    <tr>
+                        <td>Opcode:</td>
+                        <td>01010</td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td>Nenhum bit é afetado</td>
+                    </tr>
+					<tr>
+                        <td>PC:</td>
+                        <td>
+							<p>Se (STATUS.Z=0) e (STATUS.N=0) então </p>
+							<p>  PC &larr; endereço</p>
+							<p>Se não </p>	
+							<p>  PC &larr; PC + 1</p>							
+						</td>
+                    </tr>
+					<tr>
+                        <td>Operação:</td>
+                        <td>Nenhuma Operação Realizada</td>
+                    </tr>
+					<tr>
+                        <td>Exemplo:</td>
+                        <td>
+							<p>LDI 0x0005</p>
+							<p>SUB 0x0008</p>
+							<p>BGT 0x0002</p>	
+							<p>Antes da instrução: PC = 0x000A MEM[8] = 0x0004</p>
+							<p>STATUS.Z = 0 STATUS.N = 0</p>
+							<p>Após a instrução: PC = 0x0002</p>
+						</td>
+                    </tr>
+                </tbody>
+            </table>
+			
+            <br/>
+
+			<table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>BGE</th>
+                        <th>Branch Greater Equal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sintaxe:</td>
+                        <td>BGE operand</td>
+                    </tr>
+                    <tr>
+                        <td>Descrição:</td>
+                        <td>Atualiza o valor do PC com o valor do campo operand caso o resultado da operação anterior na ULA tenha sido maior ou igual zero.</td>
+                    </tr>
+                    <tr>
+                        <td>Opcode:</td>
+                        <td>01011</td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td>Nenhum bit é afetado</td>
+                    </tr>
+					<tr>
+                        <td>PC:</td>
+                        <td>
+							<p>Se (STATUS.N=0) então </p>
+							<p>  PC &larr; endereço</p>
+							<p>Se não </p>	
+							<p>  PC &larr; PC + 1</p>							
+						</td>
+                    </tr>
+					<tr>
+                        <td>Operação:</td>
+                        <td>Nenhuma Operação Realizada</td>
+                    </tr>
+					<tr>
+                        <td>Exemplo:</td>
+                        <td>
+							<p>LDI 0x0005</p>
+							<p>SUB 0x0008</p>
+							<p>BGE 0x0002</p>	
+							<p>Antes da instrução: PC = 0x000A MEM[8] = 0x0005</p>
+							<p>STATUS.Z = 1 STATUS.N = 0</p>
+							<p>Após a instrução: PC = 0x0002</p>
+						</td>
+                    </tr>
+                </tbody>
+            </table>
+			
+            <br/>
+
+			<table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>BLT</th>
+                        <th>Branch Less Than</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sintaxe:</td>
+                        <td>BLT operand</td>
+                    </tr>
+                    <tr>
+                        <td>Descrição:</td>
+                        <td>Atualiza o valor do PC com o valor do campo operand caso o resultado da operação anterior na ULA tenha sido menor que zero.</td>
+                    </tr>
+                    <tr>
+                        <td>Opcode:</td>
+                        <td>01100</td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td>Nenhum bit é afetado</td>
+                    </tr>
+					<tr>
+                        <td>PC:</td>
+                        <td>
+							<p>Se (STATUS.N=1) então</p>
+							<p>  PC &larr; endereço</p>
+							<p>Se não </p>	
+							<p>  PC &larr; PC + 1</p>							
+						</td>
+                    </tr>
+					<tr>
+                        <td>Operação:</td>
+                        <td>Nenhuma Operação Realizada</td>
+                    </tr>
+					<tr>
+                        <td>Exemplo:</td>
+                        <td>
+							<p>LDI 0x0005</p>
+							<p>SUB 0x0008</p>
+							<p>BLT 0x0002</p>	
+							<p>Antes da instrução: PC = 0x000A MEM[8] = 0x0006</p>
+							<p>STATUS.Z = 0 STATUS.N = 1</p>
+							<p>Após a instrução: PC = 0x0002</p>
+						</td>
+                    </tr>
+                </tbody>
+            </table>
+			
+            <br/>
+
+			<table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>BLE</th>
+                        <th>Branch Greater Equal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sintaxe:</td>
+                        <td>BLE operand</td>
+                    </tr>
+                    <tr>
+                        <td>Descrição:</td>
+                        <td>Atualiza o valor do PC com o valor do campo operand caso o resultado da operação anterior na ULA tenha sido menor ou igual a zero.</td>
+                    </tr>
+                    <tr>
+                        <td>Opcode:</td>
+                        <td>01101</td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td>Nenhum bit é afetado</td>
+                    </tr>
+					<tr>
+                        <td>PC:</td>
+                        <td>
+							<p>Se (STATUS.N=1) ou (STATUS.Z=1) então </p>
+							<p>  PC &larr; endereço</p>
+							<p>Se não </p>	
+							<p>  PC &larr; PC + 1</p>							
+						</td>
+                    </tr>
+					<tr>
+                        <td>Operação:</td>
+                        <td>Nenhuma Operação Realizada</td>
+                    </tr>
+					<tr>
+                        <td>Exemplo:</td>
+                        <td>
+							<p>LDI 0x0005</p>
+							<p>SUB 0x0008</p>
+							<p>BLT 0x0002</p>	
+							<p>Antes da instrução: PC = 0x000A MEM[8] = 0x0006</p>
+							<p>STATUS.Z = 0 STATUS.N = 1</p>
+							<p>Após a instrução: PC = 0x0002</p>
+						</td>
+                    </tr>
+                </tbody>
+            </table>
+			
+            <br/>
+
+			<table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>JMP</th>
+                        <th>Jump</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sintaxe:</td>
+                        <td>JMP operand</td>
+                    </tr>
+                    <tr>
+                        <td>Descrição:</td>
+                        <td>Atualiza o valor do PC com o valor do campo operand, ou seja, realiza um desvio incondicional.</td>
+                    </tr>
+                    <tr>
+                        <td>Opcode:</td>
+                        <td>01110</td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td>Nenhum bit é afetado</td>
+                    </tr>
+					<tr>
+                        <td>PC:</td>
+                        <td>PC &larr; endereço</td>
+                    </tr>
+					<tr>
+                        <td>Operação:</td>
+                        <td>Nenhuma Operação Realizada</td>
+                    </tr>
+					<tr>
+                        <td>Exemplo:</td>
+                        <td>
+							<p>JMP 0x0002</p>
+							<p>Antes da instrução: PC = 0x000A</p>
+							<p>Após a instrução: PC = 0x0002</p>	
+						</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+		
+		<h1>Lógica Booleana</h1>
+		<div class="conteudo">
+		
+            <table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>NOT</th>
+                        <th>Not</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sintaxe:</td>
+                        <td>NOT</td>
+                    </tr>
+                    <tr>
+                        <td>Descrição:</td>
+                        <td>Aplica o operador de “negação” lógico ao valor armazenado no ACC e armazena o resultado no ACC.</td>
+                    </tr>
+                    <tr>
+                        <td>Opcode:</td>
+                        <td>01111</td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td>Z e N são afetados por esta operação</td>
+                    </tr>
+					<tr>
+                        <td>PC:</td>
+                        <td>PC &larr; PC + 1</td>
+                    </tr>
+					<tr>
+                        <td>Operação:</td>
+                        <td>ACC &larr; NOT (ACC)</td>
+                    </tr>
+					<tr>
+                        <td>Exemplo:</td>
+                        <td>
+							<p>NOT</p>
+							<p>Antes da instrução: ACC = 0x000F</p>
+							<p>Após a instrução: ACC = 0xFFF0</p>	
+						</td>
+                    </tr>
+                </tbody>
+            </table>
+			
+            <br/>
+
+			<table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>AND</th>
+                        <th>And</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sintaxe:</td>
+                        <td>AND operand</td>
+                    </tr>
+                    <tr>
+                        <td>Descrição:</td>
+                        <td>Aplica o operador “E” lógico entre o valor do registrador ACC  e o valor armazenado na posição de memória indicado pelo operand. O resultado é armazenado no ACC .</td>
+                    </tr>
+                    <tr>
+                        <td>Opcode:</td>
+                        <td>10000</td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td>Z e N são afetados por esta operação</td>
+                    </tr>
+					<tr>
+                        <td>PC:</td>
+                        <td>PC &larr; PC + 1</td>
+                    </tr>
+					<tr>
+                        <td>Operação:</td>
+                        <td>ACC &larr; ACC AND Memory[operand]</td>
+                    </tr>
+					<tr>
+                        <td>Exemplo:</td>
+                        <td>
+							<p>AND 0x0002</p>
+							<p>Antes da instrução: ACC = 0x00C4</p>
+							<p>MEM[2] = 0x0007</p>	
+							<p>Após a instrução: ACC = 0x0004</p>
+							<p>MEM[2] = 0x0007</p>	
+						</td>
+                    </tr>
+                </tbody>
+            </table>
+			
+            <br/>
+
+			<table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>ANDI</th>
+                        <th>And Immediate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sintaxe:</td>
+                        <td>ANDI operand</td>
+                    </tr>
+                    <tr>
+                        <td>Descrição:</td>
+                        <td>Aplica o operador “E” lógico entre o valor do registrador ACC  e o valor do operando imediato. O resultado é armazenado no ACC .</td>
+                    </tr>
+                    <tr>
+                        <td>Opcode:</td>
+                        <td>10001</td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td>Z e N são afetados por esta operação</td>
+                    </tr>
+					<tr>
+                        <td>PC:</td>
+                        <td>PC &larr; PC + 1</td>
+                    </tr>
+					<tr>
+                        <td>Operação:</td>
+                        <td>ACC &larr; ACC AND operand</td>
+                    </tr>
+					<tr>
+                        <td>Exemplo:</td>
+                        <td>
+							<p>ANDI 0x0003</p>
+							<p>Antes da instrução: ACC = 0x00C5</p>
+							<p>Após a instrução: ACC = 0x0001</p>
+						</td>
+                    </tr>
+                </tbody>
+            </table>
+			
+            <br/>
+
+			<table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>OR</th>
+                        <th>Or</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sintaxe:</td>
+                        <td>OR operand</td>
+                    </tr>
+                    <tr>
+                        <td>Descrição:</td>
+                        <td>Aplica o operador “OU” lógico entre o valor do registrador ACC  e o valor armazenado na posição de memória indicado pelo operand. O resultado é armazenado no ACC .</td>
+                    </tr>
+                    <tr>
+                        <td>Opcode:</td>
+                        <td>10010</td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td>Z e N são afetados por esta operação</td>
+                    </tr>
+					<tr>
+                        <td>PC:</td>
+                        <td>PC &larr; PC + 1</td>
+                    </tr>
+					<tr>
+                        <td>Operação:</td>
+                        <td>ACC &larr; ACC OR Memory[operand]</td>
+                    </tr>
+					<tr>
+                        <td>Exemplo:</td>
+                        <td>
+							<p>OR 0x0002</p>
+							<p>Antes da instrução: ACC = 0x0004</p>
+							<p>MEM[2] = 0x00C0</p>	
+							<p>Após a instrução: ACC = 0x00C4</p>
+							<p>MEM[2] = 0x00C0</p>	
+						</td>
+                    </tr>
+                </tbody>
+            </table>
+			
+            <br/>
+
+			<table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>ORI</th>
+                        <th>Or Immediate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sintaxe:</td>
+                        <td>ORI operand</td>
+                    </tr>
+                    <tr>
+                        <td>Descrição:</td>
+                        <td>Aplica o operador “OU” lógico entre o valor do registrador ACC  e o valor do operando imediato. O resultado é armazenado no ACC .</td>
+                    </tr>
+                    <tr>
+                        <td>Opcode:</td>
+                        <td>10011</td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td>Z e N são afetados por esta operação</td>
+                    </tr>
+					<tr>
+                        <td>PC:</td>
+                        <td>PC &larr; PC + 1</td>
+                    </tr>
+					<tr>
+                        <td>Operação:</td>
+                        <td>ACC &larr; ACC OR operand</td>
+                    </tr>
+					<tr>
+                        <td>Exemplo:</td>
+                        <td>
+							<p>ORI 0x0002</p>
+							<p>Antes da instrução: ACC = 0x00C4</p>
+							<p>Após a instrução: ACC = 0x0006</p>
+						</td>
+                    </tr>
+                </tbody>
+            </table>
+			
+            <br/>
+
+			<table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>XOR</th>
+                        <th>Exclusive Or</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sintaxe:</td>
+                        <td>XOR operand</td>
+                    </tr>
+                    <tr>
+                        <td>Descrição:</td>
+                        <td>Aplica o operador “OU” lógico exclusivo entre o valor do registrador ACC  e o valor armazenado na posição de memória indicado pelo operand. O resultado é armazenado no ACC .</td>
+                    </tr>
+                    <tr>
+                        <td>Opcode:</td>
+                        <td>10100</td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td>Z e N são afetados por esta operação</td>
+                    </tr>
+					<tr>
+                        <td>PC:</td>
+                        <td>PC &larr; PC + 1</td>
+                    </tr>
+					<tr>
+                        <td>Operação:</td>
+                        <td>ACC &larr; ACC XOR Memory[operand]</td>
+                    </tr>
+					<tr>
+                        <td>Exemplo:</td>
+                        <td>
+							<p>XOR 0x0002</p>
+							<p>Antes da instrução: ACC = 0x0006</p>
+							<p>MEM[2] = 0x0004</p>	
+							<p>Após a instrução: ACC = 0x0002</p>
+							<p>MEM[2] = 0x0004</p>	
+						</td>
+                    </tr>
+                </tbody>
+            </table>
+			
+            <br/>
+
+			<table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>XORI</th>
+                        <th>Exclusive Or Immediate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sintaxe:</td>
+                        <td>XORI operand</td>
+                    </tr>
+                    <tr>
+                        <td>Descrição:</td>
+                        <td>Aplica o operador “OU” lógico exclusivo entre o valor do registrador ACC  e o valor do operando imediato. O resultado é armazenado no ACC .</td>
+                    </tr>
+                    <tr>
+                        <td>Opcode:</td>
+                        <td>10101</td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td>Z e N são afetados por esta operação</td>
+                    </tr>
+					<tr>
+                        <td>PC:</td>
+                        <td>PC &larr; PC + 1</td>
+                    </tr>
+					<tr>
+                        <td>Operação:</td>
+                        <td>ACC &larr; ACC XOR operand</td>
+                    </tr>
+					<tr>
+                        <td>Exemplo:</td>
+                        <td>
+							<p>XORI 0x0002</p>
+							<p>Antes da instrução: ACC = 0x0006</p>
+							<p>Após a instrução: ACC = 0x0004</p>
+						</td>
+                    </tr>
+                </tbody>
+            </table>
+			
+        </div>
+		
+		<h1> Deslocamento Lógico</h1>
+		<div class="conteudo">
+		
+            <table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>SLL</th>
+                        <th>Shift Left Logical</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sintaxe:</td>
+                        <td>SLL operand</td>
+                    </tr>
+                    <tr>
+                        <td>Descrição:</td>
+                        <td>Realiza o deslocamento lógico à esquerda no número de bits informado pelo operand sobre o registrador ACC.</td>
+                    </tr>
+                    <tr>
+                        <td>Opcode:</td>
+                        <td>10110</td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td>Z e N são afetados por esta operação</td>
+                    </tr>
+					<tr>
+                        <td>PC:</td>
+                        <td>PC &larr; PC + 1</td>
+                    </tr>
+					<tr>
+                        <td>Operação:</td>
+                        <td>ACC &larr; ACC << operand</td>
+                    </tr>
+					<tr>
+                        <td>Exemplo:</td>
+                        <td>
+							<p>SLL  0x0002</p>
+							<p>Antes da instrução: ACC = 0x0001</p>
+							<p>Após a instrução: ACC = 0x0004</p>
+						</td>
+                    </tr>
+                </tbody>
+            </table>
+			
+            <br/>
+
+			<table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>SRL</th>
+                        <th>Shift Right Logical</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sintaxe:</td>
+                        <td>SRL operand</td>
+                    </tr>
+                    <tr>
+                        <td>Descrição:</td>
+                        <td>Realiza o deslocamento lógico à direita no número de bits informado pelo operand sobre o registrador ACC.</td>
+                    </tr>
+                    <tr>
+                        <td>Opcode:</td>
+                        <td>10111</td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td>Z e N são afetados por esta operação</td>
+                    </tr>
+					<tr>
+                        <td>PC:</td>
+                        <td>PC &larr; PC + 1</td>
+                    </tr>
+					<tr>
+                        <td>Operação:</td>
+                        <td>ACC &larr; ACC >> operand</td>
+                    </tr>
+					<tr>
+                        <td>Exemplo:</td>
+                        <td>
+							<p>SRL 0x0002</p>
+							<p>Antes da instrução: ACC = 0x0004</p>
+							<p>Após a instrução: ACC = 0x0001</p>
+						</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+		
+		<h1>Manipulação De Vetor</h1>
+		<div class="conteudo">
+            
+            <table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>LDV</th>
+                        <th>Load Vector</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sintaxe:</td>
+                        <td>LDV operand</td>
+                    </tr>
+                    <tr>
+                        <td>Descrição:</td>
+                        <td>Carrega o valor armazenado no endereço dado por (operand + INDR) para o registrador ACC.</td>
+                    </tr>
+                    <tr>
+                        <td>Opcode:</td>
+                        <td>11000</td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td>Não afetados por esta operação</td>
+                    </tr>
+					<tr>
+                        <td>PC:</td>
+                        <td>PC &larr; PC + 1</td>
+                    </tr>
+					<tr>
+                        <td>Operação:</td>
+                        <td>ACC &larr; Memory[Operand + INDR]</td>
+                    </tr>
+					<tr>
+                        <td>Exemplo:</td>
+                        <td>
+							<p>LDI 0x0001</p>
+							<p>STO $indr</p>
+							<p>LDV $0</p>
+							<p>Antes da instrução: ACC = 0x0000 MEM[0]=0x0004</p>
+							<p>MEM[1]=0x0007</p>
+							<p>Após a instrução: ACC = 0x0007 MEM[0]=0x0004</p>
+							<p>MEM[1]=0x0007</p>
+						</td>
+                    </tr>
+                </tbody>
+            </table>
+			
+            <br/>
+
+			<table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>STOV</th>
+                        <th>Store Vector</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sintaxe:</td>
+                        <td>STOV operand</td>
+                    </tr>
+                    <tr>
+                        <td>Descrição:</td>
+                        <td>Armazena o valor do registrador ACC, no endereço dado por (operand + INDR).</td>
+                    </tr>
+                    <tr>
+                        <td>Opcode:</td>
+                        <td>11001</td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td>Não afetados por esta operação</td>
+                    </tr>
+					<tr>
+                        <td>PC:</td>
+                        <td>PC &larr; PC + 1</td>
+                    </tr>
+					<tr>
+                        <td>Operação:</td>
+                        <td>Memory[operand + INDR] = ACC</td>
+                    </tr>
+					<tr>
+                        <td>Exemplo:</td>
+                        <td>
+							<p>LDI 0x0001</p>
+							<p>STO $indr</p>
+							<p>LDI 0x0003</p>
+							<p>LDV $0</p>
+							<p>Antes da instrução: ACC = 0x0000 MEM[0]=0x0004</p>
+							<p>MEM[1]=0x0007</p>
+							<p>Após a instrução: ACC = 0x0007 MEM[0]=0x0004</p>
+							<p>MEM[1]=0x0003</p>
+						</td>
+                    </tr>
+                </tbody>
+            </table>
+			
+        </div>
+		
+		<h1>Suporte a Procedimentos</h1>
+		<div class="conteudo">
+           <table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>CALL</th>
+                        <th>Call</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sintaxe:</td>
+                        <td>CALL operand</td>
+                    </tr>
+                    <tr>
+                        <td>Descrição:</td>
+                        <td>Realiza uma chamada de procedimento para o endereço de memória de instrução indicado pelo campo operand. Antes da chamada, o endereço de retorno (PC + 1) é armazenado na pilha (ToS).</td>
+                    </tr>
+                    <tr>
+                        <td>Opcode:</td>
+                        <td>11100</td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td>Não afetados por esta operação</td>
+                    </tr>
+					<tr>
+                        <td>PC:</td>
+                        <td>
+							<p>ToS &larr; PC+1</p>
+							<p>PC  &larr; operand</p>
+						</td>
+                    </tr>
+					<tr>
+                        <td>Operação:</td>
+                        <td>Nenhuma operação realizada</td>
+                    </tr>
+					<tr>
+                        <td>Exemplo:</td>
+                        <td>
+							<p>CALL 0x00F0</p>
+							<p>Antes da instrução: PC = 0x00D3 ToS = 0xXXXX</p>
+							<p>Após a instrução: PC = 0x00F0 ToS = 0x00D4</p>
+						</td>
+                    </tr>
+                </tbody>
+            </table>
+			
+            <br/>
+
+			<table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>RETURN</th>
+                        <th>Return</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sintaxe:</td>
+                        <td>RETURN</td>
+                    </tr>
+                    <tr>
+                        <td>Descrição:</td>
+                        <td>Retorna da sub-rotina, recuperando o valor do PC armazenado na pilha (ToS). O procedimento chamado deve usar o ACC para retornar um valor ao procedimento chamador.</td>
+                    </tr>
+                    <tr>
+                        <td>Opcode:</td>
+                        <td>11010</td>
+                    </tr>
+                    <tr>
+                        <td>Status:</td>
+                        <td>Não afetados por esta operação</td>
+                    </tr>
+					<tr>
+                        <td>PC:</td>
+                        <td>PC &larr; ToS</td>
+                    </tr>
+					<tr>
+                        <td>Operação:</td>
+                        <td>Nenhuma operação realizada</td>
+                    </tr>
+					<tr>
+                        <td>Exemplo:</td>
+                        <td>
+							<p>RETURN</p>
+							<p>Antes da instrução:PC=0x00F0 ToS=0x00D3</p>
+							<p>ACC=Valor de Retorno</p>
+							<p>Após a instrução:  PC=0x00D3 ToS=0xXXXX</p>
+							<p>ACC=Valor de Retorno</p>
+						</td>
+                    </tr>
+                </tbody>
+            </table> 
+        </div>
+    </body>
+</html>

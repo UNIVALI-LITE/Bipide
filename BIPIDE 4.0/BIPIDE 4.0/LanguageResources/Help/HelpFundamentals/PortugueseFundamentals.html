@@ -1,0 +1,105 @@
+﻿<!doctype html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script type="text/javascript" src="../Resources/Scripts/shCore.js"></script>
+    <script type="text/javascript" src="../Resources/Scripts/shBrushPortugol.js"></script>
+    <link type="text/css" rel="stylesheet" href="../Resources/Styles/shCoreDefault.css" />
+    <link type="text/css" rel="stylesheet" href="../Resources/Styles/HelpStyle.css"/>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+
+<body style="background: white; font-family: Helvetica">
+    <h1>Arquitetura de Computadores</h1>
+    <div class="conteudo">
+        <p>O termo arquitetura de computador refere-se aos atributos que têm impacto direto sobre a execução lógica de um sistema e que são visíveis ao programador como:</p>
+        <ul>
+            <li>conjunto de instruções</li>
+            <li>modos de endereçamento</li>
+            <li>memória de programa</li>
+            <li>memória de dados</li>
+            <li>registradores</li>
+            <li>portas de entrada e saída</li>
+            <li>interrupções</li>
+        </ul>
+
+
+        <h2>Conjunto de Instrucoes</h2>
+
+        <p>Uma instrução indica ao processador uma sequência de micro-operações que deverá ser executada.</p>
+        <p>Um conjunto de instruções refere-se ao conjunto de todas as instruções reconhecidas por um computador.</p>
+        <p>De acordo com seu propósito e formato, as instruções podem ser classificadas como:</p>
+        <ul>
+            <li>instruções de transferência de dados</li>
+            <li>instruções aritméticas e lógicas</li>
+            <li>instruções de desvio (condicional ou incondicional)</li>
+            <li>instruções de teste (ou de comparação)</li>
+        </ul>
+
+
+        <h2>Registradores</h2>
+
+        <p>Em um processador existem diversos registradores, sendo que alguns destes devem ser de conhecimento do programador, denominados de registradores especiais.</p>
+        <p>Entre os registradores especiais normalmente encontrados em arquiteturas de computadores estão:</p>
+        <ul>
+            <li>Apontador de Instruções (PC) - contém o endereço da próxima instrução a ser buscada na memória e executada</li>
+            <li>Registrador de Instruções (RI) - armazena o código da instrução que está sendo executada</li>
+            <li>Registrador de Estado (STATUS) - armazena informações sobre os resultados das operações efetuadas pela Unidade Lógica e Aritmética (ULA)</li>
+        </ul>
+
+        <h2>Interrupções</h2>
+
+        <p>O mecanismo de interrupção presente nos processadores possui três funções principais:</p>
+        <ul>
+            <li>permitir que dispositivos externos interrompam o processamento atual do processador para atender sua necessidade</li>
+            <li>liberar o processador da tarefa de pesquisar todos os dispositivos verificando se algum necessita de atendimento</li>
+            <li>permitir que o processador execute operações de outro programa enquanto o programa atual aguarda por uma resposta informando que o processador concluiu a tarefa e, então, possa voltar a processar o mesmo programa</li>
+        </ul>
+
+        <h2>Portas de entrada e saída</h2>
+        <p>As portas de Entrada/Saída (E/S) são os meios físicos que permitem as atividades de troca de informação entre o processador e o meio externo. </p>
+        <p>Através das portas de E/S o processador pode trocar informações com o usuário ou se comunicar com outros dispositivos como, por exemplo, dispositivos de armazenamento.</p>
+    </div>
+
+    <hr />
+
+    <h1>Organização de Computadores</h1>
+    <div class="conteudo">
+        <p>O termo organização de computadores refere-se aos atributos que não são visíveis ao programador, ou seja, trata de como o processador é implementado e aborda blocos básicos como:</p>
+        <ul>
+            <li>caminho de dados </li>
+            <li>unidade de controle</li>
+        </ul>
+
+
+        <h2>Caminho de Dados</h2>
+
+        <p>O caminho de dados é composto pelo hardware necessário para a execução de uma instrução, normalmente formado pela unidade de execução e pelo banco de registradores.</p>
+        <p>A unidade de execução é composta por uma ou mais ULAs e registradores de uso geral e específicos, interligados por um barramento.</p>
+        <p>Ao ser executada na unidade de execução, uma instrução segue um ciclo chamado de ciclo de instrução. </p>
+
+        <h2>Unidade de Controle</h2>
+
+        <p>A unidade de controle é responsável por gerenciar o fluxo interno de dados, a memória e a comunicação com os dispositivos de entrada e saída. </p>
+        <p>Para isto, são gerados por esta unidade sinais de controle. Cada sinal de controle comanda uma microoperação como, por exemplo, uma ativação da memória ou a seleção de uma operação pela ULA, conforme a instrução atual. </p>
+
+        <h2>Memórias</h2>
+
+        <p>O sistema de memória serve como um local para o armazenamento de dados e programa. </p>
+        <p>A memória é dividida em “palavras”, que podem ser identificadas por um endereço único. </p>
+        <p>Existem dois tipos básicos de memória: </p>
+        <ul>
+            <li>ROM (Read Only Memory – Memória Apenas de Leitura) - permite acesso apenas para leitura de dados e normalmente é utilizada para armazenar o programa de inicialização</li>
+            <li>RAM (Random Access Memory – Memória de Acesso Aleatório), que permite escrita e leitura de dados e pode ser utilizada para armazenar dados, programas e sistemas operacionais</li>
+        </ul>
+
+        <p>A memória de dados e a memória de instruções podem estar juntas em um mesmo espaço de endereçamento ou separadas.</p>
+        <p>Quando as memórias utilizam o mesmo espaço de endereçamento, a arquitetura é referenciada como arquitetura de Princeton (ou de Von Neumann). </p>
+        <p>Quando a memória de dados utiliza um espaço diferente da memória de instrução é referenciada como arquitetura de Harvard.</p>
+        <p>A arquitetura de Princeton pode resultar em hardware mais simples, enquanto a arquitetura de Harvard pode resultar em um desempenho melhor, pois permite o acesso simultâneo nas duas memórias.</p>
+
+        <img src="Resources/Memory.gif" />
+    </div>
+</body>
+</html>
