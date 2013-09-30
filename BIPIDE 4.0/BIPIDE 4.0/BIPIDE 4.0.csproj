@@ -252,7 +252,7 @@
     <Content Include="LanguageResources\Help\HelpProcessor\PortugueseBIPInstructions.html" />
     <Content Include="LanguageResources\Help\HelpProcessor\PortugueseBIPIV.html" />
     <Content Include="LanguageResources\Help\HelpFundamentals\PortugueseFundamentals.html" />
-    <Resource Include="LanguageResources\Help\HelpProcessor\Resources\Memory.gif" />
+    <Resource Include="LanguageResources\Help\HelpFundamentals\Resources\Memory.gif" />
     <Resource Include="LanguageResources\Help\HelpProcessor\Resources\BIPIOrganization.png" />
     <Resource Include="LanguageResources\Help\HelpProcessor\Resources\BIPIIOrganization.png" />
     <Resource Include="LanguageResources\Help\HelpProcessor\Resources\BIPIIIOrganization.png" />
