@@ -42,8 +42,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>bin\Debug\ucBipI.XML</DocumentationFile>
+    <OutputPath>..\BIPIDE 4.0\Resources\</OutputPath>
+    <DocumentationFile>..\BIPIDE 4.0\Resources\ucBipI.XML</DocumentationFile>
   </PropertyGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -55,13 +55,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\DLL's\ANTLR\Antlr3.Utility.dll</HintPath>
     </Reference>
-    <Reference Include="BIP, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+    <Reference Include="BIP, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\DLL's\BIP.dll</HintPath>
+      <HintPath>..\BIPIDE 4.0\Resources\BIP.dll</HintPath>
     </Reference>
     <Reference Include="Classes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\DLL's\Classes.dll</HintPath>
+      <HintPath>..\BIPIDE 4.0\Resources\Classes.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
@@ -73,10 +73,6 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Windows.Forms.Ribbon, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\DLL's\System.Windows.Forms.Ribbon.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase">

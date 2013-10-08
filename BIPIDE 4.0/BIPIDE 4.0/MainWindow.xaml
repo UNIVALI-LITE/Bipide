@@ -124,7 +124,8 @@
 
             <!-- Ribbon -->
             <RibbonTab x:Name="_TabProgramming" 
-                       Header="{DynamicResource ResourceKey=TabProgramming}" KeyTip="P">
+                       Header="{DynamicResource ResourceKey=TabProgramming}" 
+                       KeyTip="P">
                 <RibbonGroup x:Name="_GroupFile" 
                              Header="{DynamicResource ResourceKey=GroupFiles}">
                     <RibbonButton x:Name="_ButtonNew" 
@@ -238,6 +239,18 @@
                                   ToolTipFooterImageSource="ImageResources/help32.png"
                                   ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
                                   KeyTip="S"/>
+
+                    <RibbonButton x:Name="_ButtonPractice" 
+                                  Label="{DynamicResource ResourceKey=ButtonPractice}" 
+                                  Width="80" 
+                                  LargeImageSource="ImageResources/practice32.png" 
+                                  SmallImageSource="ImageResources/practice16.png"
+                                  ToolTipTitle="{DynamicResource ResourceKey=TipTitleButtonPractice}"
+                                  ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonPractice}"
+                                  ToolTipFooterImageSource="ImageResources/help32.png"
+                                  ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                  Click="_ButtonPractice_Click"
+                                  KeyTip="P"/>
 
                 </RibbonGroup>
 
@@ -418,11 +431,216 @@
                 </RibbonGroup>
             </RibbonTab>
 
+            <RibbonTab x:Name="_TabPractice" 
+                       Header="{DynamicResource ResourceKey=TabPractice}"
+                       ContextualTabGroupHeader="{DynamicResource ResourceKey=ContextualTabPractice}" 
+                       KeyTip="R">
+
+                <RibbonGroup x:Name="_GroupPracticeProcessor" 
+                             Header="{DynamicResource ResourceKey=GroupProcessor}">
+
+                    <RibbonRadioButton x:Name="_RadioButtonPracticeBipI"
+                                       Label="BIP I"
+                                       Width="60"
+                                       LargeImageSource="ImageResources/processorBipI32.png"
+                                       ToolTipTitle="BIP I"
+                                       ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionRadioButtonBipI}"
+                                       ToolTipFooterImageSource="ImageResources/help32.png"
+                                       ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                       Checked="_RadioButtonPracticeBipI_Checked"
+                                       KeyTip="B1"/>
+
+                    <RibbonRadioButton x:Name="_RadioButtonPracticeBipII"
+                                       Label="BIP II"
+                                       Width="60"
+                                       LargeImageSource="ImageResources/processorBipII32.png"
+                                       ToolTipTitle="BIP II"
+                                       ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionRadioButtonBipII}"
+                                       ToolTipFooterImageSource="ImageResources/help32.png"
+                                       ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                       Checked="_RadioButtonPracticeBipII_Checked"
+                                       KeyTip="B2"/>
+
+                    <RibbonRadioButton x:Name="_RadioButtonPracticeBipIII"
+                                       Label="BIP III"
+                                       Width="60"
+                                       LargeImageSource="ImageResources/processorBipIII32.png"
+                                       ToolTipTitle="BIP III"
+                                       ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionRadioButtonBipIII}"
+                                       ToolTipFooterImageSource="ImageResources/help32.png"
+                                       ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                       Checked="_RadioButtonPracticeBipIII_Checked"
+                                       KeyTip="B3"/>
+
+                    <RibbonRadioButton x:Name="_RadioButtonPracticeBipIV"
+                                       Label="BIP IV"
+                                       Width="60"
+                                       LargeImageSource="ImageResources/processorBipIV32.png"
+                                       ToolTipTitle="BIP IV"
+                                       ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionRadioButtonBipIV}"
+                                       ToolTipFooterImageSource="ImageResources/help32.png"
+                                       ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                       Checked="_RadioButtonPracticeBipIV_Checked"
+                                       KeyTip="B4"/>
+
+                </RibbonGroup>
+
+                <RibbonGroup x:Name="_GroupPracticeInstructions" 
+                             Header="{DynamicResource ResourceKey=GroupInstructions}">
+
+                    <RibbonComboBox x:Name="_ComboBoxInstructions"
+                                    LargeImageSource="ImageResources/instruction32.png"
+                                    SmallImageSource="ImageResources/instruction16.png"
+                                    ToolTipTitle="{DynamicResource ResourceKey=TipTitleComboBoxInstructions}"
+                                    ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionComboBoxInstructions}"
+                                    ToolTipFooterImageSource="ImageResources/help32.png"
+                                    ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                    KeyTip="IN">
+                        
+                        <RibbonGallery x:Name="_GalleryInstructions"
+                                       SelectedValuePath="Content"
+                                       SelectedValue="HLT">
+                            
+                            <RibbonGalleryCategory x:Name="_GroupBIPI"
+                                                   Header="BIP I">
+                                <RibbonGalleryCategory.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <UniformGrid Columns="4"/>
+                                    </ItemsPanelTemplate>
+                                </RibbonGalleryCategory.ItemsPanel>
+
+                                <RibbonGalleryItem x:Name="_GroupBIPIDefoultValue" 
+                                                   Tag="1" Content="HLT"/>
+                                <RibbonGalleryItem Tag="1" Content="STO"/>
+                                <RibbonGalleryItem Tag="1" Content="LD"/>
+                                <RibbonGalleryItem Tag="1" Content="LDI"/>
+                                <RibbonGalleryItem Tag="1" Content="ADD"/>
+                                <RibbonGalleryItem Tag="1" Content="ADDI"/>
+                                <RibbonGalleryItem Tag="1" Content="SUB"/>
+                                <RibbonGalleryItem Tag="1" Content="SUBI"/>
+                            </RibbonGalleryCategory>
+
+                            <RibbonGalleryCategory x:Name="_GroupBIPII" 
+                                                   Header="BIP II">
+                                <RibbonGalleryCategory.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <UniformGrid Columns="4"/>
+                                    </ItemsPanelTemplate>
+                                </RibbonGalleryCategory.ItemsPanel>
+
+                                <RibbonGalleryItem x:Name="_GroupBIPIIDefoultValue"
+                                                   Tag="2" Content="BEQ"/>
+                                <RibbonGalleryItem Tag="2" Content="BNE"/>
+                                <RibbonGalleryItem Tag="2" Content="BGT"/>
+                                <RibbonGalleryItem Tag="2" Content="BGE"/>
+                                <RibbonGalleryItem Tag="2" Content="BLT"/>
+                                <RibbonGalleryItem Tag="2" Content="BLE"/>
+                                <RibbonGalleryItem Tag="2" Content="JMP"/>
+                            </RibbonGalleryCategory>
+
+                            <RibbonGalleryCategory x:Name="_GroupBIPIII"
+                                                   Header="BIP III">
+                                <RibbonGalleryCategory.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <UniformGrid Columns="4"/>
+                                    </ItemsPanelTemplate>
+                                </RibbonGalleryCategory.ItemsPanel>
+
+                                <RibbonGalleryItem x:Name="_GroupBIPIIIDefoultValue"
+                                                   Tag="3" Content="NOT"/>
+                                <RibbonGalleryItem Tag="3" Content="AND"/>
+                                <RibbonGalleryItem Tag="3" Content="ANDI"/>
+                                <RibbonGalleryItem Tag="3" Content="OR"/>
+                                <RibbonGalleryItem Tag="3" Content="ORI"/>
+                                <RibbonGalleryItem Tag="3" Content="XOR"/>
+                                <RibbonGalleryItem Tag="3" Content="XORI"/>
+                                <RibbonGalleryItem Tag="3" Content="SLL"/>
+                                <RibbonGalleryItem Tag="3" Content="SLR"/>
+                            </RibbonGalleryCategory>
+
+                            <RibbonGalleryCategory x:Name="_GroupBIPIV"
+                                                   Header="BIP IV">
+                                <RibbonGalleryCategory.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <UniformGrid Columns="4"/>
+                                    </ItemsPanelTemplate>
+                                </RibbonGalleryCategory.ItemsPanel>
+
+                                <RibbonGalleryItem x:Name="_GroupBIPIVDefoultValue"
+                                                   Tag="4" Content="STOV"/>
+                                <RibbonGalleryItem Tag="4" Content="LDV"/>
+                            </RibbonGalleryCategory>
+
+                        </RibbonGallery>
+                    </RibbonComboBox>
+                </RibbonGroup>
+
+                <RibbonGroup x:Name="_GroupPracticeSpeed" 
+                             Header="{DynamicResource ResourceKey=GroupSpeed}">
+
+                    <RibbonComboBox x:Name="_ComboBoxSpeedPractice"
+                                    LargeImageSource="ImageResources/speed32.png"
+                                    SmallImageSource="ImageResources/speed16.png"
+                                    ToolTipTitle="{DynamicResource ResourceKey=TipTitleComboBoxSpeed}"
+                                    ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionComboBoxSpeed}"
+                                    ToolTipFooterImageSource="ImageResources/help32.png"
+                                    ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                    KeyTip="SD">
+
+                        <RibbonGallery x:Name="_GallerySpeedPractice"
+                                       SelectedValue="{DynamicResource ResourceKey=GalleryItemNormal}"
+                                       SelectedValuePath="Content">
+
+                            <RibbonGalleryCategory>
+                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemVerySlow}"/>
+                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemSlow}"/>
+                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemNormal}"/>
+                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemAccelerated}"/>
+                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemFast}"/>
+                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemVeryFast}"/>
+                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemUltraFast}"/>
+                            </RibbonGalleryCategory>
+
+                        </RibbonGallery>
+                    </RibbonComboBox>
+                </RibbonGroup>
+
+                <RibbonGroup x:Name="_GroupPracticeExecution" 
+                             Header="{DynamicResource ResourceKey=GroupExecution}">
+
+                    <Label Content="{DynamicResource ResourceKey=TextBoxPracticeValue}"
+                           Margin="0,10,0,0"/>
+                    <RibbonTextBox x:Name="_TextBoxPracticeValue"
+                                   TextBoxWidth="120"
+                                   MaxLength="10"
+                                   PreviewKeyDown="_TextBoxPracticeValue_PreviewKeyDown"
+                                   KeyTip="V"/>
+                    
+                    <RibbonButton x:Name="_ButtonPracticeStart" 
+                                  Label="{DynamicResource ResourceKey=ButtonStart}" 
+                                  Width="60" 
+                                  LargeImageSource="ImageResources/play32.png" 
+                                  SmallImageSource="ImageResources/play16.png"
+                                  ToolTipTitle="{DynamicResource ResourceKey=TipTitleButtonStart}"
+                                  ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonStart}"
+                                  ToolTipFooterImageSource="ImageResources/help32.png"
+                                  ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}" 
+                                  Click="_ButtonPracticeStart_Click" 
+                                  KeyTip="ST"/>
+                    </RibbonGroup>
+
+            </RibbonTab>
+
             <Ribbon.ContextualTabGroups>
                 <RibbonContextualTabGroup x:Name="_ContextualTabGroupSimulation"
                                           Header="{DynamicResource ResourceKey=ContextualTabSimulation}"
                                           Visibility="Collapsed"
                                           Background="Red"/>
+
+                <RibbonContextualTabGroup x:Name="_ContextualTabGroupPractice"
+                                          Header="{DynamicResource ResourceKey=ContextualTabPractice}"
+                                          Visibility="Collapsed"
+                                          Background="Yellow"/>
             </Ribbon.ContextualTabGroups>
         </Ribbon>
 

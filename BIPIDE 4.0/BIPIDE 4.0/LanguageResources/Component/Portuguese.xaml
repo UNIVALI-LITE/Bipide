@@ -19,6 +19,7 @@
     <system:String x:Key="GroupHelp">Ajuda</system:String>
     <system:String x:Key="ButtonFundamentals">Fundamentos</system:String>
     <system:String x:Key="ButtonSystem">Sistema</system:String>
+    <system:String x:Key="ButtonPractice">Praticar</system:String>
     <system:String x:Key="GroupInformation">Informações</system:String>
     <system:String x:Key="ButtonAbout">Sobre</system:String>
     
@@ -41,7 +42,10 @@
     <system:String x:Key="GalleryItemVeryFast">Muito Rápido</system:String>
     <system:String x:Key="GalleryItemUltraFast">Ultra Rápido</system:String>
 
-    
+    <system:String x:Key="ContextualTabPractice">Ferramentas de Prática</system:String>
+    <system:String x:Key="TabPractice">Praticar</system:String>
+    <system:String x:Key="GroupInstructions">Instruções</system:String>
+    <system:String x:Key="TextBoxPracticeValue">Operando/Endereço</system:String>
 
     <system:String x:Key="ButtonExit">Sair</system:String>
 

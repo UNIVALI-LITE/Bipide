@@ -1,0 +1,400 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ucBipI</name>
+    </assembly>
+    <members>
+        <member name="T:ucBip.Estatistica">
+            <summary>
+            Interaction logic for Estatistica.xaml
+            </summary>
+            <summary>
+            Estatistica
+            </summary>
+        </member>
+        <member name="M:ucBip.Estatistica.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:ucBip.Simulador">
+            <summary>
+            Simulador
+            </summary>
+        </member>
+        <member name="F:ucBip.Simulador.ArrayLinha">
+            <summary>
+            Lista auxiliar utilizada na simulação da instrução
+            </summary>
+        </member>
+        <member name="M:ucBip.Simulador.verificaInstrucao(System.String,System.String)">
+            <summary>
+            Verifica qual é a instrução e a executa
+            </summary>
+            <param name="instrucao">instrução</param>
+            <param name="operando">operando</param>
+        </member>
+        <member name="M:ucBip.Simulador.InicializaValoresIniciais">
+            <summary>
+            Inicializa valores Iniciais antes da simulação de um programa
+            </summary>
+        </member>
+        <member name="M:ucBip.Simulador.#ctor">
+            <summary>
+            Construtor Padrão
+            </summary>
+        </member>
+        <member name="M:ucBip.Simulador.PreencheGridDados">
+            <summary>
+            Preenche Grid
+            </summary>
+        </member>
+        <member name="M:ucBip.Simulador.PreencheMemoPrograma">
+            <summary>
+            Preenche memória de Programa a partir de um arquivo texto
+            </summary>
+        </member>
+        <member name="M:ucBip.Simulador.VerificaProcessador">
+            <summary>
+            Verifica o modelo de processador e exibe os componentes específicos de cada modelo
+            </summary>
+        </member>
+        <member name="M:ucBip.Simulador.OcultaCampos">
+            <summary>
+            Oculta algums elementos do processador
+            </summary>
+        </member>
+        <member name="M:ucBip.Simulador.OcultaAcumulador">
+            <summary>
+            Oculta elemento Acumulador
+            </summary>
+        </member>
+        <member name="M:ucBip.Simulador.CorFundo(System.Int32,System.Int32,System.Int32,System.Windows.Media.Color)">
+            <summary>
+            Altera cor de fundo do WPF de acordo com o tema
+            </summary>
+            <param name="R"></param>
+            <param name="G"></param>
+            <param name="B"></param>
+            <param name="corDoFundo"> cor de fundo ao redor do processador</param>
+        </member>
+        <member name="M:ucBip.Simulador.HLT(System.Int32)">
+            <summary>
+            HLT - Halts : Desabilita a atualização do PC
+            Nao utilizado na simulação,
+            </summary>
+            <param name="value">operando imediato</param>
+        </member>
+        <member name="M:ucBip.Simulador.LDI(System.Int32)">
+            <summary>
+            LDI - Load Immediate : Carrega o valor de um operando imediato para o acumulador ACC
+            </summary>
+            <param name="value">operando imediato</param>
+        </member>
+        <member name="M:ucBip.Simulador.SUB(System.Int32)">
+            <summary>
+            SUB : Subtract : O Valor do registrador ACC é subtraído pelo valor armazenado 
+            na posição de memória indicado pelo campo operand e o resultado é armazenado no ACC.
+            </summary>
+        </member>
+        <member name="M:ucBip.Simulador.SUBI(System.Int32)">
+            <summary>
+            SUBI - Subtract Immediate : O valor do registrador ACC é subtraído pelo valor do operando imediato 
+            e o resultado é armazenado no ACC
+            </summary>
+            <param name="value">operando imediato</param>
+        </member>
+        <member name="M:ucBip.Simulador.ADD(System.Int32)">
+            <summary>
+            ADD : O valor do registrador ACC é somado com o valor armazenado na posição  
+            de memória indicado pelo campo operand e o resultado armazenado no ACC.
+            </summary>
+        </member>
+        <member name="M:ucBip.Simulador.ADDI(System.Int32)">
+             <summary>
+            ADDI - Add Immediate : O valor do registrador ACC é adicionado com o valor do operando imediato 
+            e o resultado é armazenado no ACC
+             </summary>
+             <param name="value">operando imediato</param>
+        </member>
+        <member name="M:ucBip.Simulador.AND(System.Int32)">
+            <summary>
+            ADD : Operação de 'E' entre ACC e o valor armazenado na posição  
+            de memória indicado pelo campo operand é efetuado e o resultado armazenado no ACC.
+            </summary>
+        </member>
+        <member name="M:ucBip.Simulador.OR(System.Int32)">
+            <summary>
+            ADD : Operação de 'OU' entre ACC e o valor armazenado na posição  
+            de memória indicado pelo campo operand é efetuado e o resultado armazenado no ACC.
+            </summary>
+        </member>
+        <member name="M:ucBip.Simulador.XOR(System.Int32)">
+            <summary>
+            ADD : Operação de 'OU Exclusiva' entre ACC e o valor armazenado na posição  
+            de memória indicado pelo campo operand é efetuado e o resultado armazenado no ACC.
+            </summary>
+        </member>
+        <member name="M:ucBip.Simulador.NOT">
+            <summary>
+            ADD : Operação de 'NOT' no ACC. O resultado armazenado no ACC.
+            </summary>
+        </member>
+        <member name="M:ucBip.Simulador.ANDI(System.Int32)">
+             <summary>
+            ANDI - AND Immediate : Operação de 'E' lógica entre o acc e o valor do operando imediato 
+            e o resultado é armazenado no ACC
+             </summary>
+             <param name="value">operando imediato</param>
+        </member>
+        <member name="M:ucBip.Simulador.ORI(System.Int32)">
+             <summary>
+            ORI - OR Immediate : Operação de OU entre o ACC e o valor do operando imediato 
+            e o resultado é armazenado no ACC
+             </summary>
+             <param name="value">operando imediato</param>
+        </member>
+        <member name="M:ucBip.Simulador.XORI(System.Int32)">
+             <summary>
+            XORI - XOR Immediate : Operação de OU exclusiva entre ACC e o valor do operando imediato 
+            e o resultado é armazenado no ACC
+             </summary>
+             <param name="value">operando imediato</param>
+        </member>
+        <member name="M:ucBip.Simulador.SLL(System.Int32)">
+             <summary>
+            SLL - SLL : Operação de deslocamento do acc pelo valor do operando imediato 
+            e o resultado é armazenado no ACC
+             </summary>
+             <param name="value">operando imediato</param>
+        </member>
+        <member name="M:ucBip.Simulador.SRL(System.Int32)">
+             <summary>
+            SLL - SLL : Operação de deslocamento do acc pelo valor do operando imediato 
+            e o resultado é armazenado no ACC
+             </summary>
+             <param name="value">operando imediato</param>
+        </member>
+        <member name="M:ucBip.Simulador.LD(System.Int32)">
+            <summary>
+            LD - Load : Carrega um valor armazenado em uma posição de memória indicado pelo operand 
+            para o registrador ACC
+            </summary>
+        </member>
+        <member name="M:ucBip.Simulador.LDV(System.Int32)">
+            <summary>
+            LDV - Load : Carrega um valor armazenado em uma posição de memória indicado pelo operand somado ao registrador INDR
+            para o registrador ACC
+            </summary>
+        </member>
+        <member name="M:ucBip.Simulador.STO(System.Int32)">
+            <summary>
+            STO - Store : Armazena o conteúdo do ACC em uma posição da memória indicada pelo operand
+            </summary>
+        </member>
+        <member name="M:ucBip.Simulador.STOV(System.Int32)">
+            <summary>
+            STOV - Store : Armazena o conteúdo do ACC em uma posição da memória indicada pelo operand + registrador INDR
+            </summary>
+        </member>
+        <member name="M:ucBip.Simulador.BEQ(System.Int32)">
+            <summary>
+            BEQ - Branch Equal : Atualiza o valor do PC com o valor do campo operand caso o resultado da operação anterior na ULA foi zero
+            </summary>
+        </member>
+        <member name="M:ucBip.Simulador.BNE(System.Int32)">
+            <summary>
+            BNE - Branch Non-Equal : Atualiza o valor do PC com o valor do campo operand caso o resultado da operação anterior na ULA tenha sido diferente de zero.
+            </summary>
+        </member>
+        <member name="M:ucBip.Simulador.BGT(System.Int32)">
+            <summary>
+            BGT - Branch Greater Than : Atualiza o valor do PC com o valor do campo operand caso o resultado da operação anterior na ULA tenha sido maior que zero.
+            </summary>
+        </member>
+        <member name="M:ucBip.Simulador.BGE(System.Int32)">
+            <summary>
+            BGE - Branch Greater Equal : Atualiza o valor do PC com o valor do campo operand caso o resultado da operação anterior na ULA tenha sido maior ou igual zero.
+            </summary>
+        </member>
+        <member name="M:ucBip.Simulador.BLT(System.Int32)">
+            <summary>
+            BLT - Branch Less Than : Atualiza o valor do PC com o valor do campo operand caso o resultado da operação anterior na ULA tenha sido menor que zero.
+            </summary>
+        </member>
+        <member name="M:ucBip.Simulador.BLE(System.Int32)">
+            <summary>
+            BLE - Branch Less Equal : Atualiza o valor do PC com o valor do campo operand caso o resultado da operação anterior na ULA tenha sido menor ou igual a zero.
+            </summary>
+        </member>
+        <member name="M:ucBip.Simulador.JMP(System.Int32)">
+            <summary>
+            JMP - Jump - Atualiza o valor do PC com o valor do campo operand, ou seja, realiza um desvio incondicional
+            </summary>
+        </member>
+        <member name="M:ucBip.Simulador.PCmore1(System.Boolean)">
+            <summary>
+            Executa animação de atualização do PC, incrementado-o em 1 unidade
+            </summary>
+            <param name="desvio">indica se atualizaçao ocorreu durante uma instrução de desvio </param>
+        </member>
+        <member name="M:ucBip.Simulador.PCOperand(System.String)">
+            <summary>
+            Executa animação de uma instrução de Desvio
+            </summary>
+            <param name="operand">operando - endereço da proxima instrução a ser executada</param>
+        </member>
+        <member name="M:ucBip.Simulador.getValorMemoria(System.Int32)">
+            <summary>
+            Busca valor da memória de dados
+            </summary>
+            <param name="position">Endereço na memória de dados - numero da linha com inicio em 0</param>
+            <returns></returns>
+        </member>
+        <member name="M:ucBip.Simulador.LimpaCorGridDados">
+            <summary>
+            Desmarca todos os itens selecionados da Memória de Dados, setando backgroud como transparente e deselecionando itens
+            </summary>
+        </member>
+        <member name="M:ucBip.Simulador.Button_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Evento clique da seleção do Processador (BIP I ou BIP II)
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ucBip.Simulador.button1_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            PERCORRE MEMORIA DE PROGRAMA E PREENCHE ARRAY DE INSTRUÇOES
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ucBip.Simulador.PreencheArray(System.String,System.String)">
+            <summary>
+            Preenche Array auxiliar com instrução atual da memória de programa
+            </summary>
+            <param name="posicao"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:ucBip.Simulador.getNovaInstrucao">
+            <summary>
+            Busca proxima instrução a ser executada na Memória de Programa
+            </summary>
+        </member>
+        <member name="M:ucBip.Simulador.button2_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Inicia simulação do programa carregado na memória de programa
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ucBip.Simulador.DestacaGridPrograma(System.String)">
+            <summary>
+            DESTACA INSTRUÇAO ATUAL NA MEMORIA DE PROGRAMA
+            </summary>
+            <param name="pos">posicão da instrução na memória de programa - Indice da Linha iniciando em 0</param>
+        </member>
+        <member name="M:ucBip.Simulador.ExecutaInstrucao(System.String,System.String)">
+            <summary>
+            EXECUTA UMA ÚNICA INSTRUÇÃO
+            </summary>
+            <param name="instrucao">nome da instrução</param>
+            <param name="operando">valor do operando</param>
+        </member>
+        <member name="M:ucBip.Simulador.setInformacao(ucBip.Simulador.Instrucao)">
+            <summary>
+            Preenche bloco de comentarios com informações referente a instrução sendo executada
+            </summary>
+            <param name="inst">instrução sendo executada</param>
+        </member>
+        <member name="M:ucBip.Simulador.showInformacao(System.Boolean)">
+            <summary>
+            Exibe bloco de informações descrevendo ações ocorridas durante a simulação
+            </summary>
+            <param name="exibe">indica se o bloco de infomações será exibido ou nao</param>
+        </member>
+        <member name="M:ucBip.Simulador.showRegistradores(System.Boolean)">
+            <summary>
+            Exibe bloco de Registradores
+            </summary>
+            <param name="exibe">indica se bloco de registradores será exibido</param>
+        </member>
+        <member name="M:ucBip.Simulador.showAtualizaPC(System.Boolean)">
+            <summary>
+            Exibe ou nao atualização do PC
+            </summary>
+            <param name="exibe"></param>
+        </member>
+        <member name="M:ucBip.Simulador.AbrirArquivo">
+            <summary>
+            Abri um arquivo texto para simulação, carrega as instruções para Memória de programa e inicializa variaveis de controle da animação
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ucBip.Simulador.SetMemoriaDadosGrid(System.Int32,System.String,System.String)">
+            <summary>
+            Insere variaávei no grid memoria de dados
+            </summary>
+            <param name="intPos">posicao a ser inserido</param>
+            <param name="strValor">valor da variável</param>
+            <param name="nomeVariavel">nome da variável</param>
+        </member>
+        <member name="M:ucBip.Simulador.SetMemoriaDados(System.Collections.Generic.List{BIPIDE.Classes.InstrucaoASM})">
+            <summary>
+            Preenche memoria de Dados
+            </summary>
+            <param name="lista"></param>
+        </member>
+        <member name="M:ucBip.Simulador.SetMemoriaProgramaGrid(System.String,System.Int32,System.String)">
+            <summary>
+            Preenche grid memória de programa
+            </summary>
+            <param name="strRotulo"></param>
+            <param name="intPos"></param>
+            <param name="strValor"></param>
+        </member>
+        <member name="M:ucBip.Simulador.SetMemoriaPrograma(System.Collections.Generic.List{BIPIDE.Classes.InstrucaoASM})">
+            <summary>
+            Preenchememória de programa
+            </summary>
+            <param name="lista"></param>
+        </member>
+        <member name="M:ucBip.Simulador.SetRotulosPrograma(System.Collections.Generic.List{BIPIDE.Classes.InstrucaoASM})">
+            <summary>
+            Preenche rótulos no grid memória de programa
+            </summary>
+            <param name="lista">lista de instruçoes assembly</param>
+        </member>
+        <member name="M:ucBip.Simulador.Pause">
+            <summary>
+            Pausa simulação
+            </summary>
+        </member>
+        <member name="M:ucBip.Simulador.Restart">
+            <summary>
+            Reinicia simulação
+            </summary>
+        </member>
+        <member name="M:ucBip.Simulador.PassoProx">
+            <summary>
+            Simula a proxima instrução
+            </summary>
+        </member>
+        <member name="M:ucBip.Simulador.RepetePasso">
+            <summary>
+            Repete simulação da instrução
+            </summary>
+        </member>
+        <member name="M:ucBip.Simulador.ExibeEstatistica">
+            <summary>
+            Conta a quantidade de instruções no programa assembly
+            </summary>
+        </member>
+        <member name="M:ucBip.Simulador.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+    </members>
+</doc>

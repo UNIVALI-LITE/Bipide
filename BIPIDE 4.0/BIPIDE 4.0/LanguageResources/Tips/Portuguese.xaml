@@ -32,6 +32,9 @@
     <system:String x:Key="TipTitleButtonSystem">Sistema</system:String>
     <system:String x:Key="TipDescriptionButtonSystem">Apresenta informações sobre as funcionalidades do sistema.</system:String>
 
+    <system:String x:Key="TipTitleButtonPractice">Praticar</system:String>
+    <system:String x:Key="TipDescriptionButtonPractice">Permite simular cada uma das instruções do Processador independentemente.</system:String>
+    
     <system:String x:Key="TipTitleButtonAbout">Sobre</system:String>
     <system:String x:Key="TipDescriptionButtonAbout">Apresenta informações sobre a versão e autoria do sistema.</system:String>
 
@@ -55,7 +58,10 @@
 
     <system:String x:Key="TipTitleComboBoxSpeed">Velocidade</system:String>
     <system:String x:Key="TipDescriptionComboBoxSpeed">Permite controlar a velocidade com que ocorre a simulação do programa.</system:String>
-    
+
+    <system:String x:Key="TipTitleComboBoxInstructions">Instruções</system:String>
+    <system:String x:Key="TipDescriptionComboBoxInstructions">Permite selecionar uma das instruções do Processador que deseaja simular independentemente.</system:String>
+
     <system:String x:Key="TipTitleButtonUndo">Desfazer</system:String>
     <system:String x:Key="TipDescriptionButtonUndo">Desfaz a última ação realizada.</system:String>
 

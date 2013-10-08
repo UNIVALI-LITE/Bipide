@@ -1,0 +1,14 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ucBip="clr-namespace:ucBip;assembly=ucBipI" xmlns:Custom="http://schemas.microsoft.com/winfx/2006/xaml/presentation/ribbon" x:Class="BIPIDE_4._0.ViewResources.UCHelpPractice" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" 
+             d:DesignWidth="800">
+    <Grid>
+        <ucBip:Simulador x:Name="_Simulator" Height="Auto" Width="Auto"/>
+
+    </Grid>
+</UserControl>

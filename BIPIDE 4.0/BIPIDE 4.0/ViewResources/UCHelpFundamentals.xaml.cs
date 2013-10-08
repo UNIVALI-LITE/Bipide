@@ -22,7 +22,7 @@ namespace BIPIDE_4._0.ViewResources
     /// <summary>
     /// Interaction logic for UCHelp.xaml
     /// </summary>
-    public partial class UCHelp : UserControl
+    public partial class UCHelpFundamentals : UserControl
     {
         private ArrayList _DeviceGroups;
 
@@ -32,11 +32,11 @@ namespace BIPIDE_4._0.ViewResources
             set { _DeviceGroups = value; }
         }
 
-        public UCHelp()
+        public UCHelpFundamentals()
         {
             XmlSerializer SerializerObj = new XmlSerializer(typeof(ArrayList), new Type[] { typeof(TreeItem) });
 
-            XmlReader Reader = XmlReader.Create(@"D:\test.xml");
+            XmlReader Reader = XmlReader.Create(@"D:\Users\Nereu\Documents\Visual Studio 2012\Projects\BIPIDE 4.0\BIPIDE 4.0\LanguageResources\Help\PortugueseHelpMapping.xml");
             DeviceGroups = (ArrayList)SerializerObj.Deserialize(Reader);
 
             InitializeComponent();
