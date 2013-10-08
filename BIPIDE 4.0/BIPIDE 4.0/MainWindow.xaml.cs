@@ -1,5 +1,9 @@
 ﻿using BIPIDE_4._0.UIResources;
 using BIPIDE_4._0.ViewResources;
+using br.univali.portugol.integracao;
+using br.univali.portugol.integracao.analise;
+using br.univali.portugol.integracao.csharp;
+using br.univali.portugol.integracao.mensagens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,9 +30,12 @@ namespace BIPIDE_4._0
     public partial class MainWindow : RibbonWindow
     {
         private SimulationControl _SimulationControl;
+        private StringBuilder _ErrorMessages;
+        private Portugol _Portugol;
 
         public MainWindow()
         {
+            StartCorba();
             InitializeComponent();
             _SimulationControl = new SimulationControl( _ButtonStart    , 
                                                         _ButtonPause    , 
@@ -37,6 +44,11 @@ namespace BIPIDE_4._0
                                                         _ButtonContinue , 
                                                         _ButtonStop     ) ;
             //SetLanguageDictionary();
+        }
+
+        private void Bipide_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            _Portugol.encerrar();
         }
 
         private void SetLanguageDictionary()
@@ -57,7 +69,100 @@ namespace BIPIDE_4._0
             this.Resources.MergedDictionaries.Add(iResourceDictionary);
         }
 
-        #region Programação
+        public void StartCorba()
+        {
+            try
+            {
+                ServicoIntegracao ServicoIntegracaoPortugol = ServicoIntegracao.getInstance();
+                _Portugol = ServicoIntegracaoPortugol.iniciar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro: " + ex.Message);
+            }
+        }
+
+        public String Build(String pSourceCode)
+        {
+            String iAssembly = String.Empty;
+            try
+            {
+                Programa iProgram = _Portugol.compilar(pSourceCode);
+
+
+                _ErrorMessages.AppendLine("Programa Compilado com Sucesso!");
+
+                Restricoes iRestrictions = new Restricoes();
+                iRestrictions.Executar(iProgram);
+                if (iRestrictions.unsupported_message != null)
+                    _ErrorMessages.AppendLine(iRestrictions.unsupported_message);
+
+                ArchitectureCheck();
+
+
+                if (!iRestrictions.unsupported)
+                {
+                    Tradutor reg = new Tradutor(iProgram);
+                    iAssembly = reg.Convert(iProgram);
+                }
+
+
+            }
+            catch (ErroCompilacao ec)
+            {
+                ResultadoAnalise resultado = ec.resultadoAnalise;
+
+                if (resultado.getNumeroTotalErros() > 0)
+                {
+                    foreach (ErroSintatico erro in resultado.getErrosSintaticos())
+                    {
+                        _ErrorMessages.AppendLine("Erro Sintatico na linha " + erro.linha + " e coluna " + erro.coluna + ": " + erro.mensagem);
+                    }
+                    foreach (ErroSemantico erro in resultado.getErrosSemanticos())
+                    {
+                        _ErrorMessages.AppendLine("Erro Semantico na linha " + erro.linha + " e coluna " + erro.coluna + ": " + erro.mensagem);
+                    }
+                }
+            }
+
+            return iAssembly;
+        }
+
+        private void ArchitectureCheck()
+        {
+            switch (Restricoes.Processador)
+            {
+                case Restricoes.Processadores.BIPI:
+                    _RadioButtonSimulationBipI.IsEnabled    = true;
+                    _RadioButtonSimulationBipII.IsEnabled   = false;
+                    _RadioButtonSimulationBipIII.IsEnabled  = false;
+                    _RadioButtonSimulationBipIV.IsEnabled   = false;
+                    break;
+
+                case Restricoes.Processadores.BIPII:
+                    _RadioButtonSimulationBipI.IsEnabled    = true;
+                    _RadioButtonSimulationBipII.IsEnabled   = true;
+                    _RadioButtonSimulationBipIII.IsEnabled  = false;
+                    _RadioButtonSimulationBipIV.IsEnabled   = false;
+                    break;
+
+                case Restricoes.Processadores.BIPIII:
+                    _RadioButtonSimulationBipI.IsEnabled    = true;
+                    _RadioButtonSimulationBipII.IsEnabled   = true;
+                    _RadioButtonSimulationBipIII.IsEnabled  = true;
+                    _RadioButtonSimulationBipIV.IsEnabled   = false;
+                    break;
+
+                case Restricoes.Processadores.BIPIV:
+                    _RadioButtonSimulationBipI.IsEnabled    = true;
+                    _RadioButtonSimulationBipII.IsEnabled   = true;
+                    _RadioButtonSimulationBipIII.IsEnabled  = true;
+                    _RadioButtonSimulationBipIV.IsEnabled   = true;
+                    break;
+            }
+        }
+
+        #region Programar
 
         private void _MenuItemNew_Click(object sender, RoutedEventArgs e)
         {
@@ -106,9 +211,9 @@ namespace BIPIDE_4._0
             }
         }
 
-        #endregion Programação
+        #endregion Programar
 
-        #region Simulation
+        #region Simular
 
         private void _ButtonStart_Click(object sender, RoutedEventArgs e)
         {
@@ -172,7 +277,9 @@ namespace BIPIDE_4._0
             iSelectedDocument.SimulationSelectedProcessor = SimulationControl.Processors.psBipIV;
         }
 
-        #endregion Simulation
+        #endregion Simular
+
+        #region Aprender
 
         private void _ButtonFundamentals_Click(object sender, RoutedEventArgs e)
         {
@@ -462,5 +569,8 @@ namespace BIPIDE_4._0
                     break;
             }
         }
+
+        #endregion Aprender
+
     }
 }

@@ -52,7 +52,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <OutputPath>..\BIPIDE 4.0\Resources\</OutputPath>
-    <DocumentationFile>..\BIPIDE 4.0\Resources\ICSharpCode.AvalonEdit.xml</DocumentationFile>
+    <DocumentationFile>..\BIPIDE 4.0\Resources\ICSharpCode.AvalonEdit.XML</DocumentationFile>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <ItemGroup>

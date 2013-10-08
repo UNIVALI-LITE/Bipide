@@ -38,12 +38,26 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Classes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Resources\Classes.dll</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.AvalonEdit, Version=4.3.1.9429, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Resources\ICSharpCode.AvalonEdit.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Windows.Shell, Version=3.5.41019.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="ribboncontrolslibrary, Version=3.5.41019.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="IIOPChannel, Version=1.9.1.0, Culture=neutral, PublicKeyToken=9b152ded9b988555, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Resources\Portugol\IIOPChannel.dll</HintPath>
+    </Reference>
+    <Reference Include="portugol-integracao, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Resources\Portugol\portugol-integracao.dll</HintPath>
+    </Reference>
+    <Reference Include="portugol-integracao-csharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Resources\Portugol\portugol-integracao-csharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Controls.Ribbon" />
@@ -78,7 +92,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ControlResources\Instrucoes.cs" />
+    <Compile Include="ControlResources\Restricoes.cs" />
     <Compile Include="ControlResources\SimulationControl.cs" />
+    <Compile Include="ControlResources\Tradutor.cs" />
+    <Compile Include="ControlResources\VariavelFuncao.cs" />
+    <Compile Include="ControlResources\VisitanteSuporte.cs" />
     <Compile Include="ViewResources\FormNewDocument.xaml.cs">
       <DependentUpon>FormNewDocument.xaml</DependentUpon>
     </Compile>
@@ -260,6 +279,13 @@
     <Content Include="Resources\ICSharpCode.AvalonEdit.pdb" />
     <Resource Include="Resources\ICSharpCode.AvalonEdit.xml" />
     <Content Include="Resources\it\Xceed.Wpf.AvalonDock.resources.dll" />
+    <Content Include="Resources\Portugol\antlr-runtime-3.4.jar" />
+    <Content Include="Resources\Portugol\IIOPChannel.dll" />
+    <Content Include="Resources\Portugol\portugol-integracao-csharp.dll" />
+    <Content Include="Resources\Portugol\portugol-integracao.dll" />
+    <Content Include="Resources\Portugol\portugol-integracao.jar" />
+    <Content Include="Resources\Portugol\portugol-nucleo.jar" />
+    <Content Include="Resources\Portugol\portugol-relator-erros.jar" />
     <Content Include="Resources\pt-BR\Xceed.Wpf.AvalonDock.resources.dll" />
     <Content Include="Resources\ro\Xceed.Wpf.AvalonDock.resources.dll" />
     <Content Include="Resources\ru\Xceed.Wpf.AvalonDock.resources.dll" />
