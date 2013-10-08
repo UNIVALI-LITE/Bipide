@@ -205,6 +205,7 @@
                                   ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonCompile}"
                                   ToolTipFooterImageSource="ImageResources/help32.png"
                                   ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                  Click="_ButtonBuild_Click"
                                   KeyTip="B"/>
                     
                 </RibbonGroup>

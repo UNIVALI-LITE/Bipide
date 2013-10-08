@@ -1,4 +1,5 @@
-﻿using BIPIDE_4._0.UIResources;
+﻿using BIPIDE.Classes;
+using BIPIDE_4._0.UIResources;
 using BIPIDE_4._0.ViewResources;
 using br.univali.portugol.integracao;
 using br.univali.portugol.integracao.analise;
@@ -36,6 +37,8 @@ namespace BIPIDE_4._0
         public MainWindow()
         {
             StartCorba();
+            _ErrorMessages = new StringBuilder();
+
             InitializeComponent();
             _SimulationControl = new SimulationControl( _ButtonStart    , 
                                                         _ButtonPause    , 
@@ -82,9 +85,9 @@ namespace BIPIDE_4._0
             }
         }
 
-        public String Build(String pSourceCode)
+        public Codigo Build(String pSourceCode)
         {
-            String iAssembly = String.Empty;
+            Codigo iAssembly = new Codigo();
             try
             {
                 Programa iProgram = _Portugol.compilar(pSourceCode);
@@ -134,29 +137,29 @@ namespace BIPIDE_4._0
             {
                 case Restricoes.Processadores.BIPI:
                     _RadioButtonSimulationBipI.IsEnabled    = true;
-                    _RadioButtonSimulationBipII.IsEnabled   = false;
-                    _RadioButtonSimulationBipIII.IsEnabled  = false;
-                    _RadioButtonSimulationBipIV.IsEnabled   = false;
+                    _RadioButtonSimulationBipII.IsEnabled   = true;
+                    _RadioButtonSimulationBipIII.IsEnabled  = true;
+                    _RadioButtonSimulationBipIV.IsEnabled   = true;
                     break;
 
                 case Restricoes.Processadores.BIPII:
-                    _RadioButtonSimulationBipI.IsEnabled    = true;
+                    _RadioButtonSimulationBipI.IsEnabled    = false;
                     _RadioButtonSimulationBipII.IsEnabled   = true;
-                    _RadioButtonSimulationBipIII.IsEnabled  = false;
-                    _RadioButtonSimulationBipIV.IsEnabled   = false;
+                    _RadioButtonSimulationBipIII.IsEnabled  = true;
+                    _RadioButtonSimulationBipIV.IsEnabled   = true;
                     break;
 
                 case Restricoes.Processadores.BIPIII:
-                    _RadioButtonSimulationBipI.IsEnabled    = true;
-                    _RadioButtonSimulationBipII.IsEnabled   = true;
+                    _RadioButtonSimulationBipI.IsEnabled    = false;
+                    _RadioButtonSimulationBipII.IsEnabled   = false;
                     _RadioButtonSimulationBipIII.IsEnabled  = true;
-                    _RadioButtonSimulationBipIV.IsEnabled   = false;
+                    _RadioButtonSimulationBipIV.IsEnabled   = true;
                     break;
 
                 case Restricoes.Processadores.BIPIV:
-                    _RadioButtonSimulationBipI.IsEnabled    = true;
-                    _RadioButtonSimulationBipII.IsEnabled   = true;
-                    _RadioButtonSimulationBipIII.IsEnabled  = true;
+                    _RadioButtonSimulationBipI.IsEnabled    = false;
+                    _RadioButtonSimulationBipII.IsEnabled   = false;
+                    _RadioButtonSimulationBipIII.IsEnabled  = false;
                     _RadioButtonSimulationBipIV.IsEnabled   = true;
                     break;
             }
@@ -211,37 +214,79 @@ namespace BIPIDE_4._0
             }
         }
 
+        private void _ButtonBuild_Click(object sender, RoutedEventArgs e)
+        {
+            UCProgrammingDocument iSelectedDocument =
+                ((_DocumentPane.SelectedContent as LayoutDocument).Content as UCProgrammingDocument);
+
+            Codigo iAssembly = Build(iSelectedDocument._TextEditorSourceCode.Text);
+
+            iSelectedDocument._Simulator.SetMemoriaDados(iAssembly.GetMemoriaDados());
+            iSelectedDocument._Simulator.SetMemoriaPrograma(iAssembly.GetMemoriaInstrucao());
+            iSelectedDocument._Simulator.SetRotulosPrograma(iAssembly.GetListaRotulos());
+        }
+
         #endregion Programar
 
         #region Simular
 
         private void _ButtonStart_Click(object sender, RoutedEventArgs e)
         {
+            UCProgrammingDocument iSelectedDocument =
+                ((_DocumentPane.SelectedContent as LayoutDocument).Content as UCProgrammingDocument);
+
+            iSelectedDocument._Simulator.ExecutaSimulacao();
+
             _SimulationControl.Control = SimulationControl.SimulationControls.scStart;
         }
 
         private void _ButtonPause_Click(object sender, RoutedEventArgs e)
         {
+            UCProgrammingDocument iSelectedDocument =
+                ((_DocumentPane.SelectedContent as LayoutDocument).Content as UCProgrammingDocument);
+
+            iSelectedDocument._Simulator.Pause();
+
             _SimulationControl.Control = SimulationControl.SimulationControls.scPause;
         }
 
         private void _ButtonRepeat_Click(object sender, RoutedEventArgs e)
         {
+            UCProgrammingDocument iSelectedDocument =
+                ((_DocumentPane.SelectedContent as LayoutDocument).Content as UCProgrammingDocument);
+
+            iSelectedDocument._Simulator.RepetePasso();
+
             _SimulationControl.Control = SimulationControl.SimulationControls.scRepeat;
         }
 
         private void _ButtonNext_Click(object sender, RoutedEventArgs e)
         {
+            UCProgrammingDocument iSelectedDocument =
+                ((_DocumentPane.SelectedContent as LayoutDocument).Content as UCProgrammingDocument);
+
+            iSelectedDocument._Simulator.PassoProx();
+
             _SimulationControl.Control = SimulationControl.SimulationControls.scNext;
         }
 
         private void _ButtonContinue_Click(object sender, RoutedEventArgs e)
         {
+            UCProgrammingDocument iSelectedDocument =
+                ((_DocumentPane.SelectedContent as LayoutDocument).Content as UCProgrammingDocument);
+
+            iSelectedDocument._Simulator.Restart();
+
             _SimulationControl.Control = SimulationControl.SimulationControls.scContinue;
         }
 
         private void _ButtonStop_Click(object sender, RoutedEventArgs e)
         {
+            UCProgrammingDocument iSelectedDocument =
+                ((_DocumentPane.SelectedContent as LayoutDocument).Content as UCProgrammingDocument);
+
+            iSelectedDocument._Simulator.Stop();
+
             _SimulationControl.Control = SimulationControl.SimulationControls.scStop;
         }
 

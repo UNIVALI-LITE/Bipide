@@ -98,7 +98,7 @@ namespace BIPIDE_4._0
                 _ThereIsInicio = true;
         }
 
-        public String Convert(Programa programa)
+        public Codigo Convert(Programa programa)
         {
             ArvoreSintaticaAbstrataPrograma asa = programa.getArvoreSintaticaAbstrata();
 
@@ -125,9 +125,8 @@ namespace BIPIDE_4._0
            // String sp = DisplayMembers(_ObjectCode.GetCodigo()).ToString();
             //String sa = DisplayMembers(_ObjectCode.GetCodigoStringASM()).ToString();
             String sa = DisplayMembers(_ObjectCode.GetCodigoStringASM()).ToString();
-            List<InstrucaoASM> ia = _ObjectCode.GetCodigoInstrucaoASM();
 
-            return _Asemblycode.ToString();
+            return _ObjectCode;
         }
 
 

@@ -17,7 +17,8 @@
                     SelectionChanged="_TabControl_SelectionChanged">
             <TabItem x:Name="_TabItemProgramming" 
                      Header="Programação">
-                <AvalonEdit:TextEditor ShowLineNumbers="True"
+                <AvalonEdit:TextEditor x:Name="_TextEditorSourceCode"
+                                       ShowLineNumbers="True"
 					                   SyntaxHighlighting="C#"/>
             </TabItem>
             <TabItem x:Name="_TabItemSimulation" 
