@@ -444,7 +444,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Highlighting\Resources\CSS-Mode.xshd" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="ICSharpCode.AvalonEdit.snk" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Search\next.png" />
     <Resource Include="Search\prev.png" />
