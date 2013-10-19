@@ -5,7 +5,7 @@
         Height="500"
         Icon="/BIPIDE 4.0;component/ImageResources/new16.png"
         Title="{DynamicResource ResourceKey=NDFormTitle}"  
-        ResizeMode="NoResize">
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" Padding="0" UseLayoutRounding="False">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -15,7 +15,10 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    
+    <Window.Effect>
+        <DropShadowEffect BlurRadius="10"/>
+    </Window.Effect>
+
     <Grid>
         <TreeView x:Name="_TreeView"
                   HorizontalAlignment="Left" 

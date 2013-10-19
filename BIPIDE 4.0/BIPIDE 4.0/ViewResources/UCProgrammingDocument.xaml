@@ -18,8 +18,7 @@
             <TabItem x:Name="_TabItemProgramming" 
                      Header="Programação">
                 <AvalonEdit:TextEditor x:Name="_TextEditorSourceCode"
-                                       ShowLineNumbers="True"
-					                   SyntaxHighlighting="C#"/>
+                                       ShowLineNumbers="True"/>
             </TabItem>
             <TabItem x:Name="_TabItemSimulation" 
                      Header="Simulação">

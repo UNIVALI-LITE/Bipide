@@ -169,6 +169,9 @@ namespace BIPIDE_4._0
 
         private void _MenuItemNew_Click(object sender, RoutedEventArgs e)
         {
+            FormNewDocument iFormNewDocument = new FormNewDocument();
+            iFormNewDocument.ShowDialog();
+
             UCProgrammingDocument iProgrammingDocument          = new UCProgrammingDocument();
             iProgrammingDocument.SimulationContext              = _ContextualTabGroupSimulation;
             iProgrammingDocument.SimulationTab                  = _TabSimulation;

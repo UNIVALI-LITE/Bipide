@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<SyntaxDefinition name="C" extensions=".c" xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
+  <!-- The named colors 'Comment' and 'String' are used in SharpDevelop to detect if a line is inside a multiline string/comment -->
+  <Color name="Comment" foreground="Green" exampleText="// comment" />
+  <Color name="Preprocessor" foreground="Green" exampleText="#region Title" />
+  <Color name="Punctuation" foreground="Red" exampleText="a(b.c);" />
+  <Color name="ValueTypes" fontWeight="bold" foreground="Green" exampleText="bool b = true;" />
+  <Color name="NumberLiteral" foreground="DarkGreen" exampleText="3.1415f"/>
+  <Color name="Keywords" fontWeight="bold" foreground="Blue" exampleText="if (a) {} else {}"/>
+  <Color name="TypeKeywords" fontWeight="bold" foreground="Blue" exampleText="if (x is int) { a = x as int; type = typeof(int); size = sizeof(int); c = new object(); }"/>
+
+  <RuleSet name="CommentMarkerSet">
+    <Keywords fontWeight="bold">
+      <Word>TODO</Word>
+      <Word>FIXME</Word>
+      <Word>HACK</Word>
+      <Word>UNDONE</Word>
+    </Keywords>
+  </RuleSet>
+  
+  <!-- This is the main ruleset. -->
+  <RuleSet>
+    <Span color="Comment" ruleSet="CommentMarkerSet">
+      <Begin>//</Begin>
+    </Span>
+
+    <Span color="Comment" ruleSet="CommentMarkerSet" multiline="true">
+      <Begin>/\*</Begin>
+      <End>\*/</End>
+    </Span>
+
+    <Keywords color="Keywords">
+      <Word>senao</Word>
+      <Word>se</Word>
+      <Word>escolha</Word>
+      <Word>caso</Word>
+      <Word>casocontrario</Word>
+      <Word>faca</Word>
+      <Word>para</Word>
+      <Word>enquanto</Word>
+      <Word>pare</Word>
+      <Word>continue</Word>
+      <Word>retorne</Word>
+      <Word>funcao</Word>
+      <Word>programa</Word>
+    </Keywords>
+
+    <Keywords color="ValueTypes">
+      <Word>inteiro</Word>
+      <Word>vazio</Word>
+    </Keywords>
+
+    <!-- Digits -->
+    <Rule color="NumberLiteral">
+      \b0[xX][0-9a-fA-F]+  # hex number
+      |
+      (	\b\d+(\.[0-9]+)?   #number with optional floating point
+      |	\.[0-9]+           #or just starting with floating point
+      )
+      ([eE][+-]?[0-9]+)? # optional exponent
+    </Rule>
+
+    <Rule color="Punctuation">
+      [?,.;()\[\]{}+\-/%*&lt;&gt;^+~!|&amp;]+
+    </Rule>
+  </RuleSet>
+</SyntaxDefinition>
