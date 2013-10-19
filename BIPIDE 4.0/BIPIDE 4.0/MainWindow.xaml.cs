@@ -1,13 +1,11 @@
 ﻿using BIPIDE.Classes;
+using BIPIDE_4._0.ControlResources;
 using BIPIDE_4._0.UIResources;
 using BIPIDE_4._0.ViewResources;
-using br.univali.portugol.integracao;
-using br.univali.portugol.integracao.analise;
-using br.univali.portugol.integracao.csharp;
-using br.univali.portugol.integracao.mensagens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,13 +28,14 @@ namespace BIPIDE_4._0
     /// </summary>
     public partial class MainWindow : RibbonWindow
     {
-        private SimulationControl _SimulationControl;
-        private StringBuilder _ErrorMessages;
-        private Portugol _Portugol;
+        private SimulationControl   _SimulationControl;
+        private StringBuilder       _ErrorMessages;
+        private CorbaController     _CorbaController;
 
         public MainWindow()
         {
-            StartCorba();
+            _CorbaController = new CorbaController();
+            _CorbaController.Start();
             _ErrorMessages = new StringBuilder();
 
             InitializeComponent();
@@ -47,11 +46,6 @@ namespace BIPIDE_4._0
                                                         _ButtonContinue , 
                                                         _ButtonStop     ) ;
             //SetLanguageDictionary();
-        }
-
-        private void Bipide_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            _Portugol.encerrar();
         }
 
         private void SetLanguageDictionary()
@@ -72,61 +66,50 @@ namespace BIPIDE_4._0
             this.Resources.MergedDictionaries.Add(iResourceDictionary);
         }
 
-        public void StartCorba()
-        {
-            try
-            {
-                ServicoIntegracao ServicoIntegracaoPortugol = ServicoIntegracao.getInstance();
-                _Portugol = ServicoIntegracaoPortugol.iniciar();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro: " + ex.Message);
-            }
-        }
-
         public Codigo Build(String pSourceCode)
         {
+            _CorbaController.RaiseJavaProcess(AppDomain.CurrentDomain.BaseDirectory.ToString() + "ProgrammingLanguagesResources\\CResources\\CompilerResources\\c-integracao.jar");
+            //Assembly iProgrammingLanguage = Assembly.LoadFile(AppDomain.CurrentDomain.BaseDirectory.ToString() + "ProgrammingLanguagesResources\\CResources\\HighlightResources\\c-integracao.dll");
+            
+            
             Codigo iAssembly = new Codigo();
-            try
-            {
-                Programa iProgram = _Portugol.compilar(pSourceCode);
+            //try
+            //{
+                
+            //    _ErrorMessages.AppendLine("Programa Compilado com Sucesso!");
+
+            //    Restricoes iRestrictions = new Restricoes();
+            //    iRestrictions.Executar(iProgram);
+            //    if (iRestrictions.unsupported_message != null)
+            //        _ErrorMessages.AppendLine(iRestrictions.unsupported_message);
+
+            //    ArchitectureCheck();
 
 
-                _ErrorMessages.AppendLine("Programa Compilado com Sucesso!");
-
-                Restricoes iRestrictions = new Restricoes();
-                iRestrictions.Executar(iProgram);
-                if (iRestrictions.unsupported_message != null)
-                    _ErrorMessages.AppendLine(iRestrictions.unsupported_message);
-
-                ArchitectureCheck();
+            //    if (!iRestrictions.unsupported)
+            //    {
+            //        Tradutor reg = new Tradutor(iProgram);
+            //        iAssembly = reg.Convert(iProgram);
+            //    }
 
 
-                if (!iRestrictions.unsupported)
-                {
-                    Tradutor reg = new Tradutor(iProgram);
-                    iAssembly = reg.Convert(iProgram);
-                }
+            //}
+            //catch (ErroCompilacao ec)
+            //{
+            //    ResultadoAnalise resultado = ec.resultadoAnalise;
 
-
-            }
-            catch (ErroCompilacao ec)
-            {
-                ResultadoAnalise resultado = ec.resultadoAnalise;
-
-                if (resultado.getNumeroTotalErros() > 0)
-                {
-                    foreach (ErroSintatico erro in resultado.getErrosSintaticos())
-                    {
-                        _ErrorMessages.AppendLine("Erro Sintatico na linha " + erro.linha + " e coluna " + erro.coluna + ": " + erro.mensagem);
-                    }
-                    foreach (ErroSemantico erro in resultado.getErrosSemanticos())
-                    {
-                        _ErrorMessages.AppendLine("Erro Semantico na linha " + erro.linha + " e coluna " + erro.coluna + ": " + erro.mensagem);
-                    }
-                }
-            }
+            //    if (resultado.getNumeroTotalErros() > 0)
+            //    {
+            //        foreach (ErroSintatico erro in resultado.getErrosSintaticos())
+            //        {
+            //            _ErrorMessages.AppendLine("Erro Sintatico na linha " + erro.linha + " e coluna " + erro.coluna + ": " + erro.mensagem);
+            //        }
+            //        foreach (ErroSemantico erro in resultado.getErrosSemanticos())
+            //        {
+            //            _ErrorMessages.AppendLine("Erro Semantico na linha " + erro.linha + " e coluna " + erro.coluna + ": " + erro.mensagem);
+            //        }
+            //    }
+            //}
 
             return iAssembly;
         }
@@ -219,14 +202,17 @@ namespace BIPIDE_4._0
 
         private void _ButtonBuild_Click(object sender, RoutedEventArgs e)
         {
-            UCProgrammingDocument iSelectedDocument =
-                ((_DocumentPane.SelectedContent as LayoutDocument).Content as UCProgrammingDocument);
+            if (_DocumentPane.SelectedContent != null)
+            {
+                UCProgrammingDocument iSelectedDocument =
+                    ((_DocumentPane.SelectedContent as LayoutDocument).Content as UCProgrammingDocument);
 
-            Codigo iAssembly = Build(iSelectedDocument._TextEditorSourceCode.Text);
+                Codigo iAssembly = Build(iSelectedDocument._TextEditorSourceCode.Text);
 
-            iSelectedDocument._Simulator.SetMemoriaDados(iAssembly.GetMemoriaDados());
-            iSelectedDocument._Simulator.SetMemoriaPrograma(iAssembly.GetMemoriaInstrucao());
-            iSelectedDocument._Simulator.SetRotulosPrograma(iAssembly.GetListaRotulos());
+                iSelectedDocument._Simulator.SetMemoriaDados(iAssembly.GetMemoriaDados());
+                iSelectedDocument._Simulator.SetMemoriaPrograma(iAssembly.GetMemoriaInstrucao());
+                iSelectedDocument._Simulator.SetRotulosPrograma(iAssembly.GetListaRotulos());
+            }
         }
 
         #endregion Programar

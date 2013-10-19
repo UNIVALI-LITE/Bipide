@@ -59,7 +59,7 @@ namespace BIPIDE_4._0.UIResources
             InitializeComponent();
             _Simulator.setProcessador( (int) _SimulationSelectedProcessor );
 
-            using (StreamReader iStream = new StreamReader(AppDomain.CurrentDomain.BaseDirectory.ToString() + "ProgrammingLanguagesResources\\HighlightResources\\C.xshd"))
+            using (StreamReader iStream = new StreamReader(AppDomain.CurrentDomain.BaseDirectory.ToString() + "ProgrammingLanguagesResources\\CResources\\HighlightResources\\C.xshd"))
             {
                 using (XmlTextReader iXmlTextReader = new XmlTextReader(iStream))
                 {

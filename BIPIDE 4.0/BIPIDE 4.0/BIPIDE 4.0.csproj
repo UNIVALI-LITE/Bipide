@@ -92,6 +92,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ControlResources\CorbaController.cs" />
     <Compile Include="ControlResources\Instrucoes.cs" />
     <Compile Include="ControlResources\Restricoes.cs" />
     <Compile Include="ControlResources\SimulationControl.cs" />
@@ -244,7 +245,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="LanguageResources\Help\HelpSystem\" />
-    <Folder Include="ProgrammingLanguagesResources\CResources\CompilerResources\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="ImageResources\instruction16.png" />
@@ -273,8 +273,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ProgrammingLanguagesResources\antlr-runtime-3.4.jar" />
+    <Content Include="ProgrammingLanguagesResources\CResources\CompilerResources\c-integracao.dll" />
+    <Content Include="ProgrammingLanguagesResources\CResources\CompilerResources\c-integracao.jar" />
+    <Content Include="ProgrammingLanguagesResources\CResources\CompilerResources\c-nucleo.jar" />
     <Content Include="ProgrammingLanguagesResources\IIOPChannel.dll" />
-    <Content Include="ProgrammingLanguagesResources\PortugolResources\CompilerResources\portugol-integracao-csharp.dll" />
     <Content Include="ProgrammingLanguagesResources\PortugolResources\CompilerResources\portugol-integracao.dll" />
     <Content Include="ProgrammingLanguagesResources\PortugolResources\CompilerResources\portugol-integracao.jar" />
     <Content Include="ProgrammingLanguagesResources\PortugolResources\CompilerResources\portugol-nucleo.jar" />
