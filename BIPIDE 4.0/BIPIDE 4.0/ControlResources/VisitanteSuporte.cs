@@ -12,17 +12,14 @@ namespace BIPIDE_4._0
     [Serializable]
     public sealed class VisitanteSuporte : MarshalByRefObject, VisitanteASA
     {
-      //  public NoOperacaoBitwiseOu noOperacaoBitwiseOu;
-        public NoBitwiseNao noBitwiseNao;
-        public NoBloco noBloco;
-        private List<FunctionVariables> _Variables;
-
-        public NoBloco RightNodeExpression;
-        public Type RightNodeExprType;
-
+        public NoBloco  noBloco;
+        public NoBloco  RightNodeExpression;
+        public Type     RightNodeExprType;
+        public Boolean  _IsBitwiseExpression    = false;
         public Boolean GetRightExpression = false;
-
-        public List<FunctionVariables> Variables
+        
+        private List<FunctionVariables> _Variables;
+        public  List<FunctionVariables>  Variables
         {
             get { return _Variables; }
             set { _Variables = value; }
@@ -31,25 +28,17 @@ namespace BIPIDE_4._0
         public VisitanteSuporte(Programa programa)
         {
             this._Variables             = new List<FunctionVariables>();
-
             ArvoreSintaticaAbstrataPrograma asa = programa.getArvoreSintaticaAbstrata();
-
-
             asa.aceitar(this);
         }
+
         public VisitanteSuporte()
         {
         }
-
-
-
         public object visitarArvoreSintaticaAbstrataPrograma(ArvoreSintaticaAbstrataPrograma asap)
         {
             foreach (NoDeclaracao declaracao in asap.getListaDeclaracoesGlobais())
-            {
-
                 declaracao.aceitar(this);
-            }
 
             return null;
         }
@@ -71,19 +60,14 @@ namespace BIPIDE_4._0
 
         public object visitarNoChamadaFuncao(NoChamadaFuncao chamadaFuncao)
         {
-
             try
             {
                 foreach (NoExpressao expressao in chamadaFuncao.getParametros())
-                {
-                    Object valor = expressao.aceitar(this);
-
-                }
+                    expressao.aceitar(this);
             }
             catch
             {
             };
-
 
             return null;
         }
@@ -93,19 +77,17 @@ namespace BIPIDE_4._0
             String nome_funcao = declaracaoFuncao.getNome();
 
             //Inicializa variáveis e salva parâmetros
-            NoDeclaracaoParametro[] parametros = declaracaoFuncao.getParametros();
-            FunctionVariables declaracao = new FunctionVariables();
-            declaracao.FunctionName = nome_funcao;
-            foreach (NoDeclaracaoParametro parametro in parametros)
-            {
+            NoDeclaracaoParametro[] parametros  = declaracaoFuncao.getParametros();
+            FunctionVariables       declaracao  = new FunctionVariables();
+            declaracao.FunctionName             = nome_funcao;
+
+            foreach (NoDeclaracaoParametro parametro in parametros)            
                 declaracao.Variable.Add((String)parametro.aceitar(this));
-            }
+            
             _Variables.Add(declaracao);
 
-            foreach (NoBloco bloco in declaracaoFuncao.getBlocos())
-            {
+            foreach (NoBloco bloco in declaracaoFuncao.getBlocos())            
                 bloco.aceitar(this);
-            }
 
             return null;
         }
@@ -122,32 +104,19 @@ namespace BIPIDE_4._0
 
         public object visitarNoDeclaracaoVariavel(NoDeclaracaoVariavel noDeclaracaoVariavel)
         {
-
-            if (noDeclaracaoVariavel.getInicializacao() != null)
-            {
+            if (noDeclaracaoVariavel.getInicializacao() != null)            
                 noDeclaracaoVariavel.getInicializacao().aceitar(this);
-            }
-
 
             return null;
-
         }
 
         public object visitarNoDeclaracaoVetor(NoDeclaracaoVetor noDeclaracaoVetor)
         {
             if (noDeclaracaoVetor.getInicializacao() != null)
-            {
-
-                //valores = (List<Object>)noDeclaracaoVetor.getInicializacao().aceitar(this);
-                // foreach (Object v in valores)
-                //    cod_declaracao += v;
-            }
-           
-
+                noDeclaracaoVetor.getInicializacao().aceitar(this);
 
             return null;
         }
-
 
         public object visitarNoEnquanto(NoEnquanto noEnquanto)
         {
@@ -167,7 +136,6 @@ namespace BIPIDE_4._0
         public object visitarNoInteiro(NoInteiro noInteiro)
         {
             return noInteiro.getValor(); 
-
         }
 
         public object visitarNoLogico(NoLogico noLogico)
@@ -191,70 +159,44 @@ namespace BIPIDE_4._0
         }
 
         public object visitarNoOperacao(NoOperacao noOperacao)
-        {           
-          
+        {      
             return null;
         }
 
         private void executa_atribuicao(NoOperacao noOperacao)
         {
-          
-
             String op_esq = (String)noOperacao.getOperandoEsquerdo().aceitar(this);
-        
-
             Object op_dir = noOperacao.getOperandoDireito().aceitar(this);
         
         }
 
         private void executa_operacao(NoOperacao noOperacao, String instr)
         {
-          
             Object e = noOperacao.getOperandoEsquerdo().aceitar(this);
-         
-            
-         
-
             Object d = noOperacao.getOperandoDireito().aceitar(this);
           
         }
 
-       
-
-
         private void executa_operacao_condicional(NoOperacao noOperacao, String instr)
         {
-          
-
-            Object e = noOperacao.getOperandoEsquerdo().aceitar(this);
-           
-            Object d = noOperacao.getOperandoDireito().aceitar(this);
-           
+            Object e = noOperacao.getOperandoEsquerdo().aceitar(this);           
+            Object d = noOperacao.getOperandoDireito().aceitar(this);          
 
         }
 
         public object visitarNoPara(NoPara noPara)
-        {
-          
-            if (noPara.getInicializacao() != null)
-            {
+        {          
+            if (noPara.getInicializacao() != null)            
                 noPara.getInicializacao().aceitar(this);
-            }
-
-          
 
             //substituir visitacao condicao
             noPara.getCondicao().aceitar(this);
          
-            foreach (NoBloco blocos in noPara.getBlocos())
-            {
+            foreach (NoBloco blocos in noPara.getBlocos())            
                 blocos.aceitar(this);
-            }
-         
 
             noPara.getIncremento().aceitar(this);
-
-          
+                      
             return null;
         }
 
@@ -282,66 +224,45 @@ namespace BIPIDE_4._0
         {
             noReferenciaVetor.getIndice().aceitar(this);
 
-            return null;
+            return noReferenciaVetor.getNome();
         }
 
         public object visitarNoRetorne(NoRetorne noRetorne)
         {
-            Object e = noRetorne.getExpressao().aceitar(this);
-        
+            Object e = noRetorne.getExpressao().aceitar(this);        
 
             return null;
         }
 
         public object visitarNoSe(NoSe noSe)
         {
-            Boolean bloco_else = false;
-
             noSe.getCondicao().aceitar(this);
 
-            try
-            {
-                NoBloco[] b = noSe.getBlocosFalsos();
-                bloco_else = true;
-            }
-            catch
-            {
-            }
-
             foreach (NoBloco blocoverdadeiro in noSe.getBlocosVerdadeiros())
-            {
                 blocoverdadeiro.aceitar(this);
-            }
-            if (bloco_else)
-            {
-                int i = 0;
-                foreach (NoBloco blocofalso in noSe.getBlocosFalsos())
-                {
-                    blocofalso.aceitar(this);
 
-                }
-            }
+            foreach (NoBloco blocofalso in noSe.getBlocosFalsos())
+                blocofalso.aceitar(this);
 
             return null;
         }
 
         public object visitarNoVetor(NoVetor noVetor)
         {
-            foreach (Object v in noVetor.getValores())
+            foreach (Object no in noVetor.getValores())
             {
-                NoExpressao expr = (NoExpressao)v;
-                if (expr != null)
-                    expr.aceitar(this);
+                NoExpressao expr = (NoExpressao)no;
+                Object o = expr.aceitar(this);
             }
+
             return null;
-
         }
-
-
 
         public object visitarNoBitwiseNao(NoBitwiseNao noBitwiseNao)
         {
-            return noBitwiseNao.getExpressao().aceitar(this);
+            noBitwiseNao.getExpressao().aceitar(this);
+            //trata-se de uma expressão
+            return null;
         }
 
         public object visitarNoInclusaoBiblioteca(NoInclusaoBiblioteca noInclusaoBiblioteca)
@@ -351,16 +272,16 @@ namespace BIPIDE_4._0
 
         public object visitarNoOperacaoAtribuicao(NoOperacaoAtribuicao noOperacaoAtribuicao)
         {
-            String op_esq = (String)noOperacaoAtribuicao.getOperandoEsquerdo().aceitar(this);
-           
-            Object op_dir = noOperacaoAtribuicao.getOperandoDireito().aceitar(this);
-           
+            String op_esq = (String)noOperacaoAtribuicao.getOperandoEsquerdo().aceitar(this);           
+            Object op_dir = noOperacaoAtribuicao.getOperandoDireito().aceitar(this);           
 
             return null;
         }
 
         public object visitarNoOperacaoBitwiseE(NoOperacaoBitwiseE noOperacaoBitwiseE)
         {
+            _IsBitwiseExpression = true;
+
             if (GetRightExpression)
             {
                 GetRightExpression = false;
@@ -377,6 +298,8 @@ namespace BIPIDE_4._0
 
         public object visitarNoOperacaoBitwiseLeftShift(NoOperacaoBitwiseLeftShift noOperacaoBitwiseLeftShift)
         {
+            _IsBitwiseExpression = true;
+
             if (GetRightExpression)
             {
                 GetRightExpression = false;
@@ -393,6 +316,8 @@ namespace BIPIDE_4._0
 
         public object visitarNoOperacaoBitwiseOu(NoOperacaoBitwiseOu noOperacaoBitwiseOu)
         {
+            _IsBitwiseExpression = true;
+
             if (GetRightExpression)
             {
                 GetRightExpression = false;
@@ -410,6 +335,8 @@ namespace BIPIDE_4._0
 
         public object visitarNoOperacaoBitwiseRightShift(NoOperacaoBitwiseRightShift noOperacaoBitwiseRightShift)
         {
+            _IsBitwiseExpression = true;
+
             if (GetRightExpression)
             {
                 GetRightExpression = false;
@@ -426,6 +353,7 @@ namespace BIPIDE_4._0
 
         public object visitarNoOperacaoBitwiseXOR(NoOperacaoBitwiseXOR noOperacaoBitwiseXOR)
         {
+            _IsBitwiseExpression = true;
 
             if (GetRightExpression)
             {
@@ -505,7 +433,6 @@ namespace BIPIDE_4._0
 
         public object visitarNoOperacaoSoma(NoOperacaoSoma noOperacaoSoma)
         {
-
             executa_operacao(noOperacaoSoma, "ADD");
             return null;
         }

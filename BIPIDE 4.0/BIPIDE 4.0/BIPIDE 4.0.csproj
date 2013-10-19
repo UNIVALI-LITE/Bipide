@@ -94,6 +94,8 @@
     </ApplicationDefinition>
     <Compile Include="ControlResources\CorbaController.cs" />
     <Compile Include="ControlResources\Instrucoes.cs" />
+    <Compile Include="ControlResources\LabelCurrentScope.cs" />
+    <Compile Include="ControlResources\Otimizacao.cs" />
     <Compile Include="ControlResources\Restricoes.cs" />
     <Compile Include="ControlResources\SimulationControl.cs" />
     <Compile Include="ControlResources\Tradutor.cs" />

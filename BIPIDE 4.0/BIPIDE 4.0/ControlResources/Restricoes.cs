@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace BIPIDE_4._0
 {
+  
     class Restricoes: MarshalByRefObject, VisitanteASA
     {
         private static  Processadores _Processador;
@@ -111,6 +112,8 @@ namespace BIPIDE_4._0
 
             String nome = chamadaFuncao.getNome();
 
+            
+
             if (nome == _CurrentFunction)
             {
                 unsupported = true;
@@ -120,32 +123,29 @@ namespace BIPIDE_4._0
 
             Object valor;
 
-            try
+            foreach (NoDeclaracaoParametro parametro in chamadaFuncao.getParametros())
             {
-                foreach (NoDeclaracaoParametro parametro in chamadaFuncao.getParametros())
-                {
-                    valor = parametro.aceitar(this);
-                    if (nome.Equals("leia"))
-                    {
-                        if (valor != null)
-                        {
-                            if (valor.GetType() != typeof(string))
-                            {
-                                unsupported = true;
-                                unsupported_message += Environment.NewLine + "O comando leia somente permite variáveis";
-                            }
 
-                        }
-                        else
-                        {//expressao dentro de leia
+                valor = parametro.aceitar(this);
+                if (nome.Equals("leia"))
+                {
+                    if (valor != null)
+                    {
+                        if (valor.GetType() != typeof(string))
+                        {
                             unsupported = true;
-                            unsupported_message += Environment.NewLine + "O comando leia  não permite expressões";
+                            unsupported_message += Environment.NewLine + "O comando leia somente permite variáveis";
                         }
 
                     }
+                    else
+                    {//expressao dentro de leia
+                        unsupported = true;
+                        unsupported_message += Environment.NewLine + "O comando leia  não permite expressões";
+                    }
+
                 }
             }
-            catch { };//Quando não há parâmetros
                   
             
 
@@ -157,10 +157,27 @@ namespace BIPIDE_4._0
         {
             _CurrentFunction = declaracaoFuncao.getNome();
 
+
+            foreach (NoDeclaracaoParametro parametro in declaracaoFuncao.getParametros())
+            {
+                parametro.aceitar(this);
+            }
+
             foreach (NoBloco bloco in declaracaoFuncao.getBlocos())
             {
                 bloco.aceitar(this);
             }
+            return null;
+        }
+
+        public object visitarNoDeclaracaoParametro(NoDeclaracaoParametro noDeclaracaoParametro)
+        {
+            if (noDeclaracaoParametro.getModoAcesso() == ModoAcesso.POR_REFERENCIA)
+            {
+                unsupported = true;
+                unsupported_message += Environment.NewLine + "O BIP  não possui suporte à modo de acesso por referência";
+            }
+
             return null;
         }
 
@@ -171,10 +188,6 @@ namespace BIPIDE_4._0
             return null;
         }
 
-        public object visitarNoDeclaracaoParametro(NoDeclaracaoParametro noDeclaracaoParametro)
-        {
-            return null;
-        }
 
         public object visitarNoDeclaracaoVariavel(NoDeclaracaoVariavel noDeclaracaoVariavel)
         {
@@ -227,6 +240,15 @@ namespace BIPIDE_4._0
 
         public object visitarNoEnquanto(NoEnquanto noEnquanto)
         {
+           
+            noEnquanto.getCondicao().aceitar(this);          
+
+            foreach (NoBloco blocos in noEnquanto.getBlocos())
+            {
+                blocos.aceitar(this);
+              
+            }
+          
             return null;
         }
 

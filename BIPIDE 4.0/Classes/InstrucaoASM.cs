@@ -12,6 +12,7 @@ namespace BIPIDE.Classes
             this.IndexArquivo = intNrInstr;
             intNrInstr++;
             this.intTamanhoVetor = 0;
+            this.intIndice = 0;
         }
         #endregion
 
@@ -26,6 +27,7 @@ namespace BIPIDE.Classes
         private bool blnIsVariavel = false;
         private bool blnIsSection = false;
         private int intTamanhoVetor = 0;
+        private int intIndice = 0;
         private static int intNrInstMemoriaDados = 0;
         private static int intNrInstMemoriaProg = 0;
         private static int intNrInstr = 0;
@@ -41,7 +43,15 @@ namespace BIPIDE.Classes
             {
                 this.intTamanhoVetor = value;
                 //reserva posições de memória conforme o tamanho do vetor
-                intNrInstMemoriaDados += value - 1;
+                //intNrInstMemoriaDados += value - 1;
+            }
+        }
+        public int Indice
+        {
+            get { return this.intIndice; }
+            set
+            {
+                this.intIndice = value;
             }
         }
         public string Instrucao
@@ -136,24 +146,25 @@ namespace BIPIDE.Classes
             set
             {
                 this.etipoTipo = value;
+
                 if (this.intIndexMemoria == 0)
                 {
-                    if (value == eTipo.Instrucao)
+                    switch (value)
                     {
-                        this.intIndexMemoria = intNrInstMemoriaProg;
-                        intNrInstMemoriaProg++;
-                    }
-                    else
-                        if (value == eTipo.Variavel)
-                        {
+                        case eTipo.Instrucao:
+                            this.intIndexMemoria = intNrInstMemoriaProg;
+                            intNrInstMemoriaProg++;
+                            break;
+
+                        case eTipo.Variavel:
                             this.intIndexMemoria = intNrInstMemoriaDados;
                             intNrInstMemoriaDados++;
-                        }
-                        else
-                            if (value == eTipo.Rotulo)
-                            {
-                                this.intIndexMemoria = intNrInstMemoriaProg;
-                            }
+                            break;
+
+                        case eTipo.Rotulo:
+                            this.intIndexMemoria = intNrInstMemoriaProg;
+                            break;
+                    }
                 }
             }
         }

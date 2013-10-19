@@ -23,9 +23,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ucBip", "ucBip\ucBip.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Classes", "Classes\Classes.csproj", "{2EAE9F8B-6786-4B23-860A-F87EF73412F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UTBuild", "UTBuild\UTBuild.csproj", "{DA65DC39-FE48-4C20-B0A0-7B625FCFF854}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 7
+		SccNumberOfProjects = 8
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://nereu.visualstudio.com/defaultcollection
 		SccLocalPath0 = .
@@ -47,6 +49,9 @@ Global
 		SccProjectUniqueName6 = Classes\\Classes.csproj
 		SccProjectName6 = Classes
 		SccLocalPath6 = Classes
+		SccProjectUniqueName7 = UTBuild\\UTBuild.csproj
+		SccProjectName7 = UTBuild
+		SccLocalPath7 = UTBuild
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +82,10 @@ Global
 		{2EAE9F8B-6786-4B23-860A-F87EF73412F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EAE9F8B-6786-4B23-860A-F87EF73412F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2EAE9F8B-6786-4B23-860A-F87EF73412F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA65DC39-FE48-4C20-B0A0-7B625FCFF854}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA65DC39-FE48-4C20-B0A0-7B625FCFF854}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA65DC39-FE48-4C20-B0A0-7B625FCFF854}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA65DC39-FE48-4C20-B0A0-7B625FCFF854}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

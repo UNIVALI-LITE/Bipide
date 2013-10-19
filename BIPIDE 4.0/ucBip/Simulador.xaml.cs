@@ -298,7 +298,7 @@ namespace ucBip
             {
                 if (i.IndexMemoria == posicao)
                 {
-                    if (posicao + index < posicao || posicao + index >= posicao + i.Tamanho)
+                    if (posicao + index < posicao || posicao + index >= posicao + /*i.Indice)*/i.Tamanho)
                     {
                         throw new Exception("Violação de acesso à memória. Variável "+i.Instrucao+" na posição "+(posicao+index).ToString());
                     }

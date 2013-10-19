@@ -11,7 +11,13 @@ namespace BIPIDE.Classes
         {
             InstrucaoASM.Init();
             this.intTamanhoVetor = 0;
-            //InstrucaoLing.Init();
+        }
+
+        public Codigo( bool pClear )
+        {
+            if (pClear)
+                InstrucaoASM.Init();
+            this.intTamanhoVetor = 0;
         }
 
         private int intTamanhoVetor = 0;
@@ -58,6 +64,13 @@ namespace BIPIDE.Classes
                 }
             }
         }
+        public void AddInstrucaoASM(string strInst, string strValue, BIPIDE.Classes.eTipo tipo, int? linha, int tam)
+        {
+            if (tipo == BIPIDE.Classes.eTipo.Variavel)            
+                this.listaDataASM.Add(new InstrucaoASM { Instrucao = strInst, Operando = strValue, Tipo = tipo, NrLinha = linha, Tamanho = tam});                           
+            
+        }
+
         public void AddInstrucaoASM(Codigo codigoASM)
         {
             foreach (InstrucaoASM item in codigoASM.GetCodigoInstrucaoASM())
@@ -84,7 +97,7 @@ namespace BIPIDE.Classes
         public List<string> GetCodigoStringASM()
         {
             List<string> listaResultado = new List<string>();
-         foreach (InstrucaoASM itemASM in listaDataASM)
+            foreach (InstrucaoASM itemASM in listaDataASM)
             {
                 string aux = "";
                 if (itemASM.Tipo == eTipo.Variavel && itemASM.Tamanho > 1)                
