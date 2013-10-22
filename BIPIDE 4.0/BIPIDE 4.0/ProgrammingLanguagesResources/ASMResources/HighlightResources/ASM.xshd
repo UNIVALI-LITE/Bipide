@@ -1,0 +1,63 @@
+﻿<?xml version="1.0"?>
+<SyntaxDefinition name="ASM" extensions=".asm" xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
+	
+  <Color name="Keywords" foreground="Blue" fontWeight="bold"/>
+  <Color name="SessionTypes" foreground="Green" fontWeight="bold"/>
+  <Color name="Register" foreground="Red" exampleText="$indr" />
+  <Color name="NumberLiteral" foreground="DarkGreen" exampleText="3.1415f"/>
+
+	<!-- This is the main ruleset. -->
+  <RuleSet>
+      <Span color="Register">
+        <Begin>\$</Begin>
+      </Span>
+    
+		  <Keywords color="Keywords">
+			    <Word>HLT</Word>
+			    <Word>STO</Word>
+			    <Word>LD</Word>
+			    <Word>LDI</Word>
+			    <Word>ADD</Word>
+			    <Word>ADDI</Word>
+			    <Word>SUB</Word>
+			    <Word>SUBI</Word>
+			    <Word>BEQ</Word>
+			    <Word>BNE</Word>
+			    <Word>BGT</Word>
+			    <Word>BGE</Word>
+			    <Word>BLT</Word>
+			    <Word>BLE</Word>
+			    <Word>JMP</Word>
+			    <Word>NOT</Word>
+			    <Word>AND</Word>
+			    <Word>ANDI</Word>
+			    <Word>OR</Word>
+			    <Word>ORI</Word>
+			    <Word>XOR</Word>
+			    <Word>XORI</Word>
+			    <Word>SLL</Word>
+			    <Word>SRL</Word>
+			    <Word>LDV</Word>
+			    <Word>STOV</Word>
+			    <Word>CALL</Word>
+			    <Word>RETURN</Word>
+		  </Keywords>
+	
+		  <Keywords color="SessionTypes">
+			    <Word>.data</Word>
+			    <Word>.text</Word>
+		  </Keywords>
+		
+		  <!-- Digits -->
+		  <Rule color="NumberLiteral">
+			    \b0[xX][0-9a-fA-F]+  # hex number
+		    |	
+			    (	\b\d+(\.[0-9]+)?   #number with optional floating point
+			  |	\.[0-9]+           #or just starting with floating point
+			    )
+			  ([eE][+-]?[0-9]+)? # optional exponent
+		  </Rule>
+
+	</RuleSet>
+</SyntaxDefinition>
+

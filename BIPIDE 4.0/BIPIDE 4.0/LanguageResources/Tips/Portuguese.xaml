@@ -60,7 +60,7 @@
     <system:String x:Key="TipDescriptionComboBoxSpeed">Permite controlar a velocidade com que ocorre a simulação do programa.</system:String>
 
     <system:String x:Key="TipTitleComboBoxInstructions">Instruções</system:String>
-    <system:String x:Key="TipDescriptionComboBoxInstructions">Permite selecionar uma das instruções do Processador que deseaja simular independentemente.</system:String>
+    <system:String x:Key="TipDescriptionComboBoxInstructions">Permite selecionar uma das instruções do Processador que deseja simular independentemente.</system:String>
 
     <system:String x:Key="TipTitleButtonUndo">Desfazer</system:String>
     <system:String x:Key="TipDescriptionButtonUndo">Desfaz a última ação realizada.</system:String>

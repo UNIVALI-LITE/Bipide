@@ -54,5 +54,13 @@ namespace BIPIDE_4._0.ControlResources
                 return false;
             }
         }
+
+        public MarshalByRefObject ResolveProcess(string ComponentName)
+        {
+            NamingContext iNamingContext = CorbaInstace.GetNameService("localhost", PORTA_PADRAO);
+            NameComponent[] iNameComponent = new NameComponent[] { new NameComponent(ComponentName, "") };
+
+            return iNamingContext.resolve(iNameComponent);
+        }
     }
 }

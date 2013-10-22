@@ -1,0 +1,84 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <system:String x:Key="TipTitleButtonNew">New</system:String>
+    <system:String x:Key="TipDescriptionButtonNew">Creates a new document.</system:String>
+
+    <system:String x:Key="TipTitleButtonOpen">Open</system:String>
+    <system:String x:Key="TipDescriptionButtonOpen">Opens an existing file.</system:String>
+
+    <system:String x:Key="TipTitleButtonSave">Save</system:String>
+    <system:String x:Key="TipDescriptionButtonSave">Save the current document.</system:String>
+
+    <system:String x:Key="TipTitleButtonSaveAs">Save As</system:String>
+    <system:String x:Key="TipDescriptionButtonSaveAs">Saves a copy of the current document.</system:String>
+
+    <system:String x:Key="TipTitleButtonPrint">Print</system:String>
+    <system:String x:Key="TipDescriptionButtonPrint">Prints the current document.</system:String>
+
+    <system:String x:Key="TipTitleButtonExamples">Examples</system:String>
+    <system:String x:Key="TipDescriptionButtonExamples">Enables to open sample programs.</system:String>
+
+    <system:String x:Key="TipTitleButtonExport">Export</system:String>
+    <system:String x:Key="TipDescriptionButtonExport">Allows you to export the program in the formats: Assembly, Binary, Hexadecimal, MIF e VHDL.</system:String>
+
+    <system:String x:Key="TipTitleButtonCompile">Build</system:String>
+    <system:String x:Key="TipDescriptionButtonCompile">Build the program.</system:String>
+
+    <system:String x:Key="TipTitleButtonFundamentals">Fundamentals</system:String>
+    <system:String x:Key="TipDescriptionButtonFundamentals">Displays information about Architecture and Computer Organization, processors BIP and languages ​​offered by the tool.</system:String>
+
+    <system:String x:Key="TipTitleButtonSystem">System</system:String>
+    <system:String x:Key="TipDescriptionButtonSystem">Displays information about the system functionalities.</system:String>
+
+    <system:String x:Key="TipTitleButtonPractice">Practice</system:String>
+    <system:String x:Key="TipDescriptionButtonPractice">Allows to simulate each processor instructions independently.</system:String>
+
+    <system:String x:Key="TipTitleButtonAbout">About</system:String>
+    <system:String x:Key="TipDescriptionButtonAbout">Displays information about the version and authoring of the system .</system:String>
+
+    <system:String x:Key="TipTitleButtonStart">Start</system:String>
+    <system:String x:Key="TipDescriptionButtonStart">Starts the program simulation.</system:String>
+
+    <system:String x:Key="TipTitleButtonPause">Pause</system:String>
+    <system:String x:Key="TipDescriptionButtonPause">Temporarily stop the program simulation.</system:String>
+
+    <system:String x:Key="TipTitleButtonRepeat">Repeat</system:String>
+    <system:String x:Key="TipDescriptionButtonRepeat">Repeats the last instruction.</system:String>
+
+    <system:String x:Key="TipTitleButtonNext">Next</system:String>
+    <system:String x:Key="TipDescriptionButtonNext">Simulates the next program instruction.</system:String>
+
+    <system:String x:Key="TipTitleButtonContinue">Continue</system:String>
+    <system:String x:Key="TipDescriptionButtonContinue">Continues the program simulation.</system:String>
+
+    <system:String x:Key="TipTitleButtonStop">Stop</system:String>
+    <system:String x:Key="TipDescriptionButtonStop">Stops the program simulation.</system:String>
+
+    <system:String x:Key="TipTitleComboBoxSpeed">Speed</system:String>
+    <system:String x:Key="TipDescriptionComboBoxSpeed">Allows you to control the speed with which the program simulation occurs.</system:String>
+
+    <system:String x:Key="TipTitleComboBoxInstructions">Instructions</system:String>
+    <system:String x:Key="TipDescriptionComboBoxInstructions">Allows you to select one of the processor instructions that you want to simulate regardless.</system:String>
+
+    <system:String x:Key="TipTitleButtonUndo">Undo</system:String>
+    <system:String x:Key="TipDescriptionButtonUndo">Undo the last action performed.</system:String>
+
+    <system:String x:Key="TipTitleButtonRedo">Redo</system:String>
+    <system:String x:Key="TipDescriptionButtonRedo">Redo the last undone action.</system:String>
+
+    <system:String x:Key="TipTitleButtonExit">Exit</system:String>
+    <system:String x:Key="TipDescriptionButtonExit">Exit System.</system:String>
+
+    <system:String x:Key="TipDescriptionRadioButtonBipI">Selects the processor BIP I to be used in the simulation.</system:String>
+
+    <system:String x:Key="TipDescriptionRadioButtonBipII">Selects the processor BIP II to be used in the simulation.</system:String>
+
+    <system:String x:Key="TipDescriptionRadioButtonBipIII">Selects the processor BIP III to be used in the simulation.</system:String>
+
+    <system:String x:Key="TipDescriptionRadioButtonBipIV">Selects the processor BIP IV to be used in the simulation.</system:String>
+
+    <system:String x:Key="TipFooterTitle">Press F1 for more help.</system:String>
+
+</ResourceDictionary>

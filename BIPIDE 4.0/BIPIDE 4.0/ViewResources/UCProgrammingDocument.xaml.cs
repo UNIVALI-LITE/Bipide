@@ -1,5 +1,9 @@
-﻿using ICSharpCode.AvalonEdit.Highlighting;
+﻿using ICSharpCode.AvalonEdit;
+using ICSharpCode.AvalonEdit.Document;
+using ICSharpCode.AvalonEdit.Editing;
+using ICSharpCode.AvalonEdit.Highlighting;
 using ICSharpCode.AvalonEdit.Highlighting.Xshd;
+using ICSharpCode.AvalonEdit.Rendering;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -59,13 +63,47 @@ namespace BIPIDE_4._0.UIResources
             InitializeComponent();
             _Simulator.setProcessador( (int) _SimulationSelectedProcessor );
 
+            #region Highlight Set
+
+            // Load ASM Highlight
+            using (StreamReader iStream = new StreamReader(AppDomain.CurrentDomain.BaseDirectory.ToString() + "ProgrammingLanguagesResources\\ASMResources\\HighlightResources\\ASM.xshd"))
+            {
+                using (XmlTextReader iXmlTextReader = new XmlTextReader(iStream))
+                {
+                    _TextEditorASM.SyntaxHighlighting = HighlightingLoader.Load(iXmlTextReader, HighlightingManager.Instance);
+                }
+            }
+
+            // Load Programming Language Highlight
             using (StreamReader iStream = new StreamReader(AppDomain.CurrentDomain.BaseDirectory.ToString() + "ProgrammingLanguagesResources\\CResources\\HighlightResources\\C.xshd"))
             {
                 using (XmlTextReader iXmlTextReader = new XmlTextReader(iStream))
                 {
-                    _TextEditorSourceCode.SyntaxHighlighting = HighlightingLoader.Load(iXmlTextReader, HighlightingManager.Instance);
+                    _TextEditorSourceCodeDebug.SyntaxHighlighting   = HighlightingLoader.Load(iXmlTextReader, HighlightingManager.Instance);
                 }
             }
+
+            // Load Programming Language Highlight
+            using (StreamReader iStream = new StreamReader(AppDomain.CurrentDomain.BaseDirectory.ToString() + "ProgrammingLanguagesResources\\CResources\\HighlightResources\\C.xshd"))
+            {
+                using (XmlTextReader iXmlTextReader = new XmlTextReader(iStream))
+                {
+                    _TextEditorSourceCode.SyntaxHighlighting        = HighlightingLoader.Load(iXmlTextReader, HighlightingManager.Instance);
+                }
+            }
+
+            XBackgroundRenderer iBackgroundRendererASM = new XBackgroundRenderer(_TextEditorASM);
+            XBackgroundRenderer iBackgroundRendererSourceCode = new XBackgroundRenderer(_TextEditorSourceCodeDebug);
+
+            _TextEditorASM.TextArea.TextView.BackgroundRenderers.Add(iBackgroundRendererASM);
+            _TextEditorSourceCodeDebug.TextArea.TextView.BackgroundRenderers.Add(iBackgroundRendererSourceCode);
+
+
+            _TextEditorSourceCode.Text = "/*\r\n * Programa Portugol\r\n */\r\nprograma\r\n{\r\n\tfuncao inicio()\r\n\t{\r\n\t\t// TODO\r\n\t}\r\n}\r\n";
+
+            #endregion Highlight Set
+
+
         }
 
         public UCProgrammingDocument(RibbonContextualTabGroup pSimulationContext)
@@ -86,6 +124,35 @@ namespace BIPIDE_4._0.UIResources
             {
                 _SimulationContext.Visibility   = System.Windows.Visibility.Visible;
                 _RibbonMain.SelectedItem        = _SimulationTab;
+            }
+        }
+    }
+
+    public class XBackgroundRenderer : IBackgroundRenderer
+    {
+        TextEditor editor;
+
+        public XBackgroundRenderer(TextEditor e)
+        {
+            editor = e;
+        }
+
+        public KnownLayer Layer
+        {
+            get { return KnownLayer.Caret; }
+        }
+
+        public void Draw(TextView textView, DrawingContext drawingContext)
+        {
+            textView.EnsureVisualLines();
+            foreach (Rect r in BackgroundGeometryBuilder.GetRectsForSegment(textView, new TextSegment() { StartOffset = editor.Document.GetLineByOffset(editor.CaretOffset).Offset }))
+            {
+                drawingContext.DrawRoundedRectangle(
+                    new SolidColorBrush(Color.FromArgb(40, 0xff, 0x00, 0x15)),
+                    new Pen(new SolidColorBrush(Color.FromArgb(60, 0xff, 0x00, 0x15)), 1),
+                    new Rect(r.Location, new Size(textView.ActualWidth, r.Height)),
+                    3, 3
+                );
             }
         }
     }

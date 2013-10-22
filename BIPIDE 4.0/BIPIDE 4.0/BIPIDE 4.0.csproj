@@ -38,6 +38,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="c-integracao, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ProgrammingLanguagesResources\CResources\CompilerResources\c-integracao.dll</HintPath>
+    </Reference>
     <Reference Include="Classes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Resources\Classes.dll</HintPath>
@@ -96,11 +100,16 @@
     <Compile Include="ControlResources\Instrucoes.cs" />
     <Compile Include="ControlResources\LabelCurrentScope.cs" />
     <Compile Include="ControlResources\Otimizacao.cs" />
+    <Compile Include="ControlResources\SerializableResources\LanguageMapping.cs" />
     <Compile Include="ControlResources\Restricoes.cs" />
     <Compile Include="ControlResources\SimulationControl.cs" />
     <Compile Include="ControlResources\Tradutor.cs" />
+    <Compile Include="ControlResources\SerializableResources\TreeItem.cs" />
     <Compile Include="ControlResources\VariavelFuncao.cs" />
     <Compile Include="ControlResources\VisitanteSuporte.cs" />
+    <Compile Include="SplashScreen.xaml.cs">
+      <DependentUpon>SplashScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewResources\FormNewDocument.xaml.cs">
       <DependentUpon>FormNewDocument.xaml</DependentUpon>
     </Compile>
@@ -113,9 +122,17 @@
     <Compile Include="ViewResources\UCProgrammingDocument.xaml.cs">
       <DependentUpon>UCProgrammingDocument.xaml</DependentUpon>
     </Compile>
+    <Page Include="LanguageResources\Component\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="LanguageResources\Component\Portuguese.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LanguageResources\Tips\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="LanguageResources\Tips\Portuguese.xaml">
       <SubType>Designer</SubType>
@@ -133,6 +150,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SplashScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ViewResources\FormNewDocument.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -170,6 +191,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ProgrammingLanguagesResources\PortugolResources\HighlightResources\Portugol.xshd" />
     <EmbeddedResource Include="ProgrammingLanguagesResources\CResources\HighlightResources\C.xshd" />
+    <None Include="ProgrammingLanguagesResources\ASMResources\HighlightResources\ASM.xshd" />
+    <None Include="ProgrammingLanguagesResources\PortugolResources\ExamplesResources\fatorial.por" />
+    <None Include="ProgrammingLanguagesResources\PortugolResources\ExamplesResources\mdc.por" />
+    <None Include="ProgrammingLanguagesResources\PortugolResources\ExamplesResources\multiplicacao.por" />
+    <None Include="ProgrammingLanguagesResources\PortugolResources\ExamplesResources\potencia.por" />
+    <None Include="ProgrammingLanguagesResources\PortugolResources\ExamplesResources\se-senao.por" />
+    <None Include="ProgrammingLanguagesResources\PortugolResources\ExamplesResources\se.por" />
+    <None Include="ProgrammingLanguagesResources\PortugolResources\ExamplesResources\vetor.por" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -194,7 +223,6 @@
     <Resource Include="ImageResources\configuration16.png" />
     <Resource Include="ImageResources\continue32.png" />
     <Resource Include="ImageResources\continue16.png" />
-    <Resource Include="ImageResources\en.png" />
     <Resource Include="ImageResources\error.png" />
     <Resource Include="ImageResources\examples16.png" />
     <Resource Include="ImageResources\examples32.png" />
@@ -222,7 +250,6 @@
     <Resource Include="ImageResources\play32.png" />
     <Resource Include="ImageResources\print16.png" />
     <Resource Include="ImageResources\print32.png" />
-    <Resource Include="ImageResources\pt.png" />
     <Resource Include="ImageResources\redo16.png" />
     <Resource Include="ImageResources\repeat32.png" />
     <Resource Include="ImageResources\repeat16.png" />
@@ -274,6 +301,257 @@
     <Resource Include="ImageResources\about32.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="ImageResources\SplashScreen.png" />
+    <Resource Include="ImageResources\warningMessages.png" />
+    <Resource Include="LanguageResources\FlagIcons\ad.png" />
+    <Resource Include="LanguageResources\FlagIcons\ae.png" />
+    <Resource Include="LanguageResources\FlagIcons\af.png" />
+    <Resource Include="LanguageResources\FlagIcons\ag.png" />
+    <Resource Include="LanguageResources\FlagIcons\ai.png" />
+    <Resource Include="LanguageResources\FlagIcons\al.png" />
+    <Resource Include="LanguageResources\FlagIcons\am.png" />
+    <Resource Include="LanguageResources\FlagIcons\an.png" />
+    <Resource Include="LanguageResources\FlagIcons\ao.png" />
+    <Resource Include="LanguageResources\FlagIcons\ar.png" />
+    <Resource Include="LanguageResources\FlagIcons\as.png" />
+    <Resource Include="LanguageResources\FlagIcons\at.png" />
+    <Resource Include="LanguageResources\FlagIcons\au.png" />
+    <Resource Include="LanguageResources\FlagIcons\aw.png" />
+    <Resource Include="LanguageResources\FlagIcons\ax.png" />
+    <Resource Include="LanguageResources\FlagIcons\az.png" />
+    <Resource Include="LanguageResources\FlagIcons\ba.png" />
+    <Resource Include="LanguageResources\FlagIcons\bb.png" />
+    <Resource Include="LanguageResources\FlagIcons\bd.png" />
+    <Resource Include="LanguageResources\FlagIcons\be.png" />
+    <Resource Include="LanguageResources\FlagIcons\bf.png" />
+    <Resource Include="LanguageResources\FlagIcons\bg.png" />
+    <Resource Include="LanguageResources\FlagIcons\bh.png" />
+    <Resource Include="LanguageResources\FlagIcons\bi.png" />
+    <Resource Include="LanguageResources\FlagIcons\bj.png" />
+    <Resource Include="LanguageResources\FlagIcons\bm.png" />
+    <Resource Include="LanguageResources\FlagIcons\bn.png" />
+    <Resource Include="LanguageResources\FlagIcons\bo.png" />
+    <Resource Include="LanguageResources\FlagIcons\br.png" />
+    <Resource Include="LanguageResources\FlagIcons\bs.png" />
+    <Resource Include="LanguageResources\FlagIcons\bt.png" />
+    <Resource Include="LanguageResources\FlagIcons\bv.png" />
+    <Resource Include="LanguageResources\FlagIcons\bw.png" />
+    <Resource Include="LanguageResources\FlagIcons\by.png" />
+    <Resource Include="LanguageResources\FlagIcons\bz.png" />
+    <Resource Include="LanguageResources\FlagIcons\ca.png" />
+    <Resource Include="LanguageResources\FlagIcons\catalonia.png" />
+    <Resource Include="LanguageResources\FlagIcons\cc.png" />
+    <Resource Include="LanguageResources\FlagIcons\cd.png" />
+    <Resource Include="LanguageResources\FlagIcons\cf.png" />
+    <Resource Include="LanguageResources\FlagIcons\cg.png" />
+    <Resource Include="LanguageResources\FlagIcons\ch.png" />
+    <Resource Include="LanguageResources\FlagIcons\ci.png" />
+    <Resource Include="LanguageResources\FlagIcons\ck.png" />
+    <Resource Include="LanguageResources\FlagIcons\cl.png" />
+    <Resource Include="LanguageResources\FlagIcons\cm.png" />
+    <Resource Include="LanguageResources\FlagIcons\cn.png" />
+    <Resource Include="LanguageResources\FlagIcons\co.png" />
+    <Resource Include="LanguageResources\FlagIcons\cr.png" />
+    <Resource Include="LanguageResources\FlagIcons\cs.png" />
+    <Resource Include="LanguageResources\FlagIcons\cu.png" />
+    <Resource Include="LanguageResources\FlagIcons\cv.png" />
+    <Resource Include="LanguageResources\FlagIcons\cx.png" />
+    <Resource Include="LanguageResources\FlagIcons\cy.png" />
+    <Resource Include="LanguageResources\FlagIcons\cz.png" />
+    <Resource Include="LanguageResources\FlagIcons\de.png" />
+    <Resource Include="LanguageResources\FlagIcons\dj.png" />
+    <Resource Include="LanguageResources\FlagIcons\dk.png" />
+    <Resource Include="LanguageResources\FlagIcons\dm.png" />
+    <Resource Include="LanguageResources\FlagIcons\do.png" />
+    <Resource Include="LanguageResources\FlagIcons\dz.png" />
+    <Resource Include="LanguageResources\FlagIcons\ec.png" />
+    <Resource Include="LanguageResources\FlagIcons\ee.png" />
+    <Resource Include="LanguageResources\FlagIcons\eg.png" />
+    <Resource Include="LanguageResources\FlagIcons\eh.png" />
+    <Resource Include="LanguageResources\FlagIcons\england.png" />
+    <Resource Include="LanguageResources\FlagIcons\er.png" />
+    <Resource Include="LanguageResources\FlagIcons\es.png" />
+    <Resource Include="LanguageResources\FlagIcons\et.png" />
+    <Resource Include="LanguageResources\FlagIcons\europeanunion.png" />
+    <Resource Include="LanguageResources\FlagIcons\fam.png" />
+    <Resource Include="LanguageResources\FlagIcons\fi.png" />
+    <Resource Include="LanguageResources\FlagIcons\fj.png" />
+    <Resource Include="LanguageResources\FlagIcons\fk.png" />
+    <Resource Include="LanguageResources\FlagIcons\fm.png" />
+    <Resource Include="LanguageResources\FlagIcons\fo.png" />
+    <Resource Include="LanguageResources\FlagIcons\fr.png" />
+    <Resource Include="LanguageResources\FlagIcons\ga.png" />
+    <Resource Include="LanguageResources\FlagIcons\gb.png" />
+    <Resource Include="LanguageResources\FlagIcons\gd.png" />
+    <Resource Include="LanguageResources\FlagIcons\ge.png" />
+    <Resource Include="LanguageResources\FlagIcons\gf.png" />
+    <Resource Include="LanguageResources\FlagIcons\gh.png" />
+    <Resource Include="LanguageResources\FlagIcons\gi.png" />
+    <Resource Include="LanguageResources\FlagIcons\gl.png" />
+    <Resource Include="LanguageResources\FlagIcons\gm.png" />
+    <Resource Include="LanguageResources\FlagIcons\gn.png" />
+    <Resource Include="LanguageResources\FlagIcons\gp.png" />
+    <Resource Include="LanguageResources\FlagIcons\gq.png" />
+    <Resource Include="LanguageResources\FlagIcons\gr.png" />
+    <Resource Include="LanguageResources\FlagIcons\gs.png" />
+    <Resource Include="LanguageResources\FlagIcons\gt.png" />
+    <Resource Include="LanguageResources\FlagIcons\gu.png" />
+    <Resource Include="LanguageResources\FlagIcons\gw.png" />
+    <Resource Include="LanguageResources\FlagIcons\gy.png" />
+    <Resource Include="LanguageResources\FlagIcons\hk.png" />
+    <Resource Include="LanguageResources\FlagIcons\hm.png" />
+    <Resource Include="LanguageResources\FlagIcons\hn.png" />
+    <Resource Include="LanguageResources\FlagIcons\hr.png" />
+    <Resource Include="LanguageResources\FlagIcons\ht.png" />
+    <Resource Include="LanguageResources\FlagIcons\hu.png" />
+    <Resource Include="LanguageResources\FlagIcons\id.png" />
+    <Resource Include="LanguageResources\FlagIcons\ie.png" />
+    <Resource Include="LanguageResources\FlagIcons\il.png" />
+    <Resource Include="LanguageResources\FlagIcons\in.png" />
+    <Resource Include="LanguageResources\FlagIcons\io.png" />
+    <Resource Include="LanguageResources\FlagIcons\iq.png" />
+    <Resource Include="LanguageResources\FlagIcons\ir.png" />
+    <Resource Include="LanguageResources\FlagIcons\is.png" />
+    <Resource Include="LanguageResources\FlagIcons\it.png" />
+    <Resource Include="LanguageResources\FlagIcons\jm.png" />
+    <Resource Include="LanguageResources\FlagIcons\jo.png" />
+    <Resource Include="LanguageResources\FlagIcons\jp.png" />
+    <Resource Include="LanguageResources\FlagIcons\ke.png" />
+    <Resource Include="LanguageResources\FlagIcons\kg.png" />
+    <Resource Include="LanguageResources\FlagIcons\kh.png" />
+    <Resource Include="LanguageResources\FlagIcons\ki.png" />
+    <Resource Include="LanguageResources\FlagIcons\km.png" />
+    <Resource Include="LanguageResources\FlagIcons\kn.png" />
+    <Resource Include="LanguageResources\FlagIcons\kp.png" />
+    <Resource Include="LanguageResources\FlagIcons\kr.png" />
+    <Resource Include="LanguageResources\FlagIcons\kw.png" />
+    <Resource Include="LanguageResources\FlagIcons\ky.png" />
+    <Resource Include="LanguageResources\FlagIcons\kz.png" />
+    <Resource Include="LanguageResources\FlagIcons\la.png" />
+    <Resource Include="LanguageResources\FlagIcons\lb.png" />
+    <Resource Include="LanguageResources\FlagIcons\lc.png" />
+    <Resource Include="LanguageResources\FlagIcons\li.png" />
+    <Resource Include="LanguageResources\FlagIcons\lk.png" />
+    <Resource Include="LanguageResources\FlagIcons\lr.png" />
+    <Resource Include="LanguageResources\FlagIcons\ls.png" />
+    <Resource Include="LanguageResources\FlagIcons\lt.png" />
+    <Resource Include="LanguageResources\FlagIcons\lu.png" />
+    <Resource Include="LanguageResources\FlagIcons\lv.png" />
+    <Resource Include="LanguageResources\FlagIcons\ly.png" />
+    <Resource Include="LanguageResources\FlagIcons\ma.png" />
+    <Resource Include="LanguageResources\FlagIcons\mc.png" />
+    <Resource Include="LanguageResources\FlagIcons\md.png" />
+    <Resource Include="LanguageResources\FlagIcons\me.png" />
+    <Resource Include="LanguageResources\FlagIcons\mg.png" />
+    <Resource Include="LanguageResources\FlagIcons\mh.png" />
+    <Resource Include="LanguageResources\FlagIcons\mk.png" />
+    <Resource Include="LanguageResources\FlagIcons\ml.png" />
+    <Resource Include="LanguageResources\FlagIcons\mm.png" />
+    <Resource Include="LanguageResources\FlagIcons\mn.png" />
+    <Resource Include="LanguageResources\FlagIcons\mo.png" />
+    <Resource Include="LanguageResources\FlagIcons\mp.png" />
+    <Resource Include="LanguageResources\FlagIcons\mq.png" />
+    <Resource Include="LanguageResources\FlagIcons\mr.png" />
+    <Resource Include="LanguageResources\FlagIcons\ms.png" />
+    <Resource Include="LanguageResources\FlagIcons\mt.png" />
+    <Resource Include="LanguageResources\FlagIcons\mu.png" />
+    <Resource Include="LanguageResources\FlagIcons\mv.png" />
+    <Resource Include="LanguageResources\FlagIcons\mw.png" />
+    <Resource Include="LanguageResources\FlagIcons\mx.png" />
+    <Resource Include="LanguageResources\FlagIcons\my.png" />
+    <Resource Include="LanguageResources\FlagIcons\mz.png" />
+    <Resource Include="LanguageResources\FlagIcons\na.png" />
+    <Resource Include="LanguageResources\FlagIcons\nc.png" />
+    <Resource Include="LanguageResources\FlagIcons\ne.png" />
+    <Resource Include="LanguageResources\FlagIcons\nf.png" />
+    <Resource Include="LanguageResources\FlagIcons\ng.png" />
+    <Resource Include="LanguageResources\FlagIcons\ni.png" />
+    <Resource Include="LanguageResources\FlagIcons\nl.png" />
+    <Resource Include="LanguageResources\FlagIcons\no.png" />
+    <Resource Include="LanguageResources\FlagIcons\np.png" />
+    <Resource Include="LanguageResources\FlagIcons\nr.png" />
+    <Resource Include="LanguageResources\FlagIcons\nu.png" />
+    <Resource Include="LanguageResources\FlagIcons\nz.png" />
+    <Resource Include="LanguageResources\FlagIcons\om.png" />
+    <Resource Include="LanguageResources\FlagIcons\pa.png" />
+    <Resource Include="LanguageResources\FlagIcons\pe.png" />
+    <Resource Include="LanguageResources\FlagIcons\pf.png" />
+    <Resource Include="LanguageResources\FlagIcons\pg.png" />
+    <Resource Include="LanguageResources\FlagIcons\ph.png" />
+    <Resource Include="LanguageResources\FlagIcons\pk.png" />
+    <Resource Include="LanguageResources\FlagIcons\pl.png" />
+    <Resource Include="LanguageResources\FlagIcons\pm.png" />
+    <Resource Include="LanguageResources\FlagIcons\pn.png" />
+    <Resource Include="LanguageResources\FlagIcons\pr.png" />
+    <Resource Include="LanguageResources\FlagIcons\ps.png" />
+    <Resource Include="LanguageResources\FlagIcons\pt.png" />
+    <Resource Include="LanguageResources\FlagIcons\pw.png" />
+    <Resource Include="LanguageResources\FlagIcons\py.png" />
+    <Resource Include="LanguageResources\FlagIcons\qa.png" />
+    <Resource Include="LanguageResources\FlagIcons\re.png" />
+    <Resource Include="LanguageResources\FlagIcons\ro.png" />
+    <Resource Include="LanguageResources\FlagIcons\rs.png" />
+    <Resource Include="LanguageResources\FlagIcons\ru.png" />
+    <Resource Include="LanguageResources\FlagIcons\rw.png" />
+    <Resource Include="LanguageResources\FlagIcons\sa.png" />
+    <Resource Include="LanguageResources\FlagIcons\sb.png" />
+    <Resource Include="LanguageResources\FlagIcons\sc.png" />
+    <Resource Include="LanguageResources\FlagIcons\scotland.png" />
+    <Resource Include="LanguageResources\FlagIcons\sd.png" />
+    <Resource Include="LanguageResources\FlagIcons\se.png" />
+    <Resource Include="LanguageResources\FlagIcons\sg.png" />
+    <Resource Include="LanguageResources\FlagIcons\sh.png" />
+    <Resource Include="LanguageResources\FlagIcons\si.png" />
+    <Resource Include="LanguageResources\FlagIcons\sj.png" />
+    <Resource Include="LanguageResources\FlagIcons\sk.png" />
+    <Resource Include="LanguageResources\FlagIcons\sl.png" />
+    <Resource Include="LanguageResources\FlagIcons\sm.png" />
+    <Resource Include="LanguageResources\FlagIcons\sn.png" />
+    <Resource Include="LanguageResources\FlagIcons\so.png" />
+    <Resource Include="LanguageResources\FlagIcons\sr.png" />
+    <Resource Include="LanguageResources\FlagIcons\st.png" />
+    <Resource Include="LanguageResources\FlagIcons\sv.png" />
+    <Resource Include="LanguageResources\FlagIcons\sy.png" />
+    <Resource Include="LanguageResources\FlagIcons\sz.png" />
+    <Resource Include="LanguageResources\FlagIcons\tc.png" />
+    <Resource Include="LanguageResources\FlagIcons\td.png" />
+    <Resource Include="LanguageResources\FlagIcons\tf.png" />
+    <Resource Include="LanguageResources\FlagIcons\tg.png" />
+    <Resource Include="LanguageResources\FlagIcons\th.png" />
+    <Resource Include="LanguageResources\FlagIcons\tj.png" />
+    <Resource Include="LanguageResources\FlagIcons\tk.png" />
+    <Resource Include="LanguageResources\FlagIcons\tl.png" />
+    <Resource Include="LanguageResources\FlagIcons\tm.png" />
+    <Resource Include="LanguageResources\FlagIcons\tn.png" />
+    <Resource Include="LanguageResources\FlagIcons\to.png" />
+    <Resource Include="LanguageResources\FlagIcons\tr.png" />
+    <Resource Include="LanguageResources\FlagIcons\tt.png" />
+    <Resource Include="LanguageResources\FlagIcons\tv.png" />
+    <Resource Include="LanguageResources\FlagIcons\tw.png" />
+    <Resource Include="LanguageResources\FlagIcons\tz.png" />
+    <Resource Include="LanguageResources\FlagIcons\ua.png" />
+    <Resource Include="LanguageResources\FlagIcons\ug.png" />
+    <Resource Include="LanguageResources\FlagIcons\um.png" />
+    <Resource Include="LanguageResources\FlagIcons\us.png" />
+    <Resource Include="LanguageResources\FlagIcons\uy.png" />
+    <Resource Include="LanguageResources\FlagIcons\uz.png" />
+    <Resource Include="LanguageResources\FlagIcons\va.png" />
+    <Resource Include="LanguageResources\FlagIcons\vc.png" />
+    <Resource Include="LanguageResources\FlagIcons\ve.png" />
+    <Resource Include="LanguageResources\FlagIcons\vg.png" />
+    <Resource Include="LanguageResources\FlagIcons\vi.png" />
+    <Resource Include="LanguageResources\FlagIcons\vn.png" />
+    <Resource Include="LanguageResources\FlagIcons\vu.png" />
+    <Resource Include="LanguageResources\FlagIcons\wales.png" />
+    <Resource Include="LanguageResources\FlagIcons\wf.png" />
+    <Resource Include="LanguageResources\FlagIcons\ws.png" />
+    <Resource Include="LanguageResources\FlagIcons\ye.png" />
+    <Resource Include="LanguageResources\FlagIcons\yt.png" />
+    <Resource Include="LanguageResources\FlagIcons\za.png" />
+    <Resource Include="LanguageResources\FlagIcons\zm.png" />
+    <Resource Include="LanguageResources\FlagIcons\zw.png" />
+    <Resource Include="LanguageResources\LanguageMapping.xml" />
+    <Resource Include="Foots.png" />
     <Content Include="ProgrammingLanguagesResources\antlr-runtime-3.4.jar" />
     <Content Include="ProgrammingLanguagesResources\CResources\CompilerResources\c-integracao.dll" />
     <Content Include="ProgrammingLanguagesResources\CResources\CompilerResources\c-integracao.jar" />
@@ -282,6 +560,7 @@
     <Content Include="ProgrammingLanguagesResources\PortugolResources\CompilerResources\portugol-integracao.dll" />
     <Content Include="ProgrammingLanguagesResources\PortugolResources\CompilerResources\portugol-integracao.jar" />
     <Content Include="ProgrammingLanguagesResources\PortugolResources\CompilerResources\portugol-nucleo.jar" />
+    <Resource Include="ProgrammingLanguagesResources\ProgrammingLanguagesMapping.xml" />
     <Content Include="Resources\BIP.dll" />
     <Content Include="Resources\Classes.dll" />
     <Content Include="Resources\ICSharpCode.AvalonEdit.dll" />

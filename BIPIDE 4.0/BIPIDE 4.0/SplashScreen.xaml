@@ -1,0 +1,26 @@
+﻿<Window x:Name="_SplashScreen" 
+        x:Class="BIPIDE_4._0.SplashScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="SplashScreen" 
+        Height="300" 
+        Width="450"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Icon="ImageResources/pe32.ico"
+        WindowStartupLocation="CenterScreen" >
+    <Window.Background>
+        <ImageBrush ImageSource="ImageResources/SplashScreen.png" Stretch="None" />
+    </Window.Background>
+    <Grid HorizontalAlignment="Left" 
+          Height="300" 
+          VerticalAlignment="Top" 
+          Width="450">
+        <Label Content="Carregando Linguagens" 
+               HorizontalAlignment="Left" 
+               Margin="42,204,0,0" 
+               VerticalAlignment="Top" 
+               Width="303"/>
+    </Grid>
+
+</Window>

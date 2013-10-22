@@ -1,0 +1,65 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <!-- Main Window -->
+    <system:String x:Key="TabProgramming">Program</system:String>
+    <system:String x:Key="GroupFiles">Files</system:String>
+    <system:String x:Key="ButtonNew">New</system:String>
+    <system:String x:Key="ButtonOpen">Open</system:String>
+    <system:String x:Key="ButtonSave">Save</system:String>
+    <system:String x:Key="ButtonSaveAs">Save As</system:String>
+    <system:String x:Key="ButtonPrint">Print</system:String>
+    <system:String x:Key="ButtonExamples">Examples</system:String>
+    <system:String x:Key="ButtonExport">Export</system:String>
+    <system:String x:Key="GroupExecute">Execute</system:String>
+    <system:String x:Key="ButtonCompile">Build</system:String>
+
+    <system:String x:Key="TabLearn">Learn</system:String>
+    <system:String x:Key="GroupHelp">Help</system:String>
+    <system:String x:Key="ButtonFundamentals">Fundamentals</system:String>
+    <system:String x:Key="ButtonSystem">System</system:String>
+    <system:String x:Key="ButtonPractice">Practice</system:String>
+    <system:String x:Key="GroupInformation">Information</system:String>
+    <system:String x:Key="ButtonAbout">About</system:String>
+
+    <system:String x:Key="ContextualTabSimulation">Simulation Tools</system:String>
+    <system:String x:Key="TabSimulation">Simulate</system:String>
+    <system:String x:Key="GroupExecution">Execution</system:String>
+    <system:String x:Key="ButtonStart">Start</system:String>
+    <system:String x:Key="ButtonPause">Pause</system:String>
+    <system:String x:Key="ButtonRepeat">Repeat</system:String>
+    <system:String x:Key="ButtonNext">Next</system:String>
+    <system:String x:Key="ButtonContinue">Continue</system:String>
+    <system:String x:Key="ButtonStop">Stop</system:String>
+    <system:String x:Key="GroupProcessor">Processor</system:String>
+    <system:String x:Key="GroupSpeed">Speed</system:String>
+    <system:String x:Key="GalleryItemVerySlow">Very Slow</system:String>
+    <system:String x:Key="GalleryItemSlow">Slow</system:String>
+    <system:String x:Key="GalleryItemNormal">Normal</system:String>
+    <system:String x:Key="GalleryItemAccelerated">Accelerated</system:String>
+    <system:String x:Key="GalleryItemFast">Fast</system:String>
+    <system:String x:Key="GalleryItemVeryFast">Very Fast</system:String>
+    <system:String x:Key="GalleryItemUltraFast">Ultra Fast</system:String>
+
+    <system:String x:Key="ContextualTabPractice">Practice Tools</system:String>
+    <system:String x:Key="TabPractice">Practice</system:String>
+    <system:String x:Key="GroupInstructions">Instructions</system:String>
+    <system:String x:Key="TextBoxPracticeValue">Operating/Address</system:String>
+
+    <system:String x:Key="ButtonExit">Exit</system:String>
+
+    <system:String x:Key="GridMessageName">Messages</system:String>
+    <system:String x:Key="GridErrorColumnLines">Line</system:String>
+    <system:String x:Key="GridErrorColumnDescription">Description</system:String>
+
+    <system:String x:Key="LanguagePortuguese">Portuguese</system:String>
+    <system:String x:Key="LanguageEnglish">English</system:String>
+
+    <!-- New Document Window -->
+    <system:String x:Key="NDFormTitle">New Document</system:String>
+    <system:String x:Key="NDLabelNewName">Name:</system:String>
+    <system:String x:Key="NDButtonAdd">Add</system:String>
+    <system:String x:Key="NDButtonCancel">Cancel</system:String>
+    
+</ResourceDictionary>

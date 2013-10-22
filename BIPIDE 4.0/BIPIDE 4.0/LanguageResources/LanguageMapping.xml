@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfAnyType xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <anyType xsi:type="LanguageMapping">
+    <Name>LanguagePortuguese</Name>
+    <Icon>LanguageResources\FlagIcons\br.png</Icon>
+    <HelpMapping>LanguageResources\Help\PortugueseHelpMapping.xml</HelpMapping>
+    <InterfaceMapping>LanguageResources\Component\Portuguese.xaml</InterfaceMapping>
+    <TipsMapping>LanguageResources\Tips\Portuguese.xaml</TipsMapping>
+  </anyType>
+  <anyType xsi:type="LanguageMapping">
+    <Name>LanguageEnglish</Name>
+    <Icon>LanguageResources\FlagIcons\us.png</Icon>
+    <HelpMapping>LanguageResources\Help\PortugueseHelpMapping.xml</HelpMapping>
+    <InterfaceMapping>LanguageResources\Component\English.xaml</InterfaceMapping>
+    <TipsMapping>LanguageResources\Tips\English.xaml</TipsMapping>
+  </anyType>
+</ArrayOfAnyType>

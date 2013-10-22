@@ -2,7 +2,12 @@
 using BIPIDE_4._0.ControlResources;
 using BIPIDE_4._0.UIResources;
 using BIPIDE_4._0.ViewResources;
+using br.univali.c.integracao;
+using br.univali.portugol.integracao;
+using br.univali.portugol.integracao.analise;
+using br.univali.portugol.integracao.mensagens;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -19,6 +24,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml;
+using System.Xml.Serialization;
 using Xceed.Wpf.AvalonDock.Layout;
 
 namespace BIPIDE_4._0
@@ -30,86 +37,137 @@ namespace BIPIDE_4._0
     {
         private SimulationControl   _SimulationControl;
         private StringBuilder       _ErrorMessages;
+        private ArrayList           _LanguagesMapping;
         private CorbaController     _CorbaController;
 
         public MainWindow()
         {
-            _CorbaController = new CorbaController();
-            _CorbaController.Start();
-            _ErrorMessages = new StringBuilder();
+            //_CorbaController = new CorbaController();
+            //_CorbaController.Start();
 
             InitializeComponent();
-            _SimulationControl = new SimulationControl( _ButtonStart    , 
-                                                        _ButtonPause    , 
-                                                        _ButtonRepeat   , 
-                                                        _ButtonNext     , 
-                                                        _ButtonContinue , 
-                                                        _ButtonStop     ) ;
-            //SetLanguageDictionary();
         }
 
-        private void SetLanguageDictionary()
+        private void LoadLanguageResources()
         {
-            ResourceDictionary iResourceDictionary = new ResourceDictionary();
-            switch (Thread.CurrentThread.CurrentCulture.ToString())
+            XmlSerializer SerializerObj = new XmlSerializer(typeof(ArrayList), new Type[] { typeof(LanguageMapping) });
+
+            XmlReader Reader = XmlReader.Create(AppDomain.CurrentDomain.BaseDirectory + @"LanguageResources\LanguageMapping.xml");
+            _LanguagesMapping = (ArrayList)SerializerObj.Deserialize(Reader);
+
+            foreach (LanguageMapping iLanguage in _LanguagesMapping)
             {
-                case "en-US":
-                    iResourceDictionary.Source = new Uri("..\\LanguageResources\\LanguagePortuguese.xaml", UriKind.Relative);
-                    break;
-                case "fr-CA":
-                    iResourceDictionary.Source = new Uri("..\\LanguageResources\\LanguagePortuguese.xaml", UriKind.Relative);
-                    break;
-                default:
-                    iResourceDictionary.Source = new Uri("..\\LanguageResources\\LanguagePortuguese.xaml", UriKind.Relative);
-                    break;
+                RibbonMenuItem iMenuItem = new RibbonMenuItem()
+                    {
+                        Header      = (String)FindResource(iLanguage.Name),
+                        ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + iLanguage.Icon)),
+                        Tag         = iLanguage
+                    };
+                iMenuItem.Click += iMenuItem_Click;
+
+                _RibbonMenuButtonLanguages.Items.Add(iMenuItem);
+
+                if (_RibbonMenuButtonLanguages.Tag == null)
+                    iMenuItem_Click(iMenuItem, null);
             }
-            this.Resources.MergedDictionaries.Add(iResourceDictionary);
+        }
+
+        void iMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            _RibbonMenuButtonLanguages.Tag              = (sender as RibbonMenuItem).Tag;
+            _RibbonMenuButtonLanguages.SmallImageSource = 
+                new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).Icon));
+
+            Resources.MergedDictionaries.Clear();
+            Resources.MergedDictionaries.Add(
+                new ResourceDictionary() 
+                { 
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).InterfaceMapping) 
+                });
+            Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).TipsMapping)
+                });
+
+            SetDimanycResources();
+        }
+
+        private void SetDimanycResources()
+        {
+            foreach (RibbonMenuItem iMenuItem in _RibbonMenuButtonLanguages.Items)
+                iMenuItem.Header                = (String)FindResource((iMenuItem.Tag as LanguageMapping).Name);
+
+            foreach (LayoutDocument iLayoutDocument in _DocumentPane.Children)
+            {
+                if (iLayoutDocument.Content.GetType() == typeof(UCHelpFundamentals))
+                {
+                    iLayoutDocument.Title = (String)FindResource("ButtonFundamentals");
+                    (iLayoutDocument.Content as UCHelpFundamentals).ReloadFundamentals((_RibbonMenuButtonLanguages.Tag as LanguageMapping).HelpMapping);
+                }
+                else if (iLayoutDocument.Content.GetType() == typeof(UCHelpPractice))
+                {
+                    iLayoutDocument.Title = (String)FindResource("ButtonPractice");
+                }
+                else if (iLayoutDocument.Content.GetType() == typeof(UCProgrammingDocument))
+                {
+                    (iLayoutDocument.Content as UCProgrammingDocument)._TabItemProgramming.Header   =
+                        (String)FindResource("TabProgramming");
+                    (iLayoutDocument.Content as UCProgrammingDocument)._TabItemSimulation.Header    =
+                        (String)FindResource("TabSimulation");
+                }
+            }
+
+            _LayoutAnchorableErrorList.Title    = (String)FindResource("GridMessageName");
+            _ErrorLine.Header                   = (String)FindResource("GridErrorColumnLines");
+            _ErrorDescription.Header            = (String)FindResource("GridErrorColumnDescription");
         }
 
         public Codigo Build(String pSourceCode)
         {
             _CorbaController.RaiseJavaProcess(AppDomain.CurrentDomain.BaseDirectory.ToString() + "ProgrammingLanguagesResources\\CResources\\CompilerResources\\c-integracao.jar");
-            //Assembly iProgrammingLanguage = Assembly.LoadFile(AppDomain.CurrentDomain.BaseDirectory.ToString() + "ProgrammingLanguagesResources\\CResources\\HighlightResources\\c-integracao.dll");
-            
-            
+            C iProgrammingLanguageInstance = (C)_CorbaController.ResolveProcess("C");
+
             Codigo iAssembly = new Codigo();
-            //try
-            //{
-                
-            //    _ErrorMessages.AppendLine("Programa Compilado com Sucesso!");
+            try
+            {
 
-            //    Restricoes iRestrictions = new Restricoes();
-            //    iRestrictions.Executar(iProgram);
-            //    if (iRestrictions.unsupported_message != null)
-            //        _ErrorMessages.AppendLine(iRestrictions.unsupported_message);
+                br.univali.portugol.integracao.Programa iProgram = (br.univali.portugol.integracao.Programa) iProgrammingLanguageInstance.compilar(pSourceCode);
 
-            //    ArchitectureCheck();
+                _ErrorMessages.AppendLine("Programa Compilado com Sucesso!");
 
+                Restricoes iRestrictions = new Restricoes();
+                iRestrictions.Executar(iProgram);
+                if (iRestrictions.unsupported_message != null)
+                    _ErrorMessages.AppendLine(iRestrictions.unsupported_message);
 
-            //    if (!iRestrictions.unsupported)
-            //    {
-            //        Tradutor reg = new Tradutor(iProgram);
-            //        iAssembly = reg.Convert(iProgram);
-            //    }
+                ArchitectureCheck();
 
 
-            //}
-            //catch (ErroCompilacao ec)
-            //{
-            //    ResultadoAnalise resultado = ec.resultadoAnalise;
+                if (!iRestrictions.unsupported)
+                {
+                    Tradutor reg = new Tradutor(iProgram);
+                    iAssembly = reg.Convert(iProgram);
+                }
 
-            //    if (resultado.getNumeroTotalErros() > 0)
-            //    {
-            //        foreach (ErroSintatico erro in resultado.getErrosSintaticos())
-            //        {
-            //            _ErrorMessages.AppendLine("Erro Sintatico na linha " + erro.linha + " e coluna " + erro.coluna + ": " + erro.mensagem);
-            //        }
-            //        foreach (ErroSemantico erro in resultado.getErrosSemanticos())
-            //        {
-            //            _ErrorMessages.AppendLine("Erro Semantico na linha " + erro.linha + " e coluna " + erro.coluna + ": " + erro.mensagem);
-            //        }
-            //    }
-            //}
+
+            }
+            catch (br.univali.portugol.integracao.ErroCompilacao ec)
+            {
+                ResultadoAnalise resultado = ec.resultadoAnalise;
+
+                if (resultado.getNumeroTotalErros() > 0)
+                {
+                    foreach (ErroSintatico erro in resultado.getErrosSintaticos())
+                    {
+                        _ErrorMessages.AppendLine("Erro Sintatico na linha " + erro.linha + " e coluna " + erro.coluna + ": " + erro.mensagem);
+                    }
+                    foreach (ErroSemantico erro in resultado.getErrosSemanticos())
+                    {
+                        _ErrorMessages.AppendLine("Erro Semantico na linha " + erro.linha + " e coluna " + erro.coluna + ": " + erro.mensagem);
+                    }
+                }
+            }
 
             return iAssembly;
         }
@@ -159,6 +217,8 @@ namespace BIPIDE_4._0
             iProgrammingDocument.SimulationContext              = _ContextualTabGroupSimulation;
             iProgrammingDocument.SimulationTab                  = _TabSimulation;
             iProgrammingDocument.RibbonMain                     = _RibbonMain;
+            iProgrammingDocument._TabItemProgramming.Header     = (String)FindResource("TabProgramming");
+            iProgrammingDocument._TabItemSimulation.Header      = (String)FindResource("TabSimulation");
             iProgrammingDocument.SimulationSelectedProcessor    = SimulationControl.Processors.psBipIV;
 
             LayoutDocument iLayoutDocument  = new LayoutDocument();
@@ -317,10 +377,10 @@ namespace BIPIDE_4._0
 
         private void _ButtonFundamentals_Click(object sender, RoutedEventArgs e)
         {
-            UCHelpFundamentals iHelp = new UCHelpFundamentals();
+            UCHelpFundamentals iHelp = new UCHelpFundamentals((_RibbonMenuButtonLanguages.Tag as LanguageMapping).HelpMapping);
 
             LayoutDocument iLayoutDocument = new LayoutDocument();
-            iLayoutDocument.Title = "Fundamentos";
+            iLayoutDocument.Title   = (String)FindResource("ButtonFundamentals");
             iLayoutDocument.Content = iHelp;
 
             if (_DocumentPane.Children.Count(x => x.Content.GetType() == typeof(UCHelpFundamentals)) == 0)
@@ -333,7 +393,7 @@ namespace BIPIDE_4._0
             iHelpPractice.SimulationSelectedProcessor = SimulationControl.Processors.psBipIV;
 
             LayoutDocument iLayoutDocument = new LayoutDocument();
-            iLayoutDocument.Title = "Praticar";
+            iLayoutDocument.Title   = (String)FindResource("ButtonPractice");
             iLayoutDocument.Content = iHelpPractice;
             iLayoutDocument.IsSelectedChanged += iHelpPractice_IsSelectedChanged;
             
@@ -605,6 +665,30 @@ namespace BIPIDE_4._0
         }
 
         #endregion Aprender
+
+        private void _ButtonExit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void Bipide_Initialized(object sender, EventArgs e)
+        {
+            SplashScreen iSplashScreen = new SplashScreen();
+            iSplashScreen.Show();
+
+            SetDimanycResources();
+            _ErrorMessages = new StringBuilder();
+            _SimulationControl = new SimulationControl(_ButtonStart,
+                                                        _ButtonPause,
+                                                        _ButtonRepeat,
+                                                        _ButtonNext,
+                                                        _ButtonContinue,
+                                                        _ButtonStop);
+
+            LoadLanguageResources();
+
+            iSplashScreen.Close();
+        }
 
     }
 }

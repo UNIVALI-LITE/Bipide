@@ -3,9 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Width="600"  
         Height="500"
+        ResizeMode="NoResize" 
+        WindowStartupLocation="CenterScreen" 
+        ShowInTaskbar="False" 
+        Padding="0" 
+        UseLayoutRounding="False"
+        WindowStyle="ToolWindow"
         Icon="/BIPIDE 4.0;component/ImageResources/new16.png"
-        Title="{DynamicResource ResourceKey=NDFormTitle}"  
-        ResizeMode="NoResize" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" Padding="0" UseLayoutRounding="False">
+        Title="{DynamicResource ResourceKey=NDFormTitle}" 
+        DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -20,39 +26,68 @@
     </Window.Effect>
 
     <Grid>
-        <TreeView x:Name="_TreeView"
-                  HorizontalAlignment="Left" 
-                  Width="221" 
-                  Margin="5,5,0,37"/>
-        <ListView x:Name="_ListView" 
-                  Margin="231,5,5,37">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
         
+            <TreeView x:Name="_TreeView"
+                      Grid.Column="0" 
+                      HorizontalAlignment="Stretch" 
+                      VerticalAlignment="Stretch"
+                      ItemsSource="{Binding DeviceGroups}" >
+                <HierarchicalDataTemplate ItemsSource="{Binding Items}">
+                    <StackPanel Orientation="Horizontal" Width="Auto">
+                        <Image Width="16" Height="16" Margin="3,0"/>
+                        <TextBlock Text="{Binding Name}"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </TreeView>
+
+            <GridSplitter Grid.Column="1"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Stretch"
+                          ShowsPreview="True"
+                          Width="3"/>
+
+            <ListView x:Name="_ListView" 
+                      Grid.Column="2" 
+                      HorizontalAlignment="Stretch" 
+                      VerticalAlignment="Stretch">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
         <Label Content="{DynamicResource ResourceKey=NDLabelNewName}" 
                HorizontalAlignment="Left"
                VerticalAlignment="Bottom"               
                Margin="10,0,0,10" 
-               Width="85" 
+               Width="64" 
                Height="25" />
-        <TextBox Margin="100,0,169,10" 
+        <TextBox x:Name="_TextBoxFile"
+                 Margin="79,0,169,10" 
                  TextWrapping="Wrap" 
                  Height="22" 
                  VerticalAlignment="Bottom"/>
-        <Button Content="{DynamicResource ResourceKey=NDButtonAdd}" 
+        <Button x:Name="_ButtonAdd"
+                Content="{DynamicResource ResourceKey=NDButtonAdd}" 
                 HorizontalAlignment="Right" 
                 VerticalAlignment="Bottom" 
                 Margin="0,0,90,10" 
-                Width="74"/>
-        <Button Content="{DynamicResource ResourceKey=NDButtonCancel}" 
+                Width="74" 
+                Click="_ButtonAdd_Click"/>
+        <Button x:Name="_ButtonCancel"
+                Content="{DynamicResource ResourceKey=NDButtonCancel}" 
                 Margin="0,0,10,10" 
                 HorizontalAlignment="Right" 
                 VerticalAlignment="Bottom"
                 Width="75" 
-                Height="20" />
-    </Grid>
+                Height="20" 
+                Click="_ButtonCancel_Click" />
+        </Grid>
 </Window>

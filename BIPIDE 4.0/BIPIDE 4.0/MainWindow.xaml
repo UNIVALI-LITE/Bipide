@@ -11,7 +11,8 @@
               MinWidth="800" 
               MinHeight="600"
               Icon="ImageResources/pe32.ico"
-              WindowState="Maximized">
+              WindowState="Maximized" 
+              Initialized="Bipide_Initialized">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -47,6 +48,9 @@
                                   ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonRedo}"
                                   ToolTipFooterImageSource="ImageResources/help32.png"
                                   ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"/>
+                    
+                    <RibbonMenuButton x:Name="_RibbonMenuButtonLanguages" 
+                                      SmallImageSource="LanguageResources/FlagIcons/br.png"/>
                 </RibbonQuickAccessToolBar>
             </Ribbon.QuickAccessToolBar>
 
@@ -116,7 +120,7 @@
                                           ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonExit}"
                                           ToolTipFooterImageSource="ImageResources/help32.png"
                                           ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
-                                          KeyTip="EX"/>
+                                          KeyTip="EX" Click="_ButtonExit_Click"/>
                         </Grid>
                     </RibbonApplicationMenu.FooterPaneContent>
                 </RibbonApplicationMenu>
@@ -194,7 +198,7 @@
 
                 </RibbonGroup>
                 <RibbonGroup x:Name="_GroupBuild" 
-                             Header="{DynamicResource ResourceKey=GroupExecut}">
+                             Header="{DynamicResource ResourceKey=GroupExecute}">
                     
                     <RibbonButton x:Name="_ButtonBuild" 
                                   Label="{DynamicResource ResourceKey=ButtonCompile}" 
@@ -665,19 +669,19 @@
                 <AvalonDockLayout:LayoutRoot.BottomSide>
                     <AvalonDockLayout:LayoutAnchorSide>
                         <AvalonDockLayout:LayoutAnchorGroup>
-                            <AvalonDockLayout:LayoutAnchorable ContentId="ContentIdError"
+                            <AvalonDockLayout:LayoutAnchorable x:Name="_LayoutAnchorableErrorList"
                                                                AutoHideHeight="200"
                                                                AutoHideMinHeight="200"
-                                                               IconSource="ImageResources/error.png" >
+                                                               CanHide="False"
+                                                               CanClose="False"
+                                                               IconSource="ImageResources/warningMessages.png">
                                 <DataGrid>
                                     <DataGrid.Columns>
                                         <DataGridTemplateColumn ClipboardContentBinding="{x:Null}"/>
                                         <DataGridTextColumn x:Name="_ErrorLine"
-                                                            Header="{DynamicResource ResourceKey=GridErrorColumnLines}"
                                                             Binding="{x:Null}" 
                                                             ClipboardContentBinding="{x:Null}"/>
                                         <DataGridTextColumn x:Name="_ErrorDescription" 
-                                                            Header="{DynamicResource ResourceKey=GridErrorColumnDescription}"
                                                             Binding="{x:Null}"
                                                             Width="*"
                                                             ClipboardContentBinding="{x:Null}"/>

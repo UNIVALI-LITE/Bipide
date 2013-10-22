@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BIPIDE_4._0.ControlResources;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -32,14 +33,22 @@ namespace BIPIDE_4._0.ViewResources
             set { _DeviceGroups = value; }
         }
 
-        public UCHelpFundamentals()
+        public UCHelpFundamentals(String pHelpMapping)
         {
             XmlSerializer SerializerObj = new XmlSerializer(typeof(ArrayList), new Type[] { typeof(TreeItem) });
 
-            XmlReader Reader = XmlReader.Create(@"D:\Users\Nereu\Documents\Visual Studio 2012\Projects\BIPIDE 4.0\BIPIDE 4.0\LanguageResources\Help\PortugueseHelpMapping.xml");
+            XmlReader Reader = XmlReader.Create(AppDomain.CurrentDomain.BaseDirectory + pHelpMapping);
             DeviceGroups = (ArrayList)SerializerObj.Deserialize(Reader);
 
             InitializeComponent();
+        }
+
+        public void ReloadFundamentals(String pHelpMapping)
+        {
+            XmlSerializer SerializerObj = new XmlSerializer(typeof(ArrayList), new Type[] { typeof(TreeItem) });
+
+            XmlReader Reader = XmlReader.Create(AppDomain.CurrentDomain.BaseDirectory + pHelpMapping);
+            DeviceGroups = (ArrayList)SerializerObj.Deserialize(Reader);
         }
 
         private void _TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
@@ -62,35 +71,4 @@ namespace BIPIDE_4._0.ViewResources
             return new Uri(iAssemblyPath);
         }
     }
-
-    [XmlInclude(typeof(TreeItem))]
-    public class TreeItem
-    {
-        private string _Name;
-
-        public string Name
-        {
-            get { return _Name; }
-            set { _Name = value; }
-        }
-
-        [XmlIgnore]
-        private String _Uri { get; set; }
-
-        [XmlAttribute("Uri")]
-        public String UriString
-        {
-            get { return _Uri; }
-            set { _Uri = value; }
-        }
-
-        private ArrayList _Items;
-
-        public ArrayList Items
-        {
-            get { return _Items; }
-            set { _Items = value; }
-        }
-    }
-
 }

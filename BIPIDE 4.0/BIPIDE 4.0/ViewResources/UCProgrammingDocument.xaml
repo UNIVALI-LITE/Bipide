@@ -3,7 +3,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:AvalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:ucBip="clr-namespace:ucBip;assembly=ucBipI" x:Class="BIPIDE_4._0.UIResources.UCProgrammingDocument" 
+             xmlns:ucBip="clr-namespace:ucBip;assembly=ucBipI" 
+             xmlns:AvalonDock="http://schemas.xceed.com/wpf/xaml/avalondock"
+             xmlns:AvalonDockLayout="clr-namespace:Xceed.Wpf.AvalonDock.Layout;assembly=Xceed.Wpf.AvalonDock"
+             xmlns:AvalonDockThemes="clr-namespace:Xceed.Wpf.AvalonDock.Themes;assembly=Xceed.Wpf.AvalonDock.Themes.Aero"
+             x:Class="BIPIDE_4._0.UIResources.UCProgrammingDocument" 
              mc:Ignorable="d" 
              d:DesignHeight="600" 
              d:DesignWidth="800"
@@ -22,9 +26,64 @@
             </TabItem>
             <TabItem x:Name="_TabItemSimulation" 
                      Header="Simulação">
-                <ucBip:Simulador x:Name="_Simulator"
-                                 Height="Auto" 
-                                 Width="Auto" />
+                <AvalonDock:DockingManager Height="auto" Width="auto">
+                    <!-- Tema Selecionado (Aero) -->
+                    <AvalonDock:DockingManager.Theme>
+                        <AvalonDockThemes:AeroTheme/>
+                    </AvalonDock:DockingManager.Theme>
+
+
+                    <AvalonDockLayout:LayoutRoot x:Name="_LayoutRoot">
+
+                        <AvalonDockLayout:LayoutRoot.RightSide>
+                            <AvalonDockLayout:LayoutAnchorSide>
+                                <AvalonDockLayout:LayoutAnchorGroup>
+                                    <AvalonDockLayout:LayoutAnchorable IconSource="/BIPIDE 4.0;component/ImageResources/new16.png"
+                                                                       Title="Portugol"
+                                                                       CanClose="False"
+                                                                       CanHide="False"
+                                                                       AutoHideMinWidth="100"
+                                                                       AutoHideWidth="350" >
+                                        <AvalonEdit:TextEditor x:Name="_TextEditorSourceCodeDebug" 
+                                                               ShowLineNumbers="True" 
+                                                               IsReadOnly="True"/>
+                                    </AvalonDockLayout:LayoutAnchorable>
+                                    <AvalonDockLayout:LayoutAnchorable IconSource="/BIPIDE 4.0;component/ImageResources/newASM16.png"
+                                                                       Title="Assembly"
+                                                                       CanClose="False"
+                                                                       CanHide="False"
+                                                                       AutoHideMinWidth="100"
+                                                                       AutoHideWidth="350">
+                                        <AvalonDock:LayoutAnchorable.Content>
+                                            <AvalonEdit:TextEditor x:Name="_TextEditorASM" 
+                                                                   ShowLineNumbers="True"
+                                                                   IsReadOnly="True"/>
+                                        </AvalonDock:LayoutAnchorable.Content>
+                                    </AvalonDockLayout:LayoutAnchorable>
+                                </AvalonDockLayout:LayoutAnchorGroup>
+                            </AvalonDockLayout:LayoutAnchorSide>
+                        </AvalonDockLayout:LayoutRoot.RightSide>
+                        
+                        <AvalonDockLayout:LayoutPanel Orientation="Vertical">
+                            <AvalonDockLayout:LayoutDocumentPaneGroup>
+                                <AvalonDockLayout:LayoutDocumentPane>
+                                    <AvalonDockLayout:LayoutDocumentPane.Children>
+                                        <AvalonDock:LayoutDocument x:Name="_LayoutDocumentSimulation"
+                                                                   CanClose="False" 
+                                                                   CanFloat="False"
+                                                                   Title="Simulação">
+                                            <AvalonDock:LayoutDocument.Content>
+                                                <ucBip:Simulador x:Name="_Simulator"
+                                                                 Height="Auto" 
+                                                                 Width="Auto" />
+                                            </AvalonDock:LayoutDocument.Content>
+                                        </AvalonDock:LayoutDocument>
+                                    </AvalonDockLayout:LayoutDocumentPane.Children>
+                                </AvalonDockLayout:LayoutDocumentPane>
+                            </AvalonDockLayout:LayoutDocumentPaneGroup>
+                        </AvalonDockLayout:LayoutPanel>
+                    </AvalonDockLayout:LayoutRoot>
+                </AvalonDock:DockingManager>
             </TabItem>
         </TabControl>
     </Grid>
