@@ -58,7 +58,8 @@
                                         <AvalonDock:LayoutAnchorable.Content>
                                             <AvalonEdit:TextEditor x:Name="_TextEditorASM" 
                                                                    ShowLineNumbers="True"
-                                                                   IsReadOnly="True"/>
+                                                                   IsReadOnly="True"
+                                                                   />
                                         </AvalonDock:LayoutAnchorable.Content>
                                     </AvalonDockLayout:LayoutAnchorable>
                                 </AvalonDockLayout:LayoutAnchorGroup>

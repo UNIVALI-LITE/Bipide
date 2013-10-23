@@ -12,12 +12,25 @@ namespace BIPIDE_4._0
     [Serializable]
     public sealed class VisitanteSuporte : MarshalByRefObject, VisitanteASA
     {
-        public NoBloco  noBloco;
-        public NoBloco  RightNodeExpression;
-        public Type     RightNodeExprType;
-        public Boolean  _IsBitwiseExpression    = false;
-        public Boolean GetRightExpression = false;
-        
+        public NoBloco      noBloco;
+
+        public NoBloco          RightNodeExpression;
+        public Type             RightNodeExprType;
+        public Boolean          _ExpressionNeedsTemp    = false;
+        public Boolean          _DoingRightExpression   = false;
+
+        public Boolean          GetRightExpression      = false;
+        public Boolean          _ExistsCasoContrario    = false;
+        private Boolean         _Expressao              = false;
+        public Boolean          _ExpressaoCaso          = false;
+
+        public Boolean Expressao
+        {
+            get { return _Expressao; }
+            set { if (_ExpressaoCaso)
+                    _Expressao = value; }
+        }
+
         private List<FunctionVariables> _Variables;
         public  List<FunctionVariables>  Variables
         {
@@ -27,14 +40,14 @@ namespace BIPIDE_4._0
 
         public VisitanteSuporte(Programa programa)
         {
-            this._Variables             = new List<FunctionVariables>();
+            this._Variables                     = new List<FunctionVariables>();
             ArvoreSintaticaAbstrataPrograma asa = programa.getArvoreSintaticaAbstrata();
             asa.aceitar(this);
         }
-
         public VisitanteSuporte()
         {
         }
+
         public object visitarArvoreSintaticaAbstrataPrograma(ArvoreSintaticaAbstrataPrograma asap)
         {
             foreach (NoDeclaracao declaracao in asap.getListaDeclaracoesGlobais())
@@ -55,6 +68,24 @@ namespace BIPIDE_4._0
 
         public object visitarNoCaso(NoCaso noCaso)
         {
+            _ExpressaoCaso = true;
+            Object iExpressao = null;
+
+            if (noCaso.getExpressao() != null)
+                iExpressao = noCaso.getExpressao().aceitar(this);
+
+            if (iExpressao == null && !_Expressao)
+            {
+                _ExistsCasoContrario    = true;
+                _Expressao              = false;
+            }
+            _ExpressaoCaso  = false ;
+            _Expressao      = false;
+
+            foreach (NoBloco bloco in noCaso.getBlocos())            
+                bloco.aceitar(this);
+              
+            
             return null;
         }
 
@@ -62,8 +93,8 @@ namespace BIPIDE_4._0
         {
             try
             {
-                foreach (NoExpressao expressao in chamadaFuncao.getParametros())
-                    expressao.aceitar(this);
+                foreach (NoExpressao expressao in chamadaFuncao.getParametros())   
+                    expressao.aceitar(this);                
             }
             catch
             {
@@ -78,7 +109,7 @@ namespace BIPIDE_4._0
 
             //Inicializa variáveis e salva parâmetros
             NoDeclaracaoParametro[] parametros  = declaracaoFuncao.getParametros();
-            FunctionVariables       declaracao  = new FunctionVariables();
+            FunctionVariables declaracao        = new FunctionVariables();
             declaracao.FunctionName             = nome_funcao;
 
             foreach (NoDeclaracaoParametro parametro in parametros)            
@@ -88,6 +119,7 @@ namespace BIPIDE_4._0
 
             foreach (NoBloco bloco in declaracaoFuncao.getBlocos())            
                 bloco.aceitar(this);
+            
 
             return null;
         }
@@ -118,6 +150,7 @@ namespace BIPIDE_4._0
             return null;
         }
 
+
         public object visitarNoEnquanto(NoEnquanto noEnquanto)
         {
             return null;
@@ -125,6 +158,9 @@ namespace BIPIDE_4._0
 
         public object visitarNoEscolha(NoEscolha noEscolha)
         {
+            foreach (NoCaso caso in noEscolha.getCasos())
+                caso.aceitar(this);
+
             return null;
         }
 
@@ -150,6 +186,10 @@ namespace BIPIDE_4._0
 
         public object visitarNoMenosUnario(NoMenosUnario noMenosUnario)
         {
+            Expressao = true;
+
+            if (_DoingRightExpression == true)
+                _ExpressionNeedsTemp = true;
             return null;
         }
 
@@ -159,7 +199,7 @@ namespace BIPIDE_4._0
         }
 
         public object visitarNoOperacao(NoOperacao noOperacao)
-        {      
+        {                     
             return null;
         }
 
@@ -172,21 +212,26 @@ namespace BIPIDE_4._0
 
         private void executa_operacao(NoOperacao noOperacao, String instr)
         {
-            Object e = noOperacao.getOperandoEsquerdo().aceitar(this);
+            Expressao = true;
+            Object e = noOperacao.getOperandoEsquerdo().aceitar(this);           
+
             Object d = noOperacao.getOperandoDireito().aceitar(this);
           
         }
-
+              
         private void executa_operacao_condicional(NoOperacao noOperacao, String instr)
-        {
-            Object e = noOperacao.getOperandoEsquerdo().aceitar(this);           
-            Object d = noOperacao.getOperandoDireito().aceitar(this);          
+        {      
+            Object e = noOperacao.getOperandoEsquerdo().aceitar(this);
+
+            _DoingRightExpression = true;
+
+            Object d = noOperacao.getOperandoDireito().aceitar(this);           
 
         }
 
         public object visitarNoPara(NoPara noPara)
         {          
-            if (noPara.getInicializacao() != null)            
+            if (noPara.getInicializacao() != null)           
                 noPara.getInicializacao().aceitar(this);
 
             //substituir visitacao condicao
@@ -196,7 +241,7 @@ namespace BIPIDE_4._0
                 blocos.aceitar(this);
 
             noPara.getIncremento().aceitar(this);
-                      
+          
             return null;
         }
 
@@ -229,7 +274,7 @@ namespace BIPIDE_4._0
 
         public object visitarNoRetorne(NoRetorne noRetorne)
         {
-            Object e = noRetorne.getExpressao().aceitar(this);        
+            Object e = noRetorne.getExpressao().aceitar(this);
 
             return null;
         }
@@ -238,10 +283,10 @@ namespace BIPIDE_4._0
         {
             noSe.getCondicao().aceitar(this);
 
-            foreach (NoBloco blocoverdadeiro in noSe.getBlocosVerdadeiros())
+            foreach (NoBloco blocoverdadeiro in noSe.getBlocosVerdadeiros())            
                 blocoverdadeiro.aceitar(this);
 
-            foreach (NoBloco blocofalso in noSe.getBlocosFalsos())
+            foreach (NoBloco blocofalso in noSe.getBlocosFalsos())            
                 blocofalso.aceitar(this);
 
             return null;
@@ -249,6 +294,8 @@ namespace BIPIDE_4._0
 
         public object visitarNoVetor(NoVetor noVetor)
         {
+            List<Object> valores = new List<Object>();
+
             foreach (Object no in noVetor.getValores())
             {
                 NoExpressao expr = (NoExpressao)no;
@@ -258,8 +305,9 @@ namespace BIPIDE_4._0
             return null;
         }
 
+
         public object visitarNoBitwiseNao(NoBitwiseNao noBitwiseNao)
-        {
+        { 
             noBitwiseNao.getExpressao().aceitar(this);
             //trata-se de uma expressão
             return null;
@@ -272,7 +320,8 @@ namespace BIPIDE_4._0
 
         public object visitarNoOperacaoAtribuicao(NoOperacaoAtribuicao noOperacaoAtribuicao)
         {
-            String op_esq = (String)noOperacaoAtribuicao.getOperandoEsquerdo().aceitar(this);           
+            String op_esq = (String)noOperacaoAtribuicao.getOperandoEsquerdo().aceitar(this);
+           
             Object op_dir = noOperacaoAtribuicao.getOperandoDireito().aceitar(this);           
 
             return null;
@@ -280,7 +329,7 @@ namespace BIPIDE_4._0
 
         public object visitarNoOperacaoBitwiseE(NoOperacaoBitwiseE noOperacaoBitwiseE)
         {
-            _IsBitwiseExpression = true;
+            _ExpressionNeedsTemp = true;
 
             if (GetRightExpression)
             {
@@ -298,7 +347,7 @@ namespace BIPIDE_4._0
 
         public object visitarNoOperacaoBitwiseLeftShift(NoOperacaoBitwiseLeftShift noOperacaoBitwiseLeftShift)
         {
-            _IsBitwiseExpression = true;
+            _ExpressionNeedsTemp = true;
 
             if (GetRightExpression)
             {
@@ -316,7 +365,7 @@ namespace BIPIDE_4._0
 
         public object visitarNoOperacaoBitwiseOu(NoOperacaoBitwiseOu noOperacaoBitwiseOu)
         {
-            _IsBitwiseExpression = true;
+            _ExpressionNeedsTemp = true;
 
             if (GetRightExpression)
             {
@@ -335,7 +384,7 @@ namespace BIPIDE_4._0
 
         public object visitarNoOperacaoBitwiseRightShift(NoOperacaoBitwiseRightShift noOperacaoBitwiseRightShift)
         {
-            _IsBitwiseExpression = true;
+            _ExpressionNeedsTemp = true;
 
             if (GetRightExpression)
             {
@@ -353,7 +402,7 @@ namespace BIPIDE_4._0
 
         public object visitarNoOperacaoBitwiseXOR(NoOperacaoBitwiseXOR noOperacaoBitwiseXOR)
         {
-            _IsBitwiseExpression = true;
+            _ExpressionNeedsTemp = true;
 
             if (GetRightExpression)
             {
@@ -433,6 +482,7 @@ namespace BIPIDE_4._0
 
         public object visitarNoOperacaoSoma(NoOperacaoSoma noOperacaoSoma)
         {
+
             executa_operacao(noOperacaoSoma, "ADD");
             return null;
         }
@@ -440,6 +490,23 @@ namespace BIPIDE_4._0
         public object visitarNoOperacaoSubtracao(NoOperacaoSubtracao noOperacaoSubtracao)
         {
             executa_operacao(noOperacaoSubtracao, "SUB");
+            return null;
+        }
+
+
+        public object visitarNoContinue(NoContinue noContinue)
+        {
+            return null;
+        }
+
+        public object visitarNoTitulo(NoTitulo noTitulo)
+        {
+            return null;
+        }
+
+        public object visitarNoVaPara(NoVaPara noVaPara)
+        {
+            noVaPara.getTitulo().aceitar(this);
             return null;
         }
     }

@@ -1,4 +1,5 @@
-﻿using ICSharpCode.AvalonEdit;
+﻿using BIPIDE.Classes;
+using ICSharpCode.AvalonEdit;
 using ICSharpCode.AvalonEdit.Document;
 using ICSharpCode.AvalonEdit.Editing;
 using ICSharpCode.AvalonEdit.Highlighting;
@@ -63,6 +64,19 @@ namespace BIPIDE_4._0.UIResources
                 _SimulationSelectedProcessor = value;
             }
         }
+        public Codigo _AssemblySource;
+
+        public String AssemblyText
+        {
+            set { _TextEditorASM.Text = value; }
+        }
+
+        public String SourceCodeDebugText
+        {
+            set { _TextEditorSourceCodeDebug.Text = value; }
+        }
+
+        XBackgroundRenderer iBackgroundRendererASM;
 
         public UCProgrammingDocument(string pHighlightFile, string pProgrammingLanguage)
         {
@@ -103,10 +117,47 @@ namespace BIPIDE_4._0.UIResources
             XBackgroundRenderer iBackgroundRendererASM          = new XBackgroundRenderer(_TextEditorASM);
             XBackgroundRenderer iBackgroundRendererSourceCode   = new XBackgroundRenderer(_TextEditorSourceCodeDebug);
 
+
+            
             _TextEditorASM.TextArea.TextView.BackgroundRenderers.Add(iBackgroundRendererASM);
             _TextEditorSourceCodeDebug.TextArea.TextView.BackgroundRenderers.Add(iBackgroundRendererSourceCode);
 
             #endregion Highlight Set
+
+        }
+
+        private void _Simulator_RequestFimPrograma()
+        {
+            _TextEditorASM.CaretOffset = _TextEditorASM.Document.Lines[_TextEditorASM.LineCount-1].Offset;
+            _TextEditorSourceCodeDebug.CaretOffset = _TextEditorSourceCodeDebug.Document.Lines[_TextEditorASM.LineCount-1].Offset;
+        }
+
+        void _Simulator_RequestEnderecoPrograma(int intEndereco)
+        {
+            //_LayoutDocumentSimulation.Title = Convert.ToString(str);
+            if (intEndereco >= 0)
+            {
+
+                InstrucaoASM instASM = _AssemblySource.GetInstrucaoAsmByEnderecoMemoria(intEndereco);
+
+                int lineDocumentArquivoASM = 0;
+                int lineDocumentSourceCode = instASM.NrLinha.Value;
+
+                List<InstrucaoASM> list = _AssemblySource.GetCodigoInstrucaoASM();
+
+                foreach (InstrucaoASM instructions in list)
+                {
+                    if (instructions.NrLinha == lineDocumentSourceCode)
+                    {
+                        if (instructions == instASM)
+                            lineDocumentArquivoASM = list.IndexOf(instructions);
+                    }
+
+                }
+
+                _TextEditorASM.CaretOffset = _TextEditorASM.Document.Lines[lineDocumentArquivoASM].Offset;
+                _TextEditorSourceCodeDebug.CaretOffset = _TextEditorSourceCodeDebug.Document.Lines[lineDocumentSourceCode].Offset; 
+            }
 
 
         }
@@ -159,6 +210,60 @@ namespace BIPIDE_4._0.UIResources
                     3, 3
                 );
             }
+        }
+        public void Draw(TextView textView, /*DrawingContext drawingContext,*/ int linha)
+        {
+            DrawingVisual drawingVisual = new DrawingVisual();
+            DrawingContext drawingContext = drawingVisual.RenderOpen();
+            textView.EnsureVisualLines();
+            foreach (Rect r in BackgroundGeometryBuilder.GetRectsForSegment(textView, new TextSegment() { StartOffset = linha }))
+            {
+                drawingContext.DrawRoundedRectangle(
+                    new SolidColorBrush(Color.FromArgb(40, 0xff, 0x00, 0x15)),
+                    new Pen(new SolidColorBrush(Color.FromArgb(60, 0xff, 0x00, 0x15)), 1),
+                    new Rect(r.Location, new Size(textView.ActualWidth, r.Height)),
+                    3, 3
+                );
+            }
+        }
+
+
+    }
+
+    class LineColorizer : DocumentColorizingTransformer
+    {
+        int lineNumber;
+
+        public LineColorizer(int lineNumber)
+        {
+            if (lineNumber < 1)
+                throw new ArgumentOutOfRangeException("lineNumber", lineNumber, "Line numbers are 1-based.");
+            this.lineNumber = lineNumber;
+        }
+
+        public int LineNumber
+        {
+            get { return lineNumber; }
+            set
+            {
+                if (value < 1)
+                    throw new ArgumentOutOfRangeException("value", value, "Line numbers are 1-based.");
+                lineNumber = value;
+            }
+        }
+
+        protected override void ColorizeLine(ICSharpCode.AvalonEdit.Document.DocumentLine line)
+        {
+            if (!line.IsDeleted && line.LineNumber == lineNumber)
+            {
+                ChangeLinePart(line.Offset, line.EndOffset, ApplyChanges);
+            }
+        }
+
+        void ApplyChanges(VisualLineElement element)
+        {
+            // apply changes here
+            element.TextRunProperties.SetBackgroundBrush(Brushes.Red);
         }
     }
 }

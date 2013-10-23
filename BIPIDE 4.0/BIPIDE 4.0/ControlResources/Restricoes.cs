@@ -18,22 +18,25 @@ namespace BIPIDE_4._0
         public String   unsupported_message     = "";
 
         public String   _CurrentFunction        = "";
-
-        //Atribuição Vetor
+        public Boolean  _IsLoop                 = false;
+        public Boolean  _IsConditional          = false;
+        //Atribuição em Vetor
         private Boolean _IsVector               = false;
+
+        List<CompilationError> _ErrorList;
 
         internal static Processadores Processador
         {
             get { return Restricoes._Processador; }
-            set 
-            {
-                if (_Processador < value)
+            set { if (_Processador < value)
                     Restricoes._Processador = value; 
             }
         }
 
-        public Restricoes(){
+        public Restricoes(List<CompilationError> iErrorList)
+        {
             Processador = Processadores.BIPI;
+            _ErrorList = iErrorList;
         }
 
         public enum Processadores
@@ -66,11 +69,13 @@ namespace BIPIDE_4._0
                 return value.ToString();
         }
 
-        internal void Executar(Programa programa)
+        internal List<CompilationError> Executar(Programa programa)
         {
             _Processador = Processadores.BIPI;
             ArvoreSintaticaAbstrataPrograma asa = programa.getArvoreSintaticaAbstrata();
             asa.aceitar(this);
+
+            return _ErrorList;
 
         }
 
@@ -85,7 +90,12 @@ namespace BIPIDE_4._0
         }
 
         public object visitarNoCadeia(NoCadeia noCadeia)
-        { 
+        {
+            int linha = noCadeia.getTrechoCodigoFonte().getLinha();
+            int coluna = noCadeia.getTrechoCodigoFonte().getLinha();
+            String mensagem = "O BIP  não possui suporte à NoCadeia";
+            _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
+
             unsupported = true;
             unsupported_message += Environment.NewLine + "O BIP  não possui suporte à NoCadeia";
 
@@ -94,6 +104,11 @@ namespace BIPIDE_4._0
 
         public object visitarNoCaracter(NoCaracter noCaracter)
         {
+            int linha = noCaracter.getTrechoCodigoFonte().getLinha();
+            int coluna = noCaracter.getTrechoCodigoFonte().getLinha();
+            String mensagem = "O BIP  não possui suporte à NoCaracter";
+            _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
+
             unsupported = true;
             unsupported_message += Environment.NewLine + "O BIP  não possui suporte à NoCaracter";
 
@@ -102,6 +117,11 @@ namespace BIPIDE_4._0
 
         public object visitarNoCaso(NoCaso noCaso)
         {
+            noCaso.getExpressao();
+
+            foreach (NoBloco bloco in noCaso.getBlocos())
+                bloco.aceitar(this);
+
             return null;
         }
 
@@ -111,14 +131,22 @@ namespace BIPIDE_4._0
             Processador = Processadores.BIPIV;
 
             String nome = chamadaFuncao.getNome();
-
             
 
             if (nome == _CurrentFunction)
             {
+                int linha = chamadaFuncao.getTrechoCodigoFonteNome().getLinha();
+                int coluna = chamadaFuncao.getTrechoCodigoFonteNome().getLinha();
+                String mensagem = "O BIP  não possui suporte à recursividade";
+                _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
+
                 unsupported = true;
                 unsupported_message += Environment.NewLine + "O BIP  não possui suporte à recursividade";
             }
+
+            if (nome != "leia" &&
+                nome != "escreva"
+            )
             _CurrentFunction = nome;
 
             Object valor;
@@ -133,6 +161,12 @@ namespace BIPIDE_4._0
                     {
                         if (valor.GetType() != typeof(string))
                         {
+
+                            int linha = parametro.getTrechoCodigoFonteNome().getLinha();
+                            int coluna = parametro.getTrechoCodigoFonteNome().getLinha();
+                            String mensagem = "O comando leia somente permite variáveis";
+                            _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
+
                             unsupported = true;
                             unsupported_message += Environment.NewLine + "O comando leia somente permite variáveis";
                         }
@@ -140,6 +174,12 @@ namespace BIPIDE_4._0
                     }
                     else
                     {//expressao dentro de leia
+
+                        int linha = parametro.getTrechoCodigoFonteNome().getLinha();
+                        int coluna = parametro.getTrechoCodigoFonteNome().getLinha();
+                        String mensagem = "O comando leia não permite expressões";
+                        _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
+
                         unsupported = true;
                         unsupported_message += Environment.NewLine + "O comando leia  não permite expressões";
                     }
@@ -147,9 +187,6 @@ namespace BIPIDE_4._0
                 }
             }
                   
-            
-
-
              return null;
         }
 
@@ -174,6 +211,11 @@ namespace BIPIDE_4._0
         {
             if (noDeclaracaoParametro.getModoAcesso() == ModoAcesso.POR_REFERENCIA)
             {
+                int linha = noDeclaracaoParametro.getTrechoCodigoFonteNome().getLinha();
+                int coluna = noDeclaracaoParametro.getTrechoCodigoFonteNome().getLinha();
+                String mensagem = "O BIP  não possui suporte à modo de acesso por referência";
+                _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
+
                 unsupported = true;
                 unsupported_message += Environment.NewLine + "O BIP  não possui suporte à modo de acesso por referência";
             }
@@ -183,6 +225,11 @@ namespace BIPIDE_4._0
 
         public object visitarNoDeclaracaoMatriz(NoDeclaracaoMatriz noDeclaracaoMatriz)
         {
+            int linha = noDeclaracaoMatriz.getTrechoCodigoFonteTipoDado().getLinha();
+            int coluna = noDeclaracaoMatriz.getTrechoCodigoFonteTipoDado().getLinha();
+            String mensagem = "O BIP  não possui suporte à Matriz";
+            _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
+
             unsupported = true;
             unsupported_message += Environment.NewLine + "O BIP  não possui suporte à Matriz";
             return null;
@@ -196,26 +243,41 @@ namespace BIPIDE_4._0
                 noDeclaracaoVariavel.getInicializacao().aceitar(this);
             else
             {
+                int linha;
+                int coluna;
+                String mensagem = "";
+
                 TipoDado tipoDadoVariavel = noDeclaracaoVariavel.getTipoDado();
                 if (tipoDadoVariavel == TipoDado.REAL)
                 {
+                    mensagem = "REAL";
                     unsupported = true;
                     unsupported_message += Environment.NewLine + "O BIP  não possui suporte à tipo de dado REAL";
                 }
                 if (tipoDadoVariavel == TipoDado.CADEIA)
                 {
+                    mensagem =  "CADEIA";
                     unsupported = true;
                     unsupported_message += Environment.NewLine + "O BIP  não possui suporte à tipo de dado CADEIA";
                 }
                 if (tipoDadoVariavel == TipoDado.CARACTER)
                 {
+                    mensagem =  "CARACTER";
                     unsupported = true;
                     unsupported_message += Environment.NewLine + "O BIP  não possui suporte à tipo de dado CARACTER";
                 }
                 if (tipoDadoVariavel == TipoDado.LOGICO)
                 {
+                    mensagem =  "LOGICO";
                     unsupported = true;
                     unsupported_message += Environment.NewLine + "O BIP  não possui suporte à tipo de dado LOGICO";
+                }
+                if (mensagem != "")
+                { 
+                    mensagem = "O BIP  não possui suporte ao tipo de dado " + mensagem;
+                    linha = noDeclaracaoVariavel.getTrechoCodigoFonteTipoDado().getLinha();
+                    coluna = noDeclaracaoVariavel.getTrechoCodigoFonteTipoDado().getLinha();
+                    _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
                 }
             }
 
@@ -231,6 +293,11 @@ namespace BIPIDE_4._0
             int tamanho = (noDeclaracaoVetor.getTamanho() == null) ? 0 : (System.Int32) noDeclaracaoVetor.getTamanho().aceitar(this);
             if (tamanho > 1024)
             {
+                int linha = noDeclaracaoVetor.getTrechoCodigoFonteNome().getLinha();
+                int coluna = noDeclaracaoVetor.getTrechoCodigoFonteNome().getLinha();
+                String mensagem = "O BIP  não possui suporte à tamanho de vetores acima de 1024";
+                _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
+
                 unsupported = true;
                 unsupported_message += Environment.NewLine + "O BIP  não possui suporte à tamanho de vetores acima de 1024";
             }
@@ -240,25 +307,40 @@ namespace BIPIDE_4._0
 
         public object visitarNoEnquanto(NoEnquanto noEnquanto)
         {
-           
-            noEnquanto.getCondicao().aceitar(this);          
+            _IsLoop = true;
+            _IsConditional = true;
+            noEnquanto.getCondicao().aceitar(this);
+            _IsConditional = false;
 
-            foreach (NoBloco blocos in noEnquanto.getBlocos())
-            {
-                blocos.aceitar(this);
-              
-            }
+            foreach (NoBloco blocos in noEnquanto.getBlocos())            
+                blocos.aceitar(this);              
+            
+            _IsLoop = false;
           
             return null;
         }
 
         public object visitarNoEscolha(NoEscolha noEscolha)
         {
+
+            foreach (NoCaso caso in noEscolha.getCasos())
+                caso.aceitar(this);
+
             return null;
         }
 
         public object visitarNoFacaEnquanto(NoFacaEnquanto noFacaEnquanto)
         {
+            _IsLoop = true;
+          
+            foreach (NoBloco blocos in noFacaEnquanto.getBlocos())            
+                blocos.aceitar(this);
+
+            _IsConditional = true;
+            noFacaEnquanto.getCondicao().aceitar(this);
+            _IsConditional = false;
+
+            _IsLoop = false;
             return null;
         }
 
@@ -274,6 +356,12 @@ namespace BIPIDE_4._0
             Processador = Processadores.BIPIII;
             Processador = Processadores.BIPIV;
 
+
+            int linha = noLogico.getTrechoCodigoFonte().getLinha();
+            int coluna = noLogico.getTrechoCodigoFonte().getLinha();
+            String mensagem = "O BIP  não possui suporte à NoLogico";
+            _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
+
             unsupported = true;
             unsupported_message += Environment.NewLine + "O BIP  não possui suporte à NoLogico";
 
@@ -283,6 +371,12 @@ namespace BIPIDE_4._0
 
         public object visitarNoMatriz(NoMatriz noMatriz)
         {
+
+            int linha = noMatriz.getTrechoCodigoFonte().getLinha();
+            int coluna = noMatriz.getTrechoCodigoFonte().getLinha();
+            String mensagem = "O BIP  não possui suporte à Matriz";
+            _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
+
             unsupported = true;
             unsupported_message += Environment.NewLine + "O BIP  não possui suporte à Matriz";
             return null;
@@ -295,6 +389,12 @@ namespace BIPIDE_4._0
 
         public object visitarNoNao(NoNao noNao)
         {
+
+            int linha = noNao.getTrechoCodigoFonte().getLinha();
+            int coluna = noNao.getTrechoCodigoFonte().getLinha();
+            String mensagem = "O BIP  não possui suporte à Operação Lógica NAO";
+            _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
+
             unsupported = true;
             unsupported_message += Environment.NewLine + "O BIP  não possui suporte à Operação Lógica NAO";
             return null;
@@ -309,22 +409,21 @@ namespace BIPIDE_4._0
 
         public object visitarNoPara(NoPara noPara)
         {
+            _IsLoop = true;
 
-            //carrega inicialização como uma operação
             if (noPara.getInicializacao() != null)
                 noPara.getInicializacao().aceitar(this);
 
-
-            //substituir visitacao condicao
+            _IsConditional = true;
             noPara.getCondicao().aceitar(this);
+            _IsConditional = false;
 
-            //faz blocos
             foreach (NoBloco blocos in noPara.getBlocos())            
                 blocos.aceitar(this);
             
-            //faz operação atribuição do incremento
             noPara.getIncremento().aceitar(this);
 
+            _IsLoop = false;
             return null;
         }
 
@@ -335,6 +434,12 @@ namespace BIPIDE_4._0
 
         public object visitarNoReal(NoReal noReal)
         {
+
+            int linha = noReal.getTrechoCodigoFonte().getLinha();
+            int coluna = noReal.getTrechoCodigoFonte().getLinha();
+            String mensagem = "O BIP  não possui suporte à NoReal";
+            _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
+
             unsupported = true;
             unsupported_message += Environment.NewLine + "O BIP  não possui suporte à NoReal";
 
@@ -343,6 +448,12 @@ namespace BIPIDE_4._0
 
         public object visitarNoReferenciaMatriz(NoReferenciaMatriz noReferenciaMatriz)
         {
+
+            int linha = noReferenciaMatriz.getTrechoCodigoFonte().getLinha();
+            int coluna = noReferenciaMatriz.getTrechoCodigoFonte().getLinha();
+            String mensagem = "O BIP  não possui suporte à Matriz";
+            _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
+
             unsupported = true;
             unsupported_message += Environment.NewLine + "O BIP  não possui suporte à Matriz";
             return null;
@@ -357,6 +468,11 @@ namespace BIPIDE_4._0
         {
             if (_IsVector)
             {
+                int linha = noReferenciaVetor.getTrechoCodigoFonte().getLinha();
+                int coluna = noReferenciaVetor.getTrechoCodigoFonte().getLinha();
+                String mensagem = "Não suportado vetor dentro de índice de vetor";
+                _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
+
                 unsupported = true;
                 unsupported_message += Environment.NewLine + "Não suportado vetor dentro de índice de vetor";
             }
@@ -379,31 +495,17 @@ namespace BIPIDE_4._0
         {
             Processador = Processadores.BIPII;
 
-
+            _IsConditional = true;
             noSe.getCondicao().aceitar(this);
+            _IsConditional = false;
 
-            Boolean bloco_else = false;
-            //ocorre erro corba se blocos falsos = null quando não existe
-            try
-            {
-                NoBloco[] b = noSe.getBlocosFalsos();
-                if (noSe.getBlocosFalsos() != null)
-                bloco_else = true;
-            }
-            catch
-            {
-            }
+            NoBloco[] b = noSe.getBlocosFalsos();
+           
+            foreach (NoBloco blocoverdadeiro in noSe.getBlocosVerdadeiros())            
+                blocoverdadeiro.aceitar(this);    
 
-            foreach (NoBloco blocoverdadeiro in noSe.getBlocosVerdadeiros())           
-                blocoverdadeiro.aceitar(this);
-             
-            
-            if (bloco_else)            
-                foreach (NoBloco blocofalso in noSe.getBlocosFalsos())
-                    blocofalso.aceitar(this);
-
-                
-            
+            foreach (NoBloco blocofalso in noSe.getBlocosFalsos())            
+                blocofalso.aceitar(this);
 
             return null;
         }
@@ -421,6 +523,12 @@ namespace BIPIDE_4._0
 
         public object visitarNoInclusaoBiblioteca(NoInclusaoBiblioteca noInclusaoBiblioteca)
         {
+
+            int linha = noInclusaoBiblioteca.getTrechoCodigoFonte().getLinha();
+            int coluna = noInclusaoBiblioteca.getTrechoCodigoFonte().getLinha();
+            String mensagem = "O BIP  não possui suporte à Inclusão de Biblioteca";
+            _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
+
             unsupported = true;
             unsupported_message += Environment.NewLine + "O BIP  não possui suporte à Inclusão de Biblioteca";
             return null;
@@ -465,6 +573,11 @@ namespace BIPIDE_4._0
 
         public object visitarNoOperacaoDivisao(NoOperacaoDivisao noOperacaoDivisao)
         {
+            int linha = noOperacaoDivisao.getTrechoCodigoFonte().getLinha();
+            int coluna = noOperacaoDivisao.getTrechoCodigoFonte().getLinha();
+            String mensagem = "O BIP  não possui suporte à Operação Divisão";
+            _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
+
             unsupported = true;
             unsupported_message += Environment.NewLine + "O BIP  não possui suporte à Operação Divisão";
             return null;
@@ -472,13 +585,28 @@ namespace BIPIDE_4._0
 
         public object visitarNoOperacaoLogicaDiferenca(NoOperacaoLogicaDiferenca noOperacaoLogicaDiferenca)
         {
-            unsupported = true;
-            unsupported_message += Environment.NewLine + "O BIP  não possui suporte à Operação Lógica Diferença";
+            if (!_IsConditional)
+            {
+                int linha = noOperacaoLogicaDiferenca.getTrechoCodigoFonte().getLinha();
+                int coluna = noOperacaoLogicaDiferenca.getTrechoCodigoFonte().getLinha();
+                String mensagem = "Operação Lógica não pode ser utilizada desta forma";
+                _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
+
+                unsupported = true;
+                unsupported_message += Environment.NewLine + "Operação Lógica não pode ser utilizada desta forma";
+            }
+            RunOperations(noOperacaoLogicaDiferenca);
+
             return null;
         }
 
         public object visitarNoOperacaoLogicaE(NoOperacaoLogicaE noOperacaoLogicaE)
         {
+            int linha = noOperacaoLogicaE.getTrechoCodigoFonte().getLinha();
+            int coluna = noOperacaoLogicaE.getTrechoCodigoFonte().getLinha();
+            String mensagem = "O BIP  não possui suporte à Operação Lógica E";
+            _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
+
             unsupported = true;
             unsupported_message += Environment.NewLine + "O BIP  não possui suporte à Operação Lógica E";
             return null;
@@ -486,36 +614,106 @@ namespace BIPIDE_4._0
 
         public object visitarNoOperacaoLogicaIgualdade(NoOperacaoLogicaIgualdade noOperacaoLogicaIgualdade)
         {
+            if (!_IsConditional)
+            {
+                int linha = noOperacaoLogicaIgualdade.getTrechoCodigoFonte().getLinha();
+                int coluna = noOperacaoLogicaIgualdade.getTrechoCodigoFonte().getLinha();
+                String mensagem = "Operação Lógica não pode ser utilizada desta forma";
+                _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
+
+                unsupported = true;
+                unsupported_message += Environment.NewLine + "Operação Lógica não pode ser utilizada desta forma";
+            }
             RunOperations(noOperacaoLogicaIgualdade);
             return null;
         }
 
         public object visitarNoOperacaoLogicaMaior(NoOperacaoLogicaMaior noOperacaoLogicaMaior)
         {
+            if (!_IsConditional)
+            {
+                int linha = noOperacaoLogicaMaior.getTrechoCodigoFonte().getLinha();
+                int coluna = noOperacaoLogicaMaior.getTrechoCodigoFonte().getLinha();
+                String mensagem = "Operação Lógica não pode ser utilizada desta forma";
+                _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
+
+                unsupported = true;
+                unsupported_message += Environment.NewLine + "Operação Lógica não pode ser utilizada desta forma.";
+            }
             RunOperations(noOperacaoLogicaMaior);
             return null;
         }
 
         public object visitarNoOperacaoLogicaMaiorIgual(NoOperacaoLogicaMaiorIgual noOperacaoLogicaMaiorIgual)
         {
+            if (!_IsConditional)
+            {
+                int linha = noOperacaoLogicaMaiorIgual.getTrechoCodigoFonte().getLinha();
+                int coluna = noOperacaoLogicaMaiorIgual.getTrechoCodigoFonte().getLinha();
+                String mensagem = "Operação Lógica não pode ser utilizada desta forma";
+                _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
+
+                unsupported = true;
+                unsupported_message += Environment.NewLine + "Operação Lógica não pode ser utilizada desta forma.";
+            }
             RunOperations(noOperacaoLogicaMaiorIgual);
             return null;
         }
 
         public object visitarNoOperacaoLogicaMenor(NoOperacaoLogicaMenor noOperacaoLogicaMenor)
         {
+            if (!_IsConditional)
+            {
+                int linha = noOperacaoLogicaMenor.getTrechoCodigoFonte().getLinha();
+                int coluna = noOperacaoLogicaMenor.getTrechoCodigoFonte().getLinha();
+                String mensagem = "Operação Lógica não pode ser utilizada desta forma";
+                _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
+
+                unsupported = true;
+                unsupported_message += Environment.NewLine + "Operação Lógica não pode ser utilizada desta forma.";
+            }
             RunOperations(noOperacaoLogicaMenor);
             return null;
         }
 
         public object visitarNoOperacaoLogicaMenorIgual(NoOperacaoLogicaMenorIgual noOperacaoLogicaMenorIgual)
         {
+            if (!_IsConditional)
+            {
+                int linha = noOperacaoLogicaMenorIgual.getTrechoCodigoFonte().getLinha();
+                int coluna = noOperacaoLogicaMenorIgual.getTrechoCodigoFonte().getLinha();
+                String mensagem = "Operação Lógica não pode ser utilizada desta forma";
+                _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
+
+                unsupported = true;
+                unsupported_message += Environment.NewLine + "Operação Lógica não pode ser utilizada desta forma.";
+            }
             RunOperations(noOperacaoLogicaMenorIgual);
             return null;
         }
 
         public object visitarNoOperacaoLogicaOU(NoOperacaoLogicaOU noOperacaoLogicaOU)
         {
+            int linha;
+            int coluna;
+            String mensagem;
+
+            if (!_IsConditional)
+            {
+                linha = noOperacaoLogicaOU.getTrechoCodigoFonte().getLinha();
+                coluna = noOperacaoLogicaOU.getTrechoCodigoFonte().getLinha();
+                mensagem = "Operação Lógica não pode ser utilizada desta forma";
+                _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
+
+                unsupported = true;
+                unsupported_message += Environment.NewLine + "Operação Lógica não pode ser utilizada desta forma.";
+            }
+
+            linha = noOperacaoLogicaOU.getTrechoCodigoFonte().getLinha();
+            coluna = noOperacaoLogicaOU.getTrechoCodigoFonte().getLinha();
+            mensagem = "O BIP  não possui suporte à Operação Lógica OU";
+            _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
+
             unsupported = true;
             unsupported_message += Environment.NewLine + "O BIP  não possui suporte à Operação Lógica OU";
             return null;
@@ -523,6 +721,11 @@ namespace BIPIDE_4._0
 
         public object visitarNoOperacaoModulo(NoOperacaoModulo noOperacaoModulo)
         {
+            int linha = noOperacaoModulo.getTrechoCodigoFonte().getLinha();
+            int coluna = noOperacaoModulo.getTrechoCodigoFonte().getLinha();
+            String mensagem = "O BIP  não possui suporte à Módulo";
+            _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
+
             unsupported = true;
             unsupported_message += Environment.NewLine + "O BIP  não possui suporte à Módulo";
             return null;
@@ -530,6 +733,11 @@ namespace BIPIDE_4._0
 
         public object visitarNoOperacaoMultiplicacao(NoOperacaoMultiplicacao noOperacaoMultiplicacao)
         {
+            int linha = noOperacaoMultiplicacao.getTrechoCodigoFonte().getLinha();
+            int coluna = noOperacaoMultiplicacao.getTrechoCodigoFonte().getLinha();
+            String mensagem = "O BIP  não possui suporte à Multiplicação";
+            _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
+
             unsupported = true;
             unsupported_message += Environment.NewLine + "O BIP  não possui suporte à Multiplicação";
             return null;
@@ -548,14 +756,38 @@ namespace BIPIDE_4._0
         }
 
         private void RunOperations(NoOperacao noOperacao)
-        {
-           
+        {           
             Object e = noOperacao.getOperandoEsquerdo().aceitar(this);
 
             if (noOperacao.getOperandoDireito() != null)
                 noOperacao.getOperandoDireito().aceitar(this);
-
         }
-      
+
+        public object visitarNoContinue(NoContinue noContinue)
+        {
+            if (!_IsLoop)
+            {
+                //int linha = noContinue.getTrechoCodigoFonte().getLinha();
+                //int coluna = noContinue.getTrechoCodigoFonte().getLinha();
+                String mensagem = "Continue não pode ser utilizado fora de laços de repetição";
+                _ErrorList.Add(new CompilationError(0, 0, mensagem));
+
+                unsupported = true;
+                unsupported_message += Environment.NewLine + "Continue não pode ser utilizado fora de laços de repetição";
+            }
+            return null;
+        }
+
+        public object visitarNoTitulo(NoTitulo noTitulo)
+        {
+            return null;
+        }
+
+        public object visitarNoVaPara(NoVaPara noVaPara)
+        {
+            noVaPara.getTitulo().aceitar(this);
+
+            return null;
+        }
     }
 }

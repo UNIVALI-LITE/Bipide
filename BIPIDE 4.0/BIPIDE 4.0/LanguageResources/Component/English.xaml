@@ -51,6 +51,7 @@
 
     <system:String x:Key="GridMessageName">Messages</system:String>
     <system:String x:Key="GridErrorColumnLines">Line</system:String>
+    <system:String x:Key="GridErrorColumnColumns">Column</system:String>
     <system:String x:Key="GridErrorColumnDescription">Description</system:String>
 
     <system:String x:Key="LanguagePortuguese">Portuguese</system:String>

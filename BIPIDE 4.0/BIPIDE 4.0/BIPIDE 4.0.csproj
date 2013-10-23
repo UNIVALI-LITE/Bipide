@@ -272,6 +272,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="LanguageResources\Help\HelpSystem\" />
+    <Folder Include="ProgrammingLanguagesResources\ErrorMapping\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="ImageResources\instruction16.png" />

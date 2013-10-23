@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BIPIDE_4._0.ControlResources;
+using br.univali.portugol.integracao;
 
 namespace BIPIDE_4._0
 {
@@ -20,7 +22,7 @@ namespace BIPIDE_4._0
     public partial class SplashScreen : Window
     {
         public SplashScreen()
-        {
+        {           
             InitializeComponent();
         }
     }

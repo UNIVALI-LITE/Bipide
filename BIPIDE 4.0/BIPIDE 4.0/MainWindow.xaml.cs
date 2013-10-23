@@ -9,6 +9,7 @@ using br.univali.portugol.integracao.mensagens;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -35,16 +36,14 @@ namespace BIPIDE_4._0
     /// </summary>
     public partial class MainWindow : RibbonWindow
     {
-        private SimulationControl   _SimulationControl;
+        private static SimulationControl   _SimulationControl;
         private StringBuilder       _ErrorMessages;
         private ArrayList           _LanguagesMapping;
         private CorbaController     _CorbaController;
+        private Portugol            _ProgrammingLanguageInstance;
 
         public MainWindow()
         {
-            //_CorbaController = new CorbaController();
-            //_CorbaController.Start();
-
             InitializeComponent();
         }
 
@@ -120,56 +119,77 @@ namespace BIPIDE_4._0
 
             _LayoutAnchorableErrorList.Title    = (String)FindResource("GridMessageName");
             _ErrorLine.Header                   = (String)FindResource("GridErrorColumnLines");
+            _ErrorColumn.Header                 = (String)FindResource("GridErrorColumnColumns");
             _ErrorDescription.Header            = (String)FindResource("GridErrorColumnDescription");
         }
 
-        public Codigo Build(String pSourceCode)
-        {
-            _CorbaController.RaiseJavaProcess(AppDomain.CurrentDomain.BaseDirectory.ToString() + "ProgrammingLanguagesResources\\CResources\\CompilerResources\\c-integracao.jar");
-            C iProgrammingLanguageInstance = (C)_CorbaController.ResolveProcess("C");
 
-            Codigo iAssembly = new Codigo();
+        private void LoadCorbaConnection(SplashScreen iSScreen)
+        {
+            iSScreen.SplashScreenLabel.Content = "Inicializando CORBA";            
+            _CorbaController = new CorbaController();
+            _CorbaController.Start();
+
+            _CorbaController.RaiseJavaProcess(AppDomain.CurrentDomain.BaseDirectory.ToString() + "ProgrammingLanguagesResources\\PortugolResources\\CompilerResources\\portugol-integracao.jar");
+            _ProgrammingLanguageInstance = (Portugol)_CorbaController.ResolveProcess("Portugol");
+
+        }
+
+        public void Build(UCProgrammingDocument pSelectedDocument)
+        {
+            List<CompilationError>  iErrorList = new List<CompilationError>(); 
             try
             {
-
-                br.univali.portugol.integracao.Programa iProgram = (br.univali.portugol.integracao.Programa) iProgrammingLanguageInstance.compilar(pSourceCode);
-
+                br.univali.portugol.integracao.Programa iProgram = (br.univali.portugol.integracao.Programa)_ProgrammingLanguageInstance.compilar(pSelectedDocument._TextEditorSourceCode.Text, pSelectedDocument.ProgrammingLanguage);
+                
                 _ErrorMessages.AppendLine("Programa Compilado com Sucesso!");
 
-                Restricoes iRestrictions = new Restricoes();
-                iRestrictions.Executar(iProgram);
+                Restricoes iRestrictions = new Restricoes(iErrorList);
+                iErrorList = iRestrictions.Executar(iProgram);
                 if (iRestrictions.unsupported_message != null)
                     _ErrorMessages.AppendLine(iRestrictions.unsupported_message);
 
                 ArchitectureCheck();
 
-
                 if (!iRestrictions.unsupported)
                 {
-                    Tradutor reg = new Tradutor(iProgram);
-                    iAssembly = reg.Convert(iProgram);
-                }
+                    Tradutor reg = new Tradutor(iProgram, pSelectedDocument.ProgrammingLanguage);
+                    Codigo iAssembly = reg.Convert(iProgram);
 
+                    pSelectedDocument._Simulator.SetMemoriaDados(iAssembly.GetMemoriaDados());
+                    pSelectedDocument._Simulator.SetMemoriaPrograma(iAssembly.GetMemoriaInstrucao());
+                    pSelectedDocument._Simulator.SetRotulosPrograma(iAssembly.GetListaRotulos());
+
+                    pSelectedDocument._AssemblySource       = iAssembly;
+                    pSelectedDocument.AssemblyText          = iAssembly.GetCodigoStringASM();
+                    pSelectedDocument.SourceCodeDebugText   = pSelectedDocument._TextEditorSourceCode.Text;
+                }
 
             }
             catch (br.univali.portugol.integracao.ErroCompilacao ec)
             {
+                
                 ResultadoAnalise resultado = ec.resultadoAnalise;
 
-                if (resultado.getNumeroTotalErros() > 0)
-                {
+                if (resultado.getNumeroTotalErros() > 0)                {
+
                     foreach (ErroSintatico erro in resultado.getErrosSintaticos())
                     {
+                        iErrorList.Add(new CompilationError(erro));
+
                         _ErrorMessages.AppendLine("Erro Sintatico na linha " + erro.linha + " e coluna " + erro.coluna + ": " + erro.mensagem);
                     }
                     foreach (ErroSemantico erro in resultado.getErrosSemanticos())
                     {
+                        iErrorList.Add(new CompilationError(erro));
+
                         _ErrorMessages.AppendLine("Erro Semantico na linha " + erro.linha + " e coluna " + erro.coluna + ": " + erro.mensagem);
                     }
+
                 }
             }
-
-            return iAssembly;
+            if (iErrorList != null)
+                dataGridErrorList.ItemsSource = iErrorList;
         }
 
         private void ArchitectureCheck()
@@ -269,11 +289,7 @@ namespace BIPIDE_4._0
                 UCProgrammingDocument iSelectedDocument =
                     ((_DocumentPane.SelectedContent as LayoutDocument).Content as UCProgrammingDocument);
 
-                Codigo iAssembly = Build(iSelectedDocument._TextEditorSourceCode.Text);
-
-                iSelectedDocument._Simulator.SetMemoriaDados(iAssembly.GetMemoriaDados());
-                iSelectedDocument._Simulator.SetMemoriaPrograma(iAssembly.GetMemoriaInstrucao());
-                iSelectedDocument._Simulator.SetRotulosPrograma(iAssembly.GetListaRotulos());
+                Build(iSelectedDocument);
             }
         }
 
@@ -673,6 +689,11 @@ namespace BIPIDE_4._0
             Application.Current.Shutdown();
         }
 
+        private void Bipide_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            _ProgrammingLanguageInstance.encerrar();
+        }
+
         private void Bipide_Initialized(object sender, EventArgs e)
         {
             SplashScreen iSplashScreen = new SplashScreen();
@@ -689,8 +710,73 @@ namespace BIPIDE_4._0
 
             LoadLanguageResources();
 
+            LoadCorbaConnection(iSplashScreen);
+
             iSplashScreen.Close();
         }
-
     }
+
+
+    //PAULA
+    public class CompilationError : System.ComponentModel.INotifyPropertyChanged
+    {
+        string _Line;
+        string _Column;
+        string _Message;
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+       
+        public CompilationError(){
+        }
+        public CompilationError(int line, int column, String message)
+        {
+            Line = line.ToString();
+            Column = column.ToString();
+            Message = message;
+        }
+
+        public CompilationError(br.univali.portugol.integracao.mensagens.ErroSintatico erro)
+        {
+            Line = erro.linha.ToString();
+            Column = erro.coluna.ToString();
+            Message = erro.mensagem;
+        }
+        public CompilationError(br.univali.portugol.integracao.mensagens.ErroSemantico erro)
+        {
+            Line = erro.linha.ToString();
+            Column = erro.coluna.ToString();
+            Message = erro.mensagem;
+        }
+        public string Line
+        {
+            get { return _Line; }
+            set { _Line = value;
+            OnPropertyChanged("Line");
+            }
+        }
+        public string Column
+        {
+            get { return _Column; }
+            set { _Column = value;
+            OnPropertyChanged("Column");
+            }
+        }
+        public string Message
+        {
+            get { return _Message; }
+            set { _Message = value;
+            OnPropertyChanged("Message");
+            }
+        }
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(name));
+            }
+        }
+    }
+
+
+    
 }

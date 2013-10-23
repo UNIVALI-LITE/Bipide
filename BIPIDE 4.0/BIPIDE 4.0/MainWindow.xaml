@@ -12,7 +12,7 @@
               MinHeight="600"
               Icon="ImageResources/pe32.ico"
               WindowState="Maximized" 
-              Initialized="Bipide_Initialized">
+              Initialized="Bipide_Initialized" Closing="Bipide_Closing">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -675,16 +675,21 @@
                                                                CanHide="False"
                                                                CanClose="False"
                                                                IconSource="ImageResources/warningMessages.png">
-                                <DataGrid>
+                                <DataGrid ItemsSource="{Binding Source=CompilationError}" 
+                                          Name="dataGridErrorList"
+                                          AutoGenerateColumns="False"
+                                          GridLinesVisibility="None"
+                                          CanUserAddRows="False"
+                                          IsReadOnly="True">
                                     <DataGrid.Columns>
                                         <DataGridTemplateColumn ClipboardContentBinding="{x:Null}"/>
                                         <DataGridTextColumn x:Name="_ErrorLine"
-                                                            Binding="{x:Null}" 
-                                                            ClipboardContentBinding="{x:Null}"/>
+                                                            Binding="{Binding Line, UpdateSourceTrigger=PropertyChanged}" />
+                                        <DataGridTextColumn x:Name="_ErrorColumn"
+                                                            Binding="{Binding Column, UpdateSourceTrigger=PropertyChanged}" />
                                         <DataGridTextColumn x:Name="_ErrorDescription" 
-                                                            Binding="{x:Null}"
-                                                            Width="*"
-                                                            ClipboardContentBinding="{x:Null}"/>
+                                                            Binding="{Binding Message, UpdateSourceTrigger=PropertyChanged}"
+                                                            Width="*"/>
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </AvalonDockLayout:LayoutAnchorable>
