@@ -94,26 +94,47 @@ namespace BIPIDE.Classes
             return false;
         }
         //==========================================================
-        public List<string> GetCodigoStringASM()
+        public String GetCodigoStringASM()
         {
             List<string> listaResultado = new List<string>();
+            String retorna = "";
+
             foreach (InstrucaoASM itemASM in listaDataASM)
             {
-                string aux = "";
-                if (itemASM.Tipo == eTipo.Variavel && itemASM.Tamanho > 1)                
-                    for (int x = 1; x < itemASM.Tamanho; x++)                    
-                        aux += ",0";
-                    
+                if (itemASM.Tipo == eTipo.Variavel && itemASM.Tamanho > 1)
+                    continue;
                 
-                listaResultado.Add(itemASM.GetInstrucaoASM() + aux);
-            }
-           foreach (InstrucaoASM itemASM in listaTextASM)            
                 listaResultado.Add(itemASM.GetInstrucaoASM());
-            
+            }
+            for (int i = 0; i < listaDataASM.Count(); i++)
+            {
+                if (listaDataASM[i].Tipo == eTipo.Variavel && listaDataASM[i].Tamanho > 1)
+                {
+                    String aux ="";
+                    for (int j = 0; j < listaDataASM[i].Tamanho-1; j++ )
+                    {
+                        aux+= listaDataASM[i + j].Operando+", ";
+                    }
+                    aux += listaDataASM[i + listaDataASM[i].Tamanho - 1].Operando;
+                    listaResultado.Add("\t"+ listaDataASM[i].Instrucao.ToLower() + " : " + aux);
+                    
+
+                    i = i + listaDataASM[i].Tamanho;
+                }
+
+            }
+
+                foreach (InstrucaoASM itemASM in listaTextASM)
+                    listaResultado.Add(itemASM.GetInstrucaoASM());
+
             this.listaStringASM = listaResultado;
 
-            return listaResultado;
+            foreach (String i in listaResultado)
+                retorna += i + Environment.NewLine;
+
+            return retorna;
         }
+
         //==========================================================
         public List<InstrucaoASM> GetCodigoInstrucaoASM()
         {

@@ -17,7 +17,7 @@ namespace BIPIDE.Classes
         #endregion
 
         #region PRIVATE
-        private string INDENTACAO_ASM = "   ";
+        public static string INDENTACAO_ASM = "\t";
         private string strInstrucao = "";
         private string strOperando = "";
         private int intEndRotulo = 0;
@@ -180,7 +180,7 @@ namespace BIPIDE.Classes
             else
                 if (this.Tipo == eTipo.Variavel)
                 {
-                    return INDENTACAO_ASM + this.strInstrucao.ToLower() + " : " + this.strOperando;
+                    return INDENTACAO_ASM + this.strInstrucao.ToLower() + "  :  " + this.strOperando;
                 }
                 else
                     if (this.Tipo == eTipo.Section)
@@ -190,11 +190,18 @@ namespace BIPIDE.Classes
                     else
                     {
                         string strEspacoIdentacaoOperando = "";
-                        for (int i = this.strInstrucao.Length; i < 8; i++)
-                        {
-                            strEspacoIdentacaoOperando += " ";
-                        }
-                        return INDENTACAO_ASM + this.strInstrucao + strEspacoIdentacaoOperando + this.strOperando;
+                        if (this.strInstrucao.Length <= 3)
+                            for (int i = this.strInstrucao.Length; i < 12; i++)                            
+                                strEspacoIdentacaoOperando += " ";
+
+                        if (this.strInstrucao.Length > 3 && this.strInstrucao.Length < 5)
+                            strEspacoIdentacaoOperando += "\t";
+                        //if (this.strInstrucao.Length <= 3)
+                        //    strEspacoIdentacaoOperando = "\t\t";//"         \t";
+                        //if (this.strInstrucao.Length < 3)
+                        //    strEspacoIdentacaoOperando = "\t\t\t";//"         \t";
+
+                        return INDENTACAO_ASM + this.strInstrucao + strEspacoIdentacaoOperando+"\t" + this.strOperando;
                     }
         }
 
