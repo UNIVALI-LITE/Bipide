@@ -60,8 +60,8 @@ namespace BIPIDE_4._0.ViewResources
             _ProgrammingLanguages = (ArrayList)SerializerObj.Deserialize(Reader);
             
             InitializeComponent();
-            GenerateTreeView();
             _TextBoxFile.Text = (String)FindResource("NDDefaultFileName");
+            GenerateTreeView();
         }
 
         private void _ButtonCancel_Click(object sender, RoutedEventArgs e)
@@ -84,12 +84,10 @@ namespace BIPIDE_4._0.ViewResources
             {
                 ItemsControl iItemsControl = ItemsControl.ItemsControlFromItemContainer(iTreeViewItem);
                 if (iItemsControl != null)
-                {
-                    _HighlightFile  = (iItemsControl.Tag as ProgrammingLanguageMapping).Name;
                     iNewFileContent = (iItemsControl.Tag as ProgrammingLanguageMapping).NewProject;
-                }
             }
 
+            _LabelDescription.Content = (sender as TreeViewItem).Name;
             _IsNewProject = true;
             _ListView.Items.Clear();
 
@@ -109,6 +107,7 @@ namespace BIPIDE_4._0.ViewResources
                 }
             }
 
+            _LabelDescription.Content = (sender as TreeViewItem).Name;
             _IsNewProject = false;
             _ListView.Items.Clear();
 
@@ -121,8 +120,9 @@ namespace BIPIDE_4._0.ViewResources
         void TreeItemiProgrammingLanguage_Selected(object sender, RoutedEventArgs e)
         {
             ChangeFileNameExtension(((sender as TreeViewItem).Tag as ProgrammingLanguageMapping).FileExtension);
-            _ProgrammingLanguage    = ((sender as TreeViewItem).Tag as ProgrammingLanguageMapping).Name;
-            _HighlightFile          = ((sender as TreeViewItem).Tag as ProgrammingLanguageMapping).HighlightMapping;
+            _ProgrammingLanguage        = ((sender as TreeViewItem).Tag as ProgrammingLanguageMapping).Name;
+            _HighlightFile              = ((sender as TreeViewItem).Tag as ProgrammingLanguageMapping).HighlightMapping;
+            _LabelDescription.Content   = ((sender as TreeViewItem).Tag as ProgrammingLanguageMapping).Name;
         }
 
         private void ChangeFileNameExtension(string iExtension)
@@ -145,15 +145,13 @@ namespace BIPIDE_4._0.ViewResources
         {
             foreach (ProgrammingLanguageMapping iProgrammingLanguage in _ProgrammingLanguages)
             {
-                if (_ProgrammingLanguage == string.Empty)
-                {
-                    _ProgrammingLanguage = iProgrammingLanguage.Name;
-                    ChangeFileNameExtension(iProgrammingLanguage.FileExtension);
-                }
-
                 TreeViewItem iTreeItemiProgrammingLanguage  = GetTreeView(iProgrammingLanguage.Name, "sourceCode.png");
                 iTreeItemiProgrammingLanguage.Tag           = iProgrammingLanguage;
-                iTreeItemiProgrammingLanguage.Selected      += TreeItemiProgrammingLanguage_Selected; 
+                iTreeItemiProgrammingLanguage.Selected      += TreeItemiProgrammingLanguage_Selected;
+
+                if (_TreeView.Items.Count == 0)
+                    iTreeItemiProgrammingLanguage.IsSelected = true;
+                  
 
                 TreeViewItem iTreeItemiProject              = GetTreeView((String)FindResource("NDTreeViewItemProject"), "new16.png");
                 iTreeItemiProject.Tag                       = iProgrammingLanguage.NewProject;
@@ -164,10 +162,9 @@ namespace BIPIDE_4._0.ViewResources
                 iTreeItemiExamples.Selected                 += TreeViewItemExamples_Selected;
 
                 iTreeItemiProgrammingLanguage.Items.Add(iTreeItemiProject);
-                iTreeItemiProgrammingLanguage.Items.Add(iTreeItemiExamples);
+                iTreeItemiProgrammingLanguage.Items.Add(iTreeItemiExamples);                
 
                 _TreeView.Items.Add(iTreeItemiProgrammingLanguage);
-                
             }
         }
 

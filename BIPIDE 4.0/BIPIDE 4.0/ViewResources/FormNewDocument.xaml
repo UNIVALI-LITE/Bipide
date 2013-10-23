@@ -29,13 +29,22 @@
     </Window.Effect>
 
     <Grid Width="600"  
-          Height="500" 
-          Background="White">
+          Height="500" >
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FFCFCDFB" Offset="1"/>
+                <GradientStop Color="White"/>
+                <GradientStop Color="#FFCECCF3" Offset="0.466"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
+        <Label Content="{StaticResource ResourceKey=NDFormTitle}" 
+               Grid.Row="0"/>
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto" />
@@ -45,7 +54,7 @@
             <TreeView x:Name="_TreeView"
                       Grid.Column="0" 
                       HorizontalAlignment="Stretch" 
-                      VerticalAlignment="Stretch">
+                      VerticalAlignment="Stretch" Margin="8,10,10,0">
             </TreeView>
 
             <GridSplitter Grid.Column="1"
@@ -58,8 +67,9 @@
                       Grid.Column="2" 
                       HorizontalAlignment="Stretch" 
                       VerticalAlignment="Stretch"
-                      DisplayMemberPath="Name"/>
-            
+                      DisplayMemberPath="Name" Margin="10,30,10,0"/>
+            <Label x:Name="_LabelDescription" Content="" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="289" Height="30" FontWeight="Bold"/>
+
         </Grid>
         <Label Content="{DynamicResource ResourceKey=NDLabelNewName}" 
                HorizontalAlignment="Left"
@@ -67,13 +77,13 @@
                Margin="10,0,0,10" 
                Width="64" 
                Height="25" 
-               Grid.Row="1"/>
+               Grid.Row="2"/>
         <TextBox x:Name="_TextBoxFile"
                  Margin="79,0,169,10" 
                  TextWrapping="Wrap" 
                  Height="22" 
                  VerticalAlignment="Bottom"
-                 Grid.Row="1"/>
+                 Grid.Row="2"/>
         <Button x:Name="_ButtonAdd"
                 Content="{DynamicResource ResourceKey=NDButtonAdd}" 
                 HorizontalAlignment="Right" 
@@ -81,7 +91,7 @@
                 Margin="0,0,90,10" 
                 Width="74" 
                 Click="_ButtonAdd_Click"
-                Grid.Row="1" Height="22" RenderTransformOrigin="0.5,0.5"/>
+                Grid.Row="2" Height="22" RenderTransformOrigin="0.5,0.5"/>
         <Button x:Name="_ButtonCancel"
                 Content="{DynamicResource ResourceKey=NDButtonCancel}" 
                 Margin="0,0,10,10" 
@@ -90,6 +100,6 @@
                 Width="75" 
                 Height="22" 
                 Click="_ButtonCancel_Click"
-                Grid.Row="1"/>
+                Grid.Row="2"/>
     </Grid>
 </Window>
