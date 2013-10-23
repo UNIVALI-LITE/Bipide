@@ -29,6 +29,12 @@ namespace BIPIDE_4._0.UIResources
     /// </summary>
     public partial class UCProgrammingDocument : UserControl
     {
+        private string _ProgrammingLanguage;
+        public string ProgrammingLanguage
+        {
+            get { return _ProgrammingLanguage; }
+        }
+
         private RibbonContextualTabGroup _SimulationContext;
         public RibbonContextualTabGroup SimulationContext
         {
@@ -58,10 +64,12 @@ namespace BIPIDE_4._0.UIResources
             }
         }
 
-        public UCProgrammingDocument()
+        public UCProgrammingDocument(string pHighlightFile, string pProgrammingLanguage)
         {
             InitializeComponent();
             _Simulator.setProcessador( (int) _SimulationSelectedProcessor );
+            _ProgrammingLanguage                    = pProgrammingLanguage;
+            _LayoutAnchorableSourceCodeDebug.Title  = pProgrammingLanguage;
 
             #region Highlight Set
 
@@ -75,7 +83,7 @@ namespace BIPIDE_4._0.UIResources
             }
 
             // Load Programming Language Highlight
-            using (StreamReader iStream = new StreamReader(AppDomain.CurrentDomain.BaseDirectory.ToString() + "ProgrammingLanguagesResources\\CResources\\HighlightResources\\C.xshd"))
+            using (StreamReader iStream = new StreamReader(AppDomain.CurrentDomain.BaseDirectory.ToString() + pHighlightFile))
             {
                 using (XmlTextReader iXmlTextReader = new XmlTextReader(iStream))
                 {
@@ -84,7 +92,7 @@ namespace BIPIDE_4._0.UIResources
             }
 
             // Load Programming Language Highlight
-            using (StreamReader iStream = new StreamReader(AppDomain.CurrentDomain.BaseDirectory.ToString() + "ProgrammingLanguagesResources\\CResources\\HighlightResources\\C.xshd"))
+            using (StreamReader iStream = new StreamReader(AppDomain.CurrentDomain.BaseDirectory.ToString() + pHighlightFile))
             {
                 using (XmlTextReader iXmlTextReader = new XmlTextReader(iStream))
                 {
@@ -92,14 +100,11 @@ namespace BIPIDE_4._0.UIResources
                 }
             }
 
-            XBackgroundRenderer iBackgroundRendererASM = new XBackgroundRenderer(_TextEditorASM);
-            XBackgroundRenderer iBackgroundRendererSourceCode = new XBackgroundRenderer(_TextEditorSourceCodeDebug);
+            XBackgroundRenderer iBackgroundRendererASM          = new XBackgroundRenderer(_TextEditorASM);
+            XBackgroundRenderer iBackgroundRendererSourceCode   = new XBackgroundRenderer(_TextEditorSourceCodeDebug);
 
             _TextEditorASM.TextArea.TextView.BackgroundRenderers.Add(iBackgroundRendererASM);
             _TextEditorSourceCodeDebug.TextArea.TextView.BackgroundRenderers.Add(iBackgroundRendererSourceCode);
-
-
-            _TextEditorSourceCode.Text = "/*\r\n * Programa Portugol\r\n */\r\nprograma\r\n{\r\n\tfuncao inicio()\r\n\t{\r\n\t\t// TODO\r\n\t}\r\n}\r\n";
 
             #endregion Highlight Set
 

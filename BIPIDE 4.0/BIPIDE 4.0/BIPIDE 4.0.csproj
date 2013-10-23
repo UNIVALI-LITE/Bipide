@@ -100,9 +100,11 @@
     <Compile Include="ControlResources\Instrucoes.cs" />
     <Compile Include="ControlResources\LabelCurrentScope.cs" />
     <Compile Include="ControlResources\Otimizacao.cs" />
+    <Compile Include="ControlResources\PreProcessor.cs" />
     <Compile Include="ControlResources\SerializableResources\LanguageMapping.cs" />
     <Compile Include="ControlResources\Restricoes.cs" />
     <Compile Include="ControlResources\SimulationControl.cs" />
+    <Compile Include="ControlResources\TokenParser.cs" />
     <Compile Include="ControlResources\Tradutor.cs" />
     <Compile Include="ControlResources\SerializableResources\TreeItem.cs" />
     <Compile Include="ControlResources\VariavelFuncao.cs" />
@@ -215,9 +217,6 @@
   <ItemGroup>
     <Resource Include="ImageResources\accept.png" />
     <Resource Include="ImageResources\alert.gif" />
-    <Resource Include="ImageResources\black.png" />
-    <Resource Include="ImageResources\blue.png" />
-    <Resource Include="ImageResources\blue1.png" />
     <Resource Include="ImageResources\compiler16.png" />
     <Resource Include="ImageResources\compiler32.png" />
     <Resource Include="ImageResources\configuration16.png" />
@@ -260,7 +259,6 @@
     <Resource Include="ImageResources\simulator16.png" />
     <Resource Include="ImageResources\simulator32.png" />
     <Resource Include="ImageResources\speed16.png" />
-    <Resource Include="ImageResources\splash.jpg" />
     <Resource Include="ImageResources\splashInfo.jpg" />
     <Resource Include="ImageResources\statistics16.png" />
     <Resource Include="ImageResources\statistics32.png" />
@@ -551,7 +549,7 @@
     <Resource Include="LanguageResources\FlagIcons\zm.png" />
     <Resource Include="LanguageResources\FlagIcons\zw.png" />
     <Resource Include="LanguageResources\LanguageMapping.xml" />
-    <Resource Include="Foots.png" />
+    <Resource Include="ImageResources\sourceCode.png" />
     <Content Include="ProgrammingLanguagesResources\antlr-runtime-3.4.jar" />
     <Content Include="ProgrammingLanguagesResources\CResources\CompilerResources\c-integracao.dll" />
     <Content Include="ProgrammingLanguagesResources\CResources\CompilerResources\c-integracao.jar" />

@@ -38,7 +38,8 @@
                         <AvalonDockLayout:LayoutRoot.RightSide>
                             <AvalonDockLayout:LayoutAnchorSide>
                                 <AvalonDockLayout:LayoutAnchorGroup>
-                                    <AvalonDockLayout:LayoutAnchorable IconSource="/BIPIDE 4.0;component/ImageResources/new16.png"
+                                    <AvalonDockLayout:LayoutAnchorable x:Name="_LayoutAnchorableSourceCodeDebug"
+                                                                       IconSource="/BIPIDE 4.0;component/ImageResources/new16.png"
                                                                        Title="Portugol"
                                                                        CanClose="False"
                                                                        CanHide="False"

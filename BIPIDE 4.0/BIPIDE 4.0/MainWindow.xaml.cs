@@ -210,23 +210,25 @@ namespace BIPIDE_4._0
 
         private void _MenuItemNew_Click(object sender, RoutedEventArgs e)
         {
-            FormNewDocument iFormNewDocument = new FormNewDocument();
-            iFormNewDocument.ShowDialog();
+            FormNewDocument iFormNewDocument = new FormNewDocument(Resources);
+            if (iFormNewDocument.ShowDialog() == true)
+            {
 
-            UCProgrammingDocument iProgrammingDocument          = new UCProgrammingDocument();
-            iProgrammingDocument.SimulationContext              = _ContextualTabGroupSimulation;
-            iProgrammingDocument.SimulationTab                  = _TabSimulation;
-            iProgrammingDocument.RibbonMain                     = _RibbonMain;
-            iProgrammingDocument._TabItemProgramming.Header     = (String)FindResource("TabProgramming");
-            iProgrammingDocument._TabItemSimulation.Header      = (String)FindResource("TabSimulation");
-            iProgrammingDocument.SimulationSelectedProcessor    = SimulationControl.Processors.psBipIV;
+                UCProgrammingDocument iProgrammingDocument      = new UCProgrammingDocument(iFormNewDocument.HighlightFile, iFormNewDocument.ProgrammingLanguage);
+                iProgrammingDocument.SimulationContext          = _ContextualTabGroupSimulation;
+                iProgrammingDocument.SimulationTab              = _TabSimulation;
+                iProgrammingDocument.RibbonMain                 = _RibbonMain;
+                iProgrammingDocument._TabItemProgramming.Header = (String)FindResource("TabProgramming");
+                iProgrammingDocument._TabItemSimulation.Header  = (String)FindResource("TabSimulation");
+                iProgrammingDocument.SimulationSelectedProcessor = SimulationControl.Processors.psBipIV;
 
-            LayoutDocument iLayoutDocument  = new LayoutDocument();
-            iLayoutDocument.Title           = "Documento";
-            iLayoutDocument.Content         = iProgrammingDocument;
-            iLayoutDocument.IsSelectedChanged += iProgrammingDocument_IsSelectedChanged;
+                LayoutDocument iLayoutDocument = new LayoutDocument();
+                iLayoutDocument.Title = iFormNewDocument.ProjectName;
+                iLayoutDocument.Content = iProgrammingDocument;
+                iLayoutDocument.IsSelectedChanged += iProgrammingDocument_IsSelectedChanged;
 
-            _DocumentPane.Children.Add(iLayoutDocument);
+                _DocumentPane.Children.Add(iLayoutDocument);
+            }
         }
 
         void iProgrammingDocument_IsSelectedChanged(object sender, EventArgs e)
