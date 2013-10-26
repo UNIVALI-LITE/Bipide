@@ -59,13 +59,13 @@
 
     <!-- New Document Window -->
     <system:String x:Key="NDFormTitle">New Document</system:String>
-    <system:String x:Key="NDLabelNewName">Name:</system:String>
-    <system:String x:Key="NDButtonAdd">Add</system:String>
+    <system:String x:Key="NDButtonCreate">Create</system:String>
+    <system:String x:Key="NDButtonOpen">Open</system:String>
     <system:String x:Key="NDButtonCancel">Cancel</system:String>
-    <system:String x:Key="NDTreeViewItemProject">Project</system:String>
+    <system:String x:Key="NDTreeViewItemModel">Model</system:String>
     <system:String x:Key="NDTreeViewItemExamples">Examples</system:String>
-    <system:String x:Key="NDListItemNewDocument">New document</system:String>
-    <system:String x:Key="NDListItemEmptyDocument">Empty document</system:String>
+    <system:String x:Key="NDListItemNewDocument">New model</system:String>
+    <system:String x:Key="NDListItemEmptyDocument">Empty model</system:String>
     <system:String x:Key="NDDefaultFileName">NewFile</system:String>
 
 </ResourceDictionary>

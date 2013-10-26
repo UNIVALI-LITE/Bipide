@@ -38,10 +38,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="c-integracao, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>ProgrammingLanguagesResources\CResources\CompilerResources\c-integracao.dll</HintPath>
-    </Reference>
     <Reference Include="Classes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Resources\Classes.dll</HintPath>
@@ -56,11 +52,7 @@
     </Reference>
     <Reference Include="portugol-integracao, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>ProgrammingLanguagesResources\PortugolResources\CompilerResources\portugol-integracao.dll</HintPath>
-    </Reference>
-    <Reference Include="portugol-integracao-csharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>ProgrammingLanguagesResources\PortugolResources\CompilerResources\portugol-integracao-csharp.dll</HintPath>
+      <HintPath>ProgrammingLanguagesResources\portugol-integracao.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -132,11 +124,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LanguageResources\Tips\English.xaml">
+    <Page Include="LanguageResources\Tipes\English.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="LanguageResources\Tips\Portuguese.xaml">
+    <Page Include="LanguageResources\Tipes\Portuguese.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -552,14 +544,17 @@
     <Resource Include="LanguageResources\LanguageMapping.xml" />
     <Resource Include="ImageResources\sourceCode.png" />
     <Content Include="ProgrammingLanguagesResources\antlr-runtime-3.4.jar" />
-    <Content Include="ProgrammingLanguagesResources\CResources\CompilerResources\c-integracao.dll" />
-    <Content Include="ProgrammingLanguagesResources\CResources\CompilerResources\c-integracao.jar" />
     <Content Include="ProgrammingLanguagesResources\CResources\CompilerResources\c-nucleo.jar" />
     <Content Include="ProgrammingLanguagesResources\IIOPChannel.dll" />
+    <Content Include="ProgrammingLanguagesResources\PortugolResources\CompilerResources\antlr-runtime-3.4.jar" />
+    <Content Include="ProgrammingLanguagesResources\PortugolResources\CompilerResources\c-nucleo.jar" />
+    <Content Include="ProgrammingLanguagesResources\PortugolResources\CompilerResources\IIOPChannel.dll" />
+    <Content Include="ProgrammingLanguagesResources\PortugolResources\CompilerResources\portugol-integracao-csharp.dll" />
     <Content Include="ProgrammingLanguagesResources\PortugolResources\CompilerResources\portugol-integracao.dll" />
     <Content Include="ProgrammingLanguagesResources\PortugolResources\CompilerResources\portugol-integracao.jar" />
     <Content Include="ProgrammingLanguagesResources\PortugolResources\CompilerResources\portugol-nucleo.jar" />
     <Resource Include="ProgrammingLanguagesResources\ProgrammingLanguagesMapping.xml" />
+    <Content Include="ProgrammingLanguagesResources\PortugolResources\CompilerResources\portugol-relator-erros.jar" />
     <Content Include="Resources\BIP.dll" />
     <Content Include="Resources\Classes.dll" />
     <Content Include="Resources\ICSharpCode.AvalonEdit.dll" />

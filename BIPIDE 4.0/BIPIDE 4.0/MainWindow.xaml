@@ -18,7 +18,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="LanguageResources\Component\Portuguese.xaml"/>
-                <ResourceDictionary Source="LanguageResources\Tips\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\Tipes\Portuguese.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -367,19 +367,27 @@
                                     ToolTipFooterImageSource="ImageResources/help32.png"
                                     ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
                                     KeyTip="SD">
-                        
+
                         <RibbonGallery x:Name="_GallerySpeedSimulation"
+                                       SelectionChanged="_GallerySpeedPractice_SelectionChanged"
                                        SelectedValue="{DynamicResource ResourceKey=GalleryItemNormal}"
                                        SelectedValuePath="Content">
-                            
-                            <RibbonGalleryCategory>
-                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemVerySlow}"/>
-                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemSlow}"/>
-                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemNormal}"/>
-                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemAccelerated}"/>
-                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemFast}"/>
-                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemVeryFast}"/>
-                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemUltraFast}"/>
+
+                            <RibbonGalleryCategory >
+                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemVerySlow}" 
+                                                   Tag="1" />
+                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemSlow}" 
+                                                   Tag="2"/>
+                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemNormal}"
+                                                   Tag="3"/>
+                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemAccelerated}"
+                                                   Tag="4"/>
+                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemFast}" 
+                                                   Tag="5"/>
+                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemVeryFast}"
+                                                   Tag="6"/>
+                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemUltraFast}" 
+                                                   Tag="7"/>
                             </RibbonGalleryCategory>
                             
                         </RibbonGallery>
@@ -594,16 +602,24 @@
 
                         <RibbonGallery x:Name="_GallerySpeedPractice"
                                        SelectedValue="{DynamicResource ResourceKey=GalleryItemNormal}"
+                                       SelectionChanged="_GallerySpeedPractice_SelectionChanged"
                                        SelectedValuePath="Content">
 
                             <RibbonGalleryCategory>
-                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemVerySlow}"/>
-                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemSlow}"/>
-                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemNormal}"/>
-                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemAccelerated}"/>
-                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemFast}"/>
-                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemVeryFast}"/>
-                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemUltraFast}"/>
+                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemVerySlow}" 
+                                                   Tag="1" />
+                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemSlow}" 
+                                                   Tag="2"/>
+                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemNormal}"
+                                                   Tag="3"/>
+                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemAccelerated}"
+                                                   Tag="4"/>
+                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemFast}" 
+                                                   Tag="5"/>
+                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemVeryFast}"
+                                                   Tag="6"/>
+                                <RibbonGalleryItem Content="{DynamicResource ResourceKey=GalleryItemUltraFast}" 
+                                                   Tag="7"/>
                             </RibbonGalleryCategory>
 
                         </RibbonGallery>

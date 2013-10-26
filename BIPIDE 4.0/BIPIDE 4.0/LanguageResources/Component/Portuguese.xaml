@@ -59,13 +59,13 @@
 
     <!-- New Document Window -->
     <system:String x:Key="NDFormTitle">Novo Documento</system:String>
-    <system:String x:Key="NDLabelNewName">Nome:</system:String>
-    <system:String x:Key="NDButtonAdd">Adicionar</system:String>
+    <system:String x:Key="NDButtonCreate">Criar</system:String>
+    <system:String x:Key="NDButtonOpen">Abrir</system:String>
     <system:String x:Key="NDButtonCancel">Cancelar</system:String>
-    <system:String x:Key="NDTreeViewItemProject">Projeto</system:String>
+    <system:String x:Key="NDTreeViewItemModel">Modelo</system:String>
     <system:String x:Key="NDTreeViewItemExamples">Exemplos</system:String>
-    <system:String x:Key="NDListItemNewDocument">Novo documento</system:String>
-    <system:String x:Key="NDListItemEmptyDocument">Documento vazio</system:String>
+    <system:String x:Key="NDListItemNewDocument">Novo modelo</system:String>
+    <system:String x:Key="NDListItemEmptyDocument">Modelo vazio</system:String>
     <system:String x:Key="NDDefaultFileName">NovoArquivo</system:String>
     
 </ResourceDictionary>

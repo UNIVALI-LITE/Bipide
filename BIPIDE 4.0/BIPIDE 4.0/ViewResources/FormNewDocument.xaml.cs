@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,44 +24,56 @@ namespace BIPIDE_4._0.ViewResources
     /// </summary>
     public partial class FormNewDocument : Window
     {
+        private static int _DocumentCounter = 1;
+
         private ArrayList _ProgrammingLanguages;
 
+        private string _ProjectName;
         public string ProjectName
         {
-            get { return _TextBoxFile.Text; }
+            get { return _ProjectName; }
         }
 
         private string _HighlightFile;
-
         public string HighlightFile
         {
             get { return _HighlightFile; }
         }
 
         private string _ProgrammingLanguage;
-
         public string ProgrammingLanguage
         {
             get { return _ProgrammingLanguage; }
         }
 
-        private Boolean _IsNewProject = true;
+        private string _Content;
+        public string Content
+        {
+            get { return _Content; }
+        }
 
+        private Boolean _IsNewProject = false;
         public Boolean IsNewProject
         {
             get { return _IsNewProject; }
         }
 
+        private Boolean _IsFile = false;
+        public Boolean IsFile
+        {
+            get { return _IsFile; }
+        }
+
         public FormNewDocument(ResourceDictionary pResource)
         {
             Resources = pResource;
-            XmlSerializer SerializerObj = new XmlSerializer(typeof(ArrayList), new Type[] { typeof(ProgrammingLanguageMapping), typeof(TreeItem) });
 
+            XmlSerializer SerializerObj = new XmlSerializer(typeof(ArrayList), new Type[] { typeof(ProgrammingLanguageMapping), typeof(TreeItem) });
             XmlReader Reader = XmlReader.Create(AppDomain.CurrentDomain.BaseDirectory + @"ProgrammingLanguagesResources\ProgrammingLanguagesMapping.xml");
             _ProgrammingLanguages = (ArrayList)SerializerObj.Deserialize(Reader);
             
             InitializeComponent();
-            _TextBoxFile.Text = (String)FindResource("NDDefaultFileName");
+            _ProjectName = (String)FindResource("NDDefaultFileName") + Convert.ToString(FormNewDocument._DocumentCounter);
             GenerateTreeView();
         }
 
@@ -72,12 +85,34 @@ namespace BIPIDE_4._0.ViewResources
 
         private void _ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
+            if (_ListView.SelectedItem != null)
+                _Content = (_ListView.SelectedItem as TreeItem).UriString;
+            else
+                _Content = string.Empty;
+
+            if (File.Exists(_Content))
+            {
+                _IsFile = true;
+                ChangeFileName((_ListView.SelectedItem as TreeItem).Name);
+            }
+            else if (_Content != string.Empty)
+            {
+                _IsNewProject = true;
+                FormNewDocument._DocumentCounter++;
+            }
+            else
+            {
+                FormNewDocument._DocumentCounter++;
+            }
+
             this.DialogResult = true;
             Close();
         }
 
         void TreeViewItemProject_Selected(object sender, RoutedEventArgs e)
         {
+            _ButtonAdd.Content = (String)FindResource("NDButtonCreate");
+
             string iNewFileContent = string.Empty;
             TreeViewItem iTreeViewItem = e.OriginalSource as TreeViewItem;
             if (iTreeViewItem != null)
@@ -97,6 +132,8 @@ namespace BIPIDE_4._0.ViewResources
 
         void TreeViewItemExamples_Selected(object sender, RoutedEventArgs e)
         {
+            _ButtonAdd.Content = (String)FindResource("NDButtonOpen");
+
             TreeViewItem iTreeViewItem = e.OriginalSource as TreeViewItem;
             if (iTreeViewItem != null)
             {
@@ -127,18 +164,24 @@ namespace BIPIDE_4._0.ViewResources
 
         private void ChangeFileNameExtension(string iExtension)
         {
-            if (_TextBoxFile.Text != String.Empty)
+            if (_ProjectName != String.Empty)
             {
-                string[] iFileName = _TextBoxFile.Text.Split('.');
+                string[] iFileName = _ProjectName.Split('.');
                 if (iFileName.Length > 1)
-                    _TextBoxFile.Text = _TextBoxFile.Text.Replace(iFileName[iFileName.Length - 1], iExtension);
+                    _ProjectName = _ProjectName.Replace(iFileName[iFileName.Length - 1], iExtension);
                 else
-                    _TextBoxFile.Text = _TextBoxFile.Text + "." + iExtension;
+                    _ProjectName = _ProjectName + "." + iExtension;
             }
             else
             {
-                _TextBoxFile.Text = (String)FindResource("NDDefaultFileName") + "." + iExtension;
+                _ProjectName = (String)FindResource("NDDefaultFileName") + Convert.ToString(FormNewDocument._DocumentCounter) + "." + iExtension;
             }
+        }
+
+        private void ChangeFileName(string iName)
+        {
+            string[] iFileName = _ProjectName.Split('.');
+            _ProjectName = iName + "." + iFileName[iFileName.Length - 1];
         }
 
         private void GenerateTreeView()
@@ -151,9 +194,9 @@ namespace BIPIDE_4._0.ViewResources
 
                 if (_TreeView.Items.Count == 0)
                     iTreeItemiProgrammingLanguage.IsSelected = true;
-                  
 
-                TreeViewItem iTreeItemiProject              = GetTreeView((String)FindResource("NDTreeViewItemProject"), "new16.png");
+
+                TreeViewItem iTreeItemiProject              = GetTreeView((String)FindResource("NDTreeViewItemModel"), "new16.png");
                 iTreeItemiProject.Tag                       = iProgrammingLanguage.NewProject;
                 iTreeItemiProject.Selected                  += TreeViewItemProject_Selected; 
 

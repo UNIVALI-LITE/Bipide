@@ -2,7 +2,6 @@
 using BIPIDE_4._0.ControlResources;
 using BIPIDE_4._0.UIResources;
 using BIPIDE_4._0.ViewResources;
-using br.univali.c.integracao;
 using br.univali.portugol.integracao;
 using br.univali.portugol.integracao.analise;
 using br.univali.portugol.integracao.mensagens;
@@ -10,6 +9,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -161,7 +161,7 @@ namespace BIPIDE_4._0
                     pSelectedDocument._Simulator.SetRotulosPrograma(iAssembly.GetListaRotulos());
 
                     pSelectedDocument._AssemblySource       = iAssembly;
-                    pSelectedDocument.AssemblyText          = iAssembly.GetCodigoStringASM();
+                    pSelectedDocument.AssemblyText          = iAssembly.GetCodigoStringASM().ToString();
                     pSelectedDocument.SourceCodeDebugText   = pSelectedDocument._TextEditorSourceCode.Text;
                 }
 
@@ -233,21 +233,27 @@ namespace BIPIDE_4._0
             FormNewDocument iFormNewDocument = new FormNewDocument(Resources);
             if (iFormNewDocument.ShowDialog() == true)
             {
+                UCProgrammingDocument iProgrammingDocument          = new UCProgrammingDocument(iFormNewDocument.HighlightFile, iFormNewDocument.ProgrammingLanguage);
+                iProgrammingDocument.SimulationContext              = _ContextualTabGroupSimulation;
+                iProgrammingDocument.SimulationTab                  = _TabSimulation;
+                iProgrammingDocument.RibbonMain                     = _RibbonMain;
+                iProgrammingDocument._TabItemProgramming.Header     = (String)FindResource("TabProgramming");
+                iProgrammingDocument._TabItemSimulation.Header      = (String)FindResource("TabSimulation");
+                iProgrammingDocument.SimulationSelectedProcessor    = SimulationControl.Processors.psBipIV;
 
-                UCProgrammingDocument iProgrammingDocument      = new UCProgrammingDocument(iFormNewDocument.HighlightFile, iFormNewDocument.ProgrammingLanguage);
-                iProgrammingDocument.SimulationContext          = _ContextualTabGroupSimulation;
-                iProgrammingDocument.SimulationTab              = _TabSimulation;
-                iProgrammingDocument.RibbonMain                 = _RibbonMain;
-                iProgrammingDocument._TabItemProgramming.Header = (String)FindResource("TabProgramming");
-                iProgrammingDocument._TabItemSimulation.Header  = (String)FindResource("TabSimulation");
-                iProgrammingDocument.SimulationSelectedProcessor = SimulationControl.Processors.psBipIV;
+                if (iFormNewDocument.IsFile)
+                    iProgrammingDocument._TextEditorSourceCode.Text = File.ReadAllText(iFormNewDocument.Content);
+                else if (iFormNewDocument.IsNewProject)
+                    iProgrammingDocument._TextEditorSourceCode.Text = iFormNewDocument.Content;
 
-                LayoutDocument iLayoutDocument = new LayoutDocument();
-                iLayoutDocument.Title = iFormNewDocument.ProjectName;
-                iLayoutDocument.Content = iProgrammingDocument;
+                LayoutDocument iLayoutDocument  = new LayoutDocument();
+                iLayoutDocument.Title           = iFormNewDocument.ProjectName;
+                iLayoutDocument.Content         = iProgrammingDocument;
                 iLayoutDocument.IsSelectedChanged += iProgrammingDocument_IsSelectedChanged;
 
                 _DocumentPane.Children.Add(iLayoutDocument);
+
+                iLayoutDocument.IsActive = true;
             }
         }
 
@@ -402,7 +408,19 @@ namespace BIPIDE_4._0
             iLayoutDocument.Content = iHelp;
 
             if (_DocumentPane.Children.Count(x => x.Content.GetType() == typeof(UCHelpFundamentals)) == 0)
+            {
                 _DocumentPane.Children.Add(iLayoutDocument);
+                iLayoutDocument.IsActive = true;
+            }
+            else
+            {
+                foreach (LayoutDocument iDocument in _DocumentPane.Children)
+                {
+                    if (iDocument.Content.GetType() == typeof(UCHelpFundamentals))
+                        iDocument.IsActive = true;
+                }
+            }
+
         }
 
         private void _ButtonPractice_Click(object sender, RoutedEventArgs e)
@@ -414,11 +432,22 @@ namespace BIPIDE_4._0
             iLayoutDocument.Title   = (String)FindResource("ButtonPractice");
             iLayoutDocument.Content = iHelpPractice;
             iLayoutDocument.IsSelectedChanged += iHelpPractice_IsSelectedChanged;
-            
+
 
             if (_DocumentPane.Children.Count(x => x.Content.GetType() == typeof(UCHelpPractice)) == 0)
+            {
                 _DocumentPane.Children.Add(iLayoutDocument);
-
+                iLayoutDocument.IsActive = true;
+            }
+            else
+            {
+                foreach (LayoutDocument iDocument in _DocumentPane.Children)
+                {
+                    if (iDocument.Content.GetType() == typeof(UCHelpPractice))
+                        iDocument.IsActive = true;
+                }
+            }
+            
             _RibbonMain.SelectedItem = _TabPractice;
         }
 
@@ -713,6 +742,27 @@ namespace BIPIDE_4._0
             LoadCorbaConnection(iSplashScreen);
 
             iSplashScreen.Close();
+        }
+
+        private void _GallerySpeedPractice_SelectionChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if ((_DocumentPane.SelectedContent as LayoutDocument).Content.GetType() == typeof(UCProgrammingDocument))
+            {
+
+                UCProgrammingDocument iSelectedDocument =
+                    ((_DocumentPane.SelectedContent as LayoutDocument).Content as UCProgrammingDocument);
+
+                iSelectedDocument._Simulator.Velocidade(Convert.ToInt32(((sender as RibbonGallery).SelectedItem as RibbonGalleryItem).Tag));
+            }
+
+            if ((_DocumentPane.SelectedContent as LayoutDocument).Content.GetType() == typeof(UCHelpPractice))
+            {
+
+                UCHelpPractice iSelectedDocument =
+                    ((_DocumentPane.SelectedContent as LayoutDocument).Content as UCHelpPractice);
+
+                iSelectedDocument._Simulator.Velocidade(Convert.ToInt32(((sender as RibbonGallery).SelectedItem as RibbonGalleryItem).Tag));
+            }
         }
     }
 
