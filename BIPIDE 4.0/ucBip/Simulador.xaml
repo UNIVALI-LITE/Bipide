@@ -659,12 +659,12 @@
 			<Storyboard x:Key="PC+1">
 				<DoubleAnimationUsingPath BeginTime="00:00:00" Duration="00:00:05.4000000" Storyboard.TargetName="rPC" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Source="X">
 					<DoubleAnimationUsingPath.PathGeometry>
-						<PathGeometry Figures="M-0.2915,0.2285 L-1.2915,33.7285 93.545093,33.362023 94.72464,-121.15857 67.59507,-119.97902 65.235977,-95.208547 44.00414,-78.694895 C44.00414,-78.694895 0.3609186,-32.692581 0.3609186,-32.692581 L-0.81862791,-5.5630116"/>
+						<PathGeometry Figures="M-1.2508333,0.22883333 L-1.2508333,18.3955 94.0825,18.3955 92.3325,-149.4795 67.4575,-149.6045 67.415833,-128.27117 44.915833,-98.937833 C44.915833,-98.937833 44.5825,-88.1045 44.5825,-88.1045 L-1.9175,-7.1045"/>
 					</DoubleAnimationUsingPath.PathGeometry>
 				</DoubleAnimationUsingPath>
 				<DoubleAnimationUsingPath BeginTime="00:00:00" Duration="00:00:05.4000000" Storyboard.TargetName="rPC" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Source="Y">
 					<DoubleAnimationUsingPath.PathGeometry>
-						<PathGeometry Figures="M-0.2915,0.2285 L-1.2915,33.7285 93.545093,33.362023 94.72464,-121.15857 67.59507,-119.97902 65.235977,-95.208547 44.00414,-78.694895 C44.00414,-78.694895 0.3609186,-32.692581 0.3609186,-32.692581 L-0.81862791,-5.5630116"/>
+						<PathGeometry Figures="M-1.2508333,0.22883333 L-1.2508333,18.3955 94.0825,18.3955 92.3325,-149.4795 67.4575,-149.6045 67.415833,-128.27117 44.915833,-98.937833 C44.915833,-98.937833 44.5825,-88.1045 44.5825,-88.1045 L-1.9175,-7.1045"/>
 					</DoubleAnimationUsingPath.PathGeometry>
 				</DoubleAnimationUsingPath>
 				<DoubleAnimationUsingPath BeginTime="00:00:00" Duration="00:00:04.5000000" Storyboard.TargetName="rPC1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Source="X">
@@ -679,12 +679,12 @@
 				</DoubleAnimationUsingPath>
 				<DoubleAnimationUsingPath BeginTime="00:00:04.5000000" Duration="00:00:00.9000000" Storyboard.TargetName="rPC_in" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Source="X">
 					<DoubleAnimationUsingPath.PathGeometry>
-						<PathGeometry Figures="M-0.1475,-0.0365 L-0.56631395,31.156174 -22.977698,37.053907 -45.389081,45.310733 -46.568628,81.876674"/>
+						<PathGeometry Figures="M-0.62816667,-0.052333333 L-0.79483333,35.614333 -30.044833,35.947667 -46.8365,52.656 -46.7115,109.031"/>
 					</DoubleAnimationUsingPath.PathGeometry>
 				</DoubleAnimationUsingPath>
 				<DoubleAnimationUsingPath BeginTime="00:00:04.5000000" Duration="00:00:00.9000000" Storyboard.TargetName="rPC_in" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Source="Y">
 					<DoubleAnimationUsingPath.PathGeometry>
-						<PathGeometry Figures="M-0.1475,-0.0365 L-0.56631395,31.156174 -22.977698,37.053907 -45.389081,45.310733 -46.568628,81.876674"/>
+						<PathGeometry Figures="M-0.62816667,-0.052333333 L-0.79483333,35.614333 -30.044833,35.947667 -46.8365,52.656 -46.7115,109.031"/>
 					</DoubleAnimationUsingPath.PathGeometry>
 				</DoubleAnimationUsingPath>
 				<ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rPC_in" Storyboard.TargetProperty="(UIElement.Visibility)">
@@ -693,6 +693,7 @@
 				</ObjectAnimationUsingKeyFrames>
 				<ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rPC" Storyboard.TargetProperty="(UIElement.Visibility)">
 					<DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+					<DiscreteObjectKeyFrame KeyTime="0:0:4.1" Value="{x:Static Visibility.Hidden}"/>
 					<DiscreteObjectKeyFrame KeyTime="0:0:4.3" Value="{x:Static Visibility.Hidden}"/>
 				</ObjectAnimationUsingKeyFrames>
 				<ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rPC1" Storyboard.TargetProperty="(UIElement.Visibility)">
@@ -876,12 +877,12 @@
 			<Storyboard x:Key="PC_operand">
 				<DoubleAnimationUsingPath BeginTime="00:00:00" Duration="00:00:11" Storyboard.TargetName="rPC_operand" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Source="X">
 					<DoubleAnimationUsingPath.PathGeometry>
-						<PathGeometry Figures="M-0.338,-1.3485 L-2.1957674,-78.027814 128.7339,-80.386907 129.99933,-275.51517 251.33267,-275.51517 251.162,-226.8485 -181.48684,-227.83022 -182.66638,-149.98015 -146.10044,-147.62106 -146.10044,-134.64605 -149.834,-124.8485 -149.75467,-90.0985"/>
+						<PathGeometry Figures="M-0.045,14.5915 L0.28833333,-66.741833 130.28833,-67.075167 130.62167,-264.4085 251.62167,-264.74183 251.62167,-215.74183 -181.37833,-215.74183 -181.37833,-135.74183 -144.37833,-135.07517 -143.37833,-121.07517 -150.37833,-107.74183 -150.37833,-54.075167"/>
 					</DoubleAnimationUsingPath.PathGeometry>
 				</DoubleAnimationUsingPath>
 				<DoubleAnimationUsingPath BeginTime="00:00:00" Duration="00:00:11" Storyboard.TargetName="rPC_operand" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Source="Y">
 					<DoubleAnimationUsingPath.PathGeometry>
-						<PathGeometry Figures="M-0.338,-1.3485 L-2.1957674,-78.027814 128.7339,-80.386907 129.99933,-275.51517 251.33267,-275.51517 251.162,-226.8485 -181.48684,-227.83022 -182.66638,-149.98015 -146.10044,-147.62106 -146.10044,-134.64605 -149.834,-124.8485 -149.75467,-90.0985"/>
+						<PathGeometry Figures="M-0.045,14.5915 L0.28833333,-66.741833 130.28833,-67.075167 130.62167,-264.4085 251.62167,-264.74183 251.62167,-215.74183 -181.37833,-215.74183 -181.37833,-135.74183 -144.37833,-135.07517 -143.37833,-121.07517 -150.37833,-107.74183 -150.37833,-54.075167"/>
 					</DoubleAnimationUsingPath.PathGeometry>
 				</DoubleAnimationUsingPath>
 				<ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rPC_operand" Storyboard.TargetProperty="(UIElement.Visibility)">
@@ -1006,16 +1007,18 @@
 				</DoubleAnimationUsingPath>
 				<DoubleAnimationUsingPath BeginTime="00:00:00" Duration="00:00:11.7000000" Storyboard.TargetName="rPC" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Source="X">
 					<DoubleAnimationUsingPath.PathGeometry>
-						<PathGeometry Figures="M-0.334,0.8095 L-0.834,37.3095 94.72464,36.900663 92.365547,-118.79948 66.415523,-117.61993 67.59507,-92.849453 45.183686,-82.233535 z"/>
+						<PathGeometry Figures="M-1.2925,0.1455 L-1.0425,18.2705 94.249167,18.228833 92.249167,-149.43783 67.915833,-149.1045 67.915833,-128.43783 46.5825,-99.1045 z"/>
 					</DoubleAnimationUsingPath.PathGeometry>
 				</DoubleAnimationUsingPath>
 				<DoubleAnimationUsingPath BeginTime="00:00:00" Duration="00:00:11.7000000" Storyboard.TargetName="rPC" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Source="Y">
 					<DoubleAnimationUsingPath.PathGeometry>
-						<PathGeometry Figures="M-0.334,0.8095 L-0.834,37.3095 94.72464,36.900663 92.365547,-118.79948 66.415523,-117.61993 67.59507,-92.849453 45.183686,-82.233535 z"/>
+						<PathGeometry Figures="M-1.2925,0.1455 L-1.0425,18.2705 94.249167,18.228833 92.249167,-149.43783 67.915833,-149.1045 67.915833,-128.43783 46.5825,-99.1045 z"/>
 					</DoubleAnimationUsingPath.PathGeometry>
 				</DoubleAnimationUsingPath>
 				<ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rPC" Storyboard.TargetProperty="(UIElement.Visibility)">
 					<DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+					<DiscreteObjectKeyFrame KeyTime="0:0:8.7" Value="{x:Static Visibility.Visible}"/>
+					<DiscreteObjectKeyFrame KeyTime="0:0:8.8" Value="{x:Static Visibility.Hidden}"/>
 					<DiscreteObjectKeyFrame KeyTime="0:0:9.4" Value="{x:Static Visibility.Hidden}"/>
 					<DiscreteObjectKeyFrame KeyTime="00:00:10.7000000" Value="{x:Static Visibility.Hidden}"/>
 				</ObjectAnimationUsingKeyFrames>
@@ -1041,12 +1044,12 @@
 				</ObjectAnimationUsingKeyFrames>
 				<DoubleAnimationUsingPath BeginTime="00:00:09.8000000" Duration="00:00:00.9000000" Storyboard.TargetName="rPC_in" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Source="X">
 					<DoubleAnimationUsingPath.PathGeometry>
-						<PathGeometry Figures="M-0.584,1.531 L-0.56631395,32.335721 -23.364976,35.64056 -41.850442,50.028919"/>
+						<PathGeometry Figures="M-0.584,1.531 L-0.9615,33.531 -30.9615,42.197667 -47.294833,59.864333"/>
 					</DoubleAnimationUsingPath.PathGeometry>
 				</DoubleAnimationUsingPath>
 				<DoubleAnimationUsingPath BeginTime="00:00:09.8000000" Duration="00:00:00.9000000" Storyboard.TargetName="rPC_in" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Source="Y">
 					<DoubleAnimationUsingPath.PathGeometry>
-						<PathGeometry Figures="M-0.584,1.531 L-0.56631395,32.335721 -23.364976,35.64056 -41.850442,50.028919"/>
+						<PathGeometry Figures="M-0.584,1.531 L-0.9615,33.531 -30.9615,42.197667 -47.294833,59.864333"/>
 					</DoubleAnimationUsingPath.PathGeometry>
 				</DoubleAnimationUsingPath>
 				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="ellipse_es">
@@ -1812,12 +1815,12 @@
 			<Storyboard x:Key="CALL">
 				<DoubleAnimationUsingPath BeginTime="00:00:00" Duration="00:00:11" Storyboard.TargetName="rPC_operand" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Source="X">
 					<DoubleAnimationUsingPath.PathGeometry>
-						<PathGeometry Figures="M-0.338,-1.3485 L-2.1957674,-78.027814 128.7339,-80.386907 129.99933,-275.51517 251.33267,-275.51517 251.162,-226.8485 -181.48684,-227.83022 -182.66638,-149.98015 -146.10044,-147.62106 -146.10044,-134.64605 -149.834,-124.8485 -149.75467,-90.0985"/>
+						<PathGeometry Figures="M-0.338,-1.3485 L0.205,-66.9085 130.205,-67.1585 130.705,-264.4085 251.455,-264.6585 251.705,-215.9085 -181.295,-213.9085 -181.37833,-135.4085 -143.71167,-135.07517 -143.045,-119.07517 -150.045,-102.74183 -150.045,-52.741833"/>
 					</DoubleAnimationUsingPath.PathGeometry>
 				</DoubleAnimationUsingPath>
 				<DoubleAnimationUsingPath BeginTime="00:00:00" Duration="00:00:11" Storyboard.TargetName="rPC_operand" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Source="Y">
 					<DoubleAnimationUsingPath.PathGeometry>
-						<PathGeometry Figures="M-0.338,-1.3485 L-2.1957674,-78.027814 128.7339,-80.386907 129.99933,-275.51517 251.33267,-275.51517 251.162,-226.8485 -181.48684,-227.83022 -182.66638,-149.98015 -146.10044,-147.62106 -146.10044,-134.64605 -149.834,-124.8485 -149.75467,-90.0985"/>
+						<PathGeometry Figures="M-0.338,-1.3485 L0.205,-66.9085 130.205,-67.1585 130.705,-264.4085 251.455,-264.6585 251.705,-215.9085 -181.295,-213.9085 -181.37833,-135.4085 -143.71167,-135.07517 -143.045,-119.07517 -150.045,-102.74183 -150.045,-52.741833"/>
 					</DoubleAnimationUsingPath.PathGeometry>
 				</DoubleAnimationUsingPath>
 				<ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rPC_operand" Storyboard.TargetProperty="(UIElement.Visibility)">
@@ -1944,16 +1947,18 @@
 				</DoubleAnimationUsingPath>
 				<DoubleAnimationUsingPath BeginTime="00:00:00" Duration="00:00:11.7000000" Storyboard.TargetName="rPC" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Source="X">
 					<DoubleAnimationUsingPath.PathGeometry>
-						<PathGeometry Figures="M-0.334,0.8095 L-0.834,37.3095 94.72464,36.900663 92.365547,-118.79948 66.415523,-117.61993 67.59507,-92.849453 45.183686,-82.233535 z"/>
+						<PathGeometry Figures="M-1.4175,0.22883333 L-0.9175,17.8955 93.8325,18.6455 92.3325,-149.3545 67.8325,-149.6045 66.5825,-128.43783 52.5825,-105.77117 z"/>
 					</DoubleAnimationUsingPath.PathGeometry>
 				</DoubleAnimationUsingPath>
 				<DoubleAnimationUsingPath BeginTime="00:00:00" Duration="00:00:11.7000000" Storyboard.TargetName="rPC" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Source="Y">
 					<DoubleAnimationUsingPath.PathGeometry>
-						<PathGeometry Figures="M-0.334,0.8095 L-0.834,37.3095 94.72464,36.900663 92.365547,-118.79948 66.415523,-117.61993 67.59507,-92.849453 45.183686,-82.233535 z"/>
+						<PathGeometry Figures="M-1.4175,0.22883333 L-0.9175,17.8955 93.8325,18.6455 92.3325,-149.3545 67.8325,-149.6045 66.5825,-128.43783 52.5825,-105.77117 z"/>
 					</DoubleAnimationUsingPath.PathGeometry>
 				</DoubleAnimationUsingPath>
 				<ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rPC" Storyboard.TargetProperty="(UIElement.Visibility)">
 					<DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+					<DiscreteObjectKeyFrame KeyTime="0:0:8.6" Value="{x:Static Visibility.Visible}"/>
+					<DiscreteObjectKeyFrame KeyTime="0:0:8.7" Value="{x:Static Visibility.Hidden}"/>
 					<DiscreteObjectKeyFrame KeyTime="0:0:9.4" Value="{x:Static Visibility.Hidden}"/>
 					<DiscreteObjectKeyFrame KeyTime="00:00:10.7000000" Value="{x:Static Visibility.Hidden}"/>
 				</ObjectAnimationUsingKeyFrames>
@@ -1979,12 +1984,12 @@
 				</ObjectAnimationUsingKeyFrames>
 				<DoubleAnimationUsingPath BeginTime="00:00:09.8000000" Duration="00:00:00.9000000" Storyboard.TargetName="rPC_in" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Source="X">
 					<DoubleAnimationUsingPath.PathGeometry>
-						<PathGeometry Figures="M-0.584,1.531 L0.61323256,20.540256 -63.082279,18.181163 -64.261826,-69.105279 -94.930035,-71.464372 -107.90505,-71.464372"/>
+						<PathGeometry Figures="M-1.6281667,1.531 L-0.62816667,21.197667 -64.294833,21.197667 -65.628167,-85.802333 -93.9615,-86.135667 -107.90505,-71.464372"/>
 					</DoubleAnimationUsingPath.PathGeometry>
 				</DoubleAnimationUsingPath>
 				<DoubleAnimationUsingPath BeginTime="00:00:09.8000000" Duration="00:00:00.9000000" Storyboard.TargetName="rPC_in" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Source="Y">
 					<DoubleAnimationUsingPath.PathGeometry>
-						<PathGeometry Figures="M-0.584,1.531 L0.61323256,20.540256 -63.082279,18.181163 -64.261826,-69.105279 -94.930035,-71.464372 -107.90505,-71.464372"/>
+						<PathGeometry Figures="M-1.6281667,1.531 L-0.62816667,21.197667 -64.294833,21.197667 -65.628167,-85.802333 -93.9615,-86.135667 -107.90505,-71.464372"/>
 					</DoubleAnimationUsingPath.PathGeometry>
 				</DoubleAnimationUsingPath>
 				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="pilha_status2">
@@ -2052,12 +2057,12 @@
 			<Storyboard x:Key="RETURN">
 				<DoubleAnimationUsingPath BeginTime="00:00:00" Duration="00:00:11" Storyboard.TargetName="rPC_operand" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Source="X">
 					<DoubleAnimationUsingPath.PathGeometry>
-						<PathGeometry Figures="M-247.54144,-232.54841 L-194.46185,-231.36886 -188.56412,-231.36886 -188.56412,-226.65067 -188.56412,-219.5734 -189.74366,-204.23929 -189.74366,-191.26428 -188.56412,-142.90287 -155.53681,-140.54378 -154.35727,-132.28695 -149.834,-124.8485 -149.75467,-90.0985"/>
+						<PathGeometry Figures="M-248.92,-235.7835 L-205.545,-235.7835 -187.42,-235.7835 -187.42,-223.6585 -187.37833,-212.07517 -187.46167,-204.24183 -187.545,-191.4085 -187.42,-129.1585 -154.67,-128.7835 -154.295,-118.7835 -150.545,-103.4085 -150.045,-51.4085"/>
 					</DoubleAnimationUsingPath.PathGeometry>
 				</DoubleAnimationUsingPath>
 				<DoubleAnimationUsingPath BeginTime="00:00:00" Duration="00:00:11" Storyboard.TargetName="rPC_operand" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Source="Y">
 					<DoubleAnimationUsingPath.PathGeometry>
-						<PathGeometry Figures="M-247.54144,-232.54841 L-194.46185,-231.36886 -188.56412,-231.36886 -188.56412,-226.65067 -188.56412,-219.5734 -189.74366,-204.23929 -189.74366,-191.26428 -188.56412,-142.90287 -155.53681,-140.54378 -154.35727,-132.28695 -149.834,-124.8485 -149.75467,-90.0985"/>
+						<PathGeometry Figures="M-248.92,-235.7835 L-205.545,-235.7835 -187.42,-235.7835 -187.42,-223.6585 -187.37833,-212.07517 -187.46167,-204.24183 -187.545,-191.4085 -187.42,-129.1585 -154.67,-128.7835 -154.295,-118.7835 -150.545,-103.4085 -150.045,-51.4085"/>
 					</DoubleAnimationUsingPath.PathGeometry>
 				</DoubleAnimationUsingPath>
 				<ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rPC_operand" Storyboard.TargetProperty="(UIElement.Visibility)">
@@ -2142,16 +2147,17 @@
 				</DoubleAnimationUsingPath>
 				<DoubleAnimationUsingPath BeginTime="00:00:00" Duration="00:00:11.7000000" Storyboard.TargetName="rPC" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Source="X">
 					<DoubleAnimationUsingPath.PathGeometry>
-						<PathGeometry Figures="M-0.334,0.8095 L-0.834,37.3095 94.72464,36.900663 92.365547,-118.79948 66.415523,-117.61993 67.59507,-92.849453 45.183686,-82.233535 z"/>
+						<PathGeometry Figures="M-1.4175,0.22883333 L-0.75083333,16.8955 93.249167,18.228833 92.5825,-148.43783 67.915833,-149.1045 67.249167,-128.43783 45.915833,-99.771167 z"/>
 					</DoubleAnimationUsingPath.PathGeometry>
 				</DoubleAnimationUsingPath>
 				<DoubleAnimationUsingPath BeginTime="00:00:00" Duration="00:00:11.7000000" Storyboard.TargetName="rPC" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Source="Y">
 					<DoubleAnimationUsingPath.PathGeometry>
-						<PathGeometry Figures="M-0.334,0.8095 L-0.834,37.3095 94.72464,36.900663 92.365547,-118.79948 66.415523,-117.61993 67.59507,-92.849453 45.183686,-82.233535 z"/>
+						<PathGeometry Figures="M-1.4175,0.22883333 L-0.75083333,16.8955 93.249167,18.228833 92.5825,-148.43783 67.915833,-149.1045 67.249167,-128.43783 45.915833,-99.771167 z"/>
 					</DoubleAnimationUsingPath.PathGeometry>
 				</DoubleAnimationUsingPath>
 				<ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rPC" Storyboard.TargetProperty="(UIElement.Visibility)">
 					<DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+					<DiscreteObjectKeyFrame KeyTime="0:0:8.7" Value="{x:Static Visibility.Hidden}"/>
 					<DiscreteObjectKeyFrame KeyTime="0:0:9.4" Value="{x:Static Visibility.Hidden}"/>
 					<DiscreteObjectKeyFrame KeyTime="00:00:10.7000000" Value="{x:Static Visibility.Hidden}"/>
 				</ObjectAnimationUsingKeyFrames>
@@ -2239,6 +2245,47 @@
 					<SplineColorKeyFrame KeyTime="0:0:9.3" Value="#FF48864C"/>
 					<SplineColorKeyFrame KeyTime="0:0:9.4" Value="Black"/>
 				</ColorAnimationUsingKeyFrames>
+				<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="ControlBlock">
+					<EasingDoubleKeyFrame KeyTime="0:0:11.7" Value="1.051"/>
+				</DoubleAnimationUsingKeyFrames>
+				<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="ControlBlock">
+					<EasingDoubleKeyFrame KeyTime="0:0:11.7" Value="0.834"/>
+				</DoubleAnimationUsingKeyFrames>
+				<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="DataPathBlock">
+					<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1"/>
+					<EasingDoubleKeyFrame KeyTime="0:0:11.7" Value="1.015"/>
+				</DoubleAnimationUsingKeyFrames>
+				<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="DataPathBlock">
+					<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
+					<EasingDoubleKeyFrame KeyTime="0:0:11.7" Value="-2.5"/>
+				</DoubleAnimationUsingKeyFrames>
+				<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="pilha">
+					<EasingDoubleKeyFrame KeyTime="0:0:11.7" Value="1.196"/>
+				</DoubleAnimationUsingKeyFrames>
+				<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="pilha">
+					<EasingDoubleKeyFrame KeyTime="0:0:11.7" Value="-3.334"/>
+				</DoubleAnimationUsingKeyFrames>
+				<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="InterruptBlock">
+					<EasingDoubleKeyFrame KeyTime="0:0:11.7" Value="1.208"/>
+				</DoubleAnimationUsingKeyFrames>
+				<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="InterruptBlock">
+					<EasingDoubleKeyFrame KeyTime="0:0:11.7" Value="-3.333"/>
+				</DoubleAnimationUsingKeyFrames>
+				<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="InterruptBlock">
+					<EasingDoubleKeyFrame KeyTime="0:0:11.7" Value="0.89"/>
+				</DoubleAnimationUsingKeyFrames>
+				<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="InterruptBlock">
+					<EasingDoubleKeyFrame KeyTime="0:0:11.7" Value="-4.333"/>
+				</DoubleAnimationUsingKeyFrames>
+				<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="DescPilha">
+					<EasingDoubleKeyFrame KeyTime="0:0:11.7" Value="1.11"/>
+				</DoubleAnimationUsingKeyFrames>
+				<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="DescPilha">
+					<EasingDoubleKeyFrame KeyTime="0:0:11.7" Value="-3.667"/>
+				</DoubleAnimationUsingKeyFrames>
+				<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="DescPilha">
+					<EasingDoubleKeyFrame KeyTime="0:0:11.7" Value="0.5"/>
+				</DoubleAnimationUsingKeyFrames>
 			</Storyboard>
 			<Storyboard x:Key="NOT">
 				<DoubleAnimationUsingPath BeginTime="00:00:01.8000000" Duration="00:00:07.4000000" Storyboard.TargetName="rImediato" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Source="X">
@@ -2465,16 +2512,44 @@
 					</LinearGradientBrush>
 				</Rectangle.Stroke>
 			</Rectangle>
-			<Rectangle Margin="86,49.08,0,207.71" Fill="#FFFFFFFF" Stroke="#FF000000" x:Name="ControlBlock" d:LayoutOverrides="HorizontalAlignment" RadiusY="12.357" RadiusX="12.357" HorizontalAlignment="Left" Width="320" />
-			<Path HorizontalAlignment="Left" Margin="171.337,186.658,0,217.3" Width="98.996" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" StrokeThickness="3" Data="M2.693327,59.342 L2.2955514,97.229987 96.700449,97.229987" x:Name="path12"/>
-			<Rectangle Margin="427,49.08,248,207.71" Fill="#FFFFFFFF" Stroke="#FF000000" x:Name="DataPathBlock" d:LayoutOverrides="HorizontalAlignment" RadiusY="12.153" RadiusX="12.153"/>
+			<Rectangle Margin="86,49.08,0,207.71" Fill="#FFFFFFFF" Stroke="#FF000000" x:Name="ControlBlock" RadiusY="12.357" RadiusX="12.357" HorizontalAlignment="Left" Width="320" RenderTransformOrigin="0.5,0.5" >
+				<Rectangle.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform/>
+						<SkewTransform/>
+						<RotateTransform/>
+						<TranslateTransform/>
+					</TransformGroup>
+				</Rectangle.RenderTransform>
+			</Rectangle>
+			<Rectangle x:Name="InterruptBlock" Fill="{DynamicResource BlueGradiente}" HorizontalAlignment="Left" Height="64.028" Margin="92.664,138,0,0" Stroke="#FF000000" VerticalAlignment="Top" Width="30.9" RenderTransformOrigin="0.5,0.5">
+            	<Rectangle.RenderTransform>
+            		<TransformGroup>
+            			<ScaleTransform/>
+            			<SkewTransform/>
+            			<RotateTransform/>
+            			<TranslateTransform/>
+            		</TransformGroup>
+            	</Rectangle.RenderTransform>
+            </Rectangle>
+			<Path HorizontalAlignment="Left" Margin="171.373,0,0,214.195" Width="98.502" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" StrokeThickness="3" Data="M1.5,1.5 L1.6255255,19.343818 97.002974,19.325805" x:Name="path12" Height="20.843" VerticalAlignment="Bottom"/>
+			<Rectangle Margin="427,49.08,248,207.71" Fill="#FFFFFFFF" Stroke="#FF000000" x:Name="DataPathBlock" d:LayoutOverrides="HorizontalAlignment" RadiusY="12.153" RadiusX="12.153" RenderTransformOrigin="0.5,0.5">
+				<Rectangle.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform/>
+						<SkewTransform/>
+						<RotateTransform/>
+						<TranslateTransform/>
+					</TransformGroup>
+				</Rectangle.RenderTransform>
+			</Rectangle>
 			<Path Margin="180.972,159.307,0,0" Fill="{x:Null}" Stretch="Fill" Stroke="#FF606060" StrokeThickness="2" Data="M600.6652,211.2687 L585.79401,211.2687" HorizontalAlignment="Left" VerticalAlignment="Top" Width="14.687" Height="2"/>
 			<Label FontSize="9" Foreground="#FF606060" Margin="163.615,145.524,0,0" Content="op" HorizontalAlignment="Left" VerticalAlignment="Top" Width="20.753" Height="21.415"/>
 			<Rectangle Margin="284.873,126.667,0,0" x:Name="Decoder" Stroke="#FF000000" d:LayoutOverrides="HorizontalAlignment" Fill="{DynamicResource BlueGradiente}" ToolTip="Decodificador" RadiusY="0" RadiusX="0" HorizontalAlignment="Left" Width="97.127" Height="118.171" VerticalAlignment="Top" />
-			<Path HorizontalAlignment="Left" Margin="171.335,207.254,0,0" Width="3.037" Fill="#FFFFFFFF" Stretch="None" Stroke="#FF000000" StrokeThickness="3" Data="M1.5,36.47271 C1.5,36.47271 1.5368566,1.5 1.5368566,1.5" x:Name="path14" VerticalAlignment="Top" Height="37.973"/>
+			<Path HorizontalAlignment="Left" Margin="171.206,207.254,0,235.038" Width="3.166" Fill="#FFFFFFFF" Stretch="None" Stroke="#FF000000" StrokeThickness="3" Data="M1.5000001,63.412667 C1.5000001,63.412667 1.6660233,1.5 1.6660233,1.5" x:Name="path14"/>
 			<Path HorizontalAlignment="Left" Margin="170.586,172.75,0,0" Width="50.182" Fill="#FFFFFFFF" Stretch="None" Stroke="#FF000000" StrokeThickness="3" Data="M48.5365,1.5 C48.5365,1.5 48.473979,26.423164 48.473979,26.423164 C28.666889,26.29859 18.799841,26.59336 18.799841,26.59336 C18.799594,34.725612 18.406659,34.850186 18.406659,34.850186 L1.5,34.850302" x:Name="path15" Height="39.077" VerticalAlignment="Top"/>
 			<Label Opacity="0.2" FontFamily="./Fonts\#Segoe UI" FontSize="14" FontWeight="Bold" Foreground="#FF335EAE" HorizontalContentAlignment="Center" Margin="276.501,121.667,0,0" Content="Decodificador" HorizontalAlignment="Left" Width="113" x:Name="DescDecoder" Height="29.474" VerticalAlignment="Top" />
-			<Rectangle Stroke="#FF000000" HorizontalAlignment="Left" Margin="129,0,0,244.704" x:Name="PC" Width="91.56" Fill="{DynamicResource BlueGradiente}" ToolTip="PC" Height="27.015" VerticalAlignment="Bottom" OpacityMask="#FF609FF7"/>
+			<Rectangle Stroke="#FF000000" HorizontalAlignment="Left" Margin="129.104,0,0,221.424" x:Name="PC" Width="91.56" Fill="{DynamicResource BlueGradiente}" ToolTip="PC" Height="27.015" VerticalAlignment="Bottom" OpacityMask="#FF609FF7" d:LayoutOverrides="VerticalAlignment"/>
 			<Path HorizontalAlignment="Left" Margin="182.167,144.367,0,0" Width="73.893" Stretch="Fill" Stroke="#FF000000" Data="M127.61993,117.75706 L153.60906,117.80016 164.49187,130.09052 179.273,130.09052 189.34366,117.80016 215.87789,117.88369 189.85311,152.70585 153.39327,152.83248 z" Fill="{DynamicResource BlueGradiente}" x:Name="ulaPC" VerticalAlignment="Top" Height="29.956"/>
 			<Label Opacity="0.2" FontFamily="./Fonts\#Segoe UI" FontSize="24" FontWeight="Bold" Foreground="#FF335EAE" HorizontalContentAlignment="Center" Margin="174,138,0,0" Content="+" x:Name="DescUlaPC" RenderTransformOrigin="0.5,0.5" Width="88" HorizontalAlignment="Left" VerticalAlignment="Top" Height="34.965" >
 				<Label.RenderTransform>
@@ -2541,7 +2616,7 @@
 					</TransformGroup>
 				</Path.RenderTransform>
 			</Path>
-			<Path Margin="196.356,92,0,0" Fill="{x:Null}" Stretch="None" Stroke="#FF606060" StrokeThickness="1" Data="M184.50956,58.981953 L198.41313,58.833334 L198.41313,1.5 L79.614975,1.3698881 L79.529919,125.70323 L0.50000001,126.2161" x:Name="linhaStatus5" HorizontalAlignment="Left" Width="198.913" Height="129.443" VerticalAlignment="Top" />
+			<Path Margin="196.356,92.87,0,0" Fill="{x:Null}" Stretch="None" Stroke="#FF606060" StrokeThickness="1" Data="M185.66233,58.025945 L198.41313,57.963446 198.41313,0.63011193 79.614975,0.50000003 79.529919,124.83334 0.50000001,125.34621" x:Name="linhaStatus5" HorizontalAlignment="Left" Width="198.913" Height="125.846" VerticalAlignment="Top" />
 			<Path Fill="#FFFFFFFF" Margin="190.223,214.144,0,0" Stretch="None" Stroke="#FF3B3E45" Data="M4.2621399,0.50000022 L7.5791764,6.2686481 L0.8333332,6.2648999 z" x:Name="setaStatus5" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="8.079" VerticalAlignment="Top" Height="6.769" >
 				<Path.RenderTransform>
 					<TransformGroup>
@@ -2569,14 +2644,14 @@
 			<Path HorizontalAlignment="Right" Margin="0,91.875,423.354,0" VerticalAlignment="Top" Width="4.021" Height="15.792" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" StrokeThickness="4" Data="M2.0209999,13.792108 L2,2" x:Name="linha2"/>
 			<Path HorizontalAlignment="Right" Margin="0,147.667,423,0" VerticalAlignment="Top" Width="4.104" Height="30.188" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" StrokeThickness="4" Data="M2.062,7.9275973 L2.0205,28.1875" x:Name="path1"/>
 			<Path HorizontalAlignment="Right" Margin="0,191.661,423,0" Width="4.333" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" StrokeThickness="4" Data="M2.333,20.339 L2.0416666,31.547333" x:Name="path2" Height="36.274" VerticalAlignment="Top"/>
-			<Path HorizontalAlignment="Left" Margin="240.179,121.959,0,221.424" Width="29.155" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" Data="M1.5011084,22.278806 L1.5,1.5002016 L26.664767,1.5 L27.655372,159.59498" StrokeThickness="3" x:Name="path13"/>
+			<Path HorizontalAlignment="Left" Margin="240.179,121.959,0,213.913" Width="29.527" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" Data="M1.5011084,22.278806 L1.5,1.5002016 26.664767,1.5 28.026833,169.83267" StrokeThickness="3" x:Name="path13"/>
 			<Path HorizontalAlignment="Right" Margin="0,186.667,337.902,0" Width="23.732" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" StrokeThickness="4" Data="M21.73262,2 L21.659527,17.001364 2,17.001364 2.09766,36.666333" x:Name="path5" Height="41.393" VerticalAlignment="Top"/>
 			<Path HorizontalAlignment="Right" Margin="0,212.06,423,175.811" Width="54.271" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" Data="M52.2705,2.1041717 L4.2705,2.167 L3.98925,111.792" StrokeThickness="4" x:Name="path10"/>
 			<Path HorizontalAlignment="Right" Margin="0,107.667,349,0" VerticalAlignment="Top" Width="79.042" Height="71" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" StrokeThickness="4" Data="M2,2 L77.012556,2 77.042,64.708" x:Name="path8"/>
 			<Path HorizontalAlignment="Right" Margin="0,126.667,325,0" VerticalAlignment="Top" Width="4.864" Height="47.896" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" StrokeThickness="4" Data="M1.9999999,45.896088 L2.0624999,2.6460884" x:Name="path3"/>
 			<Path Margin="451.711,59.125,423.75,247.606" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" StrokeThickness="3" Data="M122.91392,14.375 L123.03892,1.625 1.5389223,1.5 1.5,196.24682" x:Name="path7"/>
-			<Path HorizontalAlignment="Left" Margin="267.334,0,0,181.978" VerticalAlignment="Bottom" Width="3" Height="39.667" Fill="#FFFFFFFF" Stretch="None" Stroke="#FF000000" StrokeThickness="3" Data="M1.0003282,38.66701 L0.49999998,0.49999982"/>
-			<Ellipse Margin="263.791,0,0,219.601" Fill="#FF000000" Stroke="{x:Null}" VerticalAlignment="Bottom" Height="7.625" x:Name="ellipse2_Copy" HorizontalAlignment="Left" Width="7.875" />
+			<Path HorizontalAlignment="Left" Margin="266.622,0,0,181.478" VerticalAlignment="Bottom" Width="3.213" Height="34.977" Fill="#FFFFFFFF" Stretch="None" Stroke="#FF000000" StrokeThickness="3" Data="M1.7125783,33.476635 L1.5,1.5"/>
+			<Ellipse Margin="264.166,0,0,211.601" Fill="#FF000000" Stroke="{x:Null}" VerticalAlignment="Bottom" Height="7.625" x:Name="ellipse2_Copy" HorizontalAlignment="Left" Width="7.875" />
 			<Path HorizontalAlignment="Right" Margin="0,67.872,419.83,0" VerticalAlignment="Top" Width="11.336" Height="8.361" Stretch="None" Stroke="{x:Null}" Data="M5.6663333,8.3610018 L11.336667,0.0060104456 5.0329084E-09,1.3963961E-09 z" Fill="#FF000000" x:Name="path11_Copy"/>
 			<Path HorizontalAlignment="Right" Margin="0,124.333,305,0" VerticalAlignment="Top" Width="109.667" Height="17.417" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" StrokeThickness="4" Data="M107.55281,2.792 L2.3048218,3.0003358 2.2667551,15.417" x:Name="path9"/>
 			<Path HorizontalAlignment="Left" Margin="190.5,127.334,0,0" VerticalAlignment="Top" Width="4.667" Height="18.83" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" StrokeThickness="3" Data="M1.7640222,17.329915 L1.5,1.5" x:Name="linha10"/>
@@ -2599,8 +2674,8 @@
 					</TransformGroup>
 				</Path.RenderTransform>
 			</Path>
-			<Path HorizontalAlignment="Left" Margin="144.5,206.043,0,0" Width="57.25" Fill="{DynamicResource BlueGradiente}" Stretch="None" Stroke="#FF000000" Data="M0.5,0.50296971 L12.083,0.50296971 L56.75,0.50296971 L38.973,16.377026 L18.13967,16.376684 z" x:Name="blocoBIP2" VerticalAlignment="Top" Height="16.88"/>
 			<Path x:Name="path16" Data="M1.5,1.5 L5.175679,1.5" Fill="{x:Null}" HorizontalAlignment="Right" Height="3" Margin="0,64.954,422.416,0" Stroke="#FF040202" StrokeThickness="3" VerticalAlignment="Top" Width="5.857" Visibility="Hidden" Stretch="Fill"/>
+			<Path HorizontalAlignment="Left" Margin="144.5,206.043,0,0" Width="57.25" Fill="{DynamicResource BlueGradiente}" Stretch="None" Stroke="#FF000000" Data="M0.5,0.50296971 L12.083,0.50296971 L56.75,0.50296971 L38.973,16.377026 L18.13967,16.376684 z" x:Name="blocoBIP2" VerticalAlignment="Top" Height="16.88"/>
 			<Path HorizontalAlignment="Right" Margin="0,125,305.734,176.205" Width="31.891" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" StrokeThickness="4" Data="M9.023,2 L29.875,2.1250001 C29.875,2.1250001 29.890837,128.6025 29.890837,128.6025 C18.685145,128.6025 18.685145,128.6025 18.685145,128.6025 C18.685145,201.14461 18.523,204 18.523,204" x:Name="path4"/>
 			<Path HorizontalAlignment="Right" Margin="0,212.06,423,175.811" Width="54.271" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" StrokeThickness="4" x:Name="path10_Copy" Visibility="Hidden">
 				<Path.Data>
@@ -2644,18 +2719,36 @@
             </Grid>
 			<Ellipse HorizontalAlignment="Right" Margin="0,56.622,421,0" Width="8.75" Fill="#FF000000" Stroke="{x:Null}" x:Name="ellipse_es" Height="8.75" VerticalAlignment="Top"/>
 			<Grid x:Name="pilha_grid" HorizontalAlignment="Left" Margin="92.664,80,0,0" Width="309.934" Height="128.395" VerticalAlignment="Top">
-				<Rectangle x:Name="pilha" Stroke="#FF000000" Fill="{DynamicResource BlueGradiente}" ToolTip="Pilha" RadiusY="0" RadiusX="0" HorizontalAlignment="Left" Width="34.126" Height="33.226" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment" />
-				<Path HorizontalAlignment="Left" Margin="31.92,22.3,0,9.145" Width="12.437" Fill="#FFFFFFFF" Stretch="None" Stroke="#FF000000" StrokeThickness="3" Data="M1.5,1.500093 C1.5,1.500093 10.936985,1.5 10.936985,1.5 10.936985,92.325175 10.814,95.45 10.814,95.45" x:Name="pilha_out1"/>
+				<Rectangle x:Name="pilha" Stroke="#FF000000" Fill="{DynamicResource BlueGradiente}" ToolTip="Pilha" RadiusY="0" RadiusX="0" HorizontalAlignment="Left" Width="34.126" Height="33.226" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment" RenderTransformOrigin="0.5,0.5" Margin="-0.333,-8,0,0" >
+					<Rectangle.RenderTransform>
+						<TransformGroup>
+							<ScaleTransform/>
+							<SkewTransform/>
+							<RotateTransform/>
+							<TranslateTransform/>
+						</TransformGroup>
+					</Rectangle.RenderTransform>
+				</Rectangle>
+				<Path HorizontalAlignment="Left" Margin="31.92,8,0,9.145" Width="12.437" Fill="#FFFFFFFF" Stretch="None" Stroke="#FF000000" StrokeThickness="3" Data="M1.5,1.5001072 C1.5,1.5001072 10.936985,1.5 10.936985,1.5 10.936985,106.14955 10.814,109.75 10.814,109.75" x:Name="pilha_out1"/>
 				<Path x:Name="pilha_out2" Data="M135.51988,102.62055" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="3" Margin="41.856,21.621,0,0" Stretch="Fill" Stroke="#FF000000" StrokeThickness="3" VerticalAlignment="Top" Width="3"/>
 				<Path x:Name="pilha_out3" Data="M1.5000171,1.7211392 C35.707262,1.7211392 35.399919,1.8334615 35.399919,1.8334615 C35.399499,13.130082 35.49998,10.720932 35.49998,10.720932" Fill="#FFFFFFFF" Margin="40.484,0,0,1.18" Stroke="#FF000000" StrokeThickness="3" HorizontalAlignment="Left" Height="12.436" VerticalAlignment="Bottom" Width="37"/>
 				<Path x:Name="pilha_out4" Data="M1.4999958,8.2909244 C1.4999958,2.7861173 1.4999958,1.8333937 1.4999958,1.8333937" Fill="#FFFFFFFF" HorizontalAlignment="Left" Margin="63.088,0,0,0" Stroke="#FF000000" StrokeThickness="3" Width="3" Height="9.791" VerticalAlignment="Bottom"/>
 				<Path x:Name="pilha_in4" Data="M153.49982,181.94433 C217.98119,181.94475 219.5539,181.55091 219.5539,181.55091" Fill="#FFFFFFFF" Height="3.393" Margin="59.835,0,0,21.735" Stretch="Fill" Stroke="#FF000000" StrokeThickness="3" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="69.055"/>
 				<Ellipse HorizontalAlignment="Left" Margin="122.022,0,0,19.244" Width="8.75" Fill="Black" Stroke="{x:Null}" x:Name="pilha_in1" Height="8.75" VerticalAlignment="Bottom"/>
-				<Path x:Name="pilha_in2" Data="M1.4999742,2.1664581 C28.235859,2.1664581 30.202032,1.8929126 30.202032,1.8929126" Fill="#FFFFFFFF" Height="3.667" Margin="32.313,12.471,0,0" Stroke="#FF000000" StrokeThickness="3" VerticalAlignment="Top" HorizontalAlignment="Left" Width="31.702"/>
-				<Path x:Name="pilha_in3" Data="M153.99943,92.790995 C155.07163,175.25248 155.07224,182.32926 155.07224,182.32926" Fill="#FFFFFFFF" Margin="60.336,11.791,0,21.338" Stretch="Fill" Stroke="#FF000000" StrokeThickness="3" HorizontalAlignment="Left" Width="4.072"/>
-				<Path Margin="24.27,31.95,3.146,47.109" Fill="{x:Null}" Stretch="None" Stroke="#FF606060" StrokeThickness="1" Data="M264.71824,46.109194 L281.89856,46.109194 L282.01849,6.2178993 L163.27724,6.0046124 L0.50000017,6.1242481 L0.50000005,0.5000001" x:Name="pilha_status1" />
-				<Path Margin="14.047,31.557,-0.333,40.031" Fill="{x:Null}" Stretch="None" Stroke="#FF606060" StrokeThickness="1" Data="M274.94162,53.505969 L295.38678,53.579954 L295.72011,3.2526361 L171.92757,3.2528299 L0.50023234,3.2522675 L0.49999999,0.50000006" x:Name="pilha_status2" />
-				<Label Content="Pilha" FontWeight="Bold" FontSize="9.333" FontFamily="./Fonts\#Segoe UI" Foreground="#FF335EAE" Opacity="0.2" Width="42.666" Height="28.014" VerticalAlignment="Top" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Background="#007876C6" x:Name="DescPilha" Margin="-5,-3,0,0" />
+				<Path x:Name="pilha_in2" Data="M1.5371873,1.9867117 C28.935895,1.9867117 30.918062,2.076449 30.918062,2.076449" Fill="#FFFFFFFF" Height="3.862" Margin="32.087,-4.529,0,0" Stroke="#FF000000" StrokeThickness="3" VerticalAlignment="Top" HorizontalAlignment="Left" Width="32.488"/>
+				<Path x:Name="pilha_in3" Data="M153.99943,92.790995 C155.07163,175.25248 155.07224,182.32926 155.07224,182.32926" Fill="#FFFFFFFF" Margin="60.336,-4.529,0,21.338" Stretch="Fill" Stroke="#FF000000" StrokeThickness="3" HorizontalAlignment="Left" Width="4.072"/>
+				<Path Margin="24.334,24.812,3.021,49.823" Fill="{x:Null}" Stretch="None" Stroke="#FF606060" StrokeThickness="1" Data="M264.77685,53.259832 L281.95971,53.259832 282.07966,12.646407 163.32083,12.429259 0.51950016,12.551061 0.49999999,0.49999981" x:Name="pilha_status1" />
+				<Path Margin="14.047,24.812,-0.274,42.758" Fill="{x:Null}" Stretch="None" Stroke="#FF606060" StrokeThickness="1" Data="M274.94139,60.250636 L295.38655,60.324621 295.66127,16.187667 171.92734,16.187994 0.50000001,16.187431 0.5365,0.5" x:Name="pilha_status2" />
+				<Label Content="Pilha" FontWeight="Bold" FontSize="9.333" FontFamily="./Fonts\#Segoe UI" Foreground="#FF335EAE" Opacity="0.2" Width="42.666" Height="28.014" VerticalAlignment="Top" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Background="#007876C6" x:Name="DescPilha" Margin="-5.333,-11,0,0" RenderTransformOrigin="0.5,0.5" >
+					<Label.RenderTransform>
+						<TransformGroup>
+							<ScaleTransform/>
+							<SkewTransform/>
+							<RotateTransform/>
+							<TranslateTransform/>
+						</TransformGroup>
+					</Label.RenderTransform>
+				</Label>
 			</Grid>
 			<Grid x:Name="vetor_grid" Height="21.919" Margin="433.25,0,469.396,220.017" VerticalAlignment="Bottom">
 				<Rectangle x:Name="vetor_acces" Stroke="#FF000000" Fill="{DynamicResource BlueGradiente}" ToolTip="Manipulação de Vetores" RadiusY="0" RadiusX="0" HorizontalAlignment="Left" Width="42.859" d:LayoutOverrides="HorizontalAlignment" />
@@ -2672,6 +2765,16 @@
 						</TransformGroup>
 					</TextBox.RenderTransform>
 				</TextBox>
+				<Label Margin="-353.026,-113.323,0,0" Content="Interrupções" FontWeight="Bold" FontSize="9.333" FontFamily="./Fonts\#Segoe UI" Foreground="#FF335EAE" Opacity="0.2" HorizontalContentAlignment="Center" Background="#007876C6" x:Name="DescInterrupt" HorizontalAlignment="Left" Width="66.135" Height="36.334" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" >
+					<Label.RenderTransform>
+						<TransformGroup>
+							<ScaleTransform/>
+							<SkewTransform/>
+							<RotateTransform Angle="-89.789"/>
+							<TranslateTransform/>
+						</TransformGroup>
+					</Label.RenderTransform>
+				</Label>
 				<Path Margin="28.148,-148.769,-25.794,0" Stretch="None" Stroke="#FF000000" Data="M3.0000001,148.5 L2.5000011,85 2.0000001,48 2.000001,2 93.000001,2.5 93,23.5" Fill="{x:Null}" StrokeThickness="4" x:Name="path_Copy" OpacityMask="#FF000000" Height="150.5" VerticalAlignment="Top"/>
 			</Grid>
 			<Path Margin="139.898,108.119,424.242,0" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" Data="M434.35994,1.5 L1.8107674,3.047822 1.5,82.547667" StrokeThickness="3" x:Name="linhaBIP2_2" Height="84.048" VerticalAlignment="Top"/>
@@ -2800,7 +2903,7 @@
 					</TransformGroup>
 				</TextBox.RenderTransform>
 			</TextBox>
-			<TextBox RenderTransformOrigin="0.5,0.5" Background="#FFF5F7C3" BorderThickness="0.8,0.8,0.8,0.8" FontFamily="./Fonts\#Segoe UI" FontSize="10" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" Margin="160,238.628,0,247.998" x:Name="rPC" d:IsStaticText="False" Text="" TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" Width="28.168" VerticalContentAlignment="Center" IsReadOnly="True" Cursor="Arrow">
+			<TextBox RenderTransformOrigin="0.5,0.5" Background="#FFF5F7C3" BorderThickness="0.8,0.8,0.8,0.8" FontFamily="./Fonts\#Segoe UI" FontSize="10" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" Margin="160.206,0,0,223.811" x:Name="rPC" d:IsStaticText="False" Text="" TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" Width="28.168" VerticalContentAlignment="Center" IsReadOnly="True" Cursor="Arrow" Height="20.579" VerticalAlignment="Bottom">
 				<TextBox.BorderBrush>
 					<SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
 				</TextBox.BorderBrush>
@@ -2848,14 +2951,14 @@
 			<Button HorizontalAlignment="Left" Margin="350,19,0,0" VerticalAlignment="Top" Width="30" Height="20" Content="JMP" Click="Button_Click_15" Visibility="Hidden" />
 			<Button Height="21.92" Margin="0,146,939,0" x:Name="button2" VerticalAlignment="Top" Click="button2_Click" HorizontalAlignment="Right" Width="56" Visibility="Hidden" Content="Simular"/>
 			<Path HorizontalAlignment="Left" Margin="323,234.727,0,222.478" Width="0.5" Fill="#FF000000" Stretch="None" Stroke="{x:Null}" Data="M0.5,50 L0,0"/>
-			<Label Margin="126,233.128,0,246.063" Content="PC" FontWeight="Bold" FontSize="17" FontFamily="./Fonts\#Segoe UI" Foreground="#FF335EAE" Opacity="0.2" Width="30" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Background="#007876C6" x:Name="DescPC" />
+			<Label Margin="126.206,0,0,223.811" Content="PC" FontWeight="Bold" FontSize="17" FontFamily="./Fonts\#Segoe UI" Foreground="#FF335EAE" Opacity="0.2" Width="30" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Background="#007876C6" x:Name="DescPC" Height="28.014" VerticalAlignment="Bottom" />
 			<Label Opacity="0.595" FontFamily="./Fonts\#Segoe UI" FontSize="18" FontWeight="Bold" Foreground="#FF0D3681" HorizontalContentAlignment="Center" Margin="67.501,14.115,0,0" Content="BIP II" HorizontalAlignment="Left" Width="88" VerticalAlignment="Top" Height="34.965" x:Name="DescBip" />
 			<Grid Margin="0,0,42.469,90" VerticalAlignment="Bottom" Height="169" x:Name="gridComentario" HorizontalAlignment="Right" Width="169">
 				<Label BorderThickness="1,1,1,1" FontSize="14" x:Name="blocoComentario2" Background="{StaticResource gradienteAzul}" BorderBrush="LightSlateGray">
 					<TextBlock TextWrapping="Wrap" x:Name="blocoComentario" FontSize="13"/>  
 				</Label>
             </Grid>
-			<TextBox RenderTransformOrigin="0.5,0.5" Background="#FFF5F7C3" BorderThickness="0.8,0.8,0.8,0.8" FontFamily="./Fonts\#Segoe UI" FontSize="10" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" Margin="310,0,0,157.84" x:Name="rPC_operand" VerticalAlignment="Bottom" Height="20.579" d:IsStaticText="False" Text="" TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" Width="28.168" Visibility="Hidden" VerticalContentAlignment="Center" IsReadOnly="True" Cursor="Arrow">
+			<TextBox RenderTransformOrigin="0.5,0.5" Background="#FFF5F7C3" BorderThickness="0.8,0.8,0.8,0.8" FontFamily="./Fonts\#Segoe UI" FontSize="10" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" Margin="308.667,0,0,171.507" x:Name="rPC_operand" VerticalAlignment="Bottom" Height="20.579" d:IsStaticText="False" Text="" TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" Width="28.501" Visibility="Hidden" VerticalContentAlignment="Center" IsReadOnly="True" Cursor="Arrow">
 				<TextBox.BorderBrush>
 					<SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
 				</TextBox.BorderBrush>
@@ -2868,7 +2971,7 @@
 					</TransformGroup>
 				</TextBox.RenderTransform>
 			</TextBox>
-			<Label Opacity="0.32" FontFamily="./Fonts\#Segoe UI" FontSize="13" FontWeight="Bold" Foreground="#FF335EAE" HorizontalContentAlignment="Center" Margin="61.333,46.892,0,0" Content="Controle" HorizontalAlignment="Left" Width="128.667" x:Name="DescControle" VerticalAlignment="Top" Height="34.965" />
+			<Label Opacity="0.32" FontFamily="./Fonts\#Segoe UI" FontSize="13" FontWeight="Bold" Foreground="#FF335EAE" HorizontalContentAlignment="Center" Margin="61.333,46.892,0,0" Content="Controle" HorizontalAlignment="Left" Width="128.667" x:Name="DescControle" VerticalAlignment="Top" Height="29.108" />
 			<Label Opacity="0.32" FontFamily="./Fonts\#Segoe UI" FontSize="13" FontWeight="Bold" Foreground="#FF335EAE" HorizontalContentAlignment="Center" Margin="0,46.892,248,0" Content="Caminho de Dados" HorizontalAlignment="Right" Width="138.341" x:Name="DescCaminhoDados" VerticalAlignment="Top" Height="34.965" />
 			<Border HorizontalAlignment="Right" Height="219.521" Margin="0,24.316,42.469,0" Width="169" BorderBrush="LightSlateGray" BorderThickness="1" VerticalAlignment="Top" d:LayoutOverrides="Height" >
 				<Grid x:Name="blocoRegistradores" Background="{StaticResource gradienteAzul}" Margin="0.016,0.016,0.031,0.047">
@@ -3923,7 +4026,7 @@
 					</TransformGroup>
 				</TextBox.RenderTransform>
 			</TextBox>
-            <ListBox Visibility="Hidden" HorizontalAlignment="Left" Margin="-37,24.316,0,90.205" Name="listaExecucao" Width="111" Grid.ColumnSpan="2" Background="{StaticResource gradienteAzul}" BorderBrush="LightSlateGray" Grid.Column="1" />
+            <ListBox Visibility="Hidden" HorizontalAlignment="Left" Margin="-37,24.316,0,90.205" x:Name="listaExecucao" Width="111" Grid.ColumnSpan="2" Background="{StaticResource gradienteAzul}" BorderBrush="LightSlateGray" Grid.Column="1" />
             <Grid Margin="180,37,0,0" x:Name="blocoInfo" HorizontalAlignment="Left" Width="522" d:LayoutOverrides="GridBox" Height="323" VerticalAlignment="Top" Visibility="Hidden">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="281*" MinHeight="224.242" />
@@ -3931,8 +4034,24 @@
                 <Rectangle Opacity="0.93" Fill="#FFFDFDFD" Stroke="#FF787878" RadiusX="6.833" RadiusY="6.833" Margin="5,4,4,5" />
                 <TextBlock Margin="18,12,82,0" FontWeight="Bold" Foreground="#FF0D3681" TextWrapping="Wrap" x:Name="txtInfoTitle" VerticalAlignment="Top" Height="23" AllowDrop="False" FontSize="14" Opacity="0.7"><Run Text="teste" /></TextBlock>
                 <TextBox Margin="17,40,15,16" Text="TextBox" TextWrapping="Wrap" x:Name="txtInfoMessage" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF5C5C5C" VerticalScrollBarVisibility="Auto" BorderThickness="0" FontSize="13" />
-                <Image Height="16" HorizontalAlignment="Right" MouseLeftButtonUp="Button_Click_16" Margin="0,12,13,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="16" Source="/ucBipI;component/Images/close.png" />
+                <Image Height="16" HorizontalAlignment="Right" MouseLeftButtonUp="Button_Click_16" Margin="0,12,13,0" x:Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="16" Source="/ucBipI;component/Images/close.png" />
             </Grid>
+            <Path Data="M-1.0172533E-07,-5.086263E-06" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="1" Margin="126.206,144.667,0,0" Stroke="#FF000000" VerticalAlignment="Top" Width="1"/>
+            <Path x:Name="OrGate" Data="M0.50000001,7.2937802 C1.3487409,3.7787937 0.75303978,0.69386135 4.2809305,0.50000002 7.565342,0.84698562 7.1882484,4.0826089 7.7500001,7.3759998 4.3568031,5.6944199 3.5903748,5.5854619 0.50000001,7.2937802 z M11,7.2937802 C11.848741,3.7787937 11.25304,0.69386135 14.78093,0.50000002 18.065342,0.84698562 17.688248,4.0826089 18.25,7.3759998 14.856803,5.6944199 14.090375,5.5854619 11,7.2937802 z" HorizontalAlignment="Left" Height="7.876" Margin="101.375,105.167,0,0" Stroke="#FF000000" VerticalAlignment="Top" Width="18.75" Fill="{DynamicResource BlueGradiente}" Stretch="Fill"/>
+            <Path HorizontalAlignment="Left" Margin="116.913,210.741,0,0" Width="20.93" Fill="{DynamicResource BlueGradiente}" Stretch="None" Stroke="#FF000000" Data="M0.5,0.50141113 L4.6039283,0.50141113 20.429722,0.50141113 14.131221,8.0443353 6.7498438,8.0441728 z" x:Name="blocoSelPC" VerticalAlignment="Top" Height="8.545" RenderTransformOrigin="0.5,0.5">
+            	<Path.RenderTransform>
+            		<TransformGroup>
+            			<ScaleTransform/>
+            			<SkewTransform/>
+            			<RotateTransform Angle="-89.894"/>
+            			<TranslateTransform/>
+            		</TransformGroup>
+            	</Path.RenderTransform>
+            </Path>
+            <Path x:Name="linhaInterrupcao4" Data="M381.45647,231.49987 L391.54015,231.54167 391.49864,252.77522 114.65545,252.98021 114.60848,220.99532 122.52543,220.99532" HorizontalAlignment="Left" Margin="114.991,221.016,0,253.205" Stretch="Fill" Stroke="#FF606060" Width="277.918"/>
+            <Path x:Name="linhaInterrupcao3" Data="M115.3881,201.48425 L115.373,208.2501 122.88937,208.2501" HorizontalAlignment="Left" Height="7.766" Margin="115.373,201.484,0,0" Stretch="Fill" Stroke="#FF606060" VerticalAlignment="Top" Width="8.531"/>
+            <Path x:Name="linhaInterrupcao2" Data="M131.28881,215.58334 L155.03832,215.66667" HorizontalAlignment="Left" Height="1.084" Margin="131.289,215.583,0,0" Stretch="Fill" Stroke="#FF606060" VerticalAlignment="Top" Width="24.594"/>
+            <Path x:Name="linhaInterrupcao1" Data="M0.52083043,0.66599945 L0.5,17.06133 24.563,17.123828 24.520829,81.083001 20.109377,81.046372 M11.061995,0.5 L11.124994,17.374001 M11.626998,16.916501 C11.626998,17.203965 11.40314,17.437001 11.126998,17.437001 C10.850855,17.437001 10.626998,17.203965 10.626998,16.916501 C10.626998,16.629037 10.850855,16.396001 11.126998,16.396001 C11.40314,16.396001 11.626998,16.629037 11.626998,16.916501 z M24.921998,80.937501 C24.921998,81.224965 24.69814,81.458001 24.421998,81.458001 C24.145855,81.458001 23.921998,81.224965 23.921998,80.937501 C23.921998,80.650037 24.145855,80.417001 24.421998,80.417001 C24.69814,80.417001 24.921998,80.650037 24.921998,80.937501 z M24.436997,81.031001 L24.561999,97.608999" Fill="{x:Null}" HorizontalAlignment="Left" Height="98.109" Margin="103.435,110.938,0,0" Stretch="Fill" Stroke="#FF606060" StrokeThickness="1" VerticalAlignment="Top" Width="25.422"/>
         </Grid>
 	</Viewbox>
 </UserControl>

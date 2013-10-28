@@ -930,6 +930,15 @@ Para retorno do procedimento, o valor armazenado no topo da pilha é recuperado 
                 this.pilha_grid.Visibility = Visibility.Hidden;
                 this.es_grid2.Visibility = Visibility.Hidden;
                 this.vetor_grid.Visibility = Visibility.Hidden;
+				
+				this.OrGate.Visibility = Visibility.Hidden;
+				this.linhaInterrupcao1.Visibility = Visibility.Hidden;
+				this.linhaInterrupcao2.Visibility = Visibility.Hidden;
+				this.linhaInterrupcao3.Visibility = Visibility.Hidden;
+				this.linhaInterrupcao4.Visibility = Visibility.Hidden;
+				this.InterruptBlock.Visibility = Visibility.Hidden;
+				this.DescInterrupt.Visibility = Visibility.Hidden;
+				this.blocoSelPC.Visibility = Visibility.Hidden;
             }
             else if (this.Processor == 2)
             {
@@ -956,7 +965,14 @@ Para retorno do procedimento, o valor armazenado no topo da pilha é recuperado 
                 this.pilha_grid.Visibility = Visibility.Hidden;
                 this.es_grid2.Visibility = Visibility.Hidden;
                 this.vetor_grid.Visibility = Visibility.Hidden;
-
+				this.OrGate.Visibility = Visibility.Hidden;
+				this.linhaInterrupcao1.Visibility = Visibility.Hidden;
+				this.linhaInterrupcao2.Visibility = Visibility.Hidden;
+				this.linhaInterrupcao3.Visibility = Visibility.Hidden;
+				this.linhaInterrupcao4.Visibility = Visibility.Hidden;
+				this.InterruptBlock.Visibility = Visibility.Hidden;
+				this.DescInterrupt.Visibility = Visibility.Hidden;
+				this.blocoSelPC.Visibility = Visibility.Hidden;
             }
             else if (this.Processor == 3)
             {
@@ -983,6 +999,14 @@ Para retorno do procedimento, o valor armazenado no topo da pilha é recuperado 
                 this.pilha_grid.Visibility = Visibility.Hidden;
                 this.es_grid2.Visibility = Visibility.Hidden;
                 this.vetor_grid.Visibility = Visibility.Hidden;
+				this.OrGate.Visibility = Visibility.Hidden;
+				this.linhaInterrupcao1.Visibility = Visibility.Hidden;
+				this.linhaInterrupcao2.Visibility = Visibility.Hidden;
+				this.linhaInterrupcao3.Visibility = Visibility.Hidden;
+				this.linhaInterrupcao4.Visibility = Visibility.Hidden;
+				this.InterruptBlock.Visibility = Visibility.Hidden;
+				this.DescInterrupt.Visibility = Visibility.Hidden;
+				this.blocoSelPC.Visibility = Visibility.Hidden;
             }
             else if (this.Processor == 4)
             {
@@ -1009,8 +1033,50 @@ Para retorno do procedimento, o valor armazenado no topo da pilha é recuperado 
                 this.pilha_grid.Visibility = Visibility.Visible;
                 this.es_grid2.Visibility = Visibility.Visible;
                 this.vetor_grid.Visibility = Visibility.Visible;
+				this.OrGate.Visibility = Visibility.Hidden;
+				this.linhaInterrupcao1.Visibility = Visibility.Hidden;
+				this.linhaInterrupcao2.Visibility = Visibility.Hidden;
+				this.linhaInterrupcao3.Visibility = Visibility.Hidden;
+				this.linhaInterrupcao4.Visibility = Visibility.Hidden;
+				this.InterruptBlock.Visibility = Visibility.Hidden;
+				this.DescInterrupt.Visibility = Visibility.Hidden;
+				this.blocoSelPC.Visibility = Visibility.Hidden;
 
-            }
+            } 
+			else if (this.Processor == 5)
+			{
+				this.status.Visibility = Visibility.Visible;
+                this.linhaBIP2.Visibility = Visibility.Visible;
+                this.blocoBIP2.Visibility = Visibility.Visible;
+                this.linhaBIP2_2.Visibility = Visibility.Visible;
+                this.linhaStatus1.Visibility = Visibility.Visible;
+                this.linhaStatus2.Visibility = Visibility.Visible;
+                this.linhaStatus3.Visibility = Visibility.Visible;
+                this.linhaStatus4.Visibility = Visibility.Visible;
+                this.linhaStatus5.Visibility = Visibility.Visible;
+                this.setaStatus1.Visibility = Visibility.Visible;
+                this.setaStatus2.Visibility = Visibility.Visible;
+                this.setaStatus3.Visibility = Visibility.Visible;
+                this.setaStatus4.Visibility = Visibility.Visible;
+                this.setaStatus5.Visibility = Visibility.Visible;
+                this.lblZ.Visibility = Visibility.Visible;
+                this.lblN.Visibility = Visibility.Visible;
+                this.ES_grid.Visibility = Visibility.Visible;
+                this.DescBip.Content = "µBIP";
+                DescUla.Content = "ULA";
+                DescUla.FontSize = 18;
+                this.pilha_grid.Visibility = Visibility.Visible;
+                this.es_grid2.Visibility = Visibility.Visible;
+                this.vetor_grid.Visibility = Visibility.Visible;
+				this.OrGate.Visibility = Visibility.Visible;
+				this.linhaInterrupcao1.Visibility = Visibility.Visible;
+				this.linhaInterrupcao2.Visibility = Visibility.Visible;
+				this.linhaInterrupcao3.Visibility = Visibility.Visible;
+				this.linhaInterrupcao4.Visibility = Visibility.Visible;
+				this.InterruptBlock.Visibility = Visibility.Visible;
+				this.DescInterrupt.Visibility = Visibility.Visible;
+				this.blocoSelPC.Visibility = Visibility.Visible;
+			}
         }
         #endregion
 

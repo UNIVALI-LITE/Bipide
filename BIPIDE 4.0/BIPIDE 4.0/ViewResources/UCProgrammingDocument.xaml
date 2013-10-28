@@ -34,21 +34,23 @@
 
 
                     <AvalonDockLayout:LayoutRoot x:Name="_LayoutRoot">
-
-                        <AvalonDockLayout:LayoutRoot.RightSide>
-                            <AvalonDockLayout:LayoutAnchorSide>
-                                <AvalonDockLayout:LayoutAnchorGroup>
+                        <AvalonDockLayout:LayoutPanel Orientation="Horizontal">
+                            <AvalonDock:LayoutPanel Orientation="Vertical"
+                                                    DockWidth="300">
+                                <AvalonDockLayout:LayoutAnchorablePane>
                                     <AvalonDockLayout:LayoutAnchorable x:Name="_LayoutAnchorableSourceCodeDebug"
                                                                        IconSource="/BIPIDE 4.0;component/ImageResources/new16.png"
-                                                                       Title="Portugol"
                                                                        CanClose="False"
                                                                        CanHide="False"
                                                                        AutoHideMinWidth="100"
-                                                                       AutoHideWidth="350" >
+                                                                       AutoHideWidth="350">
                                         <AvalonEdit:TextEditor x:Name="_TextEditorSourceCodeDebug" 
                                                                ShowLineNumbers="True" 
                                                                IsReadOnly="True"/>
                                     </AvalonDockLayout:LayoutAnchorable>
+                                </AvalonDockLayout:LayoutAnchorablePane>
+  
+                                <AvalonDockLayout:LayoutAnchorablePane>
                                     <AvalonDockLayout:LayoutAnchorable IconSource="/BIPIDE 4.0;component/ImageResources/newASM16.png"
                                                                        Title="Assembly"
                                                                        CanClose="False"
@@ -58,15 +60,12 @@
                                         <AvalonDock:LayoutAnchorable.Content>
                                             <AvalonEdit:TextEditor x:Name="_TextEditorASM" 
                                                                    ShowLineNumbers="True"
-                                                                   IsReadOnly="True"
-                                                                   />
+                                                                   IsReadOnly="True"/>
                                         </AvalonDock:LayoutAnchorable.Content>
                                     </AvalonDockLayout:LayoutAnchorable>
-                                </AvalonDockLayout:LayoutAnchorGroup>
-                            </AvalonDockLayout:LayoutAnchorSide>
-                        </AvalonDockLayout:LayoutRoot.RightSide>
-                        
-                        <AvalonDockLayout:LayoutPanel Orientation="Vertical">
+                                </AvalonDockLayout:LayoutAnchorablePane>
+                            </AvalonDock:LayoutPanel>
+                            
                             <AvalonDockLayout:LayoutDocumentPaneGroup>
                                 <AvalonDockLayout:LayoutDocumentPane>
                                     <AvalonDockLayout:LayoutDocumentPane.Children>

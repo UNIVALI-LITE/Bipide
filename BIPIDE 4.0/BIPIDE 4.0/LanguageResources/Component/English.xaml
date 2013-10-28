@@ -17,8 +17,8 @@
 
     <system:String x:Key="TabLearn">Learn</system:String>
     <system:String x:Key="GroupHelp">Help</system:String>
-    <system:String x:Key="ButtonFundamentals">Fundamentals</system:String>
-    <system:String x:Key="ButtonSystem">System</system:String>
+    <system:String x:Key="ButtonFundamentals">Theory</system:String>
+    <system:String x:Key="ButtonSystem">Bipide</system:String>
     <system:String x:Key="ButtonPractice">Practice</system:String>
     <system:String x:Key="GroupInformation">Information</system:String>
     <system:String x:Key="ButtonAbout">About</system:String>

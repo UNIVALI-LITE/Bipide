@@ -79,6 +79,8 @@
 
     <system:String x:Key="TipDescriptionRadioButtonBipIV">Selects the processor BIP IV to be used in the simulation.</system:String>
 
+    <system:String x:Key="TipDescriptionRadioButtonUBip">Selects the processor µBIP to be used in the simulation.</system:String>
+    
     <system:String x:Key="TipFooterTitle">Press F1 for more help.</system:String>
 
 </ResourceDictionary>

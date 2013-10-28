@@ -31,7 +31,8 @@ namespace BIPIDE_4._0
             psBipI   = 1,
             psBipII  = 2,
             psBipIII = 3,
-            psBipIV  = 4
+            psBipIV  = 4,
+            psUBip   = 5
         }
 
         private SimulationStatus _Status;

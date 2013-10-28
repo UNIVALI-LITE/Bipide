@@ -124,11 +124,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LanguageResources\Tipes\English.xaml">
+    <Page Include="LanguageResources\Tips\English.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="LanguageResources\Tipes\Portuguese.xaml">
+    <Page Include="LanguageResources\Tips\Portuguese.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -543,6 +543,7 @@
     <Resource Include="LanguageResources\FlagIcons\zw.png" />
     <Resource Include="LanguageResources\LanguageMapping.xml" />
     <Resource Include="ImageResources\sourceCode.png" />
+    <Resource Include="ImageResources\processorUBip32.png" />
     <Content Include="ProgrammingLanguagesResources\antlr-runtime-3.4.jar" />
     <Content Include="ProgrammingLanguagesResources\CResources\CompilerResources\c-nucleo.jar" />
     <Content Include="ProgrammingLanguagesResources\IIOPChannel.dll" />

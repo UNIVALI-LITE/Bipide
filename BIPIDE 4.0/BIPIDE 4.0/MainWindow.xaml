@@ -2,6 +2,7 @@
               x:Class="BIPIDE_4._0.MainWindow"
               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:Bipide="clr-namespace:BIPIDE_4._0"
               xmlns:AvalonDock="clr-namespace:Xceed.Wpf.AvalonDock;assembly=Xceed.Wpf.AvalonDock"
               xmlns:AvalonDockLayout="clr-namespace:Xceed.Wpf.AvalonDock.Layout;assembly=Xceed.Wpf.AvalonDock"
               xmlns:AvalonDockThemes="clr-namespace:Xceed.Wpf.AvalonDock.Themes;assembly=Xceed.Wpf.AvalonDock.Themes.Aero"
@@ -18,10 +19,19 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="LanguageResources\Component\Portuguese.xaml"/>
-                <ResourceDictionary Source="LanguageResources\Tipes\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\Tips\Portuguese.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <RoutedUICommand x:Key="HelpTheory"></RoutedUICommand>
         </ResourceDictionary>
     </Window.Resources>
+
+    <Window.CommandBindings>
+        <CommandBinding Command="{StaticResource HelpTheory}" Executed="_ButtonFundamentals_Click"></CommandBinding>
+    </Window.CommandBindings>
+
+    <Window.InputBindings>
+        <KeyBinding  Key="F1" Command="{StaticResource HelpTheory}"></KeyBinding>
+    </Window.InputBindings>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -224,7 +234,7 @@
 
                     <RibbonButton x:Name="_ButtonFundamentals" 
                                   Label="{DynamicResource ResourceKey=ButtonFundamentals}" 
-                                  Width="80" 
+                                  Width="60" 
                                   LargeImageSource="ImageResources/fundamentals32.png" 
                                   SmallImageSource="ImageResources/fundamentals16.png"
                                   ToolTipTitle="{DynamicResource ResourceKey=TipTitleButtonFundamentals}"
@@ -236,7 +246,7 @@
 
                     <RibbonButton x:Name="_ButtonSystem" 
                                   Label="{DynamicResource ResourceKey=ButtonSystem}" 
-                                  Width="80" 
+                                  Width="60" 
                                   LargeImageSource="ImageResources/system32.png" 
                                   SmallImageSource="ImageResources/system16.png"
                                   ToolTipTitle="{DynamicResource ResourceKey=TipTitleButtonSystem}"
@@ -247,7 +257,7 @@
 
                     <RibbonButton x:Name="_ButtonPractice" 
                                   Label="{DynamicResource ResourceKey=ButtonPractice}" 
-                                  Width="80" 
+                                  Width="60" 
                                   LargeImageSource="ImageResources/practice32.png" 
                                   SmallImageSource="ImageResources/practice16.png"
                                   ToolTipTitle="{DynamicResource ResourceKey=TipTitleButtonPractice}"
@@ -440,7 +450,18 @@
                                        ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
                                        Checked="_RadioButtonSimulationBipIV_Checked"
                                        KeyTip="B4"/>
-                    
+
+                    <RibbonRadioButton x:Name="_RadioButtonSimulationBipV"
+                                       Label="µBIP"
+                                       Width="60"
+                                       LargeImageSource="ImageResources/processorUBip32.png"
+                                       ToolTipTitle="µBIP"
+                                       ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionRadioButtonUBip}"
+                                       ToolTipFooterImageSource="ImageResources/help32.png"
+                                       ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                       Checked="_RadioButtonSimulationBipV_Checked"
+                                       KeyTip="B4"/>
+
                 </RibbonGroup>
             </RibbonTab>
 

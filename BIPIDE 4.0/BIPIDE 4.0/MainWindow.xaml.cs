@@ -171,7 +171,7 @@ namespace BIPIDE_4._0
                 
                 ResultadoAnalise resultado = ec.resultadoAnalise;
 
-                if (resultado.getNumeroTotalErros() > 0)                {
+                if (resultado.getNumeroTotalErros() > 0) {
 
                     foreach (ErroSintatico erro in resultado.getErrosSintaticos())
                     {
@@ -393,6 +393,14 @@ namespace BIPIDE_4._0
                 ((_DocumentPane.SelectedContent as LayoutDocument).Content as UCProgrammingDocument);
 
             iSelectedDocument.SimulationSelectedProcessor = SimulationControl.Processors.psBipIV;
+        }
+
+        private void _RadioButtonSimulationBipV_Checked(object sender, RoutedEventArgs e)
+        {
+            UCProgrammingDocument iSelectedDocument =
+                ((_DocumentPane.SelectedContent as LayoutDocument).Content as UCProgrammingDocument);
+
+            iSelectedDocument.SimulationSelectedProcessor = SimulationControl.Processors.psUBip;
         }
 
         #endregion Simular

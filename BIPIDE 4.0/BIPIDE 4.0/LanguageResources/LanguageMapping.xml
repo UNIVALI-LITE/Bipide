@@ -5,13 +5,13 @@
     <Icon>LanguageResources\FlagIcons\br.png</Icon>
     <HelpMapping>LanguageResources\Help\PortugueseHelpMapping.xml</HelpMapping>
     <InterfaceMapping>LanguageResources\Component\Portuguese.xaml</InterfaceMapping>
-    <TipsMapping>LanguageResources\Tipes\Portuguese.xaml</TipsMapping>
+    <TipsMapping>LanguageResources\Tips\Portuguese.xaml</TipsMapping>
   </anyType>
   <anyType xsi:type="LanguageMapping">
     <Name>LanguageEnglish</Name>
     <Icon>LanguageResources\FlagIcons\us.png</Icon>
     <HelpMapping>LanguageResources\Help\PortugueseHelpMapping.xml</HelpMapping>
     <InterfaceMapping>LanguageResources\Component\English.xaml</InterfaceMapping>
-    <TipsMapping>LanguageResources\Tipes\English.xaml</TipsMapping>
+    <TipsMapping>LanguageResources\Tips\English.xaml</TipsMapping>
   </anyType>
 </ArrayOfAnyType>

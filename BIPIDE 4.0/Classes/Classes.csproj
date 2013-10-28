@@ -41,12 +41,12 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\..\TTC\BIPIDE 4.0\BIPIDE 4.0\BIPIDE 4.0\Resources\</OutputPath>
+    <OutputPath>..\BIPIDE 4.0\BIPIDE 4.0\Resources\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>..\..\..\..\TTC\BIPIDE 4.0\BIPIDE 4.0\BIPIDE 4.0\Resources\Classes.XML</DocumentationFile>
+    <DocumentationFile>..\BIPIDE 4.0\BIPIDE 4.0\Resources\Classes.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>

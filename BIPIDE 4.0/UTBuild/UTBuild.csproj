@@ -44,7 +44,7 @@
       <HintPath>..\BIPIDE 4.0\Resources\Classes.dll</HintPath>
     </Reference>
     <Reference Include="IIOPChannel">
-      <HintPath>..\BIPIDE 4.0\Resources\Portugol\IIOPChannel.dll</HintPath>
+      <HintPath>..\BIPIDE 4.0\ProgrammingLanguagesResources\PortugolResources\CompilerResources\IIOPChannel.dll</HintPath>
     </Reference>
     <Reference Include="portugol-integracao, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
