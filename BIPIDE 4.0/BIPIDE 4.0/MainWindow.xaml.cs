@@ -63,7 +63,6 @@ namespace BIPIDE_4._0
                         Tag         = iLanguage
                     };
                 iMenuItem.Click += iMenuItem_Click;
-
                 _RibbonMenuButtonLanguages.Items.Add(iMenuItem);
 
                 if (_RibbonMenuButtonLanguages.Tag == null)
@@ -144,7 +143,7 @@ namespace BIPIDE_4._0
                 
                 _ErrorMessages.AppendLine("Programa Compilado com Sucesso!");
 
-                Restricoes iRestrictions = new Restricoes(iErrorList);
+                Restricoes iRestrictions = new Restricoes(iErrorList, pSelectedDocument.ProgrammingLanguage);
                 iErrorList = iRestrictions.Executar(iProgram);
                 if (iRestrictions.unsupported_message != null)
                     _ErrorMessages.AppendLine(iRestrictions.unsupported_message);
@@ -161,7 +160,7 @@ namespace BIPIDE_4._0
                     pSelectedDocument._Simulator.SetRotulosPrograma(iAssembly.GetListaRotulos());
 
                     pSelectedDocument._AssemblySource       = iAssembly;
-                    pSelectedDocument.AssemblyText          = iAssembly.GetCodigoStringASM().ToString();
+                    pSelectedDocument.AssemblyText          = iAssembly.GetCodigoStringASM();
                     pSelectedDocument.SourceCodeDebugText   = pSelectedDocument._TextEditorSourceCode.Text;
                 }
 
@@ -419,7 +418,7 @@ namespace BIPIDE_4._0
             {
                 _DocumentPane.Children.Add(iLayoutDocument);
                 iLayoutDocument.IsActive = true;
-            }
+        }
             else
             {
                 foreach (LayoutDocument iDocument in _DocumentPane.Children)
@@ -440,7 +439,7 @@ namespace BIPIDE_4._0
             iLayoutDocument.Title   = (String)FindResource("ButtonPractice");
             iLayoutDocument.Content = iHelpPractice;
             iLayoutDocument.IsSelectedChanged += iHelpPractice_IsSelectedChanged;
-
+            
 
             if (_DocumentPane.Children.Count(x => x.Content.GetType() == typeof(UCHelpPractice)) == 0)
             {
@@ -455,7 +454,7 @@ namespace BIPIDE_4._0
                         iDocument.IsActive = true;
                 }
             }
-            
+
             _RibbonMain.SelectedItem = _TabPractice;
         }
 
@@ -775,7 +774,6 @@ namespace BIPIDE_4._0
     }
 
 
-    //PAULA
     public class CompilationError : System.ComponentModel.INotifyPropertyChanged
     {
         string _Line;

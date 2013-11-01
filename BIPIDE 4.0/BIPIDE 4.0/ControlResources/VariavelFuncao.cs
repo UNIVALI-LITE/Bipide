@@ -34,4 +34,29 @@ namespace BIPIDE_4._0
             set { _Variable = value; }
         }
     }
+
+    public class ConstVariables
+    {
+        public ConstVariables(String name, int value)
+        {
+            VariableName    = name;
+            VariableValue   = value;
+        }
+
+        private String _VariableName;
+
+        public String VariableName
+        {
+            get { return _VariableName; }
+            set { _VariableName = value; }
+        }
+
+        private int _VariableValue;
+
+        public int VariableValue
+        {
+            get { return _VariableValue; }
+            set { _VariableValue = value; }
+        }
+    }
 }

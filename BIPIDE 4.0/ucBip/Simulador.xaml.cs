@@ -24,6 +24,7 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text.RegularExpressions;
 
+
 namespace ucBip
 {
     #region Classe Contador
@@ -3577,7 +3578,7 @@ Para retorno do procedimento, o valor armazenado no topo da pilha é recuperado 
 
         protected void SetFim()
         {
-            if (this.RequestFimPrograma != null)
+            if (this.RequestFimPrograma != null)            
                 this.RequestFimPrograma();
         }
 

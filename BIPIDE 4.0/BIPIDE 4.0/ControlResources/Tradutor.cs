@@ -4,11 +4,8 @@ using br.univali.portugol.integracao;
 using br.univali.portugol.integracao.asa;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace BIPIDE_4._0
 {
@@ -92,6 +89,7 @@ namespace BIPIDE_4._0
         private Codigo          _Object_ExpressionCode;
 
         private List<FunctionVariables> _Variables;
+        private List<ConstVariables>    _ConstVariablesList;
 
         //Atribuição Vetor
         private Object          _VectorIndex            = null;
@@ -99,6 +97,7 @@ namespace BIPIDE_4._0
         private StringBuilder   _ExpressionVectorCode;
         private StringBuilder   _ExpressionCode;
         private List<Object>    _InicializationVector;
+        private Boolean         _IsIndex                = false;
 
         //comportamentos
         private Boolean         _FACAENQUANTO           = false;
@@ -119,6 +118,8 @@ namespace BIPIDE_4._0
 
         public String           _InitialFunction;
         public String           _ProgrammingLanguage;
+        private String          _WriteFunction          = "";
+        private String          _ReadFunction           = "";
 
         public Tradutor(Programa PortugolCode, String ProgrammingLanguage)
         {
@@ -130,6 +131,7 @@ namespace BIPIDE_4._0
             this._ExpressionCode        = new StringBuilder();
             this._ExpressionVectorCode  = new StringBuilder();
             this._Variables             = new List<FunctionVariables>();
+            this._ConstVariablesList    = new List<ConstVariables>();
             this._InicializationVector  = new List<Object>();
 
             this._OpBitwiseList         = new List<String>()
@@ -162,6 +164,10 @@ namespace BIPIDE_4._0
                 {
                     _InitialFunction = "inicio";
                     _ThereIsInicio = true;
+
+                    _WriteFunction = "escreva";
+                    _ReadFunction = "leia";
+
                 }
             }
             else
@@ -171,6 +177,9 @@ namespace BIPIDE_4._0
                 {
                     _InitialFunction = "main";
                     _ThereIsInicio = true;
+
+                    _WriteFunction = "printf";
+                    _ReadFunction = "scanf";
                 }
             }
         }
@@ -194,22 +203,16 @@ namespace BIPIDE_4._0
             asa.aceitar(this);
 
 
-            AppendInstruction("HLT", 0, null);
             _Asemblycode.AppendLine(_DataCode.ToString());
             _Asemblycode.AppendLine(_TextCode.ToString());
 
-           // String sp = DisplayMembers(_ObjectCode.GetCodigo()).ToString();
-            //String sa = DisplayMembers(_ObjectCode.GetCodigoStringASM()).ToString();
-            //String sa = DisplayMembers(_ObjectCode.GetCodigoStringASM()).ToString();
             List<InstrucaoASM> ia = _ObjectCode.GetCodigoInstrucaoASM();
             Otimizacao iOptmize = new Otimizacao();
             Codigo iNewSource = new Codigo();
             iNewSource = iOptmize.OptimizesSTOFollowedByLD(_ObjectCode);
-            //String iDMNS = DisplayMembers(iNewSource.GetCodigoStringASM()).ToString();
             List<InstrucaoASM> iNS = iNewSource.GetCodigoInstrucaoASM();
 
             return iNewSource;
-            //return _Asemblycode.ToString();
         }
 
 
@@ -251,7 +254,7 @@ namespace BIPIDE_4._0
 
                     Object valor = parametro.aceitar(this);
                     //leia
-                    if (chamadaFuncao.getNome().Equals("leia"))
+                    if (chamadaFuncao.getNome().Equals(_ReadFunction))
                     {
                         AppendInstruction("LD", "$in_port", chamadaFuncao.getTrechoCodigoFonte().getLinha());
                         instr = "STO";
@@ -264,16 +267,19 @@ namespace BIPIDE_4._0
                     }
                     //leia-escreva
                     if (valor != null)
-                        AppendInstructionScope((valor.GetType() == typeof(String)) ? instr : "LDI", valor.ToString(), chamadaFuncao.getTrechoCodigoFonte().getLinha());
+                        AppendInstructionScope((valor.GetType() == typeof(String)) ? instr : "LD", valor, chamadaFuncao.getTrechoCodigoFonte().getLinha());
 
                     //escreva
-                    if (chamadaFuncao.getNome().Equals("escreva"))
+                    if (chamadaFuncao.getNome().Equals(_WriteFunction))
                         AppendInstruction("STO", "$out_port", chamadaFuncao.getTrechoCodigoFonte().getLinha());
                 }
+            //quando vetor dentro de chamada de funcao
+            _FlagVector = false;
+            _VectorIndex = null;
 
 
-            if (!chamadaFuncao.getNome().Equals("escreva") &&
-                !chamadaFuncao.getNome().Equals("leia"))
+            if (!chamadaFuncao.getNome().Equals(_WriteFunction) &&
+                !chamadaFuncao.getNome().Equals(_ReadFunction))
                 AppendInstruction("CALL", "_" + chamadaFuncao.getNome().ToUpper(), chamadaFuncao.getTrechoCodigoFonte().getLinha());
 
             _WhenIncrementSeparate = false;
@@ -320,6 +326,9 @@ namespace BIPIDE_4._0
                 _Returned = false;
             }
 
+            if (nome_funcao.ToLower().Equals(_InitialFunction))
+                AppendInstruction("HLT", 0, null);
+
             _scope.Pop();
             return null;
         }
@@ -341,6 +350,8 @@ namespace BIPIDE_4._0
         {
             Object valor = 0;
 
+            
+
             if (noDeclaracaoVariavel.getInicializacao() != null)
             {
                 valor = noDeclaracaoVariavel.getInicializacao().aceitar(this);
@@ -348,8 +359,15 @@ namespace BIPIDE_4._0
 
             String nome_var = noDeclaracaoVariavel.getNome();
             String nome_fun_var = nome_var;
-            if (!_scope.Peek().Equals(_InitialFunction))
-                nome_fun_var = _scope.Peek() + "_" + nome_var;
+            if (_scope.Count()>0)
+                if (!_scope.Peek().Equals(_InitialFunction))
+                    nome_fun_var = _scope.Peek() + "_" + nome_var;
+
+            if (valor != null)
+                if (noDeclaracaoVariavel.constante())
+                {
+                    _ConstVariablesList.Add(new ConstVariables(nome_fun_var, System.Convert.ToInt32(valor)));
+                }
 
             //Inclui declaracao de variável
             if (valor != null && !_FlagVector)
@@ -380,12 +398,20 @@ namespace BIPIDE_4._0
         public object visitarNoDeclaracaoVetor(NoDeclaracaoVetor noDeclaracaoVetor)
         {
             String nome = noDeclaracaoVetor.getNome();
-            if (!_scope.Peek().Equals(_InitialFunction))
-                nome = _scope.Peek() + "_" + nome;
+            if (_scope.Count() > 0)
+                if (!_scope.Peek().Equals(_InitialFunction))
+                    nome = _scope.Peek() + "_" + nome;
             TipoDado tipoDado = noDeclaracaoVetor.getTipoDado();
 
-            int tamanho = (noDeclaracaoVetor.getTamanho() == null) ? 0 : (System.Int32)noDeclaracaoVetor.getTamanho().aceitar(this);
-
+            
+            Object tamanho = (noDeclaracaoVetor.getTamanho() == null) ? 0 : noDeclaracaoVetor.getTamanho().aceitar(this);
+            if (tamanho.GetType() != typeof(int)){
+                foreach(ConstVariables variavel in _ConstVariablesList){
+                    if (variavel.VariableName.Equals(tamanho.ToString()))
+                        tamanho = variavel.VariableValue;                    
+                }
+                    
+            } 
 
             String cod_declaracao = noDeclaracaoVetor.getNome() + "\t: 0";
 
@@ -394,16 +420,16 @@ namespace BIPIDE_4._0
                 noDeclaracaoVetor.getInicializacao().aceitar(this);
                 _DataCode.AppendLine("\t" + cod_declaracao);
 
-                foreach (Object iItemVetor in _InicializationVector)                
-                    _ObjectCode.AddInstrucaoASM(nome, iItemVetor.ToString(), BIPIDE.Classes.eTipo.Variavel, null, tamanho);
+                foreach (Object iItemVetor in _InicializationVector)
+                    _ObjectCode.AddInstrucaoASM(nome, iItemVetor.ToString(), BIPIDE.Classes.eTipo.Variavel, null, System.Convert.ToInt32(tamanho), _InicializationVector.IndexOf(iItemVetor));
                 
             }
             else
             {
-                for (int i = 0; i < tamanho; i++)
+                for (int i = 0; i < System.Convert.ToInt32(tamanho); i++)
                 {
                     cod_declaracao += ", 0";
-                    _ObjectCode.AddInstrucaoASM(nome, "0", BIPIDE.Classes.eTipo.Variavel, null, tamanho);
+                    _ObjectCode.AddInstrucaoASM(nome, "0", BIPIDE.Classes.eTipo.Variavel, null, System.Convert.ToInt32(tamanho), i);
                 }
                 _DataCode.AppendLine("\t" + cod_declaracao);
                 
@@ -471,19 +497,21 @@ namespace BIPIDE_4._0
 
                 if (_LabelRotuloCasoAux != "CASOCONTRARIO")
                     AppendInstructionScope("LD", "t_escolha" + _LabelEscolha, noEscolha.getExpressao().getTrechoCodigoFonte().getLinha());
-
+                               
                 if (noEscolha.getCasos().Length == count)
                 {
                     _LabelRotuloCasoAux = "FIMESCOLHA";
                     _LabelCasoAux       = _LabelEscolha;
                 }
 
+                //Para: BNE CASOCONTRARIO
                 if (noEscolha.getCasos().Length - 1 == count &&
                     this._SVExistsCasoContrario)
                 {
                     _LabelRotuloCasoAux = "CASOCONTRARIO";
-                    AppendInstructionScope("LD", "t_escolha" + _LabelEscolha, noEscolha.getExpressao().getTrechoCodigoFonte().getLinha());
+                    //AppendInstructionScope("LD", "t_escolha" + _LabelEscolha, noEscolha.getExpressao().getTrechoCodigoFonte().getLinha());
                 }
+                   
 
                 caso.aceitar(this);
 
@@ -618,8 +646,9 @@ namespace BIPIDE_4._0
         public object visitarNoReferenciaVetor(NoReferenciaVetor noReferenciaVetor)
         {
             _FlagVector = true;
-       
+            _IsIndex    = true;
             _VectorIndex = noReferenciaVetor.getIndice().aceitar(this);
+            _IsIndex    = false;
 
             if (_VectorIndex != null)
                 AppendInstruction(_VectorIndex.GetType() == typeof(String) ? "LD" : "LDI", _VectorIndex.ToString(), noReferenciaVetor.getTrechoCodigoFonte().getLinha());               
@@ -733,8 +762,8 @@ namespace BIPIDE_4._0
             Object valor = noMenosUnario.getExpressao().aceitar(this);
             _MenosUnario = true;
 
-           
-            if ( !_FlagVector)
+
+            if (!_FlagVector || _IsIndex)
             {
                 AppendInstruction("LDI", 0, noMenosUnario.getTrechoCodigoFonte().getLinha());
                 AppendInstructionScope("SUB", valor, noMenosUnario.getTrechoCodigoFonte().getLinha());
@@ -805,10 +834,7 @@ namespace BIPIDE_4._0
                 instr_sto = "STOV";
                 _VectorIndex = null;
                 _FlagVector = false;
-
-                //if (_MenosUnarioNumber)
-                  //  AppendInstructionScope("LDI", "t_vetor" + _LabelTemp, noOperacaoAtribuicao.getTrechoCodigoFonte().getLinha());
-                
+               
             }
             _MenosUnarioNumber = false;
             #endregion
@@ -871,7 +897,7 @@ namespace BIPIDE_4._0
             _RelationalOp   = (_FACAENQUANTO)? "BNE" : "BEQ";
             _Conditional    = true;
             RunOperations(noOperacaoLogicaDiferenca, (_ExpressionNeedsTemp) ? "LD" : "SUB");
-
+            _FlagReversesOp = false;
             _WhenIncrementSeparate = false;
             return null;
         }
@@ -883,7 +909,7 @@ namespace BIPIDE_4._0
             _RelationalOp   = (_FACAENQUANTO) ? "BEQ" : "BNE";
             _Conditional    = true;
             RunOperations(noOperacaoLogicaIgualdade, (_ExpressionNeedsTemp) ? "LD" : "SUB");
-
+            _FlagReversesOp = false;
             _WhenIncrementSeparate = false;
             return null;
         }
@@ -895,6 +921,7 @@ namespace BIPIDE_4._0
             _RelationalOp   = (_FACAENQUANTO) ? "BGT" : "BLE";
             _Conditional    = true;
             RunOperations(noOperacaoLogicaMaior, (_ExpressionNeedsTemp) ? "LD" : "SUB");
+            _FlagReversesOp = false;
             _WhenIncrementSeparate = false; 
             return null;
         }
@@ -906,6 +933,7 @@ namespace BIPIDE_4._0
             _RelationalOp   = (_FACAENQUANTO) ? "BGE" : "BLT";
             _Conditional    = true;
             RunOperations(noOperacaoLogicaMaiorIgual, (_ExpressionNeedsTemp) ? "LD" : "SUB");
+            _FlagReversesOp = false;
             _WhenIncrementSeparate = false;
             return null;
         }
@@ -917,6 +945,7 @@ namespace BIPIDE_4._0
             _RelationalOp   = (_FACAENQUANTO) ? "BLT" : "BGE";
             _Conditional    = true;
             RunOperations(noOperacaoLogicaMenor, (_ExpressionNeedsTemp) ? "LD" : "SUB");
+            _FlagReversesOp = false;
             _WhenIncrementSeparate = false;
             return null;
         }
@@ -928,6 +957,7 @@ namespace BIPIDE_4._0
             _RelationalOp   = (_FACAENQUANTO) ? "BLE" : "BGT";
             _Conditional    = true;
             RunOperations(noOperacaoLogicaMenorIgual, (_ExpressionNeedsTemp) ? "LD" : "SUB");
+            _FlagReversesOp = false;
             _WhenIncrementSeparate = false;
             return null;
         }
@@ -1240,21 +1270,11 @@ namespace BIPIDE_4._0
 
         }
 
-        public StringBuilder DisplayMembers(List<String> list)
-        {
-            StringBuilder codigo = new StringBuilder();
-
-            foreach (String s in list)
-            {
-                codigo.AppendLine(s.ToString());
-            }
-            return codigo;
-        }
 
         private void WriteExpressions()
         {
 
-            _FlagOperation  = false;
+            _FlagOperation  = false;            
 
             //atribui código do bloco ao código do programa
             //zera geração de código para o bloco

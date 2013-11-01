@@ -30,14 +30,16 @@ namespace BIPIDE_4._0
                         _Operating.Equals(itemASM.Operando))
                     {
                         _IndexesToBeExcluded.Add(_Result.IndexOf(itemASM));
-                        _Index          = -1;
                         _OptimizationRealized = true;
-                        _Operating      = String.Empty;
+                        _Index                  = -1;
+                        _Operating              = String.Empty;
                     }
+                    _Index = -1;
+                    _Operating = String.Empty;
                 }
 
                 if (itemASM.Instrucao.Equals("STO") ||
-                    itemASM.Instrucao.Equals("STOV"))
+                    itemASM.Instrucao.Equals("STOV"))                    
                 {
                     _Index = _Result.IndexOf(itemASM);
                     _Operating = itemASM.Operando;
@@ -50,7 +52,7 @@ namespace BIPIDE_4._0
                     if (!IndexIsOnTheList(_IndexesToBeExcluded, _Result.IndexOf(itemASM)))                       
                         {
                             if (itemASM.Tipo == eTipo.Variavel)
-                                _NewSource.AddInstrucaoASM(itemASM.Instrucao, itemASM.Operando, itemASM.Tipo, itemASM.NrLinha, itemASM.Tamanho);
+                                _NewSource.AddInstrucaoASM(itemASM.Instrucao, itemASM.Operando, itemASM.Tipo, itemASM.NrLinha, itemASM.Tamanho, _Result.IndexOf(itemASM));
                             else
                                 _NewSource.AddInstrucaoASM(itemASM.Instrucao, itemASM.Operando, itemASM.Tipo, itemASM.NrLinha);
                         }

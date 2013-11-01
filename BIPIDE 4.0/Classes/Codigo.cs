@@ -64,10 +64,10 @@ namespace BIPIDE.Classes
                 }
             }
         }
-        public void AddInstrucaoASM(string strInst, string strValue, BIPIDE.Classes.eTipo tipo, int? linha, int tam)
+        public void AddInstrucaoASM(string strInst, string strValue, BIPIDE.Classes.eTipo tipo, int? linha, int tam, int indice)
         {
-            if (tipo == BIPIDE.Classes.eTipo.Variavel)            
-                this.listaDataASM.Add(new InstrucaoASM { Instrucao = strInst, Operando = strValue, Tipo = tipo, NrLinha = linha, Tamanho = tam});                           
+            if (tipo == BIPIDE.Classes.eTipo.Variavel)
+                this.listaDataASM.Add(new InstrucaoASM { Instrucao = strInst, Operando = strValue, Tipo = tipo, NrLinha = linha, Tamanho = tam, Indice = indice });                           
             
         }
 
@@ -99,30 +99,46 @@ namespace BIPIDE.Classes
             List<string> listaResultado = new List<string>();
             String retorna = "";
 
-            foreach (InstrucaoASM itemASM in listaDataASM)
-            {
-                if (itemASM.Tipo == eTipo.Variavel && itemASM.Tamanho > 1)
-                    continue;
-                
-                listaResultado.Add(itemASM.GetInstrucaoASM());
-            }
+
+           
+            //foreach (InstrucaoASM itemASM in listaDataASM)
             for (int i = 0; i < listaDataASM.Count(); i++)
             {
                 if (listaDataASM[i].Tipo == eTipo.Variavel && listaDataASM[i].Tamanho > 1)
                 {
-                    String aux ="";
-                    for (int j = 0; j < listaDataASM[i].Tamanho-1; j++ )
+                    String aux = "";
+                    for (int j = 0; j < listaDataASM[i].Tamanho - 1; j++)
                     {
-                        aux+= listaDataASM[i + j].Operando+", ";
+                        aux += listaDataASM[i + j].Operando + ", ";
+                    }
+                    //aux += listaDataASM[i + listaDataASM[i].Tamanho - 1].Operando;
+                    aux += listaDataASM[i + listaDataASM[i].Tamanho - 1].Operando;
+                    listaResultado.Add("\t" + listaDataASM[i].Instrucao.ToLower() + " : " + aux);
+
+
+                    i = i + listaDataASM[i].Tamanho -1;
+                }else
+                //    continue;
+
+                listaResultado.Add(listaDataASM[i].GetInstrucaoASM());
+            }
+            /*for (int i = 0; i < listaDataASM.Count(); i++)
+            {
+                if (listaDataASM[i].Tipo == eTipo.Variavel && listaDataASM[i].Tamanho > 1)
+                {
+                    String aux = "";
+                    for (int j = 0; j < listaDataASM[i].Tamanho - 1; j++)
+                    {
+                        aux += listaDataASM[i + j].Operando + ", ";
                     }
                     aux += listaDataASM[i + listaDataASM[i].Tamanho - 1].Operando;
-                    listaResultado.Add("\t"+ listaDataASM[i].Instrucao.ToLower() + " : " + aux);
-                    
+                    listaResultado.Add("\t" + listaDataASM[i].Instrucao.ToLower() + " : " + aux);
+
 
                     i = i + listaDataASM[i].Tamanho;
                 }
 
-            }
+            }*/
 
                 foreach (InstrucaoASM itemASM in listaTextASM)
                     listaResultado.Add(itemASM.GetInstrucaoASM());

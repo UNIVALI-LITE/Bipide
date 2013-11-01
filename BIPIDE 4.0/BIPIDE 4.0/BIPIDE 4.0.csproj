@@ -38,10 +38,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Classes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Resources\Classes.dll</HintPath>
-    </Reference>
     <Reference Include="ICSharpCode.AvalonEdit, Version=4.3.1.9429, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Resources\ICSharpCode.AvalonEdit.dll</HintPath>
@@ -144,6 +140,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ProgrammingLanguagesResources\ErrorMapping\BipideSemanticAnalysis\NotSupportedErrors\English\NotSupportedErrors_English.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProgrammingLanguagesResources\ErrorMapping\BipideSemanticAnalysis\NotSupportedErrors\Portuguese\NotSupportedErrors_Portuguese.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SplashScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -264,7 +268,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="LanguageResources\Help\HelpSystem\" />
-    <Folder Include="ProgrammingLanguagesResources\ErrorMapping\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="ImageResources\instruction16.png" />
@@ -672,6 +675,12 @@
     <Content Include="LanguageResources\Help\Resources\Styles\shThemeMDUltra.css" />
     <Content Include="LanguageResources\Help\Resources\Styles\shThemeMidnight.css" />
     <Content Include="LanguageResources\Help\Resources\Styles\shThemeRDark.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Visual Studio 2012\Projects\BIPIDE 4.0\Classes\Classes.csproj">
+      <Project>{2eae9f8b-6786-4b23-860a-f87ef73412f0}</Project>
+      <Name>Classes</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

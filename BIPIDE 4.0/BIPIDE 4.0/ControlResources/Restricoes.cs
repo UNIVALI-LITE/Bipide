@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace BIPIDE_4._0
 {
@@ -23,7 +24,11 @@ namespace BIPIDE_4._0
         //Atribuição em Vetor
         private Boolean _IsVector               = false;
 
-        List<CompilationError> _ErrorList;
+        List<CompilationError>      _ErrorList;
+        ResourceDictionary          _Resources;
+
+        private String _WriteFunction           = "";
+        private String _ReadFunction            = "";
 
         internal static Processadores Processador
         {
@@ -33,10 +38,21 @@ namespace BIPIDE_4._0
             }
         }
 
-        public Restricoes(List<CompilationError> iErrorList)
+        public Restricoes(List<CompilationError> iErrorList, String ProgrammingLanguage)
         {
             Processador = Processadores.BIPI;
-            _ErrorList = iErrorList;
+            _ErrorList  = iErrorList;
+
+            if (ProgrammingLanguage == "Portugol")
+            {
+                _WriteFunction  = "escreva";
+                _ReadFunction   = "leia";
+            }
+            else
+            {
+                _WriteFunction  = "printf";
+                _ReadFunction   = "scanf";
+            }
         }
 
         public enum Processadores
@@ -71,6 +87,8 @@ namespace BIPIDE_4._0
 
         internal List<CompilationError> Executar(Programa programa)
         {
+
+
             _Processador = Processadores.BIPI;
             ArvoreSintaticaAbstrataPrograma asa = programa.getArvoreSintaticaAbstrata();
             asa.aceitar(this);
@@ -117,6 +135,7 @@ namespace BIPIDE_4._0
 
         public object visitarNoCaso(NoCaso noCaso)
         {
+            Processador = Processadores.BIPII;
             noCaso.getExpressao();
 
             foreach (NoBloco bloco in noCaso.getBlocos())
@@ -131,21 +150,23 @@ namespace BIPIDE_4._0
             Processador = Processadores.BIPIV;
 
             String nome = chamadaFuncao.getNome();
-            
-
+     
             if (nome == _CurrentFunction)
             {
                 int linha = chamadaFuncao.getTrechoCodigoFonteNome().getLinha();
                 int coluna = chamadaFuncao.getTrechoCodigoFonteNome().getLinha();
                 String mensagem = "O BIP  não possui suporte à recursividade";
+
+                //_Resources.FindResource("NotSupportedErrors_English.3");
+                   // mensagem = (String)FrameworkElement.FindResource("NotSupportedErrors_English.3");
                 _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
                 unsupported = true;
                 unsupported_message += Environment.NewLine + "O BIP  não possui suporte à recursividade";
             }
 
-            if (nome != "leia" &&
-                nome != "escreva"
+            if (nome != _ReadFunction &&
+                nome != _WriteFunction
             )
             _CurrentFunction = nome;
 
@@ -155,7 +176,7 @@ namespace BIPIDE_4._0
             {
 
                 valor = parametro.aceitar(this);
-                if (nome.Equals("leia"))
+                if (nome.Equals(_ReadFunction))
                 {
                     if (valor != null)
                     {
@@ -192,6 +213,7 @@ namespace BIPIDE_4._0
 
         public object visitarNoDeclaracaoFuncao(NoDeclaracaoFuncao declaracaoFuncao)
         {
+
             _CurrentFunction = declaracaoFuncao.getNome();
 
 
@@ -202,6 +224,7 @@ namespace BIPIDE_4._0
 
             foreach (NoBloco bloco in declaracaoFuncao.getBlocos())
             {
+                _CurrentFunction = declaracaoFuncao.getNome();
                 bloco.aceitar(this);
             }
             return null;
@@ -289,24 +312,26 @@ namespace BIPIDE_4._0
 
             Processador = Processadores.BIPIV;
 
+            Object tamanho = (noDeclaracaoVetor.getTamanho() == null) ? 0 : noDeclaracaoVetor.getTamanho().aceitar(this);
+            if (tamanho.GetType() == typeof(int))
+                if (Convert.ToInt32(tamanho) > 1024)
+                {
+                    int linha = noDeclaracaoVetor.getTrechoCodigoFonteNome().getLinha();
+                    int coluna = noDeclaracaoVetor.getTrechoCodigoFonteNome().getLinha();
+                    String mensagem = "O BIP  não possui suporte à tamanho de vetores acima de 1024";
+                    _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
-            int tamanho = (noDeclaracaoVetor.getTamanho() == null) ? 0 : (System.Int32) noDeclaracaoVetor.getTamanho().aceitar(this);
-            if (tamanho > 1024)
-            {
-                int linha = noDeclaracaoVetor.getTrechoCodigoFonteNome().getLinha();
-                int coluna = noDeclaracaoVetor.getTrechoCodigoFonteNome().getLinha();
-                String mensagem = "O BIP  não possui suporte à tamanho de vetores acima de 1024";
-                _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
-
-                unsupported = true;
-                unsupported_message += Environment.NewLine + "O BIP  não possui suporte à tamanho de vetores acima de 1024";
-            }
+                    unsupported = true;
+                    unsupported_message += Environment.NewLine + "O BIP  não possui suporte à tamanho de vetores acima de 1024";
+                }
 
             return null;
         }
 
         public object visitarNoEnquanto(NoEnquanto noEnquanto)
         {
+            Processador = Processadores.BIPII;
+
             _IsLoop = true;
             _IsConditional = true;
             noEnquanto.getCondicao().aceitar(this);
@@ -331,6 +356,9 @@ namespace BIPIDE_4._0
 
         public object visitarNoFacaEnquanto(NoFacaEnquanto noFacaEnquanto)
         {
+
+            Processador = Processadores.BIPII;
+
             _IsLoop = true;
           
             foreach (NoBloco blocos in noFacaEnquanto.getBlocos())            
@@ -352,9 +380,6 @@ namespace BIPIDE_4._0
 
         public object visitarNoLogico(NoLogico noLogico)
         {
-
-            Processador = Processadores.BIPIII;
-            Processador = Processadores.BIPIV;
 
 
             int linha = noLogico.getTrechoCodigoFonte().getLinha();
@@ -409,6 +434,9 @@ namespace BIPIDE_4._0
 
         public object visitarNoPara(NoPara noPara)
         {
+
+            Processador = Processadores.BIPII;
+
             _IsLoop = true;
 
             if (noPara.getInicializacao() != null)
@@ -429,6 +457,8 @@ namespace BIPIDE_4._0
 
         public object visitarNoPare(NoPare noPare)
         {
+
+            Processador = Processadores.BIPII;
             return null;
         }
 
@@ -466,6 +496,8 @@ namespace BIPIDE_4._0
 
         public object visitarNoReferenciaVetor(NoReferenciaVetor noReferenciaVetor)
         {
+
+            Processador = Processadores.BIPIV;
             if (_IsVector)
             {
                 int linha = noReferenciaVetor.getTrechoCodigoFonte().getLinha();
@@ -479,7 +511,8 @@ namespace BIPIDE_4._0
             else
                 _IsVector = true;
 
-            noReferenciaVetor.getIndice().aceitar(this);
+
+            Object o = noReferenciaVetor.getIndice().aceitar(this);
 
             _IsVector = false;
 
@@ -488,6 +521,7 @@ namespace BIPIDE_4._0
 
         public object visitarNoRetorne(NoRetorne noRetorne)
         {
+            Processador = Processadores.BIPIV;
             return null;
         }
 
@@ -512,11 +546,14 @@ namespace BIPIDE_4._0
 
         public object visitarNoVetor(NoVetor noVetor)
         {
+
+            Processador = Processadores.BIPIV;
             return null;
         }
         
         public object visitarNoBitwiseNao(NoBitwiseNao noBitwiseNao)
         {
+            Processador = Processadores.BIPIII;
             Object e = noBitwiseNao.getExpressao().aceitar(this);
             return null;
         }
@@ -543,30 +580,35 @@ namespace BIPIDE_4._0
 
         public object visitarNoOperacaoBitwiseE(NoOperacaoBitwiseE noOperacaoBitwiseE)
         {
+            Processador = Processadores.BIPIII;
             RunOperations(noOperacaoBitwiseE);
             return null;
         }
 
         public object visitarNoOperacaoBitwiseLeftShift(NoOperacaoBitwiseLeftShift noOperacaoBitwiseLeftShift)
         {
+            Processador = Processadores.BIPIII;
             RunOperations(noOperacaoBitwiseLeftShift);
             return null;
         }
 
         public object visitarNoOperacaoBitwiseOu(NoOperacaoBitwiseOu noOperacaoBitwiseOu)
         {
+            Processador = Processadores.BIPIII;
             RunOperations(noOperacaoBitwiseOu);
             return null;
         }
 
         public object visitarNoOperacaoBitwiseRightShift(NoOperacaoBitwiseRightShift noOperacaoBitwiseRightShift)
         {
+            Processador = Processadores.BIPIII;
             RunOperations(noOperacaoBitwiseRightShift);
             return null;
         }
 
         public object visitarNoOperacaoBitwiseXOR(NoOperacaoBitwiseXOR noOperacaoBitwiseXOR)
         {
+            Processador = Processadores.BIPIII;
             RunOperations(noOperacaoBitwiseXOR);
             return null;
         }
@@ -585,6 +627,9 @@ namespace BIPIDE_4._0
 
         public object visitarNoOperacaoLogicaDiferenca(NoOperacaoLogicaDiferenca noOperacaoLogicaDiferenca)
         {
+
+            Processador = Processadores.BIPII;
+
             if (!_IsConditional)
             {
                 int linha = noOperacaoLogicaDiferenca.getTrechoCodigoFonte().getLinha();
@@ -614,6 +659,9 @@ namespace BIPIDE_4._0
 
         public object visitarNoOperacaoLogicaIgualdade(NoOperacaoLogicaIgualdade noOperacaoLogicaIgualdade)
         {
+
+            Processador = Processadores.BIPII;
+
             if (!_IsConditional)
             {
                 int linha = noOperacaoLogicaIgualdade.getTrechoCodigoFonte().getLinha();
@@ -630,6 +678,8 @@ namespace BIPIDE_4._0
 
         public object visitarNoOperacaoLogicaMaior(NoOperacaoLogicaMaior noOperacaoLogicaMaior)
         {
+
+            Processador = Processadores.BIPII;
             if (!_IsConditional)
             {
                 int linha = noOperacaoLogicaMaior.getTrechoCodigoFonte().getLinha();
@@ -646,6 +696,8 @@ namespace BIPIDE_4._0
 
         public object visitarNoOperacaoLogicaMaiorIgual(NoOperacaoLogicaMaiorIgual noOperacaoLogicaMaiorIgual)
         {
+
+            Processador = Processadores.BIPII;
             if (!_IsConditional)
             {
                 int linha = noOperacaoLogicaMaiorIgual.getTrechoCodigoFonte().getLinha();
@@ -662,6 +714,8 @@ namespace BIPIDE_4._0
 
         public object visitarNoOperacaoLogicaMenor(NoOperacaoLogicaMenor noOperacaoLogicaMenor)
         {
+
+            Processador = Processadores.BIPII;
             if (!_IsConditional)
             {
                 int linha = noOperacaoLogicaMenor.getTrechoCodigoFonte().getLinha();
@@ -678,6 +732,8 @@ namespace BIPIDE_4._0
 
         public object visitarNoOperacaoLogicaMenorIgual(NoOperacaoLogicaMenorIgual noOperacaoLogicaMenorIgual)
         {
+
+            Processador = Processadores.BIPII;
             if (!_IsConditional)
             {
                 int linha = noOperacaoLogicaMenorIgual.getTrechoCodigoFonte().getLinha();
@@ -765,6 +821,9 @@ namespace BIPIDE_4._0
 
         public object visitarNoContinue(NoContinue noContinue)
         {
+
+            Processador = Processadores.BIPII;
+
             if (!_IsLoop)
             {
                 //int linha = noContinue.getTrechoCodigoFonte().getLinha();
