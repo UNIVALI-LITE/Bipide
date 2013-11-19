@@ -17,12 +17,11 @@ using System.Windows.Ink;
 using System.Collections.ObjectModel;
 using System.Windows.Threading;
 using System.Collections;
-using BIPIDE.Classes;
-using BIP;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text.RegularExpressions;
+using BIPIDE.Classes;
 
 
 namespace ucBip

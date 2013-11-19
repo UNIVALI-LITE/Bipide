@@ -460,7 +460,7 @@
                                        ToolTipFooterImageSource="ImageResources/help32.png"
                                        ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
                                        Checked="_RadioButtonSimulationBipV_Checked"
-                                       KeyTip="B4"/>
+                                       KeyTip="B5"/>
 
                 </RibbonGroup>
             </RibbonTab>
@@ -516,6 +516,17 @@
                                        ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
                                        Checked="_RadioButtonPracticeBipIV_Checked"
                                        KeyTip="B4"/>
+
+                    <RibbonRadioButton x:Name="_RadioButtonPracticeBipV"
+                                       Label="µBIP"
+                                       Width="60"
+                                       LargeImageSource="ImageResources/processorUBip32.png"
+                                       ToolTipTitle="µBIP"
+                                       ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionRadioButtonUBip}"
+                                       ToolTipFooterImageSource="ImageResources/help32.png"
+                                       ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                       Checked="_RadioButtonPracticeBipV_Checked"
+                                       KeyTip="B5"/>
 
                 </RibbonGroup>
 

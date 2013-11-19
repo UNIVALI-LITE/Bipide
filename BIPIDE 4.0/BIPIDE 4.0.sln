@@ -4,10 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIPIDE 4.0", "BIPIDE 4.0\BIPIDE 4.0.csproj", "{C8F144CB-8C0C-4920-BC89-F417AA8B2DC2}"
 	ProjectSection(ProjectDependencies) = postProject
 		{6C55B776-26D4-4DB3-A6AB-87E783B2F3D1} = {6C55B776-26D4-4DB3-A6AB-87E783B2F3D1}
-		{2EAE9F8B-6786-4B23-860A-F87EF73412F0} = {2EAE9F8B-6786-4B23-860A-F87EF73412F0}
 		{DB81988F-E0F2-45A0-A1FD-8C37F3D35244} = {DB81988F-E0F2-45A0-A1FD-8C37F3D35244}
 		{060B4BB5-C6FB-4946-91A2-BF3710E8814A} = {060B4BB5-C6FB-4946-91A2-BF3710E8814A}
 		{BA72CCE0-A9FB-4995-B496-7FEC5C87B85B} = {BA72CCE0-A9FB-4995-B496-7FEC5C87B85B}
+		{A6ECCFE5-9E6B-4156-92A2-33EA07F850C2} = {A6ECCFE5-9E6B-4156-92A2-33EA07F850C2}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xceed.Wpf.AvalonDock", "Xceed.Wpf.AvalonDock\Xceed.Wpf.AvalonDock.csproj", "{DB81988F-E0F2-45A0-A1FD-8C37F3D35244}"
@@ -18,12 +18,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICSharpCode.AvalonEdit", "I
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ucBip", "ucBip\ucBip.csproj", "{060B4BB5-C6FB-4946-91A2-BF3710E8814A}"
 	ProjectSection(ProjectDependencies) = postProject
-		{2EAE9F8B-6786-4B23-860A-F87EF73412F0} = {2EAE9F8B-6786-4B23-860A-F87EF73412F0}
+		{A6ECCFE5-9E6B-4156-92A2-33EA07F850C2} = {A6ECCFE5-9E6B-4156-92A2-33EA07F850C2}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UTBuild", "UTBuild\UTBuild.csproj", "{DA65DC39-FE48-4C20-B0A0-7B625FCFF854}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Classes", "..\..\..\Visual Studio 2012\Projects\BIPIDE 4.0\Classes\Classes.csproj", "{2EAE9F8B-6786-4B23-860A-F87EF73412F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Classes", "Classes\Classes.csproj", "{A6ECCFE5-9E6B-4156-92A2-33EA07F850C2}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -49,9 +49,9 @@ Global
 		SccProjectUniqueName6 = UTBuild\\UTBuild.csproj
 		SccProjectName6 = UTBuild
 		SccLocalPath6 = UTBuild
-		SccProjectUniqueName7 = ..\\..\\..\\Visual\u0020Studio\u00202012\\Projects\\BIPIDE\u00204.0\\Classes\\Classes.csproj
+		SccProjectUniqueName7 = Classes\\Classes.csproj
 		SccProjectName7 = Classes
-		SccLocalPath7 = ..\\..\\..\\Visual\u0020Studio\u00202012\\Projects\\BIPIDE\u00204.0\\Classes
+		SccLocalPath7 = Classes
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -82,10 +82,10 @@ Global
 		{DA65DC39-FE48-4C20-B0A0-7B625FCFF854}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA65DC39-FE48-4C20-B0A0-7B625FCFF854}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA65DC39-FE48-4C20-B0A0-7B625FCFF854}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2EAE9F8B-6786-4B23-860A-F87EF73412F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2EAE9F8B-6786-4B23-860A-F87EF73412F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2EAE9F8B-6786-4B23-860A-F87EF73412F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2EAE9F8B-6786-4B23-860A-F87EF73412F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6ECCFE5-9E6B-4156-92A2-33EA07F850C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6ECCFE5-9E6B-4156-92A2-33EA07F850C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6ECCFE5-9E6B-4156-92A2-33EA07F850C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6ECCFE5-9E6B-4156-92A2-33EA07F850C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

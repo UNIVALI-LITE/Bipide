@@ -542,6 +542,20 @@ namespace BIPIDE_4._0
             _GroupBIPIV.Visibility  = System.Windows.Visibility.Visible;
         }
 
+        private void _RadioButtonPracticeBipV_Checked(object sender, RoutedEventArgs e)
+        {
+            UCHelpPractice iSelectedDocument =
+                ((_DocumentPane.SelectedContent as LayoutDocument).Content as UCHelpPractice);
+
+            VerifyComboBoxPracticeValue(iSelectedDocument, SimulationControl.Processors.psUBip);
+            iSelectedDocument.SimulationSelectedProcessor = SimulationControl.Processors.psUBip;
+
+            _GroupBIPI.Visibility = System.Windows.Visibility.Visible;
+            _GroupBIPII.Visibility = System.Windows.Visibility.Visible;
+            _GroupBIPIII.Visibility = System.Windows.Visibility.Visible;
+            _GroupBIPIV.Visibility = System.Windows.Visibility.Visible;
+        }
+
         private void _ButtonPracticeStart_Click(object sender, RoutedEventArgs e)
         {
             UCHelpPractice iSelectedDocument =

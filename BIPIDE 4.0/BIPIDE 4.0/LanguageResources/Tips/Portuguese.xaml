@@ -20,7 +20,7 @@
     <system:String x:Key="TipTitleButtonExamples">Exemplos</system:String>
     <system:String x:Key="TipDescriptionButtonExamples">Possibilita abrir programas de exemplo.</system:String>
 
-    <system:String x:Key="TipTitleButtonExport">Exportar</system:String>
+    <system:String x:Key="TipTitleButtonExport">Exportar (Ctrl+E)</system:String>
     <system:String x:Key="TipDescriptionButtonExport">Permite exportar o programa nos formatos: Assembly, Binário, Hexadecimal, MIF e VHDL.</system:String>
 
     <system:String x:Key="TipTitleButtonCompile">Compilar</system:String>
