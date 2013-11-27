@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <system:String x:Key="ErroSemantico.ErroSimboloNaoDeclarado.1">The vector was not declared in this scope</system:String>
+    <system:String x:Key="ErroSemantico.ErroSimboloNaoDeclarado.2">The matrix was not declared in this scope</system:String>
+    <system:String x:Key="ErroSemantico.ErroSimboloNaoDeclarado.3">The variable was not declared in this scope</system:String>
+    <system:String x:Key="ErroSemantico.ErroSimboloNaoDeclarado.4">The function was not declared in this program</system:String>
+	
+</ResourceDictionary>

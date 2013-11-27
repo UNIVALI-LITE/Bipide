@@ -6,6 +6,47 @@
     <HelpMapping>LanguageResources\Help\PortugueseHelpMapping.xml</HelpMapping>
     <InterfaceMapping>LanguageResources\Component\Portuguese.xaml</InterfaceMapping>
     <TipsMapping>LanguageResources\Tips\Portuguese.xaml</TipsMapping>
+    <NotSuportedErrors>LanguageResources\ErrorMapping\BipideSemanticAnalysis\NotSupportedErrors\Portuguese.xaml</NotSuportedErrors>
+    <ErroSimboloNaoInicializado>LanguageResources\ErrorMapping\SemanticError\ErroSimboloNaoInicializado\Portuguese.xaml</ErroSimboloNaoInicializado>
+    <ErroAoAtribuirEmVetor>LanguageResources\ErrorMapping\SemanticError\ErroAoAtribuirEmVetor\Portuguese.xaml</ErroAoAtribuirEmVetor>
+    <ErroAoInicializarVetor>LanguageResources\ErrorMapping\SemanticError\ErroAoInicializarVetor\Portuguese.xaml</ErroAoInicializarVetor>
+    <ErroAtribuirEmChamadaFuncao>LanguageResources\ErrorMapping\SemanticError\ErroAtribuirEmChamadaFuncao\Portuguese.xaml</ErroAtribuirEmChamadaFuncao>
+    <ErroAtribuirEmConstante>LanguageResources\ErrorMapping\SemanticError\ErroAtribuirEmConstante\Portuguese.xaml</ErroAtribuirEmConstante>
+    <ErroDefinirTipoDadoVetorLiteral>LanguageResources\ErrorMapping\SemanticError\ErroDefinirTipoDadoVetorLiteral\Portuguese.xaml</ErroDefinirTipoDadoVetorLiteral>
+    <ErroInicializacaoConstante>LanguageResources\ErrorMapping\SemanticError\ErroInicializacaoConstante\Portuguese.xaml</ErroInicializacaoConstante>
+    <ErroInicializacaoInvalida>LanguageResources\ErrorMapping\SemanticError\ErroInicializacaoInvalida\Portuguese.xaml</ErroInicializacaoInvalida>
+    <ErroNumeroParametrosFuncao>LanguageResources\ErrorMapping\SemanticError\ErroNumeroParametrosFuncao\Portuguese.xaml</ErroNumeroParametrosFuncao>
+    <ErroOperacaoComExpressaoConstante>LanguageResources\ErrorMapping\SemanticError\ErroOperacaoComExpressaoConstante\Portuguese.xaml</ErroOperacaoComExpressaoConstante>
+    <ErroOperandoEsquerdoAtribuicaoConstante>LanguageResources\ErrorMapping\SemanticError\ErroOperandoEsquerdoAtribuicaoConstante\Portuguese.xaml</ErroOperandoEsquerdoAtribuicaoConstante>
+    <ErroParaSemExpressaoComparacao>LanguageResources\ErrorMapping\SemanticError\ErroParaSemExpressaoComparacao\Portuguese.xaml</ErroParaSemExpressaoComparacao>
+    <ErroParametroExcedente>LanguageResources\ErrorMapping\SemanticError\ErroParametroExcedente\Portuguese.xaml</ErroParametroExcedente>
+    <ErroParametroRedeclarado>LanguageResources\ErrorMapping\SemanticError\ErroParametroRedeclarado\Portuguese.xaml</ErroParametroRedeclarado>
+    <ErroPassagemParametroInvalida>LanguageResources\ErrorMapping\SemanticError\ErroPassagemParametroInvalida\Portuguese.xaml</ErroPassagemParametroInvalida>
+    <ErroQuantidadeElementosInicializacaoVetor>LanguageResources\ErrorMapping\SemanticError\ErroQuantidadeElementosInicializacaoVetor\Portuguese.xaml</ErroQuantidadeElementosInicializacaoVetor>
+    <ErroQuantificadorParametroFuncao>LanguageResources\ErrorMapping\SemanticError\ErroQuantificadorParametroFuncao\Portuguese.xaml</ErroQuantificadorParametroFuncao>
+    <ErroReferenciaInvalida>LanguageResources\ErrorMapping\SemanticError\ErroReferenciaInvalida\Portuguese.xaml</ErroReferenciaInvalida>
+    <ErroSimboloNaoDeclarado>LanguageResources\ErrorMapping\SemanticError\ErroSimboloNaoDeclarado\Portuguese.xaml</ErroSimboloNaoDeclarado>
+    <ErroSimboloRedeclarado>LanguageResources\ErrorMapping\SemanticError\ErroSimboloRedeclarado\Portuguese.xaml</ErroSimboloRedeclarado>
+    <ErroTamanhoVetorMatriz>LanguageResources\ErrorMapping\SemanticError\ErroTamanhoVetorMatriz\Portuguese.xaml</ErroTamanhoVetorMatriz>
+    <ErroTipoParametroIncompativel>LanguageResources\ErrorMapping\SemanticError\ErroTipoParametroIncompativel\Portuguese.xaml</ErroTipoParametroIncompativel>
+    <ErroTiposIncompativeis>LanguageResources\ErrorMapping\SemanticError\ErroTiposIncompativeis\Portuguese.xaml</ErroTiposIncompativeis>
+    <ErroVaParaSemTitulo>LanguageResources\ErrorMapping\SemanticError\ErroVaParaSemTitulo\Portuguese.xaml</ErroVaParaSemTitulo>
+    <ErroVetorSemElementos>LanguageResources\ErrorMapping\SemanticError\ErroVetorSemElementos\Portuguese.xaml</ErroVetorSemElementos>
+    <ErroComandoEsperado>LanguageResources\ErrorMapping\SyntacticError\ErroComandoEsperado\Portuguese.xaml</ErroComandoEsperado>
+    <ErroEscopo>LanguageResources\ErrorMapping\SyntacticError\ErroEscopo\Portuguese.xaml</ErroEscopo>
+    <ErroExpressaoEsperada>LanguageResources\ErrorMapping\SyntacticError\ErroExpressaoEsperada\Portuguese.xaml</ErroExpressaoEsperada>
+    <ErroExpressaoIncompleta>LanguageResources\ErrorMapping\SyntacticError\ErroExpressaoIncompleta\Portuguese.xaml</ErroExpressaoIncompleta>
+    <ErroExpressaoInesperada>LanguageResources\ErrorMapping\SyntacticError\ErroExpressaoInesperada\Portuguese.xaml</ErroExpressaoInesperada>
+    <ErroExpressoesForaEscopoPrograma>LanguageResources\ErrorMapping\SyntacticError\ErroExpressoesForaEscopoPrograma\Portuguese.xaml</ErroExpressoesForaEscopoPrograma>
+    <ErroFaltaDoisPontos>LanguageResources\ErrorMapping\SyntacticError\ErroFaltaDoisPontos\Portuguese.xaml</ErroFaltaDoisPontos>
+    <ErroNomeIncompativel>LanguageResources\ErrorMapping\SyntacticError\ErroNomeIncompativel\Portuguese.xaml</ErroNomeIncompativel>
+    <ErroNomeSimboloEstaFaltando>LanguageResources\ErrorMapping\SyntacticError\ErroNomeSimboloEstaFaltando\Portuguese.xaml</ErroNomeSimboloEstaFaltando>
+    <ErroPalavraReservadaEstaFaltando>LanguageResources\ErrorMapping\SyntacticError\ErroPalavraReservadaEstaFaltando\Portuguese.xaml</ErroPalavraReservadaEstaFaltando>
+    <ErroParaEsperaCondicao>LanguageResources\ErrorMapping\SyntacticError\ErroParaEsperaCondicao\Portuguese.xaml</ErroParaEsperaCondicao>
+    <ErroParentesis>LanguageResources\ErrorMapping\SyntacticError\ErroParentesis\Portuguese.xaml</ErroParentesis>
+    <ErroTipoDeDadoEstaFaltando>LanguageResources\ErrorMapping\SyntacticError\ErroTipoDeDadoEstaFaltando\Portuguese.xaml</ErroTipoDeDadoEstaFaltando>
+    <ErroTokenFaltando>LanguageResources\ErrorMapping\SyntacticError\ErroTokenFaltando\Portuguese.xaml</ErroTokenFaltando>
+    <Success>LanguageResources\ErrorMapping\Success\Portuguese.xaml</Success>
   </anyType>
   <anyType xsi:type="LanguageMapping">
     <Name>LanguageEnglish</Name>
@@ -13,5 +54,46 @@
     <HelpMapping>LanguageResources\Help\PortugueseHelpMapping.xml</HelpMapping>
     <InterfaceMapping>LanguageResources\Component\English.xaml</InterfaceMapping>
     <TipsMapping>LanguageResources\Tips\English.xaml</TipsMapping>
+    <NotSuportedErrors>LanguageResources\ErrorMapping\BipideSemanticAnalysis\NotSupportedErrors\English.xaml</NotSuportedErrors>
+    <ErroSimboloNaoInicializado>LanguageResources\ErrorMapping\SemanticError\ErroSimboloNaoInicializado\English.xaml</ErroSimboloNaoInicializado>
+    <ErroAoAtribuirEmVetor>LanguageResources\ErrorMapping\SemanticError\ErroAoAtribuirEmVetor\English.xaml</ErroAoAtribuirEmVetor>
+    <ErroAoInicializarVetor>LanguageResources\ErrorMapping\SemanticError\ErroAoInicializarVetor\English.xaml</ErroAoInicializarVetor>
+    <ErroAtribuirEmChamadaFuncao>LanguageResources\ErrorMapping\SemanticError\ErroAtribuirEmChamadaFuncao\English.xaml</ErroAtribuirEmChamadaFuncao>
+    <ErroAtribuirEmConstante>LanguageResources\ErrorMapping\SemanticError\ErroAtribuirEmConstante\English.xaml</ErroAtribuirEmConstante>
+    <ErroDefinirTipoDadoVetorLiteral>LanguageResources\ErrorMapping\SemanticError\ErroDefinirTipoDadoVetorLiteral\English.xaml</ErroDefinirTipoDadoVetorLiteral>
+    <ErroInicializacaoConstante>LanguageResources\ErrorMapping\SemanticError\ErroInicializacaoConstante\English.xaml</ErroInicializacaoConstante>
+    <ErroInicializacaoInvalida>LanguageResources\ErrorMapping\SemanticError\ErroInicializacaoInvalida\English.xaml</ErroInicializacaoInvalida>
+    <ErroNumeroParametrosFuncao>LanguageResources\ErrorMapping\SemanticError\ErroNumeroParametrosFuncao\English.xaml</ErroNumeroParametrosFuncao>
+    <ErroOperacaoComExpressaoConstante>LanguageResources\ErrorMapping\SemanticError\ErroOperacaoComExpressaoConstante\English.xaml</ErroOperacaoComExpressaoConstante>
+    <ErroOperandoEsquerdoAtribuicaoConstante>LanguageResources\ErrorMapping\SemanticError\ErroOperandoEsquerdoAtribuicaoConstante\English.xaml</ErroOperandoEsquerdoAtribuicaoConstante>
+    <ErroParaSemExpressaoComparacao>LanguageResources\ErrorMapping\SemanticError\ErroParaSemExpressaoComparacao\English.xaml</ErroParaSemExpressaoComparacao>
+    <ErroParametroExcedente>LanguageResources\ErrorMapping\SemanticError\ErroParametroExcedente\English.xaml</ErroParametroExcedente>
+    <ErroParametroRedeclarado>LanguageResources\ErrorMapping\SemanticError\ErroParametroRedeclarado\English.xaml</ErroParametroRedeclarado>
+    <ErroPassagemParametroInvalida>LanguageResources\ErrorMapping\SemanticError\ErroPassagemParametroInvalida\English.xaml</ErroPassagemParametroInvalida>
+    <ErroQuantidadeElementosInicializacaoVetor>LanguageResources\ErrorMapping\SemanticError\ErroQuantidadeElementosInicializacaoVetor\English.xaml</ErroQuantidadeElementosInicializacaoVetor>
+    <ErroQuantificadorParametroFuncao>LanguageResources\ErrorMapping\SemanticError\ErroQuantificadorParametroFuncao\English.xaml</ErroQuantificadorParametroFuncao>
+    <ErroReferenciaInvalida>LanguageResources\ErrorMapping\SemanticError\ErroReferenciaInvalida\English.xaml</ErroReferenciaInvalida>
+    <ErroSimboloNaoDeclarado>LanguageResources\ErrorMapping\SemanticError\ErroSimboloNaoDeclarado\English.xaml</ErroSimboloNaoDeclarado>
+    <ErroSimboloRedeclarado>LanguageResources\ErrorMapping\SemanticError\ErroSimboloRedeclarado\English.xaml</ErroSimboloRedeclarado>
+    <ErroTamanhoVetorMatriz>LanguageResources\ErrorMapping\SemanticError\ErroTamanhoVetorMatriz\English.xaml</ErroTamanhoVetorMatriz>
+    <ErroTipoParametroIncompativel>LanguageResources\ErrorMapping\SemanticError\ErroTipoParametroIncompativel\English.xaml</ErroTipoParametroIncompativel>
+    <ErroTiposIncompativeis>LanguageResources\ErrorMapping\SemanticError\ErroTiposIncompativeis\English.xaml</ErroTiposIncompativeis>
+    <ErroVaParaSemTitulo>LanguageResources\ErrorMapping\SemanticError\ErroVaParaSemTitulo\English.xaml</ErroVaParaSemTitulo>
+    <ErroVetorSemElementos>LanguageResources\ErrorMapping\SemanticError\ErroVetorSemElementos\English.xaml</ErroVetorSemElementos>
+    <ErroComandoEsperado>LanguageResources\ErrorMapping\SyntacticError\ErroComandoEsperado\English.xaml</ErroComandoEsperado>
+    <ErroEscopo>LanguageResources\ErrorMapping\SyntacticError\ErroEscopo\English.xaml</ErroEscopo>
+    <ErroExpressaoEsperada>LanguageResources\ErrorMapping\SyntacticError\ErroExpressaoEsperada\English.xaml</ErroExpressaoEsperada>
+    <ErroExpressaoIncompleta>LanguageResources\ErrorMapping\SyntacticError\ErroExpressaoIncompleta\English.xaml</ErroExpressaoIncompleta>
+    <ErroExpressaoInesperada>LanguageResources\ErrorMapping\SyntacticError\ErroExpressaoInesperada\English.xaml</ErroExpressaoInesperada>
+    <ErroExpressoesForaEscopoPrograma>LanguageResources\ErrorMapping\SyntacticError\ErroExpressoesForaEscopoPrograma\English.xaml</ErroExpressoesForaEscopoPrograma>
+    <ErroFaltaDoisPontos>LanguageResources\ErrorMapping\SyntacticError\ErroFaltaDoisPontos\English.xaml</ErroFaltaDoisPontos>
+    <ErroNomeIncompativel>LanguageResources\ErrorMapping\SyntacticError\ErroNomeIncompativel\English.xaml</ErroNomeIncompativel>
+    <ErroNomeSimboloEstaFaltando>LanguageResources\ErrorMapping\SyntacticError\ErroNomeSimboloEstaFaltando\English.xaml</ErroNomeSimboloEstaFaltando>
+    <ErroPalavraReservadaEstaFaltando>LanguageResources\ErrorMapping\SyntacticError\ErroPalavraReservadaEstaFaltando\English.xaml</ErroPalavraReservadaEstaFaltando>
+    <ErroParaEsperaCondicao>LanguageResources\ErrorMapping\SyntacticError\ErroParaEsperaCondicao\English.xaml</ErroParaEsperaCondicao>
+    <ErroParentesis>LanguageResources\ErrorMapping\SyntacticError\ErroParentesis\English.xaml</ErroParentesis>
+    <ErroTipoDeDadoEstaFaltando>LanguageResources\ErrorMapping\SyntacticError\ErroTipoDeDadoEstaFaltando\English.xaml</ErroTipoDeDadoEstaFaltando>
+    <ErroTokenFaltando>LanguageResources\ErrorMapping\SyntacticError\ErroTokenFaltando\English.xaml</ErroTokenFaltando>
+    <Success>LanguageResources\ErrorMapping\Success\English.xaml</Success>
   </anyType>
 </ArrayOfAnyType>

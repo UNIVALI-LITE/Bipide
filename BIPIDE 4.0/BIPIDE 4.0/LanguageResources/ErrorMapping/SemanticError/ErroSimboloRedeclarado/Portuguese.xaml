@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <system:String x:Key="ErroSemantico.ErroSimboloRedeclarado.1">O símbolo já foi declarado como um vetor</system:String>
+    <system:String x:Key="ErroSemantico.ErroSimboloRedeclarado.2">O símbolo já foi declarado como uma matriz </system:String>
+    <system:String x:Key="ErroSemantico.ErroSimboloRedeclarado.3">O símbolo já foi declarado como uma variável </system:String>
+    <system:String x:Key="ErroSemantico.ErroSimboloRedeclarado.4">O símbolo já foi declarado como uma função </system:String>
+	
+</ResourceDictionary>

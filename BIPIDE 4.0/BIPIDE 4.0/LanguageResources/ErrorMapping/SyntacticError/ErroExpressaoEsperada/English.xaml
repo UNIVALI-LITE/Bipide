@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <system:String x:Key="ErroSintatico.ErroExpressaoEsperada.1">The row of the matrix was not informed or expression entered is not a line array</system:String>
+    <system:String x:Key="ErroSintatico.ErroExpressaoEsperada.2">The vector element was not entered, enter a value or an expression to correct the problem</system:String>
+    <system:String x:Key="ErroSintatico.ErroExpressaoEsperada.3">The element was not entered in the matrix row, enter a value or an expression to correct the problem</system:String>
+    <system:String x:Key="ErroSintatico.ErroExpressaoEsperada.4">The command "if" expected an expression of logical type between the brackets</system:String>
+    <system:String x:Key="ErroSintatico.ErroExpressaoEsperada.5">The command "while" expect an expression of logical type between the brackets</system:String>
+	<system:String x:Key="ErroSintatico.ErroExpressaoEsperada.6">The command "do while" expect an expression of logical type between the brackets</system:String>
+	<system:String x:Key="ErroSintatico.ErroExpressaoEsperada.7">The command "switch" expects a value or an expression</system:String>
+	<system:String x:Key="ErroSintatico.ErroExpressaoEsperada.8">Was expected an expression</system:String>
+	
+</ResourceDictionary>

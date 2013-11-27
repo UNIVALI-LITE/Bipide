@@ -1,0 +1,32 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <system:String x:Key="ErroSemantico.ErroTiposIncompativeis.1">Tipos incompatíveis entre expressões</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.2">Tipos incompatíveis para a operação menos unário</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.3">Tipos incompatíveis para a operação de negação</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.4">Tipos incompatíveis para a operação de diferença</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.5">Tipos incompatíveis para a operação de divisão</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.6">Tipos incompatíveis para a operação lógica E</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.7">Tipos incompatíveis para a operação de igualdade</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.8">Tipos incompatíveis para a operação lógica Maior</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.9">Tipos incompatíveis para a operação lógica Maior Igual</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.10">Tipos incompatíveis para a operação lógica Menor</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.11">Tipos incompatíveis para a operação lógica Menor Igual</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.12">Tipos incompatíveis para a operação Módulo</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.13">Tipos incompatíveis para a operação Multiplicação</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.14">Tipos incompatíveis para a operação Lógica Ou</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.15">Tipos incompatíveis para a operação soma</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.16">Tipos incompatíveis para a operação subtração</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.17">Tipos incompatíveis para o comando escolha</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.18">Tipos incompatíveis para Caso</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.19">Tipos incompatíveis para a condição Se</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.20">Tipos incompatíveis para a condição Enquanto</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.21">Tipos incompatíveis para a condição FacaEnquanto</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.22">Tipos incompatíveis para a condição Para</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.23">Tipos incompatíveis para referência de Matriz</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.24">Tipos incompatíveis para referência de Vetor</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.25">Tipos incompatíveis para retorno de função</system:String>
+	
+	
+</ResourceDictionary>

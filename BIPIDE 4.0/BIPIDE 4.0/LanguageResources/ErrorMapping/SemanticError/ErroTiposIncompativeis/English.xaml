@@ -1,0 +1,31 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <system:String x:Key="ErroSemantico.ErroTiposIncompativeis.1">Mismatch between expressions</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.2">Mismatched types for unary minus operation</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.3">Mismatched types for negation operation</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.4">Mismatched types for difference operation</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.5">Mismatched types for division operation</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.6">Mismatched types for logical AND operation</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.7">Mismatched types for equality operation</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.8">Mismatched types for Greater logical operation</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.9">Mismatched types for Greater ou Equal operation</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.10">Mismatched types for Less operation</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.11">Mismatched types for Less or Equal operation</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.12">Mismatched types for module operation</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.13">Mismatched types for multiplication operation</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.14">Mismatched types for logical OR operation</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.15">Mismatched types for sum operation</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.16">Mismatched types for subtraction operation</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.17">Mismatched types for the command switch</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.18">Mismatched types for the command case</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.19">Mismatched types for IF condition</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.20">Mismatched types for While condition</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.21">Mismatched types for Do While condition</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.22">Mismatched types for 'For' condition</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.23">Incompatible types for Matrix reference</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.24">Incompatible types for Vector reference</system:String>
+	<system:String x:Key="ErroSemantico.ErroTiposIncompativeis.25">Mismatched types for function return</system:String>
+	
+</ResourceDictionary>

@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <system:String x:Key="ErroSemantico.ErroSimboloNaoDeclarado.1">O vetor não foi declarado neste escopo</system:String>
+    <system:String x:Key="ErroSemantico.ErroSimboloNaoDeclarado.2">A matriz não foi declarada neste escopo</system:String>
+    <system:String x:Key="ErroSemantico.ErroSimboloNaoDeclarado.3">A variável não foi declarada neste escopo</system:String>
+    <system:String x:Key="ErroSemantico.ErroSimboloNaoDeclarado.4">A função não foi declarada no programa</system:String>
+	
+</ResourceDictionary>

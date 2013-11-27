@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <system:String x:Key="ErroSemantico.ErroAtribuirEmConstante.1">Constant value can not have its value changed after initialization</system:String>
+    <system:String x:Key="ErroSemantico.ErroAtribuirEmConstante.2">Constant Vector can not have its value changed after initialization</system:String>
+    <system:String x:Key="ErroSemantico.ErroAtribuirEmConstante.3">Constant Matrix can not have its value changed after initialization</system:String>
+
+</ResourceDictionary>

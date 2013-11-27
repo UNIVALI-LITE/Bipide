@@ -1,0 +1,25 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <system:String x:Key="ErroSemantico.ErroReferenciaInvalida.11">O vetor está sendo utilizado como uma variável</system:String>
+    <system:String x:Key="ErroSemantico.ErroReferenciaInvalida.21">A matriz está sendo utilizada como uma variável</system:String>
+    <system:String x:Key="ErroSemantico.ErroReferenciaInvalida.31">A variável está sendo utilizada como uma variável</system:String>
+    <system:String x:Key="ErroSemantico.ErroReferenciaInvalida.41">A funcao está sendo utilizada como uma variável</system:String>	
+	
+    <system:String x:Key="ErroSemantico.ErroReferenciaInvalida.12">O vetor está sendo utilizado como uma matriz</system:String>
+    <system:String x:Key="ErroSemantico.ErroReferenciaInvalida.22">A matriz está sendo utilizada como uma matriz</system:String>
+    <system:String x:Key="ErroSemantico.ErroReferenciaInvalida.32">A variável está sendo utilizada como uma matriz</system:String>
+    <system:String x:Key="ErroSemantico.ErroReferenciaInvalida.42">A funcao está sendo utilizada como uma matriz</system:String>
+	
+    <system:String x:Key="ErroSemantico.ErroReferenciaInvalida.13">O vetor está sendo utilizado como um vetor</system:String>
+    <system:String x:Key="ErroSemantico.ErroReferenciaInvalida.23">A matriz está sendo utilizada como um vetor</system:String>
+    <system:String x:Key="ErroSemantico.ErroReferenciaInvalida.33">A variável está sendo utilizada como um vetor</system:String>
+    <system:String x:Key="ErroSemantico.ErroReferenciaInvalida.43">A funcao está sendo utilizada como um vetor</system:String>
+	
+    <system:String x:Key="ErroSemantico.ErroReferenciaInvalida.14">O vetor está sendo utilizado como uma função</system:String>
+    <system:String x:Key="ErroSemantico.ErroReferenciaInvalida.24">A matriz está sendo utilizada como uma função</system:String>
+    <system:String x:Key="ErroSemantico.ErroReferenciaInvalida.34">A variável está sendo utilizada como uma função</system:String>
+    <system:String x:Key="ErroSemantico.ErroReferenciaInvalida.44">A funcao está sendo utilizada como uma função</system:String>
+	
+</ResourceDictionary>

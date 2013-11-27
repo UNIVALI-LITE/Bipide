@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <system:String x:Key="ErroSemantico.ErroInicializacaoConstante.1">You must initialize constants with a value instead of an expression</system:String>
+    <system:String x:Key="ErroSemantico.ErroInicializacaoConstante.2">In constant vectors, you must initialize the elements with a value instead of an expression</system:String>
+    <system:String x:Key="ErroSemantico.ErroInicializacaoConstante.3">In constant matrices, you must initialize the elements with a value instead of an expression</system:String>
+
+</ResourceDictionary>

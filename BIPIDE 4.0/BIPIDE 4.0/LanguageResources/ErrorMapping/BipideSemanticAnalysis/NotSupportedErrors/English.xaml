@@ -1,0 +1,27 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <system:String x:Key="NotSupportedErrors.1">The BIP  does not support String type</system:String>
+    <system:String x:Key="NotSupportedErrors.2">The BIP  does not support Character</system:String>
+    <system:String x:Key="NotSupportedErrors.3">The BIP  does not support recursion</system:String>
+    <system:String x:Key="NotSupportedErrors.4">The BIP  does not support access mode by reference</system:String>
+    <system:String x:Key="NotSupportedErrors.5">The BIP  does not support Matrix</system:String>
+    <system:String x:Key="NotSupportedErrors.6">The BIP  does not support </system:String>
+    <system:String x:Key="NotSupportedErrors.7">The command read only allows variables</system:String>
+    <system:String x:Key="NotSupportedErrors.8">The command read does not allow expressions</system:String>
+    <system:String x:Key="NotSupportedErrors.9">The BIP has no support vectors with size above 1024</system:String>
+    <system:String x:Key="NotSupportedErrors.10">The BIP has no support for logical operations</system:String>
+    <system:String x:Key="NotSupportedErrors.11">The BIP has no support for  logical operation NOT</system:String>
+    <system:String x:Key="NotSupportedErrors.12">The BIP  does not support real type</system:String>
+    <system:String x:Key="NotSupportedErrors.13">Not supported vector inside vector index</system:String>
+    <system:String x:Key="NotSupportedErrors.14">The BIP  does not support include library</system:String>
+    <system:String x:Key="NotSupportedErrors.15">The BIP  does not support division operation</system:String>
+    <system:String x:Key="NotSupportedErrors.16">Logical operation can not be used in this way</system:String>
+    <system:String x:Key="NotSupportedErrors.17">The BIP has no support for  logical operation AND</system:String>
+    <system:String x:Key="NotSupportedErrors.18">The BIP has no support for  logical operation OR</system:String>
+    <system:String x:Key="NotSupportedErrors.19">The BIP has no support for module</system:String>
+    <system:String x:Key="NotSupportedErrors.20">The BIP has no support for multiplication</system:String>
+    <system:String x:Key="NotSupportedErrors.21">Continue can not be used outside loops</system:String>
+
+</ResourceDictionary>

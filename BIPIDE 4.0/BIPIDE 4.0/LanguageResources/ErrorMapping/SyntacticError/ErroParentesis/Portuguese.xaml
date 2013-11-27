@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <system:String x:Key="ErroSintatico.ErroParentesis.1">A expressão não foi iniciada corretamente</system:String>
+    <system:String x:Key="ErroSintatico.ErroParentesis.2">A expressão não foi finalizada corretamente</system:String>
+	
+</ResourceDictionary>

@@ -1,0 +1,35 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <system:String x:Key="ErroSemantico.ErroInicializacaoInvalida.11">Não é possível inicializar a constante com um vetor</system:String>
+    <system:String x:Key="ErroSemantico.ErroInicializacaoInvalida.21">Não é possível inicializar a variável com um vetor</system:String>
+    <system:String x:Key="ErroSemantico.ErroInicializacaoInvalida.31">Não é possível inicializar o vetor com um vetor</system:String>
+    <system:String x:Key="ErroSemantico.ErroInicializacaoInvalida.41">Não é possível inicializar a matriz com um vetor</system:String>
+	
+    <system:String x:Key="ErroSemantico.ErroInicializacaoInvalida.12">Não é possível inicializar a constante com uma matriz</system:String>
+    <system:String x:Key="ErroSemantico.ErroInicializacaoInvalida.22">Não é possível inicializar a variável com uma matriz</system:String>
+    <system:String x:Key="ErroSemantico.ErroInicializacaoInvalida.32">Não é possível inicializar o vetor com uma matriz</system:String>
+    <system:String x:Key="ErroSemantico.ErroInicializacaoInvalida.42">Não é possível inicializar a matriz com uma matriz</system:String>
+
+    <system:String x:Key="ErroSemantico.ErroInicializacaoInvalida.13">Não é possível inicializar a constante com o valor de uma variável</system:String>
+    <system:String x:Key="ErroSemantico.ErroInicializacaoInvalida.23">Não é possível inicializar a variável com o valor de uma variável</system:String>
+    <system:String x:Key="ErroSemantico.ErroInicializacaoInvalida.33">Não é possível inicializar o vetor com o valor de uma variável</system:String>
+    <system:String x:Key="ErroSemantico.ErroInicializacaoInvalida.43">Não é possível inicializar a matriz com o valor de uma variável</system:String>
+	
+    <system:String x:Key="ErroSemantico.ErroInicializacaoInvalida.14">Não é possível inicializar a constante com os valores de um vetor</system:String>
+    <system:String x:Key="ErroSemantico.ErroInicializacaoInvalida.24">Não é possível inicializar a variável com os valores de um vetor</system:String>
+    <system:String x:Key="ErroSemantico.ErroInicializacaoInvalida.34">Não é possível inicializar o vetor com os valores de um vetor</system:String>
+    <system:String x:Key="ErroSemantico.ErroInicializacaoInvalida.44">Não é possível inicializar a matriz com os valores de um vetor</system:String>
+	
+    <system:String x:Key="ErroSemantico.ErroInicializacaoInvalida.15">Não é possível inicializar a constante com o valor de uma matriz</system:String>
+    <system:String x:Key="ErroSemantico.ErroInicializacaoInvalida.25">Não é possível inicializar a variável com o valor de uma matriz</system:String>
+    <system:String x:Key="ErroSemantico.ErroInicializacaoInvalida.35">Não é possível inicializar o vetor com o valor de uma matriz</system:String>
+    <system:String x:Key="ErroSemantico.ErroInicializacaoInvalida.45">Não é possível inicializar a matriz com o valor de uma matriz</system:String>
+		
+    <system:String x:Key="ErroSemantico.ErroInicializacaoInvalida.16">Não é possível inicializar a constante com um valor ou uma expressão</system:String>
+    <system:String x:Key="ErroSemantico.ErroInicializacaoInvalida.26">Não é possível inicializar a variável com um valor ou uma expressão</system:String>
+    <system:String x:Key="ErroSemantico.ErroInicializacaoInvalida.36">Não é possível inicializar o vetor com um valor ou uma expressão</system:String>
+    <system:String x:Key="ErroSemantico.ErroInicializacaoInvalida.46">Não é possível inicializar a matriz com um valor ou uma expressão</system:String>
+	
+</ResourceDictionary>

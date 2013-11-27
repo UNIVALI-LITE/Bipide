@@ -1,0 +1,25 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <system:String x:Key="ErroSemantico.ErroReferenciaInvalida.11">The vector is being used as a variable</system:String>
+    <system:String x:Key="ErroSemantico.ErroReferenciaInvalida.21">The matrix is being used as a variable</system:String>
+    <system:String x:Key="ErroSemantico.ErroReferenciaInvalida.31">The variable is being used as a variable</system:String>
+    <system:String x:Key="ErroSemantico.ErroReferenciaInvalida.41">The function is being used as a variable</system:String>	
+	
+    <system:String x:Key="ErroSemantico.ErroReferenciaInvalida.12">The vector is being used as a matrix</system:String>
+    <system:String x:Key="ErroSemantico.ErroReferenciaInvalida.22">The matrix is being used as a matrix</system:String>
+    <system:String x:Key="ErroSemantico.ErroReferenciaInvalida.32">The variable is being used as a matrix</system:String>
+    <system:String x:Key="ErroSemantico.ErroReferenciaInvalida.42">The function is being used as a matrix</system:String>
+	
+    <system:String x:Key="ErroSemantico.ErroReferenciaInvalida.13">The vector is being used as a vector</system:String>
+    <system:String x:Key="ErroSemantico.ErroReferenciaInvalida.23">The matrix is being used as a vector</system:String>
+    <system:String x:Key="ErroSemantico.ErroReferenciaInvalida.33">The variable is being used as a vector</system:String>
+    <system:String x:Key="ErroSemantico.ErroReferenciaInvalida.43">The function is being used as a vector</system:String>
+	
+    <system:String x:Key="ErroSemantico.ErroReferenciaInvalida.14">The vector is being used as a function</system:String>
+    <system:String x:Key="ErroSemantico.ErroReferenciaInvalida.24">The matrix is being used as a function</system:String>
+    <system:String x:Key="ErroSemantico.ErroReferenciaInvalida.34">The variable is being used as a function</system:String>
+    <system:String x:Key="ErroSemantico.ErroReferenciaInvalida.44">The function is being used as a function</system:String>
+	
+</ResourceDictionary>

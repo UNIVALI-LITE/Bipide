@@ -120,6 +120,334 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="LanguageResources\ErrorMapping\BipideSemanticAnalysis\NotSupportedErrors\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\BipideSemanticAnalysis\NotSupportedErrors\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroAoAtribuirEmVetor\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroAoAtribuirEmVetor\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroAoInicializarVetor\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroAoInicializarVetor\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroAtribuirEmChamadaFuncao\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroAtribuirEmChamadaFuncao\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroAtribuirEmConstante\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroAtribuirEmConstante\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroDefinirTipoDadoVetorLiteral\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroDefinirTipoDadoVetorLiteral\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroInicializacaoConstante\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroInicializacaoConstante\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroInicializacaoInvalida\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroInicializacaoInvalida\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroNumeroParametrosFuncao\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroNumeroParametrosFuncao\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroOperacaoComExpressaoConstante\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroOperacaoComExpressaoConstante\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroOperandoEsquerdoAtribuicaoConstante\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroOperandoEsquerdoAtribuicaoConstante\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroParametroExcedente\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroParametroExcedente\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroParametroRedeclarado\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroParametroRedeclarado\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroParaSemExpressaoComparacao\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroParaSemExpressaoComparacao\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroPassagemParametroInvalida\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroPassagemParametroInvalida\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroQuantidadeElementosInicializacaoVetor\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroQuantidadeElementosInicializacaoVetor\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroQuantificadorParametroFuncao\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroQuantificadorParametroFuncao\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroReferenciaInvalida\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroReferenciaInvalida\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroSimboloNaoDeclarado\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroSimboloNaoDeclarado\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroSimboloNaoInicializado\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroSimboloNaoInicializado\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroSimboloRedeclarado\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroSimboloRedeclarado\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroTamanhoVetorMatriz\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroTamanhoVetorMatriz\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroTipoParametroIncompativel\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroTipoParametroIncompativel\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroTiposIncompativeis\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroTiposIncompativeis\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroVaParaSemTitulo\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroVaParaSemTitulo\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroVetorSemElementos\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SemanticError\ErroVetorSemElementos\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\Success\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\Success\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SyntacticError\ErroComandoEsperado\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SyntacticError\ErroComandoEsperado\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SyntacticError\ErroEscopo\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SyntacticError\ErroEscopo\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SyntacticError\ErroExpressaoEsperada\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SyntacticError\ErroExpressaoEsperada\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SyntacticError\ErroExpressaoIncompleta\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SyntacticError\ErroExpressaoIncompleta\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SyntacticError\ErroExpressaoInesperada\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SyntacticError\ErroExpressaoInesperada\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SyntacticError\ErroExpressoesForaEscopoPrograma\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SyntacticError\ErroExpressoesForaEscopoPrograma\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SyntacticError\ErroFaltaDoisPontos\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SyntacticError\ErroFaltaDoisPontos\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SyntacticError\ErroNomeIncompativel\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SyntacticError\ErroNomeIncompativel\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SyntacticError\ErroNomeSimboloEstaFaltando\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SyntacticError\ErroNomeSimboloEstaFaltando\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SyntacticError\ErroPalavraReservadaEstaFaltando\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SyntacticError\ErroPalavraReservadaEstaFaltando\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SyntacticError\ErroParaEsperaCondicao\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SyntacticError\ErroParaEsperaCondicao\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SyntacticError\ErroParentesis\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SyntacticError\ErroParentesis\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SyntacticError\ErroTipoDeDadoEstaFaltando\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SyntacticError\ErroTipoDeDadoEstaFaltando\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SyntacticError\ErroTokenFaltando\English.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LanguageResources\ErrorMapping\SyntacticError\ErroTokenFaltando\Portuguese.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="LanguageResources\Tips\English.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -259,6 +587,8 @@
     <Resource Include="ImageResources\logout32.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="LanguageResources\ErrorMapping\BipideSemanticAnalysis\NotSupportedErrors\English\" />
+    <Folder Include="LanguageResources\ErrorMapping\BipideSemanticAnalysis\NotSupportedErrors\Portuguese\" />
     <Folder Include="LanguageResources\Help\HelpSystem\" />
   </ItemGroup>
   <ItemGroup>
