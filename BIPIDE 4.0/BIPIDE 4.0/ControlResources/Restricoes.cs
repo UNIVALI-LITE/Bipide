@@ -15,20 +15,17 @@ namespace BIPIDE_4._0
     class Restricoes: MarshalByRefObject, VisitanteASA
     {
         private static  Processadores _Processador;
-        public bool     unsupported             = false;
-        public String   unsupported_message     = "";
 
         public String   _CurrentFunction        = "";
         public Boolean  _IsLoop                 = false;
         public Boolean  _IsConditional          = false;
-        //Atribuição em Vetor
         private Boolean _IsVector               = false;
-
-        List<CompilationError>      _ErrorList;
-        ResourceDictionary          _Resources;
-
+        private int     _ParameterLine          = 0;
+        private int     _ParameterColumn        = 0;
         private String _WriteFunction           = "";
         private String _ReadFunction            = "";
+
+        List<CompilationError>      _ErrorList;
 
         internal static Processadores Processador
         {
@@ -111,11 +108,8 @@ namespace BIPIDE_4._0
         {
             int linha = noCadeia.getTrechoCodigoFonte().getLinha();
             int coluna = noCadeia.getTrechoCodigoFonte().getLinha();
-            String mensagem = "O BIP  não possui suporte à NoCadeia";
+            String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.1");
             _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
-
-            unsupported = true;
-            unsupported_message += Environment.NewLine + "O BIP  não possui suporte à NoCadeia";
 
             return null;
         }
@@ -124,11 +118,9 @@ namespace BIPIDE_4._0
         {
             int linha = noCaracter.getTrechoCodigoFonte().getLinha();
             int coluna = noCaracter.getTrechoCodigoFonte().getLinha();
-            String mensagem = "O BIP  não possui suporte à NoCaracter";
+            String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.2");
             _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
-            unsupported = true;
-            unsupported_message += Environment.NewLine + "O BIP  não possui suporte à NoCaracter";
 
             return null;
         }
@@ -157,12 +149,10 @@ namespace BIPIDE_4._0
                 int coluna = chamadaFuncao.getTrechoCodigoFonteNome().getLinha();
                 String mensagem = "O BIP  não possui suporte à recursividade";
 
-                //_Resources.FindResource("NotSupportedErrors_English.3");
-                   // mensagem = (String)FrameworkElement.FindResource("NotSupportedErrors_English.3");
+                mensagem = (string) Application.Current.FindResource("NotSupportedErrors.3");
+                   
                 _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
-                unsupported = true;
-                unsupported_message += Environment.NewLine + "O BIP  não possui suporte à recursividade";
             }
 
             if (nome != _ReadFunction &&
@@ -175,6 +165,9 @@ namespace BIPIDE_4._0
             foreach (NoDeclaracaoParametro parametro in chamadaFuncao.getParametros())
             {
 
+                int linha = _ParameterLine;
+                int coluna = _ParameterColumn;
+
                 valor = parametro.aceitar(this);
                 if (nome.Equals(_ReadFunction))
                 {
@@ -183,27 +176,18 @@ namespace BIPIDE_4._0
                         if (valor.GetType() != typeof(string))
                         {
 
-                            int linha = parametro.getTrechoCodigoFonteNome().getLinha();
-                            int coluna = parametro.getTrechoCodigoFonteNome().getLinha();
-                            String mensagem = "O comando leia somente permite variáveis";
-                            _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
-
-                            unsupported = true;
-                            unsupported_message += Environment.NewLine + "O comando leia somente permite variáveis";
+                            String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.7");
+                            _ErrorList.Add(new CompilationError((linha == 0) ? "" : linha.ToString(), (coluna == 0) ? "" : coluna.ToString(), mensagem));
                         }
 
                     }
                     else
                     {//expressao dentro de leia
 
-                        int linha = parametro.getTrechoCodigoFonteNome().getLinha();
-                        int coluna = parametro.getTrechoCodigoFonteNome().getLinha();
-                        String mensagem = "O comando leia não permite expressões";
-                        _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
+                        String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.8");
+                        _ErrorList.Add(new CompilationError((linha == 0) ? "" : linha.ToString(), (coluna == 0) ? "" : coluna.ToString(), mensagem));
 
-                        unsupported = true;
-                        unsupported_message += Environment.NewLine + "O comando leia  não permite expressões";
-                    }
+                     }
 
                 }
             }
@@ -232,16 +216,17 @@ namespace BIPIDE_4._0
 
         public object visitarNoDeclaracaoParametro(NoDeclaracaoParametro noDeclaracaoParametro)
         {
+
             if (noDeclaracaoParametro.getModoAcesso() == ModoAcesso.POR_REFERENCIA)
             {
                 int linha = noDeclaracaoParametro.getTrechoCodigoFonteNome().getLinha();
-                int coluna = noDeclaracaoParametro.getTrechoCodigoFonteNome().getLinha();
-                String mensagem = "O BIP  não possui suporte à modo de acesso por referência";
+                int coluna = noDeclaracaoParametro.getTrechoCodigoFonteNome().getColuna();
+                String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.4");
                 _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
-
-                unsupported = true;
-                unsupported_message += Environment.NewLine + "O BIP  não possui suporte à modo de acesso por referência";
             }
+
+            _ParameterLine = noDeclaracaoParametro.getTrechoCodigoFonteNome().getLinha();
+            _ParameterColumn = noDeclaracaoParametro.getTrechoCodigoFonteNome().getColuna();
 
             return null;
         }
@@ -250,11 +235,9 @@ namespace BIPIDE_4._0
         {
             int linha = noDeclaracaoMatriz.getTrechoCodigoFonteTipoDado().getLinha();
             int coluna = noDeclaracaoMatriz.getTrechoCodigoFonteTipoDado().getLinha();
-            String mensagem = "O BIP  não possui suporte à Matriz";
+            String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.5");
             _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
-            unsupported = true;
-            unsupported_message += Environment.NewLine + "O BIP  não possui suporte à Matriz";
             return null;
         }
 
@@ -268,36 +251,26 @@ namespace BIPIDE_4._0
             {
                 int linha;
                 int coluna;
-                String mensagem = "";
+                String tipo = "";
 
                 TipoDado tipoDadoVariavel = noDeclaracaoVariavel.getTipoDado();
                 if (tipoDadoVariavel == TipoDado.REAL)
-                {
-                    mensagem = "REAL";
-                    unsupported = true;
-                    unsupported_message += Environment.NewLine + "O BIP  não possui suporte à tipo de dado REAL";
-                }
+                    tipo = "REAL";
+                
                 if (tipoDadoVariavel == TipoDado.CADEIA)
-                {
-                    mensagem =  "CADEIA";
-                    unsupported = true;
-                    unsupported_message += Environment.NewLine + "O BIP  não possui suporte à tipo de dado CADEIA";
-                }
+                    tipo = "CADEIA";
+
                 if (tipoDadoVariavel == TipoDado.CARACTER)
-                {
-                    mensagem =  "CARACTER";
-                    unsupported = true;
-                    unsupported_message += Environment.NewLine + "O BIP  não possui suporte à tipo de dado CARACTER";
-                }
+
+                    tipo = "CARACTER";
+
                 if (tipoDadoVariavel == TipoDado.LOGICO)
+
+                    tipo = "LOGICO";
+
+                if (tipo != "")
                 {
-                    mensagem =  "LOGICO";
-                    unsupported = true;
-                    unsupported_message += Environment.NewLine + "O BIP  não possui suporte à tipo de dado LOGICO";
-                }
-                if (mensagem != "")
-                { 
-                    mensagem = "O BIP  não possui suporte ao tipo de dado " + mensagem;
+                    String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.6") + tipo;
                     linha = noDeclaracaoVariavel.getTrechoCodigoFonteTipoDado().getLinha();
                     coluna = noDeclaracaoVariavel.getTrechoCodigoFonteTipoDado().getLinha();
                     _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
@@ -318,11 +291,8 @@ namespace BIPIDE_4._0
                 {
                     int linha = noDeclaracaoVetor.getTrechoCodigoFonteNome().getLinha();
                     int coluna = noDeclaracaoVetor.getTrechoCodigoFonteNome().getLinha();
-                    String mensagem = "O BIP  não possui suporte à tamanho de vetores acima de 1024";
+                    String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.9");
                     _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
-
-                    unsupported = true;
-                    unsupported_message += Environment.NewLine + "O BIP  não possui suporte à tamanho de vetores acima de 1024";
                 }
 
             return null;
@@ -384,11 +354,8 @@ namespace BIPIDE_4._0
 
             int linha = noLogico.getTrechoCodigoFonte().getLinha();
             int coluna = noLogico.getTrechoCodigoFonte().getLinha();
-            String mensagem = "O BIP  não possui suporte à NoLogico";
+            String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.10");
             _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
-
-            unsupported = true;
-            unsupported_message += Environment.NewLine + "O BIP  não possui suporte à NoLogico";
 
             return null;
         }
@@ -399,11 +366,9 @@ namespace BIPIDE_4._0
 
             int linha = noMatriz.getTrechoCodigoFonte().getLinha();
             int coluna = noMatriz.getTrechoCodigoFonte().getLinha();
-            String mensagem = "O BIP  não possui suporte à Matriz";
+            String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.5");
             _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
-            unsupported = true;
-            unsupported_message += Environment.NewLine + "O BIP  não possui suporte à Matriz";
             return null;
         }
 
@@ -417,11 +382,9 @@ namespace BIPIDE_4._0
 
             int linha = noNao.getTrechoCodigoFonte().getLinha();
             int coluna = noNao.getTrechoCodigoFonte().getLinha();
-            String mensagem = "O BIP  não possui suporte à Operação Lógica NAO";
+            String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.11");
             _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
-            unsupported = true;
-            unsupported_message += Environment.NewLine + "O BIP  não possui suporte à Operação Lógica NAO";
             return null;
         }
 
@@ -467,11 +430,8 @@ namespace BIPIDE_4._0
 
             int linha = noReal.getTrechoCodigoFonte().getLinha();
             int coluna = noReal.getTrechoCodigoFonte().getLinha();
-            String mensagem = "O BIP  não possui suporte à NoReal";
+            String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.12");
             _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
-
-            unsupported = true;
-            unsupported_message += Environment.NewLine + "O BIP  não possui suporte à NoReal";
 
             return null;
         }
@@ -481,11 +441,9 @@ namespace BIPIDE_4._0
 
             int linha = noReferenciaMatriz.getTrechoCodigoFonte().getLinha();
             int coluna = noReferenciaMatriz.getTrechoCodigoFonte().getLinha();
-            String mensagem = "O BIP  não possui suporte à Matriz";
+            String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.5");
             _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
-            unsupported = true;
-            unsupported_message += Environment.NewLine + "O BIP  não possui suporte à Matriz";
             return null;
         }
 
@@ -502,11 +460,9 @@ namespace BIPIDE_4._0
             {
                 int linha = noReferenciaVetor.getTrechoCodigoFonte().getLinha();
                 int coluna = noReferenciaVetor.getTrechoCodigoFonte().getLinha();
-                String mensagem = "Não suportado vetor dentro de índice de vetor";
+                String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.13");
                 _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
-                unsupported = true;
-                unsupported_message += Environment.NewLine + "Não suportado vetor dentro de índice de vetor";
             }
             else
                 _IsVector = true;
@@ -563,11 +519,9 @@ namespace BIPIDE_4._0
 
             int linha = noInclusaoBiblioteca.getTrechoCodigoFonte().getLinha();
             int coluna = noInclusaoBiblioteca.getTrechoCodigoFonte().getLinha();
-            String mensagem = "O BIP  não possui suporte à Inclusão de Biblioteca";
+            String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.14");
             _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
-            unsupported = true;
-            unsupported_message += Environment.NewLine + "O BIP  não possui suporte à Inclusão de Biblioteca";
             return null;
         }
 
@@ -617,11 +571,9 @@ namespace BIPIDE_4._0
         {
             int linha = noOperacaoDivisao.getTrechoCodigoFonte().getLinha();
             int coluna = noOperacaoDivisao.getTrechoCodigoFonte().getLinha();
-            String mensagem = "O BIP  não possui suporte à Operação Divisão";
+            String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.15");
             _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
-            unsupported = true;
-            unsupported_message += Environment.NewLine + "O BIP  não possui suporte à Operação Divisão";
             return null;
         }
 
@@ -634,11 +586,9 @@ namespace BIPIDE_4._0
             {
                 int linha = noOperacaoLogicaDiferenca.getTrechoCodigoFonte().getLinha();
                 int coluna = noOperacaoLogicaDiferenca.getTrechoCodigoFonte().getLinha();
-                String mensagem = "Operação Lógica não pode ser utilizada desta forma";
+                String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.16");
                 _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
-                unsupported = true;
-                unsupported_message += Environment.NewLine + "Operação Lógica não pode ser utilizada desta forma";
             }
             RunOperations(noOperacaoLogicaDiferenca);
 
@@ -649,11 +599,9 @@ namespace BIPIDE_4._0
         {
             int linha = noOperacaoLogicaE.getTrechoCodigoFonte().getLinha();
             int coluna = noOperacaoLogicaE.getTrechoCodigoFonte().getLinha();
-            String mensagem = "O BIP  não possui suporte à Operação Lógica E";
+            String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.17");
             _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
-            unsupported = true;
-            unsupported_message += Environment.NewLine + "O BIP  não possui suporte à Operação Lógica E";
             return null;
         }
 
@@ -666,11 +614,9 @@ namespace BIPIDE_4._0
             {
                 int linha = noOperacaoLogicaIgualdade.getTrechoCodigoFonte().getLinha();
                 int coluna = noOperacaoLogicaIgualdade.getTrechoCodigoFonte().getLinha();
-                String mensagem = "Operação Lógica não pode ser utilizada desta forma";
+                String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.16");
                 _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
-                unsupported = true;
-                unsupported_message += Environment.NewLine + "Operação Lógica não pode ser utilizada desta forma";
             }
             RunOperations(noOperacaoLogicaIgualdade);
             return null;
@@ -684,11 +630,9 @@ namespace BIPIDE_4._0
             {
                 int linha = noOperacaoLogicaMaior.getTrechoCodigoFonte().getLinha();
                 int coluna = noOperacaoLogicaMaior.getTrechoCodigoFonte().getLinha();
-                String mensagem = "Operação Lógica não pode ser utilizada desta forma";
+                String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.16");
                 _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
-                unsupported = true;
-                unsupported_message += Environment.NewLine + "Operação Lógica não pode ser utilizada desta forma.";
             }
             RunOperations(noOperacaoLogicaMaior);
             return null;
@@ -702,11 +646,9 @@ namespace BIPIDE_4._0
             {
                 int linha = noOperacaoLogicaMaiorIgual.getTrechoCodigoFonte().getLinha();
                 int coluna = noOperacaoLogicaMaiorIgual.getTrechoCodigoFonte().getLinha();
-                String mensagem = "Operação Lógica não pode ser utilizada desta forma";
+                String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.16");
                 _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
-                unsupported = true;
-                unsupported_message += Environment.NewLine + "Operação Lógica não pode ser utilizada desta forma.";
             }
             RunOperations(noOperacaoLogicaMaiorIgual);
             return null;
@@ -720,11 +662,8 @@ namespace BIPIDE_4._0
             {
                 int linha = noOperacaoLogicaMenor.getTrechoCodigoFonte().getLinha();
                 int coluna = noOperacaoLogicaMenor.getTrechoCodigoFonte().getLinha();
-                String mensagem = "Operação Lógica não pode ser utilizada desta forma";
+                String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.16");
                 _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
-
-                unsupported = true;
-                unsupported_message += Environment.NewLine + "Operação Lógica não pode ser utilizada desta forma.";
             }
             RunOperations(noOperacaoLogicaMenor);
             return null;
@@ -738,11 +677,9 @@ namespace BIPIDE_4._0
             {
                 int linha = noOperacaoLogicaMenorIgual.getTrechoCodigoFonte().getLinha();
                 int coluna = noOperacaoLogicaMenorIgual.getTrechoCodigoFonte().getLinha();
-                String mensagem = "Operação Lógica não pode ser utilizada desta forma";
+                String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.16");
                 _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
-                unsupported = true;
-                unsupported_message += Environment.NewLine + "Operação Lógica não pode ser utilizada desta forma.";
             }
             RunOperations(noOperacaoLogicaMenorIgual);
             return null;
@@ -758,20 +695,16 @@ namespace BIPIDE_4._0
             {
                 linha = noOperacaoLogicaOU.getTrechoCodigoFonte().getLinha();
                 coluna = noOperacaoLogicaOU.getTrechoCodigoFonte().getLinha();
-                mensagem = "Operação Lógica não pode ser utilizada desta forma";
+                mensagem = (string)Application.Current.FindResource("NotSupportedErrors.16");
                 _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
-                unsupported = true;
-                unsupported_message += Environment.NewLine + "Operação Lógica não pode ser utilizada desta forma.";
             }
 
             linha = noOperacaoLogicaOU.getTrechoCodigoFonte().getLinha();
             coluna = noOperacaoLogicaOU.getTrechoCodigoFonte().getLinha();
-            mensagem = "O BIP  não possui suporte à Operação Lógica OU";
+            mensagem = (string)Application.Current.FindResource("NotSupportedErrors.18");
             _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
-            unsupported = true;
-            unsupported_message += Environment.NewLine + "O BIP  não possui suporte à Operação Lógica OU";
             return null;
         }
 
@@ -779,11 +712,9 @@ namespace BIPIDE_4._0
         {
             int linha = noOperacaoModulo.getTrechoCodigoFonte().getLinha();
             int coluna = noOperacaoModulo.getTrechoCodigoFonte().getLinha();
-            String mensagem = "O BIP  não possui suporte à Módulo";
+            String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.19");
             _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
-            unsupported = true;
-            unsupported_message += Environment.NewLine + "O BIP  não possui suporte à Módulo";
             return null;
         }
 
@@ -791,11 +722,9 @@ namespace BIPIDE_4._0
         {
             int linha = noOperacaoMultiplicacao.getTrechoCodigoFonte().getLinha();
             int coluna = noOperacaoMultiplicacao.getTrechoCodigoFonte().getLinha();
-            String mensagem = "O BIP  não possui suporte à Multiplicação";
+            String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.20");
             _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
-            unsupported = true;
-            unsupported_message += Environment.NewLine + "O BIP  não possui suporte à Multiplicação";
             return null;
         }
 
@@ -828,11 +757,9 @@ namespace BIPIDE_4._0
             {
                 //int linha = noContinue.getTrechoCodigoFonte().getLinha();
                 //int coluna = noContinue.getTrechoCodigoFonte().getLinha();
-                String mensagem = "Continue não pode ser utilizado fora de laços de repetição";
+                String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.21");
                 _ErrorList.Add(new CompilationError(0, 0, mensagem));
 
-                unsupported = true;
-                unsupported_message += Environment.NewLine + "Continue não pode ser utilizado fora de laços de repetição";
             }
             return null;
         }

@@ -37,7 +37,6 @@ namespace BIPIDE_4._0
     public partial class MainWindow : RibbonWindow
     {
         private static SimulationControl   _SimulationControl;
-        private StringBuilder       _ErrorMessages;
         private ArrayList           _LanguagesMapping;
         private CorbaController     _CorbaController;
         private Portugol            _ProgrammingLanguageInstance;
@@ -77,6 +76,8 @@ namespace BIPIDE_4._0
                 new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).Icon));
 
             Resources.MergedDictionaries.Clear();
+            Application.Current.Resources.Clear();
+
             Resources.MergedDictionaries.Add(
                 new ResourceDictionary() 
                 { 
@@ -86,6 +87,252 @@ namespace BIPIDE_4._0
                 new ResourceDictionary()
                 {
                     Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).TipsMapping)
+                });
+            
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).NotSuportedErrors)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroSimboloNaoInicializado)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroAoAtribuirEmVetor)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroAoInicializarVetor)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroAtribuirEmChamadaFuncao)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroAtribuirEmConstante)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroDefinirTipoDadoVetorLiteral)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroInicializacaoConstante)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroInicializacaoInvalida)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroNumeroParametrosFuncao)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroOperacaoComExpressaoConstante)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroOperandoEsquerdoAtribuicaoConstante)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroParaSemExpressaoComparacao)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroParametroExcedente)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroParametroRedeclarado)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroPassagemParametroInvalida)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroQuantidadeElementosInicializacaoVetor)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroQuantificadorParametroFuncao)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroReferenciaInvalida)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroSimboloNaoDeclarado)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroSimboloRedeclarado)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroTamanhoVetorMatriz)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroTipoParametroIncompativel)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroTiposIncompativeis)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroVaParaSemTitulo)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroVetorSemElementos)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroComandoEsperado)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroEscopo)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroExpressaoEsperada)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroExpressaoIncompleta)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroExpressaoInesperada)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroExpressoesForaEscopoPrograma)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroFaltaDoisPontos)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroNomeIncompativel)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroNomeSimboloEstaFaltando)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroPalavraReservadaEstaFaltando)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroParaEsperaCondicao)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroParentesis)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroTipoDeDadoEstaFaltando)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).ErroTokenFaltando)
+                });
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary()
+                {
+                    Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).Success)
                 });
 
             SetDimanycResources();
@@ -140,18 +387,17 @@ namespace BIPIDE_4._0
             try
             {
                 br.univali.portugol.integracao.Programa iProgram = (br.univali.portugol.integracao.Programa)_ProgrammingLanguageInstance.compilar(pSelectedDocument._TextEditorSourceCode.Text, pSelectedDocument.ProgrammingLanguage);
-                
-                _ErrorMessages.AppendLine("Programa Compilado com Sucesso!");
+
 
                 Restricoes iRestrictions = new Restricoes(iErrorList, pSelectedDocument.ProgrammingLanguage);
                 iErrorList = iRestrictions.Executar(iProgram);
-                if (iRestrictions.unsupported_message != null)
-                    _ErrorMessages.AppendLine(iRestrictions.unsupported_message);
 
                 ArchitectureCheck();
 
-                if (!iRestrictions.unsupported)
+                if (iErrorList.Count == 0)
                 {
+                    iErrorList.Add(new CompilationError("", "", (string)Application.Current.FindResource("Success.Message"), 0));
+
                     Tradutor reg = new Tradutor(iProgram, pSelectedDocument.ProgrammingLanguage);
                     Codigo iAssembly = reg.Convert(iProgram);
 
@@ -172,21 +418,14 @@ namespace BIPIDE_4._0
 
                 if (resultado.getNumeroTotalErros() > 0) {
 
-                    foreach (ErroSintatico erro in resultado.getErrosSintaticos())
-                    {
+                    foreach (ErroSintatico erro in resultado.getErrosSintaticos())  
                         iErrorList.Add(new CompilationError(erro));
 
-                        _ErrorMessages.AppendLine("Erro Sintatico na linha " + erro.linha + " e coluna " + erro.coluna + ": " + erro.mensagem);
-                    }
-                    foreach (ErroSemantico erro in resultado.getErrosSemanticos())
-                    {
+                    foreach (ErroSemantico erro in resultado.getErrosSemanticos())                    
                         iErrorList.Add(new CompilationError(erro));
-
-                        _ErrorMessages.AppendLine("Erro Semantico na linha " + erro.linha + " e coluna " + erro.coluna + ": " + erro.mensagem);
-                    }
-
                 }
             }
+            
             if (iErrorList != null)
                 dataGridErrorList.ItemsSource = iErrorList;
         }
@@ -750,7 +989,6 @@ namespace BIPIDE_4._0
             iSplashScreen.Show();
 
             SetDimanycResources();
-            _ErrorMessages = new StringBuilder();
             _SimulationControl = new SimulationControl(_ButtonStart,
                                                         _ButtonPause,
                                                         _ButtonRepeat,
@@ -787,35 +1025,67 @@ namespace BIPIDE_4._0
         }
     }
 
+    public enum TipoErro 
+    { 
+        teSucesso = 0,
+        teAlerta = 1,
+        teErro = 2
+    }
 
     public class CompilationError : System.ComponentModel.INotifyPropertyChanged
     {
-        string _Line;
-        string _Column;
-        string _Message;
+        private TipoErro _TipoErro;
+        private string _Line;
+        private string _Column;
+        private string _Message;
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
        
         public CompilationError(){
+        }
+        public CompilationError(int line, int column, String message, TipoErro errorType)
+        {
+            Line = line.ToString();
+            Column = column.ToString();
+            Message = message;
+            TipoErro = errorType;
         }
         public CompilationError(int line, int column, String message)
         {
             Line = line.ToString();
             Column = column.ToString();
             Message = message;
+            TipoErro = TipoErro.teErro;
+        }
+        public CompilationError(String line, String column, String message)
+        {
+            Line = line;
+            Column = column;
+            Message = message;
+            TipoErro = TipoErro.teErro;
         }
 
+        public CompilationError(String line, String column, String message, TipoErro errorType)
+        {
+            Line = line;
+            Column = column;
+            Message = message;
+            TipoErro = errorType;
+        }
         public CompilationError(br.univali.portugol.integracao.mensagens.ErroSintatico erro)
         {
             Line = erro.linha.ToString();
             Column = erro.coluna.ToString();
-            Message = erro.mensagem;
+            Message = _TreatingMessages(erro.codigo, erro.mensagem);
+            TipoErro = TipoErro.teErro;
         }
         public CompilationError(br.univali.portugol.integracao.mensagens.ErroSemantico erro)
         {
             Line = erro.linha.ToString();
             Column = erro.coluna.ToString();
-            Message = erro.mensagem;
+            Message = _TreatingMessages(erro.codigo, erro.mensagem);
+            TipoErro = TipoErro.teErro;
         }
+
         public string Line
         {
             get { return _Line; }
@@ -837,6 +1107,13 @@ namespace BIPIDE_4._0
             OnPropertyChanged("Message");
             }
         }
+
+        public TipoErro TipoErro
+        {
+            get { return _TipoErro; }
+            set { _TipoErro = value; }
+        }
+
         protected void OnPropertyChanged(string name)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
@@ -844,6 +1121,20 @@ namespace BIPIDE_4._0
             {
                 handler(this, new PropertyChangedEventArgs(name));
             }
+        }
+
+        private string _TreatingMessages(String erro, String msgDefault)
+        {
+            String msg ="";
+            try
+            {
+                msg = (string)Application.Current.FindResource(erro);
+            }catch{
+                msg = msgDefault;
+            };
+
+            return msg;
+
         }
     }
 

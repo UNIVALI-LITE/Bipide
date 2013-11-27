@@ -597,8 +597,9 @@ namespace BIPIDE_4._0
             _LabelPara = ++LabelParaGreater;
 
 
-            if (noPara.getInicializacao() != null)            
-                noPara.getInicializacao().aceitar(this);            
+            if (noPara.getInicializacao() != null)
+                noPara.getInicializacao().aceitar(this);
+            WriteExpressions();         
 
             _TextCode.AppendLine("PARA" + _LabelPara + ":");
             _ObjectCode.AddInstrucaoASM("PARA" + _LabelPara, "", BIPIDE.Classes.eTipo.Rotulo,null);
@@ -778,6 +779,8 @@ namespace BIPIDE_4._0
         public object visitarNoOperacaoAtribuicao(NoOperacaoAtribuicao noOperacaoAtribuicao)
         {
             Boolean _KeepsFlagRevOp = _FlagReversesOp;
+           
+
             if (_WhenIncrementSeparate)
             {
                 _FlagIncrement          = true;
@@ -824,7 +827,7 @@ namespace BIPIDE_4._0
                     instr_ld = "SUB";
                     _MenosUnario = false;
                 }
-                AppendInstructionScope(instr_ld, "t_vetor" + _LabelTemp, noOperacaoAtribuicao.getTrechoCodigoFonte().getLinha());
+                AppendInstructionScope("LD", "t_vetor" + _LabelTemp, noOperacaoAtribuicao.getTrechoCodigoFonte().getLinha());
             }
 
 
@@ -1055,6 +1058,8 @@ namespace BIPIDE_4._0
                        instr_esq_antes = "SUB";
                        _MenosUnario = false;
                    }
+                   if (instr_esq_antes == "LDV")
+                       instr_esq_antes = "LD";
                    AppendInstructionScope(instr_esq_antes, "t_vetor" + _LabelTemp, noOperacao.getTrechoCodigoFonte().getLinha());
                }
 
@@ -1122,6 +1127,8 @@ namespace BIPIDE_4._0
                             AppendInstructionScope("LD", 0, noOperacao.getTrechoCodigoFonte().getLinha());
                             instr_antes = "SUB";
                         }
+                        if (instr_antes == "LDV")
+                            instr_antes = "LD";
                         AppendInstructionScope(instr_antes, "t_vetor" + _LabelTemp, noOperacao.getTrechoCodigoFonte().getLinha());
                     }
                 }
@@ -1274,7 +1281,8 @@ namespace BIPIDE_4._0
         private void WriteExpressions()
         {
 
-            _FlagOperation  = false;            
+            _FlagOperation  = false;
+            _WhenIncrementSeparate = false;
 
             //atribui código do bloco ao código do programa
             //zera geração de código para o bloco

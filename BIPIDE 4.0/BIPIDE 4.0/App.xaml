@@ -3,6 +3,51 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-            
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\BipideSemanticAnalysis\NotSupportedErrors\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SemanticError\ErroSimboloNaoInicializado\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SemanticError\ErroAoAtribuirEmVetor\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SemanticError\ErroAoInicializarVetor\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SemanticError\ErroAtribuirEmChamadaFuncao\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SemanticError\ErroAtribuirEmConstante\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SemanticError\ErroDefinirTipoDadoVetorLiteral\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SemanticError\ErroInicializacaoConstante\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SemanticError\ErroInicializacaoInvalida\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SemanticError\ErroNumeroParametrosFuncao\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SemanticError\ErroOperacaoComExpressaoConstante\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SemanticError\ErroOperandoEsquerdoAtribuicaoConstante\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SemanticError\ErroParaSemExpressaoComparacao\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SemanticError\ErroParametroExcedente\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SemanticError\ErroParametroRedeclarado\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SemanticError\ErroPassagemParametroInvalida\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SemanticError\ErroQuantidadeElementosInicializacaoVetor\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SemanticError\ErroQuantificadorParametroFuncao\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SemanticError\ErroReferenciaInvalida\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SemanticError\ErroSimboloNaoDeclarado\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SemanticError\ErroSimboloRedeclarado\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SemanticError\ErroTamanhoVetorMatriz\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SemanticError\ErroTipoParametroIncompativel\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SemanticError\ErroTiposIncompativeis\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SemanticError\ErroVaParaSemTitulo\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SemanticError\ErroVetorSemElementos\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SyntacticError\ErroComandoEsperado\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SyntacticError\ErroEscopo\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SyntacticError\ErroExpressaoEsperada\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SyntacticError\ErroExpressaoIncompleta\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SyntacticError\ErroExpressaoInesperada\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SyntacticError\ErroExpressoesForaEscopoPrograma\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SyntacticError\ErroFaltaDoisPontos\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SyntacticError\ErroNomeIncompativel\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SyntacticError\ErroNomeSimboloEstaFaltando\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SyntacticError\ErroPalavraReservadaEstaFaltando\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SyntacticError\ErroParaEsperaCondicao\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SyntacticError\ErroParentesis\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SyntacticError\ErroTipoDeDadoEstaFaltando\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\SyntacticError\ErroTokenFaltando\Portuguese.xaml"/>
+                <ResourceDictionary Source="LanguageResources\ErrorMapping\Success\Portuguese.xaml"/>
+                
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

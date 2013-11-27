@@ -30,6 +30,21 @@ namespace BIPIDE_4._0.UIResources
     /// </summary>
     public partial class UCProgrammingDocument : UserControl
     {
+        private static LineDebugASM _LineDebugASM;
+
+        public static LineDebugASM LineDebugASM
+        {
+            get { return UCProgrammingDocument._LineDebugASM; }
+            set { UCProgrammingDocument._LineDebugASM = value; }
+        }
+        private static int _LineDebugSourceCode;
+
+        public static int LineDebugSourceCode
+        {
+            get { return UCProgrammingDocument._LineDebugSourceCode; }
+            set { UCProgrammingDocument._LineDebugSourceCode = value; }
+        }
+
         private string _ProgrammingLanguage;
         public string ProgrammingLanguage
         {
@@ -76,14 +91,16 @@ namespace BIPIDE_4._0.UIResources
             set { _TextEditorSourceCodeDebug.Text = value; }
         }
 
-        XBackgroundRenderer iBackgroundRendererASM;
-
         public UCProgrammingDocument(string pHighlightFile, string pProgrammingLanguage)
         {
             InitializeComponent();
             _Simulator.setProcessador( (int) _SimulationSelectedProcessor );
             _ProgrammingLanguage                    = pProgrammingLanguage;
             _LayoutAnchorableSourceCodeDebug.Title  = pProgrammingLanguage;
+
+            UCProgrammingDocument.LineDebugASM          = new LineDebugASM();
+            UCProgrammingDocument.LineDebugSourceCode   = 1;
+            _Simulator.RequestEnderecoPrograma += new ucBip.Simulador.SetEnderecoPrograma(_Simulator_RequestEnderecoPrograma);
 
             #region Highlight Set
 
@@ -114,13 +131,14 @@ namespace BIPIDE_4._0.UIResources
                 }
             }
 
-            XBackgroundRenderer iBackgroundRendererASM          = new XBackgroundRenderer(_TextEditorASM);
-            XBackgroundRenderer iBackgroundRendererSourceCode   = new XBackgroundRenderer(_TextEditorSourceCodeDebug);
+            HighlightCurrentLineBackgroundRenderer iCurrentLineBackgroundRenderer = new HighlightCurrentLineBackgroundRenderer(_TextEditorSourceCode);
+            _TextEditorSourceCode.TextArea.TextView.BackgroundRenderers.Add(iCurrentLineBackgroundRenderer);
 
+            HighlightDebugSurceCodeBackgroundRenderer iDebugLineBackgroundRendererSourceCode = new HighlightDebugSurceCodeBackgroundRenderer(_TextEditorSourceCodeDebug);
+            _TextEditorSourceCodeDebug.TextArea.TextView.BackgroundRenderers.Add(iDebugLineBackgroundRendererSourceCode);
 
-            
-            _TextEditorASM.TextArea.TextView.BackgroundRenderers.Add(iBackgroundRendererASM);
-            _TextEditorSourceCodeDebug.TextArea.TextView.BackgroundRenderers.Add(iBackgroundRendererSourceCode);
+            HighlightDebugASMBackgroundRenderer iDebugMultiLinesBackgroundRendererASM = new HighlightDebugASMBackgroundRenderer(_TextEditorASM);
+            _TextEditorASM.TextArea.TextView.BackgroundRenderers.Add(iDebugMultiLinesBackgroundRendererASM);
 
             #endregion Highlight Set
 
@@ -134,29 +152,51 @@ namespace BIPIDE_4._0.UIResources
 
         void _Simulator_RequestEnderecoPrograma(int intEndereco)
         {
-            //_LayoutDocumentSimulation.Title = Convert.ToString(str);
             if (intEndereco >= 0)
             {
-
                 InstrucaoASM instASM = _AssemblySource.GetInstrucaoAsmByEnderecoMemoria(intEndereco);
 
-                int lineDocumentArquivoASM = 0;
+                int lineDocumentArquivoASM = 1;
                 int lineDocumentSourceCode = instASM.NrLinha.Value;
 
                 List<InstrucaoASM> list = _AssemblySource.GetCodigoInstrucaoASM();
+
+                UCProgrammingDocument.LineDebugASM.SourceCodeReferencedLine.Clear();
+                UCProgrammingDocument.LineDebugSourceCode = lineDocumentSourceCode;
+
+                foreach (InstrucaoASM instructions in list)
+                {
+                    if (instructions.Tamanho > 0)
+                    {
+                        foreach (InstrucaoASM instr in list)
+                        {
+                            if (instr.Instrucao == instructions.Instrucao)
+                            {
+                                instructions.IndexArquivo = instr.IndexArquivo;
+                                continue;
+                            }
+                        }
+
+                    }
+                }
+
 
                 foreach (InstrucaoASM instructions in list)
                 {
                     if (instructions.NrLinha == lineDocumentSourceCode)
                     {
+                        UCProgrammingDocument.LineDebugASM.SourceCodeReferencedLine.Add(instructions.IndexArquivo);
                         if (instructions == instASM)
-                            lineDocumentArquivoASM = list.IndexOf(instructions);
+                        {
+                            UCProgrammingDocument.LineDebugASM.CurrentLine = instructions.IndexArquivo;
+                            lineDocumentArquivoASM = instructions.IndexArquivo;
+                        }
                     }
 
                 }
 
-                _TextEditorASM.CaretOffset = _TextEditorASM.Document.Lines[lineDocumentArquivoASM].Offset;
-                _TextEditorSourceCodeDebug.CaretOffset = _TextEditorSourceCodeDebug.Document.Lines[lineDocumentSourceCode].Offset; 
+                _TextEditorASM.TextArea.TextView.Redraw();
+                _TextEditorSourceCodeDebug.TextArea.TextView.Redraw();
             }
 
 
@@ -184,13 +224,37 @@ namespace BIPIDE_4._0.UIResources
         }
     }
 
-    public class XBackgroundRenderer : IBackgroundRenderer
+    public class LineDebugASM
     {
-        TextEditor editor;
-
-        public XBackgroundRenderer(TextEditor e)
+        public LineDebugASM()
         {
-            editor = e;
+            _SourceCodeReferencedLine = new List<int>();
+            _CurrentLine = 1;
+        }
+
+        private int _CurrentLine;
+
+        public int CurrentLine
+        {
+            get { return _CurrentLine; }
+            set { _CurrentLine = value; }
+        }
+        private List<int> _SourceCodeReferencedLine; 
+
+        public List<int> SourceCodeReferencedLine
+        {
+            get { return _SourceCodeReferencedLine; }
+            set { _SourceCodeReferencedLine = value; }
+        }
+    }
+
+    public class HighlightCurrentLineBackgroundRenderer : IBackgroundRenderer
+    {
+        private TextEditor _editor;
+
+        public HighlightCurrentLineBackgroundRenderer(TextEditor editor)
+        {
+            _editor = editor;
         }
 
         public KnownLayer Layer
@@ -200,70 +264,98 @@ namespace BIPIDE_4._0.UIResources
 
         public void Draw(TextView textView, DrawingContext drawingContext)
         {
+            if (_editor.Document == null)
+                return;
+
             textView.EnsureVisualLines();
-            foreach (Rect r in BackgroundGeometryBuilder.GetRectsForSegment(textView, new TextSegment() { StartOffset = editor.Document.GetLineByOffset(editor.CaretOffset).Offset }))
+            var currentLine = _editor.Document.GetLineByOffset(_editor.CaretOffset);
+            foreach (var rect in BackgroundGeometryBuilder.GetRectsForSegment(textView, currentLine))
             {
                 drawingContext.DrawRoundedRectangle(
-                    new SolidColorBrush(Color.FromArgb(40, 0xff, 0x00, 0x15)),
-                    new Pen(new SolidColorBrush(Color.FromArgb(60, 0xff, 0x00, 0x15)), 1),
-                    new Rect(r.Location, new Size(textView.ActualWidth, r.Height)),
-                    3, 3
-                );
+                    new SolidColorBrush(Color.FromArgb(40, 0, 0, 0xFF)),
+                    new Pen(new SolidColorBrush(Color.FromArgb(100, 0, 0, 0xFF)), 1),
+                    new Rect(rect.Location, new Size(textView.ActualWidth, rect.Height)),
+                    3, 3);
             }
         }
-        public void Draw(TextView textView, /*DrawingContext drawingContext,*/ int linha)
-        {
-            DrawingVisual drawingVisual = new DrawingVisual();
-            DrawingContext drawingContext = drawingVisual.RenderOpen();
-            textView.EnsureVisualLines();
-            foreach (Rect r in BackgroundGeometryBuilder.GetRectsForSegment(textView, new TextSegment() { StartOffset = linha }))
-            {
-                drawingContext.DrawRoundedRectangle(
-                    new SolidColorBrush(Color.FromArgb(40, 0xff, 0x00, 0x15)),
-                    new Pen(new SolidColorBrush(Color.FromArgb(60, 0xff, 0x00, 0x15)), 1),
-                    new Rect(r.Location, new Size(textView.ActualWidth, r.Height)),
-                    3, 3
-                );
-            }
-        }
-
-
     }
 
-    class LineColorizer : DocumentColorizingTransformer
+    public class HighlightDebugSurceCodeBackgroundRenderer : IBackgroundRenderer
     {
-        int lineNumber;
+        private TextEditor _editor;
 
-        public LineColorizer(int lineNumber)
+        public HighlightDebugSurceCodeBackgroundRenderer(TextEditor editor)
         {
-            if (lineNumber < 1)
-                throw new ArgumentOutOfRangeException("lineNumber", lineNumber, "Line numbers are 1-based.");
-            this.lineNumber = lineNumber;
+            _editor = editor;
         }
 
-        public int LineNumber
+        public KnownLayer Layer
         {
-            get { return lineNumber; }
-            set
+            get { return KnownLayer.Background; }
+        }
+
+        public void Draw(TextView textView, DrawingContext drawingContext)
+        {
+            if (_editor.Document == null)
+                return;
+
+            textView.EnsureVisualLines();
+            var currentLine = _editor.Document.Lines[UCProgrammingDocument.LineDebugSourceCode - 1];
+            foreach (var rect in BackgroundGeometryBuilder.GetRectsForSegment(textView, currentLine))
             {
-                if (value < 1)
-                    throw new ArgumentOutOfRangeException("value", value, "Line numbers are 1-based.");
-                lineNumber = value;
+                drawingContext.DrawRoundedRectangle(
+                    new SolidColorBrush(Color.FromArgb(40, 255, 215, 0)),
+                    new Pen(new SolidColorBrush(Color.FromArgb(100, 255, 215, 0)), 1),
+                    new Rect(rect.Location, new Size(textView.ActualWidth, rect.Height)),
+                    3, 3);
             }
         }
+    }
 
-        protected override void ColorizeLine(ICSharpCode.AvalonEdit.Document.DocumentLine line)
+    public class HighlightDebugASMBackgroundRenderer : IBackgroundRenderer
+    {
+        private TextEditor _editor;
+
+        public HighlightDebugASMBackgroundRenderer(TextEditor editor)
         {
-            if (!line.IsDeleted && line.LineNumber == lineNumber)
-            {
-                ChangeLinePart(line.Offset, line.EndOffset, ApplyChanges);
-            }
+            _editor = editor;
         }
 
-        void ApplyChanges(VisualLineElement element)
+        public KnownLayer Layer
         {
-            // apply changes here
-            element.TextRunProperties.SetBackgroundBrush(Brushes.Red);
+            get { return KnownLayer.Background; }
+        }
+
+        public void Draw(TextView textView, DrawingContext drawingContext)
+        {
+            if (_editor.Document == null || UCProgrammingDocument.LineDebugASM == null)
+                return;
+
+            textView.EnsureVisualLines();
+
+            foreach (int line in UCProgrammingDocument.LineDebugASM.SourceCodeReferencedLine)
+            {
+                if (UCProgrammingDocument.LineDebugASM.CurrentLine == line)
+                    continue;
+
+                var iCurrentLineSourceCodeReferenced = _editor.Document.Lines[line - 1];
+                foreach (var rect in BackgroundGeometryBuilder.GetRectsForSegment(textView, iCurrentLineSourceCodeReferenced))
+                {
+                    drawingContext.DrawRectangle(
+                        new SolidColorBrush(Color.FromArgb(0x40, 192, 192, 192)), null,
+                        new Rect(rect.Location, new Size(textView.ActualWidth, rect.Height)));
+                }
+            }
+
+            var iCurrentLineASM = _editor.Document.Lines[UCProgrammingDocument.LineDebugASM.CurrentLine - 1];
+            foreach (var rect in BackgroundGeometryBuilder.GetRectsForSegment(textView, iCurrentLineASM))
+            {
+                drawingContext.DrawRoundedRectangle(
+                    new SolidColorBrush(Color.FromArgb(40, 255, 215, 0)),
+                    new Pen(new SolidColorBrush(Color.FromArgb(100, 255, 215, 0)), 1),
+                    new Rect(rect.Location, new Size(textView.ActualWidth, rect.Height)),
+                    3,3);
+            }
         }
     }
 }

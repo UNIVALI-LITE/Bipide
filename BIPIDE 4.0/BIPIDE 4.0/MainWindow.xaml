@@ -5,6 +5,7 @@
               xmlns:Bipide="clr-namespace:BIPIDE_4._0"
               xmlns:AvalonDock="clr-namespace:Xceed.Wpf.AvalonDock;assembly=Xceed.Wpf.AvalonDock"
               xmlns:AvalonDockLayout="clr-namespace:Xceed.Wpf.AvalonDock.Layout;assembly=Xceed.Wpf.AvalonDock"
+              xmlns:TipoErro="clr-namespace:BIPIDE_4._0"
               xmlns:AvalonDockThemes="clr-namespace:Xceed.Wpf.AvalonDock.Themes;assembly=Xceed.Wpf.AvalonDock.Themes.Aero"
               Title="Bipide 4.0" 
               Width="800" 
@@ -730,7 +731,34 @@
                                           CanUserAddRows="False"
                                           IsReadOnly="True">
                                     <DataGrid.Columns>
-                                        <DataGridTemplateColumn ClipboardContentBinding="{x:Null}"/>
+                                        <DataGridTemplateColumn>
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Image x:Name="ImageTipoErro"
+                                                           Source="" />
+                                                    <DataTemplate.Triggers>
+                                                        <DataTrigger Binding="{Binding TipoErro, Mode=TwoWay}"
+                                                             Value="{x:Static TipoErro:TipoErro.teSucesso}">
+                                                            <Setter Property="Source"
+                                                            Value="/ImageResources/accept.png"
+                                                            TargetName="ImageTipoErro"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding TipoErro, Mode=TwoWay}"
+                                                             Value="{x:Static TipoErro:TipoErro.teAlerta}">
+                                                            <Setter Property="Source"
+                                                            Value="/ImageResources/alert.gif"
+                                                            TargetName="ImageTipoErro"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding TipoErro, Mode=TwoWay}"
+                                                             Value="{x:Static TipoErro:TipoErro.teErro}">
+                                                            <Setter Property="Source"
+                                                            Value="/ImageResources/error.png"
+                                                            TargetName="ImageTipoErro"/>
+                                                        </DataTrigger>
+                                                    </DataTemplate.Triggers>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
                                         <DataGridTextColumn x:Name="_ErrorLine"
                                                             Binding="{Binding Line, UpdateSourceTrigger=PropertyChanged}" />
                                         <DataGridTextColumn x:Name="_ErrorColumn"

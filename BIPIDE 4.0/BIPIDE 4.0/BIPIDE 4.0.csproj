@@ -141,12 +141,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ProgrammingLanguagesResources\ErrorMapping\BipideSemanticAnalysis\NotSupportedErrors\English\NotSupportedErrors_English.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="ProgrammingLanguagesResources\ErrorMapping\BipideSemanticAnalysis\NotSupportedErrors\Portuguese\NotSupportedErrors_Portuguese.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="SplashScreen.xaml">
       <SubType>Designer</SubType>
@@ -544,7 +544,9 @@
     <Resource Include="LanguageResources\FlagIcons\za.png" />
     <Resource Include="LanguageResources\FlagIcons\zm.png" />
     <Resource Include="LanguageResources\FlagIcons\zw.png" />
-    <Resource Include="LanguageResources\LanguageMapping.xml" />
+    <Resource Include="LanguageResources\LanguageMapping.xml">
+      <SubType>Designer</SubType>
+    </Resource>
     <Resource Include="ImageResources\sourceCode.png" />
     <Resource Include="ImageResources\processorUBip32.png" />
     <Content Include="ProgrammingLanguagesResources\antlr-runtime-3.4.jar" />
@@ -680,10 +682,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Visual Studio 2012\Projects\BIPIDE 4.0\Classes\Classes.csproj">
-      <Project>{2eae9f8b-6786-4b23-860a-f87ef73412f0}</Project>
-      <Name>Classes</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Classes\Classes.csproj">
       <Project>{a6eccfe5-9e6b-4156-92a2-33ea07f850c2}</Project>
       <Name>Classes</Name>
     </ProjectReference>
