@@ -111,7 +111,6 @@ namespace BIPIDE.Classes
                     {
                         aux += listaDataASM[i + j].Operando + ", ";
                     }
-                    //aux += listaDataASM[i + listaDataASM[i].Tamanho - 1].Operando;
                     aux += listaDataASM[i + listaDataASM[i].Tamanho - 1].Operando;
                     listaResultado.Add("\t" + listaDataASM[i].Instrucao.ToLower() + " : " + aux);
 
@@ -122,26 +121,9 @@ namespace BIPIDE.Classes
 
                 listaResultado.Add(listaDataASM[i].GetInstrucaoASM());
             }
-            /*for (int i = 0; i < listaDataASM.Count(); i++)
-            {
-                if (listaDataASM[i].Tipo == eTipo.Variavel && listaDataASM[i].Tamanho > 1)
-                {
-                    String aux = "";
-                    for (int j = 0; j < listaDataASM[i].Tamanho - 1; j++)
-                    {
-                        aux += listaDataASM[i + j].Operando + ", ";
-                    }
-                    aux += listaDataASM[i + listaDataASM[i].Tamanho - 1].Operando;
-                    listaResultado.Add("\t" + listaDataASM[i].Instrucao.ToLower() + " : " + aux);
 
-
-                    i = i + listaDataASM[i].Tamanho;
-                }
-
-            }*/
-
-                foreach (InstrucaoASM itemASM in listaTextASM)
-                    listaResultado.Add(itemASM.GetInstrucaoASM());
+            foreach (InstrucaoASM itemASM in listaTextASM)
+                listaResultado.Add(itemASM.GetInstrucaoASM());
 
             this.listaStringASM = listaResultado;
 
@@ -154,14 +136,7 @@ namespace BIPIDE.Classes
         //==========================================================
         public List<InstrucaoASM> GetCodigoInstrucaoASM()
         {
-            List<InstrucaoASM> listaResultado = new List<InstrucaoASM>();
-         foreach (InstrucaoASM itemASM in listaDataASM)            
-                    listaResultado.Add(itemASM);
-        foreach (InstrucaoASM itemASM in listaTextASM)            
-                    listaResultado.Add(itemASM);
-
-            this.listaInstrucaoASM = listaResultado;
-            return listaResultado;
+            return PutCodigoTogether();
         }
         public List<InstrucaoASM> GetMemoriaDados()
         {
@@ -177,6 +152,27 @@ namespace BIPIDE.Classes
                     listaResultado.Add(itemASM);
             
 
+            return listaResultado;
+        }
+
+        public List<InstrucaoASM> PutCodigoTogether()
+        {
+            //reordena indice de arquivo sequencialmente
+            int indexArquivo = 1;
+            List<InstrucaoASM> listaResultado = new List<InstrucaoASM>();
+
+            foreach (InstrucaoASM itemASM in listaDataASM)
+            {
+                itemASM.IndexArquivo = (itemASM.Tamanho > 0)? indexArquivo : indexArquivo++;
+                listaResultado.Add(itemASM);
+            }
+            foreach (InstrucaoASM itemASM in listaTextASM)
+            {
+                itemASM.IndexArquivo = ++indexArquivo;
+                listaResultado.Add(itemASM);
+            }
+
+            this.listaInstrucaoASM = listaResultado;
             return listaResultado;
         }
 

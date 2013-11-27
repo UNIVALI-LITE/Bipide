@@ -9,7 +9,6 @@ namespace BIPIDE.Classes
         #region
         public InstrucaoASM()
         {
-            this.IndexArquivo = intNrInstr;
             intNrInstr++;
             this.intTamanhoVetor = 0;
             this.intIndice = 0;
@@ -158,7 +157,7 @@ namespace BIPIDE.Classes
 
                         case eTipo.Variavel:
                             this.intIndexMemoria = intNrInstMemoriaDados;
-                            intNrInstMemoriaDados++;
+                            intNrInstMemoriaDados++;                         
                             break;
 
                         case eTipo.Rotulo:
