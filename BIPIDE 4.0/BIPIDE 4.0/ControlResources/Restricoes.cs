@@ -61,7 +61,9 @@ namespace BIPIDE_4._0
             [Description("BIP III")]
             BIPIII = 3,
             [Description("BIP IV")]
-            BIPIV = 4
+            BIPIV = 4,
+            [Description("µBIP")]
+            uBIP = 5
         }
 
         public static string GetEnumDescription()

@@ -163,6 +163,7 @@
                                   ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonOpen}"
                                   ToolTipFooterImageSource="ImageResources/help32.png"
                                   ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                  Click="_ButtonOpen_Click"
                                   KeyTip="O"/>
                     
                     <RibbonButton x:Name="_ButtonSave" 
@@ -173,6 +174,7 @@
                                   ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonSave}"
                                   ToolTipFooterImageSource="ImageResources/help32.png"
                                   ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                  Click="_ButtonSave_Click"
                                   KeyTip="SV"/>
                     
                     <RibbonButton x:Name="_ButtonSaveAs" 
@@ -183,6 +185,7 @@
                                   ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonSaveAs}"
                                   ToolTipFooterImageSource="ImageResources/help32.png"
                                   ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                  Click="_ButtonSaveAs_Click"
                                   KeyTip="SA"/>
 
                     <RibbonButton x:Name="_ButtonPrint"
@@ -194,6 +197,7 @@
                                   ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonPrint}"
                                   ToolTipFooterImageSource="ImageResources/help32.png"
                                   ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                  Click="_ButtonPrint_Click"
                                   KeyTip="P"/>
 
                     <RibbonButton x:Name="_ButtonExport"
@@ -713,11 +717,7 @@
 
                         </AvalonDockLayout:LayoutDocumentPane>
                     </AvalonDockLayout:LayoutDocumentPaneGroup>
-                </AvalonDockLayout:LayoutPanel>
-
-                <AvalonDockLayout:LayoutRoot.BottomSide>
-                    <AvalonDockLayout:LayoutAnchorSide>
-                        <AvalonDockLayout:LayoutAnchorGroup>
+                    <AvalonDockLayout:LayoutAnchorablePane DockHeight="150">
                             <AvalonDockLayout:LayoutAnchorable x:Name="_LayoutAnchorableErrorList"
                                                                AutoHideHeight="200"
                                                                AutoHideMinHeight="200"
@@ -769,9 +769,8 @@
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </AvalonDockLayout:LayoutAnchorable>
-                        </AvalonDockLayout:LayoutAnchorGroup>
-                    </AvalonDockLayout:LayoutAnchorSide>
-                </AvalonDockLayout:LayoutRoot.BottomSide>
+                    </AvalonDockLayout:LayoutAnchorablePane>
+                </AvalonDockLayout:LayoutPanel>
             </AvalonDockLayout:LayoutRoot>
         </AvalonDock:DockingManager>
         <StatusBar Grid.Row="1" Height="23" VerticalAlignment="Bottom"/>

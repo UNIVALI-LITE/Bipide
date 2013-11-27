@@ -7,7 +7,7 @@ using System.Windows.Controls.Ribbon;
 
 namespace BIPIDE_4._0
 {
-    class SimulationControl
+    public class SimulationControl
     {
         public enum SimulationStatus
         {

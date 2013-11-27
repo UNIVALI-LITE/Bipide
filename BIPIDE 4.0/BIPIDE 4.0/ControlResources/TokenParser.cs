@@ -62,7 +62,10 @@ namespace BIPIDE_4._0.ControlResources
             WHITESPACE = 47,
             NEWLINE = 48,
             NUMBER = 49,
-            IDENTIFIER = 50
+            IDENTIFIER = 50,
+            DELIMITER = 51,
+            PUNCTUATION = 52,
+            OPERATIONS = 53
         }
 
         public string InputString
@@ -129,8 +132,11 @@ namespace BIPIDE_4._0.ControlResources
             _tokens.Add(Tokens.INSTRUCTION_CALL, "[Cc][Aa][Ll][Ll]");
             _tokens.Add(Tokens.WHITESPACE, "[ \\t]+");
             _tokens.Add(Tokens.NEWLINE, "[\\r\\n]+");
-            _tokens.Add(Tokens.NUMBER, "[0-9]*");
+            _tokens.Add(Tokens.NUMBER, "[0-9]+");
             _tokens.Add(Tokens.IDENTIFIER, "[a-zA-Z_][a-zA-Z0-9_]*");
+            _tokens.Add(Tokens.DELIMITER, "[\\{\\}\\[\\]\\(\\)]+");
+            _tokens.Add(Tokens.PUNCTUATION, "[\\.\\,\\;\\#]+");
+            _tokens.Add(Tokens.OPERATIONS, "[\\+\\-\\<\\>\\=\\!\\~\\&\\|\\^]+");
         }
 
         private void PrepareRegex()

@@ -22,7 +22,7 @@
             <TabItem x:Name="_TabItemProgramming" 
                      Header="Programação">
                 <AvalonEdit:TextEditor x:Name="_TextEditorSourceCode"
-                                       ShowLineNumbers="True"/>
+                                       ShowLineNumbers="True" TextChanged="_TextEditorSourceCode_TextChanged"/>
             </TabItem>
             <TabItem x:Name="_TabItemSimulation" 
                      Header="Simulação">
@@ -34,9 +34,9 @@
 
 
                     <AvalonDockLayout:LayoutRoot x:Name="_LayoutRoot">
-                        <AvalonDockLayout:LayoutPanel Orientation="Horizontal">
-                            <AvalonDock:LayoutPanel Orientation="Vertical"
-                                                    DockWidth="300">
+                        <AvalonDockLayout:LayoutPanel Orientation="Horizontal">                            
+                            <AvalonDockLayout:LayoutAnchorablePaneGroup Orientation="Vertical"
+                                                                        DockWidth="300">
                                 <AvalonDockLayout:LayoutAnchorablePane>
                                     <AvalonDockLayout:LayoutAnchorable x:Name="_LayoutAnchorableSourceCodeDebug"
                                                                        IconSource="/BIPIDE 4.0;component/ImageResources/new16.png"
@@ -49,7 +49,7 @@
                                                                IsReadOnly="True"/>
                                     </AvalonDockLayout:LayoutAnchorable>
                                 </AvalonDockLayout:LayoutAnchorablePane>
-  
+                                
                                 <AvalonDockLayout:LayoutAnchorablePane>
                                     <AvalonDockLayout:LayoutAnchorable IconSource="/BIPIDE 4.0;component/ImageResources/newASM16.png"
                                                                        Title="Assembly"
@@ -64,7 +64,7 @@
                                         </AvalonDock:LayoutAnchorable.Content>
                                     </AvalonDockLayout:LayoutAnchorable>
                                 </AvalonDockLayout:LayoutAnchorablePane>
-                            </AvalonDock:LayoutPanel>
+                            </AvalonDockLayout:LayoutAnchorablePaneGroup>
                             
                             <AvalonDockLayout:LayoutDocumentPaneGroup>
                                 <AvalonDockLayout:LayoutDocumentPane>
@@ -76,7 +76,7 @@
                                             <AvalonDock:LayoutDocument.Content>
                                                 <ucBip:Simulador x:Name="_Simulator"
                                                                  Height="Auto" 
-                                                                 Width="Auto" />
+                                                                 Width="Auto" RequestFimPrograma="_Simulator_RequestFimPrograma" />
                                             </AvalonDock:LayoutDocument.Content>
                                         </AvalonDock:LayoutDocument>
                                     </AvalonDockLayout:LayoutDocumentPane.Children>

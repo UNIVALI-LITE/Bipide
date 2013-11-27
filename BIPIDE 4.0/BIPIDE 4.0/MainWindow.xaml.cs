@@ -5,6 +5,7 @@ using BIPIDE_4._0.ViewResources;
 using br.univali.portugol.integracao;
 using br.univali.portugol.integracao.analise;
 using br.univali.portugol.integracao.mensagens;
+using Microsoft.Win32;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -36,10 +37,12 @@ namespace BIPIDE_4._0
     /// </summary>
     public partial class MainWindow : RibbonWindow
     {
-        private static SimulationControl   _SimulationControl;
-        private ArrayList           _LanguagesMapping;
-        private CorbaController     _CorbaController;
-        private Portugol            _ProgrammingLanguageInstance;
+        private static SimulationControl    _SimulationControl;
+        private StringBuilder               _ErrorMessages;
+        private ArrayList                   _LanguagesMapping;
+        private ArrayList                   _ProgrammingLanguages;
+        private CorbaController             _CorbaController;
+        private Portugol                    _ProgrammingLanguageInstance;
 
         public MainWindow()
         {
@@ -69,6 +72,13 @@ namespace BIPIDE_4._0
             }
         }
 
+        private void LoadProgrammingLanguagesResources()
+        {
+            XmlSerializer SerializerObj = new XmlSerializer(typeof(ArrayList), new Type[] { typeof(ProgrammingLanguageMapping), typeof(TreeItem) });
+            XmlReader Reader = XmlReader.Create(AppDomain.CurrentDomain.BaseDirectory + @"ProgrammingLanguagesResources\ProgrammingLanguagesMapping.xml");
+            _ProgrammingLanguages = (ArrayList)SerializerObj.Deserialize(Reader);
+        }
+
         void iMenuItem_Click(object sender, RoutedEventArgs e)
         {
             _RibbonMenuButtonLanguages.Tag              = (sender as RibbonMenuItem).Tag;
@@ -88,7 +98,7 @@ namespace BIPIDE_4._0
                 {
                     Source = new Uri(AppDomain.CurrentDomain.BaseDirectory + ((sender as RibbonMenuItem).Tag as LanguageMapping).TipsMapping)
                 });
-            
+
             Application.Current.Resources.MergedDictionaries.Add(
                 new ResourceDictionary()
                 {
@@ -383,11 +393,20 @@ namespace BIPIDE_4._0
 
         public void Build(UCProgrammingDocument pSelectedDocument)
         {
-            List<CompilationError>  iErrorList = new List<CompilationError>(); 
+            // Pré-processador;
+            PreProcessor iPreProcessor = new PreProcessor();
+
+            string iTextoFonte = string.Empty;
+            if (pSelectedDocument.ProgrammingLanguage == "C")
+                iTextoFonte = iPreProcessor.RunPreProcessor(pSelectedDocument._TextEditorSourceCode.Text);
+            else
+                iTextoFonte = pSelectedDocument._TextEditorSourceCode.Text;
+            
+            List<CompilationError> iErrorList = new List<CompilationError>();
             try
             {
-                br.univali.portugol.integracao.Programa iProgram = (br.univali.portugol.integracao.Programa)_ProgrammingLanguageInstance.compilar(pSelectedDocument._TextEditorSourceCode.Text, pSelectedDocument.ProgrammingLanguage);
-
+                br.univali.portugol.integracao.Programa iProgram = (br.univali.portugol.integracao.Programa)_ProgrammingLanguageInstance.compilar(iTextoFonte, pSelectedDocument.ProgrammingLanguage);
+                
 
                 Restricoes iRestrictions = new Restricoes(iErrorList, pSelectedDocument.ProgrammingLanguage);
                 iErrorList = iRestrictions.Executar(iProgram);
@@ -401,13 +420,23 @@ namespace BIPIDE_4._0
                     Tradutor reg = new Tradutor(iProgram, pSelectedDocument.ProgrammingLanguage);
                     Codigo iAssembly = reg.Convert(iProgram);
 
+                    // Pós-Processador
+                    if (pSelectedDocument.ProgrammingLanguage == "C")
+                    {
+                        List<Codigo> iAssemblys = iPreProcessor.RunPosProcessor(iTextoFonte);
+                        foreach (Codigo iCodigo in iAssemblys)
+                        {
+
+                        }
+                    }
+
                     pSelectedDocument._Simulator.SetMemoriaDados(iAssembly.GetMemoriaDados());
                     pSelectedDocument._Simulator.SetMemoriaPrograma(iAssembly.GetMemoriaInstrucao());
                     pSelectedDocument._Simulator.SetRotulosPrograma(iAssembly.GetListaRotulos());
 
                     pSelectedDocument._AssemblySource       = iAssembly;
                     pSelectedDocument.AssemblyText          = iAssembly.GetCodigoStringASM();
-                    pSelectedDocument.SourceCodeDebugText   = pSelectedDocument._TextEditorSourceCode.Text;
+                    pSelectedDocument.SourceCodeDebugText   = iTextoFonte;
                 }
 
             }
@@ -416,19 +445,25 @@ namespace BIPIDE_4._0
                 
                 ResultadoAnalise resultado = ec.resultadoAnalise;
 
-                if (resultado.getNumeroTotalErros() > 0) {
+                if (resultado.getNumeroTotalErros() > 0)
+                {
 
-                    foreach (ErroSintatico erro in resultado.getErrosSintaticos())  
+                    foreach (ErroSintatico erro in resultado.getErrosSintaticos())
                         iErrorList.Add(new CompilationError(erro));
 
-                    foreach (ErroSemantico erro in resultado.getErrosSemanticos())                    
+                    foreach (ErroSemantico erro in resultado.getErrosSemanticos())
                         iErrorList.Add(new CompilationError(erro));
                 }
-            }
-            
+                    }
+
             if (iErrorList != null)
                 dataGridErrorList.ItemsSource = iErrorList;
         }
+
+        //private InstrucaoASM GetInstructionBeforeInsert()
+        //{
+
+        //}
 
         private void ArchitectureCheck()
         {
@@ -469,25 +504,29 @@ namespace BIPIDE_4._0
         private void _MenuItemNew_Click(object sender, RoutedEventArgs e)
         {
             FormNewDocument iFormNewDocument = new FormNewDocument(Resources);
+            iFormNewDocument.Owner = this;
+
             if (iFormNewDocument.ShowDialog() == true)
             {
-                UCProgrammingDocument iProgrammingDocument          = new UCProgrammingDocument(iFormNewDocument.HighlightFile, iFormNewDocument.ProgrammingLanguage);
+                UCProgrammingDocument iProgrammingDocument          = new UCProgrammingDocument(iFormNewDocument.HighlightFile, iFormNewDocument.ProgrammingLanguage, MainWindow._SimulationControl);
                 iProgrammingDocument.SimulationContext              = _ContextualTabGroupSimulation;
                 iProgrammingDocument.SimulationTab                  = _TabSimulation;
                 iProgrammingDocument.RibbonMain                     = _RibbonMain;
                 iProgrammingDocument._TabItemProgramming.Header     = (String)FindResource("TabProgramming");
                 iProgrammingDocument._TabItemSimulation.Header      = (String)FindResource("TabSimulation");
                 iProgrammingDocument.SimulationSelectedProcessor    = SimulationControl.Processors.psBipIV;
+                iProgrammingDocument.Saved                          = false;
 
                 if (iFormNewDocument.IsFile)
                     iProgrammingDocument._TextEditorSourceCode.Text = File.ReadAllText(iFormNewDocument.Content);
                 else if (iFormNewDocument.IsNewProject)
                     iProgrammingDocument._TextEditorSourceCode.Text = iFormNewDocument.Content;
 
-                LayoutDocument iLayoutDocument  = new LayoutDocument();
-                iLayoutDocument.Title           = iFormNewDocument.ProjectName;
-                iLayoutDocument.Content         = iProgrammingDocument;
-                iLayoutDocument.IsSelectedChanged += iProgrammingDocument_IsSelectedChanged;
+                LayoutDocument iLayoutDocument      = new LayoutDocument();
+                iProgrammingDocument.LayoutDocument = iLayoutDocument;
+                iLayoutDocument.Title               = iFormNewDocument.ProjectName + "*";
+                iLayoutDocument.Content             = iProgrammingDocument;
+                iLayoutDocument.IsSelectedChanged   += iProgrammingDocument_IsSelectedChanged;
 
                 _DocumentPane.Children.Add(iLayoutDocument);
 
@@ -523,6 +562,122 @@ namespace BIPIDE_4._0
                 case SimulationControl.Processors.psBipIV:
                     _RadioButtonSimulationBipIV.IsChecked = true;
                     break;
+            }
+        }
+
+        private void _ButtonOpen_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog iOpenFileDialog = new OpenFileDialog();
+
+            string iFilter = string.Empty;
+            foreach (ProgrammingLanguageMapping iProgrammingLanguage in _ProgrammingLanguages)
+                iFilter += iProgrammingLanguage.Name + " (*." + iProgrammingLanguage.FileExtension + ")|*." + iProgrammingLanguage.FileExtension + "|";
+            iOpenFileDialog.Filter              = iFilter.Substring(0, iFilter.Length - 1);
+            iOpenFileDialog.RestoreDirectory    = true;
+            iOpenFileDialog.Multiselect         = false;
+
+            if (iOpenFileDialog.ShowDialog() == true)
+            {
+                ProgrammingLanguageMapping iSelectedProgrammingLanguage = new ProgrammingLanguageMapping();
+
+                foreach (ProgrammingLanguageMapping iProgrammingLanguage in _ProgrammingLanguages)
+                {
+                    if (iProgrammingLanguage.FileExtension == System.IO.Path.GetExtension(iOpenFileDialog.FileName).Replace(".",""))
+                        iSelectedProgrammingLanguage = iProgrammingLanguage;
+        }
+
+                UCProgrammingDocument iProgrammingDocument = new UCProgrammingDocument(iSelectedProgrammingLanguage.HighlightMapping, iSelectedProgrammingLanguage.Name, MainWindow._SimulationControl);
+                iProgrammingDocument.SimulationContext              = _ContextualTabGroupSimulation;
+                iProgrammingDocument.SimulationTab                  = _TabSimulation;
+                iProgrammingDocument.RibbonMain                     = _RibbonMain;
+                iProgrammingDocument._TabItemProgramming.Header     = (String)FindResource("TabProgramming");
+                iProgrammingDocument._TabItemSimulation.Header      = (String)FindResource("TabSimulation");
+                iProgrammingDocument.SimulationSelectedProcessor    = SimulationControl.Processors.psBipIV;
+                iProgrammingDocument.FilePath                       = iOpenFileDialog.FileName;
+                iProgrammingDocument._TextEditorSourceCode.Text     = File.ReadAllText(iOpenFileDialog.FileName);
+                iProgrammingDocument.Saved                          = true;
+                
+
+                LayoutDocument iLayoutDocument      = new LayoutDocument();
+                iProgrammingDocument.LayoutDocument = iLayoutDocument;
+                iLayoutDocument.Title               = System.IO.Path.GetFileName(iOpenFileDialog.FileName);
+                iLayoutDocument.Content             = iProgrammingDocument;
+                iLayoutDocument.IsSelectedChanged   += iProgrammingDocument_IsSelectedChanged;
+
+                _DocumentPane.Children.Add(iLayoutDocument);
+
+                iLayoutDocument.IsActive = true;
+            }
+
+        }
+
+        private void _ButtonSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (_DocumentPane.SelectedContent != null)
+            {
+                UCProgrammingDocument iSelectedDocument =
+                    ((_DocumentPane.SelectedContent as LayoutDocument).Content as UCProgrammingDocument);
+
+                if (!iSelectedDocument.Saved && iSelectedDocument.FilePath != string.Empty && iSelectedDocument.FilePath != null)
+                {
+                    File.WriteAllText(iSelectedDocument.FilePath, iSelectedDocument._TextEditorSourceCode.Text);
+                    iSelectedDocument.Saved = true;
+                    iSelectedDocument.LayoutDocument.Title = iSelectedDocument.LayoutDocument.Title.Substring(0, iSelectedDocument.LayoutDocument.Title.Length - 1); 
+                }
+                else if (!iSelectedDocument.Saved)
+                {
+                    SaveAs(iSelectedDocument);
+                }
+            }
+        }
+
+        private void _ButtonSaveAs_Click(object sender, RoutedEventArgs e)
+        {
+            if (_DocumentPane.SelectedContent != null)
+            {
+                UCProgrammingDocument iSelectedDocument =
+                    ((_DocumentPane.SelectedContent as LayoutDocument).Content as UCProgrammingDocument);
+
+                SaveAs(iSelectedDocument);
+            }
+        }
+
+        private void SaveAs(UCProgrammingDocument pSelectedDocument)
+        {
+            ProgrammingLanguageMapping iSelectedProgrammingLanguage = new ProgrammingLanguageMapping();
+            foreach (ProgrammingLanguageMapping iProgrammingLanguage in _ProgrammingLanguages)
+            {
+                if (iProgrammingLanguage.Name == pSelectedDocument.ProgrammingLanguage)
+                    iSelectedProgrammingLanguage = iProgrammingLanguage;
+            }
+
+            SaveFileDialog iSaveFileDialog  = new SaveFileDialog();
+            iSaveFileDialog.FileName        = pSelectedDocument.LayoutDocument.Title.Replace("*", "");
+            iSaveFileDialog.Filter          = iSelectedProgrammingLanguage.Name + " (*." + iSelectedProgrammingLanguage.FileExtension + ")|*." + iSelectedProgrammingLanguage.FileExtension;
+
+            if (iSaveFileDialog.ShowDialog() == true)
+            {
+                pSelectedDocument.FilePath              = iSaveFileDialog.FileName;
+                pSelectedDocument.LayoutDocument.Title  = System.IO.Path.GetFileName(iSaveFileDialog.FileName);
+                pSelectedDocument.Saved                 = true;
+                File.WriteAllText(pSelectedDocument.FilePath, pSelectedDocument._TextEditorSourceCode.Text);
+            }
+        }
+
+        private void _ButtonPrint_Click(object sender, RoutedEventArgs e)
+        {
+            if (_DocumentPane.SelectedContent != null)
+            {
+                UCProgrammingDocument iSelectedDocument =
+                    ((_DocumentPane.SelectedContent as LayoutDocument).Content as UCProgrammingDocument);
+
+                PrintDialog iPrintDialog = new PrintDialog();
+
+                if (iPrintDialog.ShowDialog() == true)
+                {
+                    IDocumentPaginatorSource iDocumentPaginatorSource = iSelectedDocument.GetFlowDocumentForEditor();
+                    iPrintDialog.PrintDocument(iDocumentPaginatorSource.DocumentPaginator, iSelectedDocument.LayoutDocument.Title);
+                }
             }
         }
 
@@ -997,6 +1152,7 @@ namespace BIPIDE_4._0
                                                         _ButtonStop);
 
             LoadLanguageResources();
+            LoadProgrammingLanguagesResources();
 
             LoadCorbaConnection(iSplashScreen);
 
