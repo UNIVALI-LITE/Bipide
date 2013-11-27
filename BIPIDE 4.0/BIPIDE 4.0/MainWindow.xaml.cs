@@ -437,6 +437,9 @@ namespace BIPIDE_4._0
                     pSelectedDocument._AssemblySource       = iAssembly;
                     pSelectedDocument.AssemblyText          = iAssembly.GetCodigoStringASM();
                     pSelectedDocument.SourceCodeDebugText   = iTextoFonte;
+
+                    UCProgrammingDocument.LineDebugASM          = new LineDebugASM();
+                    UCProgrammingDocument.LineDebugSourceCode   = 1;
                 }
 
             }

@@ -23,6 +23,7 @@
     <system:String x:Key="NotSupportedErrors.19">O BIP  não possui suporte à Módulo</system:String>
     <system:String x:Key="NotSupportedErrors.20">O BIP  não possui suporte à Multiplicação</system:String>
     <system:String x:Key="NotSupportedErrors.21">Continue não pode ser utilizado fora de laços de repetição</system:String>
+    <system:String x:Key="NotSupportedErrors.22">Interrupt é uma função especial, não é possível fazer chamadas à ela</system:String>
 
 
 </ResourceDictionary>

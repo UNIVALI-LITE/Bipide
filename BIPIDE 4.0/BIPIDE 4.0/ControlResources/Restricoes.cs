@@ -16,14 +16,15 @@ namespace BIPIDE_4._0
     {
         private static  Processadores _Processador;
 
-        public String   _CurrentFunction        = "";
-        public Boolean  _IsLoop                 = false;
-        public Boolean  _IsConditional          = false;
-        private Boolean _IsVector               = false;
-        private int     _ParameterLine          = 0;
-        private int     _ParameterColumn        = 0;
-        private String _WriteFunction           = "";
-        private String _ReadFunction            = "";
+        public String       _CurrentFunction        = "";
+        public Boolean      _IsLoop                 = false;
+        public Boolean      _IsConditional          = false;
+        private Boolean     _IsVector               = false;
+        private int         _ParameterLine          = 0;
+        private int         _ParameterColumn        = 0;
+        private String      _WriteFunction          = "";
+        private String      _ReadFunction           = "";
+        public String       _ProgrammingLanguage;
 
         List<CompilationError>      _ErrorList;
 
@@ -37,6 +38,7 @@ namespace BIPIDE_4._0
 
         public Restricoes(List<CompilationError> iErrorList, String ProgrammingLanguage)
         {
+            this._ProgrammingLanguage = ProgrammingLanguage;
             Processador = Processadores.BIPI;
             _ErrorList  = iErrorList;
 
@@ -86,8 +88,6 @@ namespace BIPIDE_4._0
 
         internal List<CompilationError> Executar(Programa programa)
         {
-
-
             _Processador = Processadores.BIPI;
             ArvoreSintaticaAbstrataPrograma asa = programa.getArvoreSintaticaAbstrata();
             asa.aceitar(this);
@@ -108,8 +108,8 @@ namespace BIPIDE_4._0
 
         public object visitarNoCadeia(NoCadeia noCadeia)
         {
-            int linha = noCadeia.getTrechoCodigoFonte().getLinha();
-            int coluna = noCadeia.getTrechoCodigoFonte().getLinha();
+            int linha       = noCadeia.getTrechoCodigoFonte().getLinha();
+            int coluna      = noCadeia.getTrechoCodigoFonte().getLinha();
             String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.1");
             _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
@@ -118,8 +118,8 @@ namespace BIPIDE_4._0
 
         public object visitarNoCaracter(NoCaracter noCaracter)
         {
-            int linha = noCaracter.getTrechoCodigoFonte().getLinha();
-            int coluna = noCaracter.getTrechoCodigoFonte().getLinha();
+            int linha       = noCaracter.getTrechoCodigoFonte().getLinha();
+            int coluna      = noCaracter.getTrechoCodigoFonte().getLinha();
             String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.2");
             _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
@@ -142,56 +142,45 @@ namespace BIPIDE_4._0
         { //SuporteProcedimento + E/S
            
             Processador = Processadores.BIPIV;
-
             String nome = chamadaFuncao.getNome();
-     
-            if (nome == _CurrentFunction)
-            {
-                int linha = chamadaFuncao.getTrechoCodigoFonteNome().getLinha();
-                int coluna = chamadaFuncao.getTrechoCodigoFonteNome().getLinha();
-                String mensagem = "O BIP  não possui suporte à recursividade";
+            int linha   = chamadaFuncao.getTrechoCodigoFonteNome().getLinha();
+            int coluna  = chamadaFuncao.getTrechoCodigoFonteNome().getLinha();
+            String mensagem = "";
 
-                mensagem = (string) Application.Current.FindResource("NotSupportedErrors.3");
-                   
-                _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
-
-            }
+            //para C funcao interrupt do mBIP            
+            if (_ProgrammingLanguage == "C")
+                if (nome.ToLower() == "interrupt")                
+                    _ErrorList.Add(new CompilationError(linha, coluna, (string) Application.Current.FindResource("NotSupportedErrors.22")));
+                
+            if (nome == _CurrentFunction)                
+                _ErrorList.Add(new CompilationError(linha, coluna, (string) Application.Current.FindResource("NotSupportedErrors.3")));
 
             if (nome != _ReadFunction &&
                 nome != _WriteFunction
-            )
-            _CurrentFunction = nome;
+                )
+                _CurrentFunction = nome;
 
             Object valor;
 
             foreach (NoDeclaracaoParametro parametro in chamadaFuncao.getParametros())
             {
-
-                int linha = _ParameterLine;
-                int coluna = _ParameterColumn;
+                linha = _ParameterLine;
+                coluna = _ParameterColumn;
 
                 valor = parametro.aceitar(this);
-                if (nome.Equals(_ReadFunction))
-                {
-                    if (valor != null)
-                    {
+                if (nome.Equals(_ReadFunction))                
+                    if (valor != null)                    
                         if (valor.GetType() != typeof(string))
                         {
-
-                            String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.7");
+                             mensagem = (string)Application.Current.FindResource("NotSupportedErrors.7");
                             _ErrorList.Add(new CompilationError((linha == 0) ? "" : linha.ToString(), (coluna == 0) ? "" : coluna.ToString(), mensagem));
-                        }
-
-                    }
+                        }                    
                     else
                     {//expressao dentro de leia
-
-                        String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.8");
+                         mensagem = (string)Application.Current.FindResource("NotSupportedErrors.8");
                         _ErrorList.Add(new CompilationError((linha == 0) ? "" : linha.ToString(), (coluna == 0) ? "" : coluna.ToString(), mensagem));
 
                      }
-
-                }
             }
                   
              return null;
@@ -202,11 +191,9 @@ namespace BIPIDE_4._0
 
             _CurrentFunction = declaracaoFuncao.getNome();
 
-
             foreach (NoDeclaracaoParametro parametro in declaracaoFuncao.getParametros())
-            {
                 parametro.aceitar(this);
-            }
+            
 
             foreach (NoBloco bloco in declaracaoFuncao.getBlocos())
             {
@@ -221,8 +208,8 @@ namespace BIPIDE_4._0
 
             if (noDeclaracaoParametro.getModoAcesso() == ModoAcesso.POR_REFERENCIA)
             {
-                int linha = noDeclaracaoParametro.getTrechoCodigoFonteNome().getLinha();
-                int coluna = noDeclaracaoParametro.getTrechoCodigoFonteNome().getColuna();
+                int linha       = noDeclaracaoParametro.getTrechoCodigoFonteNome().getLinha();
+                int coluna      = noDeclaracaoParametro.getTrechoCodigoFonteNome().getColuna();
                 String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.4");
                 _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
             }
@@ -235,8 +222,8 @@ namespace BIPIDE_4._0
 
         public object visitarNoDeclaracaoMatriz(NoDeclaracaoMatriz noDeclaracaoMatriz)
         {
-            int linha = noDeclaracaoMatriz.getTrechoCodigoFonteTipoDado().getLinha();
-            int coluna = noDeclaracaoMatriz.getTrechoCodigoFonteTipoDado().getLinha();
+            int linha       = noDeclaracaoMatriz.getTrechoCodigoFonteTipoDado().getLinha();
+            int coluna      =  noDeclaracaoMatriz.getTrechoCodigoFonteTipoDado().getLinha();
             String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.5");
             _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
@@ -291,8 +278,8 @@ namespace BIPIDE_4._0
             if (tamanho.GetType() == typeof(int))
                 if (Convert.ToInt32(tamanho) > 1024)
                 {
-                    int linha = noDeclaracaoVetor.getTrechoCodigoFonteNome().getLinha();
-                    int coluna = noDeclaracaoVetor.getTrechoCodigoFonteNome().getLinha();
+                    int linha       = noDeclaracaoVetor.getTrechoCodigoFonteNome().getLinha();
+                    int coluna      =  noDeclaracaoVetor.getTrechoCodigoFonteNome().getLinha();
                     String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.9");
                     _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
                 }
@@ -354,8 +341,8 @@ namespace BIPIDE_4._0
         {
 
 
-            int linha = noLogico.getTrechoCodigoFonte().getLinha();
-            int coluna = noLogico.getTrechoCodigoFonte().getLinha();
+            int linha       = noLogico.getTrechoCodigoFonte().getLinha();
+            int coluna      = noLogico.getTrechoCodigoFonte().getLinha();
             String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.10");
             _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
@@ -366,8 +353,8 @@ namespace BIPIDE_4._0
         public object visitarNoMatriz(NoMatriz noMatriz)
         {
 
-            int linha = noMatriz.getTrechoCodigoFonte().getLinha();
-            int coluna = noMatriz.getTrechoCodigoFonte().getLinha();
+            int linha       = noMatriz.getTrechoCodigoFonte().getLinha();
+            int coluna      = noMatriz.getTrechoCodigoFonte().getLinha();
             String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.5");
             _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
@@ -382,8 +369,8 @@ namespace BIPIDE_4._0
         public object visitarNoNao(NoNao noNao)
         {
 
-            int linha = noNao.getTrechoCodigoFonte().getLinha();
-            int coluna = noNao.getTrechoCodigoFonte().getLinha();
+            int linha       = noNao.getTrechoCodigoFonte().getLinha();
+            int coluna      = noNao.getTrechoCodigoFonte().getLinha();
             String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.11");
             _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
@@ -430,8 +417,8 @@ namespace BIPIDE_4._0
         public object visitarNoReal(NoReal noReal)
         {
 
-            int linha = noReal.getTrechoCodigoFonte().getLinha();
-            int coluna = noReal.getTrechoCodigoFonte().getLinha();
+            int linha       = noReal.getTrechoCodigoFonte().getLinha();
+            int coluna      = noReal.getTrechoCodigoFonte().getLinha();
             String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.12");
             _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
@@ -441,8 +428,8 @@ namespace BIPIDE_4._0
         public object visitarNoReferenciaMatriz(NoReferenciaMatriz noReferenciaMatriz)
         {
 
-            int linha = noReferenciaMatriz.getTrechoCodigoFonte().getLinha();
-            int coluna = noReferenciaMatriz.getTrechoCodigoFonte().getLinha();
+            int linha       = noReferenciaMatriz.getTrechoCodigoFonte().getLinha();
+            int coluna      = noReferenciaMatriz.getTrechoCodigoFonte().getLinha();
             String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.5");
             _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
@@ -460,8 +447,8 @@ namespace BIPIDE_4._0
             Processador = Processadores.BIPIV;
             if (_IsVector)
             {
-                int linha = noReferenciaVetor.getTrechoCodigoFonte().getLinha();
-                int coluna = noReferenciaVetor.getTrechoCodigoFonte().getLinha();
+                int linha       = noReferenciaVetor.getTrechoCodigoFonte().getLinha();
+                int coluna      = noReferenciaVetor.getTrechoCodigoFonte().getLinha();
                 String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.13");
                 _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
@@ -519,8 +506,8 @@ namespace BIPIDE_4._0
         public object visitarNoInclusaoBiblioteca(NoInclusaoBiblioteca noInclusaoBiblioteca)
         {
 
-            int linha = noInclusaoBiblioteca.getTrechoCodigoFonte().getLinha();
-            int coluna = noInclusaoBiblioteca.getTrechoCodigoFonte().getLinha();
+            int linha       = noInclusaoBiblioteca.getTrechoCodigoFonte().getLinha();
+            int coluna      = noInclusaoBiblioteca.getTrechoCodigoFonte().getLinha();
             String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.14");
             _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
@@ -571,8 +558,8 @@ namespace BIPIDE_4._0
 
         public object visitarNoOperacaoDivisao(NoOperacaoDivisao noOperacaoDivisao)
         {
-            int linha = noOperacaoDivisao.getTrechoCodigoFonte().getLinha();
-            int coluna = noOperacaoDivisao.getTrechoCodigoFonte().getLinha();
+            int linha       = noOperacaoDivisao.getTrechoCodigoFonte().getLinha();
+            int coluna      = noOperacaoDivisao.getTrechoCodigoFonte().getLinha();
             String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.15");
             _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
@@ -586,8 +573,8 @@ namespace BIPIDE_4._0
 
             if (!_IsConditional)
             {
-                int linha = noOperacaoLogicaDiferenca.getTrechoCodigoFonte().getLinha();
-                int coluna = noOperacaoLogicaDiferenca.getTrechoCodigoFonte().getLinha();
+                int linha       = noOperacaoLogicaDiferenca.getTrechoCodigoFonte().getLinha();
+                int coluna      = noOperacaoLogicaDiferenca.getTrechoCodigoFonte().getLinha();
                 String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.16");
                 _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
@@ -599,8 +586,8 @@ namespace BIPIDE_4._0
 
         public object visitarNoOperacaoLogicaE(NoOperacaoLogicaE noOperacaoLogicaE)
         {
-            int linha = noOperacaoLogicaE.getTrechoCodigoFonte().getLinha();
-            int coluna = noOperacaoLogicaE.getTrechoCodigoFonte().getLinha();
+            int linha       = noOperacaoLogicaE.getTrechoCodigoFonte().getLinha();
+            int coluna      = noOperacaoLogicaE.getTrechoCodigoFonte().getLinha();
             String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.17");
             _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
@@ -614,8 +601,8 @@ namespace BIPIDE_4._0
 
             if (!_IsConditional)
             {
-                int linha = noOperacaoLogicaIgualdade.getTrechoCodigoFonte().getLinha();
-                int coluna = noOperacaoLogicaIgualdade.getTrechoCodigoFonte().getLinha();
+                int linha       = noOperacaoLogicaIgualdade.getTrechoCodigoFonte().getLinha();
+                int coluna      = noOperacaoLogicaIgualdade.getTrechoCodigoFonte().getLinha();
                 String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.16");
                 _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
@@ -630,8 +617,8 @@ namespace BIPIDE_4._0
             Processador = Processadores.BIPII;
             if (!_IsConditional)
             {
-                int linha = noOperacaoLogicaMaior.getTrechoCodigoFonte().getLinha();
-                int coluna = noOperacaoLogicaMaior.getTrechoCodigoFonte().getLinha();
+                int linha       = noOperacaoLogicaMaior.getTrechoCodigoFonte().getLinha();
+                int coluna      = noOperacaoLogicaMaior.getTrechoCodigoFonte().getLinha();
                 String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.16");
                 _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
@@ -646,8 +633,8 @@ namespace BIPIDE_4._0
             Processador = Processadores.BIPII;
             if (!_IsConditional)
             {
-                int linha = noOperacaoLogicaMaiorIgual.getTrechoCodigoFonte().getLinha();
-                int coluna = noOperacaoLogicaMaiorIgual.getTrechoCodigoFonte().getLinha();
+                int linha       = noOperacaoLogicaMaiorIgual.getTrechoCodigoFonte().getLinha();
+                int coluna      = noOperacaoLogicaMaiorIgual.getTrechoCodigoFonte().getLinha();
                 String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.16");
                 _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
@@ -662,8 +649,8 @@ namespace BIPIDE_4._0
             Processador = Processadores.BIPII;
             if (!_IsConditional)
             {
-                int linha = noOperacaoLogicaMenor.getTrechoCodigoFonte().getLinha();
-                int coluna = noOperacaoLogicaMenor.getTrechoCodigoFonte().getLinha();
+                int linha       = noOperacaoLogicaMenor.getTrechoCodigoFonte().getLinha();
+                int coluna      = noOperacaoLogicaMenor.getTrechoCodigoFonte().getLinha();
                 String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.16");
                 _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
             }
@@ -677,8 +664,8 @@ namespace BIPIDE_4._0
             Processador = Processadores.BIPII;
             if (!_IsConditional)
             {
-                int linha = noOperacaoLogicaMenorIgual.getTrechoCodigoFonte().getLinha();
-                int coluna = noOperacaoLogicaMenorIgual.getTrechoCodigoFonte().getLinha();
+                int linha       = noOperacaoLogicaMenorIgual.getTrechoCodigoFonte().getLinha();
+                int coluna      = noOperacaoLogicaMenorIgual.getTrechoCodigoFonte().getLinha();
                 String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.16");
                 _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
@@ -712,8 +699,8 @@ namespace BIPIDE_4._0
 
         public object visitarNoOperacaoModulo(NoOperacaoModulo noOperacaoModulo)
         {
-            int linha = noOperacaoModulo.getTrechoCodigoFonte().getLinha();
-            int coluna = noOperacaoModulo.getTrechoCodigoFonte().getLinha();
+            int linha       = noOperacaoModulo.getTrechoCodigoFonte().getLinha();
+            int coluna      = noOperacaoModulo.getTrechoCodigoFonte().getLinha();
             String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.19");
             _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
@@ -722,8 +709,8 @@ namespace BIPIDE_4._0
 
         public object visitarNoOperacaoMultiplicacao(NoOperacaoMultiplicacao noOperacaoMultiplicacao)
         {
-            int linha = noOperacaoMultiplicacao.getTrechoCodigoFonte().getLinha();
-            int coluna = noOperacaoMultiplicacao.getTrechoCodigoFonte().getLinha();
+            int linha       = noOperacaoMultiplicacao.getTrechoCodigoFonte().getLinha();
+            int coluna      = noOperacaoMultiplicacao.getTrechoCodigoFonte().getLinha();
             String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.20");
             _ErrorList.Add(new CompilationError(linha, coluna, mensagem));
 
@@ -757,8 +744,8 @@ namespace BIPIDE_4._0
 
             if (!_IsLoop)
             {
-                //int linha = noContinue.getTrechoCodigoFonte().getLinha();
-                //int coluna = noContinue.getTrechoCodigoFonte().getLinha();
+                //int linha       = noContinue.getTrechoCodigoFonte().getLinha();
+                //int coluna      = noContinue.getTrechoCodigoFonte().getLinha();
                 String mensagem = (string)Application.Current.FindResource("NotSupportedErrors.21");
                 _ErrorList.Add(new CompilationError(0, 0, mensagem));
 

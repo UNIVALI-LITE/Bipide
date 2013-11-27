@@ -168,7 +168,7 @@ namespace BIPIDE.Classes
             }
             foreach (InstrucaoASM itemASM in listaTextASM)
             {
-                itemASM.IndexArquivo = ++indexArquivo;
+                itemASM.IndexArquivo = indexArquivo++;
                 listaResultado.Add(itemASM);
             }
 
@@ -257,5 +257,87 @@ namespace BIPIDE.Classes
             return null;
         }
         #endregion
+
+        public void InjectInstruction(Codigo _Object_Interrupt, int index)
+        {
+            List<InstrucaoASM> iListaTemp = new List<InstrucaoASM>();
+
+            //percorrer lista de instruções, encontrar instrução para quebra
+            foreach (InstrucaoASM iInstrucoes in this.listaTextASM)
+            {
+                if (iInstrucoes.IndexArquivo >= index)
+                {
+                    //armazenar instruções em lista temporária
+                    iListaTemp.Add(iInstrucoes);
+                }
+            }
+            //remover instruções depois do indice
+            foreach (InstrucaoASM iInstrRemover in iListaTemp)
+            {
+                listaTextASM.Remove(iInstrRemover);
+            }
+            //adicionar instruções do interrupt
+            foreach (InstrucaoASM iInterrupt in _Object_Interrupt.listaTextASM)
+            {
+                listaTextASM.Add(iInterrupt);
+            }
+            //adicionar instruções de temp
+            foreach (InstrucaoASM iTemp in iListaTemp)
+            {
+                listaTextASM.Add(iTemp);
+            }
+
+            int indice = -1;
+            //refazer índice memória
+            foreach (InstrucaoASM iList in listaTextASM)
+            {
+                switch (iList.Tipo)
+                {
+                    case eTipo.Instrucao:
+                        iList.IndexMemoria = ++indice;
+                        break;
+                    case eTipo.Rotulo:
+                        iList.IndexMemoria = 0;
+                        break;
+                }
+            }
+            //refazer índice rótulos
+            foreach (InstrucaoASM iList in listaTextASM)
+            {
+                if (iList.Tipo == eTipo.Rotulo)
+                {
+                    iList.IndexMemoria = listaTextASM[listaTextASM.IndexOf(iList)+1].IndexMemoria;
+                }
+            }
+            //refazer índice arquivo
+            PutCodigoTogether();
+        }
+
+
+        public void RedoProgramIndex()
+        {
+            int indice = -1;
+            //refazer índice memória
+            foreach (InstrucaoASM iList in listaTextASM)
+            {
+                switch (iList.Tipo)
+                {
+                    case eTipo.Instrucao:
+                        iList.IndexMemoria = ++indice;
+                        break;
+                    case eTipo.Rotulo:
+                        iList.IndexMemoria = 0;
+                        break;
+                }
+            }
+            //refazer índice rótulos
+            foreach (InstrucaoASM iList in listaTextASM)
+            {
+                if (iList.Tipo == eTipo.Rotulo)
+                {
+                    iList.IndexMemoria = listaTextASM[listaTextASM.IndexOf(iList) + 1].IndexMemoria;
+                }
+            }
+        }
     }
 }

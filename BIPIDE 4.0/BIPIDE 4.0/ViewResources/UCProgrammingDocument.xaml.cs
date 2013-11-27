@@ -181,7 +181,7 @@ namespace BIPIDE_4._0.UIResources
                 InstrucaoASM instASM = _AssemblySource.GetInstrucaoAsmByEnderecoMemoria(intEndereco);
 
                 int lineDocumentArquivoASM = 1;
-                int lineDocumentSourceCode = instASM.NrLinha.Value;
+                int lineDocumentSourceCode = (instASM.NrLinha == null) ? 1 : instASM.NrLinha.Value;
 
                 List<InstrucaoASM> list = _AssemblySource.GetCodigoInstrucaoASM();
 
@@ -207,14 +207,24 @@ namespace BIPIDE_4._0.UIResources
 
                 foreach (InstrucaoASM instructions in list)
                 {
-                    if (instructions.NrLinha == lineDocumentSourceCode)
+                    if (instructions.NrLinha == lineDocumentSourceCode )
                     {
                         UCProgrammingDocument.LineDebugASM.SourceCodeReferencedLine.Add(instructions.IndexArquivo);
                         if (instructions == instASM)
                         {
                             UCProgrammingDocument.LineDebugASM.CurrentLine = instructions.IndexArquivo;
                             lineDocumentArquivoASM = instructions.IndexArquivo;
+                        }
                     }
+                    //tratar linhas sem código alto nível vinculado
+                    else if (lineDocumentSourceCode == 1)
+                    {
+                        if (instructions == instASM)
+                        {
+                            UCProgrammingDocument.LineDebugASM.CurrentLine = instructions.IndexArquivo;
+                            lineDocumentArquivoASM = instructions.IndexArquivo;
+                            break;
+                        }
                     }
 
                 }
@@ -398,22 +408,22 @@ namespace BIPIDE_4._0.UIResources
             textView.EnsureVisualLines();
 
             foreach (int line in UCProgrammingDocument.LineDebugASM.SourceCodeReferencedLine)
-        {
+            {
                 if (UCProgrammingDocument.LineDebugASM.CurrentLine == line)
                     continue;
 
                 var iCurrentLineSourceCodeReferenced = _editor.Document.Lines[line - 1];
                 foreach (var rect in BackgroundGeometryBuilder.GetRectsForSegment(textView, iCurrentLineSourceCodeReferenced))
-            {
+                {
                     drawingContext.DrawRectangle(
                         new SolidColorBrush(Color.FromArgb(0x40, 192, 192, 192)), null,
                         new Rect(rect.Location, new Size(textView.ActualWidth, rect.Height)));
+                }
             }
-        }
 
             var iCurrentLineASM = _editor.Document.Lines[UCProgrammingDocument.LineDebugASM.CurrentLine - 1];
             foreach (var rect in BackgroundGeometryBuilder.GetRectsForSegment(textView, iCurrentLineASM))
-        {
+            {
                 drawingContext.DrawRoundedRectangle(
                     new SolidColorBrush(Color.FromArgb(40, 255, 215, 0)),
                     new Pen(new SolidColorBrush(Color.FromArgb(100, 255, 215, 0)), 1),

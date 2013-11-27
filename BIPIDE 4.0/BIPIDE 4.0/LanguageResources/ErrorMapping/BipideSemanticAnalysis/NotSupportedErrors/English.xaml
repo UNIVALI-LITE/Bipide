@@ -23,5 +23,6 @@
     <system:String x:Key="NotSupportedErrors.19">The BIP has no support for module</system:String>
     <system:String x:Key="NotSupportedErrors.20">The BIP has no support for multiplication</system:String>
     <system:String x:Key="NotSupportedErrors.21">Continue can not be used outside loops</system:String>
+    <system:String x:Key="NotSupportedErrors.22">Interrupt is a special function, you can not make calls to it</system:String>
 
 </ResourceDictionary>

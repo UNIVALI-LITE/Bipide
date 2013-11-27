@@ -587,8 +587,6 @@
     <Resource Include="ImageResources\logout32.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="LanguageResources\ErrorMapping\BipideSemanticAnalysis\NotSupportedErrors\English\" />
-    <Folder Include="LanguageResources\ErrorMapping\BipideSemanticAnalysis\NotSupportedErrors\Portuguese\" />
     <Folder Include="LanguageResources\Help\HelpSystem\" />
   </ItemGroup>
   <ItemGroup>

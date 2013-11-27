@@ -76,17 +76,16 @@ namespace BIPIDE_4._0
             }
         }
        
-        private StringBuilder   _Asemblycode;
-        private StringBuilder   _DataCode;
-        private StringBuilder   _TextCode;
         private Programa        _PortugolCode;
         private Boolean         _Jumped                 = false;
         private Boolean         _MenosUnario            = false;
         private Boolean         _MenosUnarioNumber      = false;
 
+        //estruturas para armazenar código e unir depois
         private Codigo          _ObjectCode;
         private Codigo          _Object_ExpressionVectorCode;
         private Codigo          _Object_ExpressionCode;
+        private Codigo          _Object_Interrupt;
 
         private List<FunctionVariables> _Variables;
         private List<ConstVariables>    _ConstVariablesList;
@@ -94,8 +93,6 @@ namespace BIPIDE_4._0
         //Atribuição Vetor
         private Object          _VectorIndex            = null;
         private Boolean         _FlagVector             = false;
-        private StringBuilder   _ExpressionVectorCode;
-        private StringBuilder   _ExpressionCode;
         private List<Object>    _InicializationVector;
         private Boolean         _IsIndex                = false;
 
@@ -115,6 +112,8 @@ namespace BIPIDE_4._0
         VisitanteSuporte        _SupportVisitor;
         Boolean                 _ThereIsInicio          = false;
         Boolean                 _ExpressionNeedsTemp    = false;
+        Boolean                 _IsInterrupt            = false;
+        Boolean                 _ThereIsInterrupt       = false;
 
         public String           _InitialFunction;
         public String           _ProgrammingLanguage;
@@ -125,11 +124,6 @@ namespace BIPIDE_4._0
         {
             this._ProgrammingLanguage   = ProgrammingLanguage;
             this._PortugolCode          = PortugolCode;
-            this._Asemblycode           = new StringBuilder();
-            this._DataCode              = new StringBuilder();
-            this._TextCode              = new StringBuilder();
-            this._ExpressionCode        = new StringBuilder();
-            this._ExpressionVectorCode  = new StringBuilder();
             this._Variables             = new List<FunctionVariables>();
             this._ConstVariablesList    = new List<ConstVariables>();
             this._InicializationVector  = new List<Object>();
@@ -146,8 +140,7 @@ namespace BIPIDE_4._0
             _ObjectCode                     = new Codigo();
             _Object_ExpressionVectorCode    = new Codigo();
             _Object_ExpressionCode          = new Codigo();
-
-         
+            _Object_Interrupt               = new Codigo();
 
             _SupportVisitor = new VisitanteSuporte(PortugolCode);
             IsThereInicio(_SupportVisitor.Variables);
@@ -167,7 +160,6 @@ namespace BIPIDE_4._0
 
                     _WriteFunction = "escreva";
                     _ReadFunction = "leia";
-
                 }
             }
             else
@@ -191,28 +183,42 @@ namespace BIPIDE_4._0
             //_InitialFunction = programa.getFuncaoInicial().ToLower();
 
             _ObjectCode.AddInstrucaoASM(".DATA", "", BIPIDE.Classes.eTipo.Section,null);
-            _ObjectCode.AddInstrucaoASM(".TEXT", "", BIPIDE.Classes.eTipo.Section, null);
-
-            _DataCode.AppendLine(".data");
-            _TextCode.AppendLine(".text");
-            _ExpressionCode.Append("");
-            _ExpressionVectorCode.Append("");
-
+            _ObjectCode.AddInstrucaoASM(".TEXT", "", BIPIDE.Classes.eTipo.Section, null);            
 
 
             asa.aceitar(this);
 
 
-            _Asemblycode.AppendLine(_DataCode.ToString());
-            _Asemblycode.AppendLine(_TextCode.ToString());
+            List<InstrucaoASM> ia   = _ObjectCode.GetCodigoInstrucaoASM();
+            Otimizacao iOptmize     = new Otimizacao();
+            Codigo iNewSource       = new Codigo();
+            iNewSource              = iOptmize.OptimizesSTOFollowedByLD(_ObjectCode);
+            List<InstrucaoASM> iNS  = iNewSource.GetCodigoInstrucaoASM();
 
-            List<InstrucaoASM> ia = _ObjectCode.GetCodigoInstrucaoASM();
-            Otimizacao iOptmize = new Otimizacao();
-            Codigo iNewSource = new Codigo();
-            iNewSource = iOptmize.OptimizesSTOFollowedByLD(_ObjectCode);
-            List<InstrucaoASM> iNS = iNewSource.GetCodigoInstrucaoASM();
 
+            //adicionar código interrupt imediatamente após .text quando C
+            if (_Object_Interrupt.GetCodigoStringASM().Count() > 0)
+            {
+               List<InstrucaoASM> instr = _ObjectCode.PutCodigoTogether();
+                
+               int index = _ObjectCode.listaTextASM[0].IndexArquivo;
+
+               if (index != null)
+               {
+                   index = _ObjectCode.listaTextASM[1].IndexArquivo;
+                   _InjectInstruction(ref iNewSource, _Object_Interrupt, index);
+               }
+            }
+
+            iNewSource.RedoProgramIndex();
             return iNewSource;
+        }
+
+        private void _InjectInstruction(ref Codigo iNewSource, Codigo _Object_Interrupt, int index)
+        {
+            iNewSource.InjectInstruction(_Object_Interrupt, index);
+            _Object_Interrupt = new Codigo(false);
+          
         }
 
 
@@ -281,6 +287,9 @@ namespace BIPIDE_4._0
             if (!chamadaFuncao.getNome().Equals(_WriteFunction) &&
                 !chamadaFuncao.getNome().Equals(_ReadFunction))
                 AppendInstruction("CALL", "_" + chamadaFuncao.getNome().ToUpper(), chamadaFuncao.getTrechoCodigoFonte().getLinha());
+            
+            //AppendInstruction("STO", "a", chamadaFuncao.getTrechoCodigoFonte().getLinha());
+
 
             _WhenIncrementSeparate = false;
             return null;
@@ -294,41 +303,64 @@ namespace BIPIDE_4._0
             String nome_funcao = declaracaoFuncao.getNome();
             if (nome_funcao.ToLower().Equals(_InitialFunction))
                 _Jumped = true;
+
+            //trata interrupt no C
+            if (_ProgrammingLanguage == "C")
+                if (nome_funcao.ToLower() == "interrupt")
+                {
+                    _IsInterrupt = true;
+                    _ThereIsInterrupt = true;
+                    AppendInstruction("JMP", "_" + _InitialFunction.ToUpper(), declaracaoFuncao.getTrechoCodigoFonteNome().getLinha());
+                }
+                 
+
             //Inclui jump para inicio quando outra função
-            if (nome_funcao.ToLower() != _InitialFunction && !_Jumped && _ThereIsInicio)
+            if (nome_funcao.ToLower() != _InitialFunction && !_Jumped && _ThereIsInicio && !_ThereIsInterrupt)
             {
                 AppendInstruction("JMP", "_" + _InitialFunction.ToUpper(), declaracaoFuncao.getTrechoCodigoFonteNome().getLinha());
                 _Jumped = true;
             }
 
             //Inclui rótulo função
-            _ObjectCode.AddInstrucaoASM("_" + nome_funcao, "", BIPIDE.Classes.eTipo.Rotulo, null);
-            _TextCode.AppendLine("_" + nome_funcao.ToUpper()+":");
+            AppendRotulo("_" + nome_funcao);
+
+
+            if (_IsInterrupt)            
+                AppendInstruction("STO", AddsTempInterrupt(), null);
+
 
             //Inicializa variáveis e salva parâmetros
             NoDeclaracaoParametro[] parametros = declaracaoFuncao.getParametros();
-            FunctionVariables declaracao       = new FunctionVariables();
-            declaracao.FunctionName           = nome_funcao;
-            foreach (NoDeclaracaoParametro parametro in parametros)
-            {
-                declaracao.Variable.Add( (String) parametro.aceitar(this));
-            }
+            FunctionVariables       declaracao = new FunctionVariables();
+            declaracao.FunctionName            = nome_funcao;
+
+            foreach (NoDeclaracaoParametro parametro in parametros)            
+                declaracao.Variable.Add( (String)parametro.aceitar(this));            
             _Variables.Add(declaracao);
+
 
             foreach (NoBloco bloco in declaracaoFuncao.getBlocos())
             {
                 bloco.aceitar(this);
                 WriteExpressions();
             }
-            if (!_Returned && nome_funcao.ToLower() != _InitialFunction)
+
+            if (_IsInterrupt)
             {
-                AppendInstruction("RETURN", "0", null);
-                _Returned = false;
+                AppendInstruction("LD", "tint", null);
+                AppendInstruction("RETINT", "0", null);
+
+                _IsInterrupt = false;                
             }
+            else
+                if (!_Returned && nome_funcao.ToLower() != _InitialFunction)                
+                    AppendInstruction("RETURN", "0", null);
+                
 
             if (nome_funcao.ToLower().Equals(_InitialFunction))
                 AppendInstruction("HLT", 0, null);
-
+            
+            _Returned = false;
             _scope.Pop();
             return null;
         }
@@ -339,7 +371,6 @@ namespace BIPIDE_4._0
             if (!_scope.Peek().Equals(_InitialFunction))
                 nome_var = _scope.Peek() + "_" + nome_var;
 
-            _DataCode.AppendLine("\t" + nome_var + ": " + 0);
             //Inclui declaracao de variável
             _ObjectCode.AddInstrucaoASM(nome_var, "0", BIPIDE.Classes.eTipo.Variavel, null);
 
@@ -350,8 +381,6 @@ namespace BIPIDE_4._0
         {
             Object valor = 0;
 
-            
-
             if (noDeclaracaoVariavel.getInicializacao() != null)
             {
                 valor = noDeclaracaoVariavel.getInicializacao().aceitar(this);
@@ -359,40 +388,31 @@ namespace BIPIDE_4._0
 
             String nome_var = noDeclaracaoVariavel.getNome();
             String nome_fun_var = nome_var;
-            if (_scope.Count()>0)
+            if (_scope.Count() > 0)
                 if (!_scope.Peek().Equals(_InitialFunction))
                     nome_fun_var = _scope.Peek() + "_" + nome_var;
 
             if (valor != null)
-                if (noDeclaracaoVariavel.constante())
-                {
-                    _ConstVariablesList.Add(new ConstVariables(nome_fun_var, System.Convert.ToInt32(valor)));
-                }
+                if (noDeclaracaoVariavel.constante())                
+                    _ConstVariablesList.Add(new ConstVariables(nome_fun_var, System.Convert.ToInt32(valor)));                
 
             //Inclui declaracao de variável
-            if (valor != null && !_FlagVector)
-            {
-                _ObjectCode.AddInstrucaoASM(nome_fun_var, valor.ToString(), BIPIDE.Classes.eTipo.Variavel, null);
-                _DataCode.AppendLine("\t" + nome_fun_var + ": " + valor);
-            }
+            if (valor != null && !_FlagVector)            
+                _ObjectCode.AddInstrucaoASM(nome_fun_var, valor.ToString(), BIPIDE.Classes.eTipo.Variavel, null);            
             else
                 if (_FlagVector)
                 {
                     _ObjectCode.AddInstrucaoASM(nome_fun_var, "0", BIPIDE.Classes.eTipo.Variavel, null);
-                    _DataCode.AppendLine("\t" + nome_fun_var + ": " + 0);
                     AppendInstructionScope("LDV", "v", noDeclaracaoVariavel.getTrechoCodigoFonteNome().getLinha());
                     AppendInstructionScope("STO", nome_fun_var, noDeclaracaoVariavel.getTrechoCodigoFonteNome().getLinha());
                 }
                 else
                 {
                     _ObjectCode.AddInstrucaoASM(nome_fun_var, "0", BIPIDE.Classes.eTipo.Variavel, null);
-                    _DataCode.AppendLine("\t" + nome_fun_var + ": " + 0);
                     AppendInstructionScope("STO", nome_fun_var, noDeclaracaoVariavel.getTrechoCodigoFonteNome().getLinha());
                 }
 
-
             return null;
-
         }
 
         public object visitarNoDeclaracaoVetor(NoDeclaracaoVetor noDeclaracaoVetor)
@@ -405,24 +425,19 @@ namespace BIPIDE_4._0
 
             
             Object tamanho = (noDeclaracaoVetor.getTamanho() == null) ? 0 : noDeclaracaoVetor.getTamanho().aceitar(this);
-            if (tamanho.GetType() != typeof(int)){
-                foreach(ConstVariables variavel in _ConstVariablesList){
+            if (tamanho.GetType() != typeof(int))
+                foreach(ConstVariables variavel in _ConstVariablesList)
                     if (variavel.VariableName.Equals(tamanho.ToString()))
-                        tamanho = variavel.VariableValue;                    
-                }
-                    
-            } 
+                        tamanho = variavel.VariableValue;   
 
             String cod_declaracao = noDeclaracaoVetor.getNome() + "\t: 0";
 
             if (noDeclaracaoVetor.getInicializacao() != null)
             {
                 noDeclaracaoVetor.getInicializacao().aceitar(this);
-                _DataCode.AppendLine("\t" + cod_declaracao);
 
                 foreach (Object iItemVetor in _InicializationVector)
-                    _ObjectCode.AddInstrucaoASM(nome, iItemVetor.ToString(), BIPIDE.Classes.eTipo.Variavel, null, System.Convert.ToInt32(tamanho), _InicializationVector.IndexOf(iItemVetor));
-                
+                    _ObjectCode.AddInstrucaoASM(nome, iItemVetor.ToString(), BIPIDE.Classes.eTipo.Variavel, null, System.Convert.ToInt32(tamanho), _InicializationVector.IndexOf(iItemVetor));                
             }
             else
             {
@@ -430,9 +445,7 @@ namespace BIPIDE_4._0
                 {
                     cod_declaracao += ", 0";
                     _ObjectCode.AddInstrucaoASM(nome, "0", BIPIDE.Classes.eTipo.Variavel, null, System.Convert.ToInt32(tamanho), i);
-                }
-                _DataCode.AppendLine("\t" + cod_declaracao);
-                
+                }                
             }
 
             return null;
@@ -442,9 +455,7 @@ namespace BIPIDE_4._0
         {
             _LabelEnquanto = ++LabelEnquantoGreater;
 
-            _TextCode.AppendLine("INI_ENQ" + _LabelEnquanto + ":");
-            _ObjectCode.AddInstrucaoASM("INI_ENQ" + _LabelEnquanto, "", BIPIDE.Classes.eTipo.Rotulo,null);
-
+            AppendRotulo("INI_ENQ" + _LabelEnquanto);
 
             VerifiesPreExpressionTemp(noEnquanto.getCondicao());
             noEnquanto.getCondicao().aceitar(this);
@@ -462,8 +473,7 @@ namespace BIPIDE_4._0
             }
 
             AppendInstruction("JMP", "INI_ENQ" + _LabelEnquanto, noEnquanto.getCondicao().getTrechoCodigoFonte().getLinha());
-            _TextCode.AppendLine("FIM_ENQ" + _LabelEnquanto + ":");
-            _ObjectCode.AddInstrucaoASM("FIM_ENQ" + _LabelEnquanto, "", BIPIDE.Classes.eTipo.Rotulo, null);
+            AppendRotulo("FIM_ENQ" + _LabelEnquanto);
             
             _LabelEnquanto--;
             _StructureScope.Pop();
@@ -491,8 +501,7 @@ namespace BIPIDE_4._0
                 ++count;
                 if (_LabelCasoAux != 0)
                 {
-                    _TextCode.AppendLine(_LabelRotuloCasoAux + _LabelCasoAux + ":");
-                    _ObjectCode.AddInstrucaoASM(_LabelRotuloCasoAux + _LabelCasoAux, "", BIPIDE.Classes.eTipo.Rotulo, null);
+                    AppendRotulo(_LabelRotuloCasoAux + _LabelCasoAux);
                 }
 
                 if (_LabelRotuloCasoAux != "CASOCONTRARIO")
@@ -517,8 +526,7 @@ namespace BIPIDE_4._0
 
             }
             WriteExpressions();
-            _TextCode.AppendLine("FIMESCOLHA"+_LabelEscolha+":");
-            _ObjectCode.AddInstrucaoASM("FIMESCOLHA" +_LabelEscolha, "", BIPIDE.Classes.eTipo.Rotulo, null);
+            AppendRotulo("FIMESCOLHA" + _LabelEscolha);
 
             _LabelRotuloCasoAux = "PROXCASO";
 
@@ -559,8 +567,7 @@ namespace BIPIDE_4._0
             _FACAENQUANTO   = true;
             _LabelFacaEnquanto = ++LabelFacaEnquantoGreater;
 
-            _TextCode.AppendLine("INI_ENQ" + _LabelFacaEnquanto + ":");
-            _ObjectCode.AddInstrucaoASM("INI_ENQ" + _LabelFacaEnquanto, "", BIPIDE.Classes.eTipo.Rotulo, null);
+            AppendRotulo("INI_ENQ" + _LabelFacaEnquanto);
 
 
             foreach (NoBloco blocos in noFacaEnquanto.getBlocos())
@@ -577,8 +584,7 @@ namespace BIPIDE_4._0
 
             AppendInstruction(_RelationalOp, "INI_ENQ" + _LabelFacaEnquanto,  noFacaEnquanto.getCondicao().getTrechoCodigoFonte().getLinha());
 
-            _TextCode.AppendLine("FIM_ENQ" + _LabelFacaEnquanto + ":");
-            _ObjectCode.AddInstrucaoASM("FIM_ENQ" + _LabelFacaEnquanto, "", BIPIDE.Classes.eTipo.Rotulo, null);
+            AppendRotulo("FIM_ENQ" + _LabelFacaEnquanto);
 
             _LabelFacaEnquanto--;
             _StructureScope.Pop();
@@ -601,8 +607,7 @@ namespace BIPIDE_4._0
                 noPara.getInicializacao().aceitar(this);
             WriteExpressions();         
 
-            _TextCode.AppendLine("PARA" + _LabelPara + ":");
-            _ObjectCode.AddInstrucaoASM("PARA" + _LabelPara, "", BIPIDE.Classes.eTipo.Rotulo,null);
+            AppendRotulo("PARA" + _LabelPara);
 
             VerifiesPreExpressionTemp(noPara.getCondicao());
             noPara.getCondicao().aceitar(this);
@@ -621,9 +626,8 @@ namespace BIPIDE_4._0
             _FlagReversesOp = false;
             WriteExpressions();
 
-            AppendInstruction("JMP", "PARA" + _LabelPara, noPara.getCondicao().getTrechoCodigoFonte().getLinha());
-            _TextCode.AppendLine("FIMPARA" + _LabelPara + ":");
-            _ObjectCode.AddInstrucaoASM("FIMPARA" + _LabelPara, "", BIPIDE.Classes.eTipo.Rotulo,null);
+            AppendInstruction("JMP", "PARA" + _LabelPara, noPara.getCondicao().getTrechoCodigoFonte().getLinha());            
+            AppendRotulo("FIMPARA" + _LabelPara);
 
 
             _LabelPara--;
@@ -663,7 +667,12 @@ namespace BIPIDE_4._0
 
         public object visitarNoRetorne(NoRetorne noRetorne)
         {
+            //Quando função principal não retorna 0 mesmo que explícito devido ao HLT.
+            if (_scope.Peek().Equals(_InitialFunction))
+                return null;
+
             _WhenIncrementSeparate = true;
+
             _Returned = true;
 
             Object e = noRetorne.getExpressao().aceitar(this);
@@ -705,21 +714,17 @@ namespace BIPIDE_4._0
             {
                 if (i < 1)
                 {
-                    AppendInstruction("JMP", "FIMSE" + _LabelElse, noSe.getCondicao().getTrechoCodigoFonte().getLinha());
-                    _TextCode.AppendLine("ELSE" + _LabelElse + ":");
-                    _ObjectCode.AddInstrucaoASM("ELSE" + _LabelElse, "", BIPIDE.Classes.eTipo.Rotulo,null);
+                    AppendInstruction("JMP", "FIMSE" + _LabelElse, noSe.getCondicao().getTrechoCodigoFonte().getLinha());                    
+                    AppendRotulo("ELSE" + _LabelElse);
                     i++;
                 }
 
                 blocofalso.aceitar(this);
                 WriteExpressions();
 
-            }
-            
+            }            
 
-            _TextCode.AppendLine("FIMSE" + _LabelElse + ":");
-            _ObjectCode.AddInstrucaoASM("FIMSE" + _LabelElse, "", BIPIDE.Classes.eTipo.Rotulo, null);
-
+            AppendRotulo("FIMSE" + _LabelElse);
 
             _LabelElse--;
             return null;
@@ -737,14 +742,6 @@ namespace BIPIDE_4._0
                 valores.Add(o);
             }
             _InicializationVector = valores;
-
-            String cod_declaracao = "";
-            foreach (Object v in valores)
-            {
-                cod_declaracao += ", " +v.ToString(); 
-            }
-            _DataCode.AppendLine("\t" + cod_declaracao);
-            
 
             return null;
 
@@ -989,11 +986,8 @@ namespace BIPIDE_4._0
 
         public object visitarNoTitulo(NoTitulo noTitulo)
         {
-            if (!_GoTo)
-            {
-                _ObjectCode.AddInstrucaoASM("_" + noTitulo.getNome().ToUpper(), "", BIPIDE.Classes.eTipo.Rotulo, null);
-                _TextCode.AppendLine("_" + noTitulo.getNome().ToUpper() + ":");
-            }
+            if (!_GoTo)   
+                AppendRotulo("_" + noTitulo.getNome().ToUpper());
             else
                 return noTitulo.getNome();
 
@@ -1181,7 +1175,6 @@ namespace BIPIDE_4._0
             //necessário para vetores em escopo de outras funções
             _IncludeScope(ref nome);
             
-            _DataCode.AppendLine("\t" + nome + ++_LabelTemp + ": " + 0);
             _ObjectCode.AddInstrucaoASM(  nome + _LabelTemp.ToString(), "0", BIPIDE.Classes.eTipo.Variavel, null);
             return _LabelTemp.ToString();
         }
@@ -1190,9 +1183,7 @@ namespace BIPIDE_4._0
             String nome = "t_expr";
             //necessário para expressões bitwise em escopo de outras funções
             _IncludeScope(ref nome);
-
             _LabelTempBitwise = ++_LabelTempBitwiseGreater;
-            _DataCode.AppendLine("\t" + nome + _LabelTempBitwise + ": " + 0);
             _ObjectCode.AddInstrucaoASM(nome +_LabelTempBitwiseGreater, "0", BIPIDE.Classes.eTipo.Variavel, null);
             return _LabelTempBitwise.ToString();
         }
@@ -1201,11 +1192,16 @@ namespace BIPIDE_4._0
             String nome = "t_oplog";
             //necessário para operações lógicas em escopo de outras funções
             _IncludeScope(ref nome);
-
             _LabelTempOpLog = ++_LabelTempOpLogGreater;  
-            _DataCode.AppendLine("\t" + _LabelTempOpLog + ": " + 0);
             _ObjectCode.AddInstrucaoASM(nome  +_LabelTempOpLog, "0", BIPIDE.Classes.eTipo.Variavel, null);
             return _LabelTempOpLog.ToString();
+        }
+
+        private string AddsTempInterrupt()
+        {
+            String nome = "tint";
+            _ObjectCode.AddInstrucaoASM(nome , "0", BIPIDE.Classes.eTipo.Variavel, null);
+            return nome;
         }
 
         //Utilização na declaração de temporários
@@ -1233,74 +1229,49 @@ namespace BIPIDE_4._0
             AppendInstruction(instrucao, valor.ToString(), linha);
 
         }
+        public void AppendRotulo(String nome_rotulo)
+        {
+            if (_IsInterrupt)
+                _Object_Interrupt.AddInstrucaoASM( nome_rotulo, "", BIPIDE.Classes.eTipo.Rotulo, null);
+            else
+                _ObjectCode.AddInstrucaoASM(nome_rotulo, "", BIPIDE.Classes.eTipo.Rotulo, null);
+        }
 
         public void AppendInstruction(String instrucao, Object valor, int? linha)
         {
-            if (_FlagVector && _FlagOperation)
-            {
-                _ExpressionVectorCode.Append("\t");
-                _ExpressionVectorCode.Append(instrucao);
-                _ExpressionVectorCode.Append("\t");
-                _ExpressionVectorCode.Append(valor);
-                _ExpressionVectorCode.AppendLine("\r");
-                _Object_ExpressionVectorCode.AddInstrucaoASM(instrucao, valor.ToString(), BIPIDE.Classes.eTipo.Instrucao, linha);
-            }
+            if (_IsInterrupt)
+                _Object_Interrupt.AddInstrucaoASM(instrucao, valor.ToString(), BIPIDE.Classes.eTipo.Instrucao, linha);
             else
-                if (_FlagIncrement && _FlagOperation)
-                {
-                    _ExpressionVectorCode.Append("\t");
-                    _ExpressionVectorCode.Append(instrucao);
-                    _ExpressionVectorCode.Append("\t");
-                    _ExpressionVectorCode.Append(valor);
-                    _ExpressionVectorCode.AppendLine("\r");
+                if (_FlagVector && _FlagOperation)            
                     _Object_ExpressionVectorCode.AddInstrucaoASM(instrucao, valor.ToString(), BIPIDE.Classes.eTipo.Instrucao, linha);
-                }
                 else
-                if (_FlagOperation)
-                {
-                    _ExpressionCode.Append("\t");
-                    _ExpressionCode.Append(instrucao);
-                    _ExpressionCode.Append("\t");
-                    _ExpressionCode.Append(valor);
-                    _ExpressionCode.AppendLine("\r");
-                    _Object_ExpressionCode.AddInstrucaoASM(instrucao, valor.ToString(), BIPIDE.Classes.eTipo.Instrucao, linha);
-                }
-                else
-                {
-                    _TextCode.Append("\t");
-                    _TextCode.Append(instrucao);
-                    _TextCode.Append("\t");
-                    _TextCode.Append(valor);
-                    _TextCode.AppendLine("\r");
-                    _ObjectCode.AddInstrucaoASM(instrucao, valor.ToString(), BIPIDE.Classes.eTipo.Instrucao, linha);
-                }
+                    if (_FlagIncrement && _FlagOperation)                
+                        _Object_ExpressionVectorCode.AddInstrucaoASM(instrucao, valor.ToString(), BIPIDE.Classes.eTipo.Instrucao, linha);
+                    else
+                        if (_FlagOperation)
+                            _Object_ExpressionCode.AddInstrucaoASM(instrucao, valor.ToString(), BIPIDE.Classes.eTipo.Instrucao, linha);
+                        else                
+                            _ObjectCode.AddInstrucaoASM(instrucao, valor.ToString(), BIPIDE.Classes.eTipo.Instrucao, linha);                
 
         }
 
 
         private void WriteExpressions()
         {
-
             _FlagOperation  = false;
             _WhenIncrementSeparate = false;
 
             //atribui código do bloco ao código do programa
             //zera geração de código para o bloco
-            if (_ExpressionVectorCode != null)
+            if (_Object_ExpressionVectorCode.GetCodigoStringASM().Count() >0)
             {
-                _TextCode.Append(_ExpressionVectorCode.ToString());
                 _ObjectCode.AddInstrucaoASM(_Object_ExpressionVectorCode);
-
                 _Object_ExpressionVectorCode    = new Codigo(false);
-                _ExpressionVectorCode           = new StringBuilder();
             }
-            if (_ExpressionCode != null)
+            if (_Object_ExpressionCode.GetCodigoStringASM().Count() > 0)
             {
-                _TextCode.Append(_ExpressionCode.ToString());
                 _ObjectCode.AddInstrucaoASM(_Object_ExpressionCode);
-
                 _Object_ExpressionCode          = new Codigo(false);
-                _ExpressionCode                 = new StringBuilder();
             }
         }
 
