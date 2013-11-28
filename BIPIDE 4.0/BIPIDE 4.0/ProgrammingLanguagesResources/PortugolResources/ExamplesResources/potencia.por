@@ -10,7 +10,7 @@ programa
 		result = 0 
 		para(i = 1; i<c; i++)
 		{
-			result<-result+a 
+			result = result+a 
 		} 
 		retorne result 
 	}

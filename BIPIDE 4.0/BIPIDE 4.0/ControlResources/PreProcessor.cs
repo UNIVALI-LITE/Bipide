@@ -13,7 +13,7 @@ namespace BIPIDE_4._0.ControlResources
         private InstrucaoASM _InstrucaoASM;
         private Codigo _Assembly;
         
-        private List<Codigo> _Assemblys;
+        private Codigo _Assemblys;
         private List<DefineStructure> _Defines;
         private int _LineCount = 1;
 
@@ -29,7 +29,7 @@ namespace BIPIDE_4._0.ControlResources
             _Parser         = new TokenParser();
             _InstrucaoASM   = new InstrucaoASM();
             _Assembly       = new Codigo();
-            _Assemblys      = new List<Codigo>();
+            _Assemblys      = new Codigo();
             _Defines        = new List<DefineStructure>();
 
         }
@@ -179,7 +179,7 @@ namespace BIPIDE_4._0.ControlResources
             return pCommandText;
         }
 
-        public List<Codigo> RunPosProcessor(string pCommandText)
+        public Codigo RunPosProcessor(string pCommandText)
         {
             _Parser = new TokenParser();
             _LineCount = 0;
@@ -205,7 +205,7 @@ namespace BIPIDE_4._0.ControlResources
                         if (_ASM)
                         {
                             _ASM = false;
-                            _Assemblys.Add(_Assembly);
+                            _Assemblys.AddInstrucaoASM(_Assembly);
                         }
                         iIgnoreASM  = false;
                         _Assembly   = new Codigo();

@@ -34,6 +34,14 @@ namespace BIPIDE_4._0.ControlResources
             set { _HelpMapping = value; }
         }
 
+        private string _HelpSystemMapping;
+
+        public string HelpSystemMapping
+        {
+            get { return _HelpSystemMapping; }
+            set { _HelpSystemMapping = value; }
+        }
+
         private string _InterfaceMapping;
 
         public string InterfaceMapping

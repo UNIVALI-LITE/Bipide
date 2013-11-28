@@ -4,6 +4,7 @@
     <Name>LanguagePortuguese</Name>
     <Icon>LanguageResources\FlagIcons\br.png</Icon>
     <HelpMapping>LanguageResources\Help\PortugueseHelpMapping.xml</HelpMapping>
+    <HelpSystemMapping>LanguageResources\Help\PortugueseHelpSystemMapping.xml</HelpSystemMapping>
     <InterfaceMapping>LanguageResources\Component\Portuguese.xaml</InterfaceMapping>
     <TipsMapping>LanguageResources\Tips\Portuguese.xaml</TipsMapping>
     <NotSuportedErrors>LanguageResources\ErrorMapping\BipideSemanticAnalysis\NotSupportedErrors\Portuguese.xaml</NotSuportedErrors>
@@ -51,7 +52,8 @@
   <anyType xsi:type="LanguageMapping">
     <Name>LanguageEnglish</Name>
     <Icon>LanguageResources\FlagIcons\us.png</Icon>
-    <HelpMapping>LanguageResources\Help\PortugueseHelpMapping.xml</HelpMapping>
+    <HelpMapping>LanguageResources\Help\EnglishHelpMapping.xml</HelpMapping>
+    <HelpSystemMapping>LanguageResources\Help\EnglishHelpSystemMapping.xml</HelpSystemMapping>
     <InterfaceMapping>LanguageResources\Component\English.xaml</InterfaceMapping>
     <TipsMapping>LanguageResources\Tips\English.xaml</TipsMapping>
     <NotSuportedErrors>LanguageResources\ErrorMapping\BipideSemanticAnalysis\NotSupportedErrors\English.xaml</NotSuportedErrors>

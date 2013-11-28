@@ -258,6 +258,12 @@ namespace BIPIDE.Classes
         }
         #endregion
 
+        public void InjectInstruction(InstrucaoASM instr, int index)
+        {
+            Codigo codigo = new Codigo();
+            codigo.AddInstrucaoASM(instr.Instrucao, instr.Operando, instr.Tipo, instr.NrLinha);
+            InjectInstruction(codigo, index);
+        }
         public void InjectInstruction(Codigo _Object_Interrupt, int index)
         {
             List<InstrucaoASM> iListaTemp = new List<InstrucaoASM>();

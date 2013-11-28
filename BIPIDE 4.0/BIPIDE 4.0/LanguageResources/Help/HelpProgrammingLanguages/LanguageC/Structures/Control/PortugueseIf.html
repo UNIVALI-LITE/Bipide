@@ -1,0 +1,65 @@
+﻿<!doctype html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="../../../../Resources/Scripts/shCore.js"></script>
+	<script type="text/javascript" src="../../../../Resources/Scripts/shBrushC.js"></script>
+	<link type="text/css" rel="stylesheet" href="../../../../Resources/Styles/shCoreDefault.css"/>
+	<link type="text/css" rel="stylesheet" href="../../../../Resources/Styles/HelpStyle.css"/>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+
+    <body style="background: white; font-family: Helvetica">
+        <h1>If</h1>
+        <div class="conteudo">
+            <p> 
+                O comando if serve para desviar a execução do programa baseado em 
+                uma condição. 
+            </p>
+            <p>
+                Este comando possui uma expessão lógica que será avaliada. Caso esta expressão seja 
+                verdadeira uma lista específica de comandos será executada, caso seja falsa, uma lista
+                alternativa de comandos será executada (se houver). Para definir a lista de comandos que 
+                serão executados caso a condição não seja atendida, deve-se usar a palavra reservada
+                senao.
+            </p>
+        </div>
+
+        <h2>Exemplo:</h2> 
+        <pre class="brush: C">
+
+        int main()
+        {
+            int estudo = 1;
+            int aprendo;
+            int ficoInteligente;
+            int ficoBurro;
+  
+            if (estudo == 1)
+            {
+                 aprendo = 1;
+  
+                 if (aprendo == 1)
+                 {
+                      ficoInteligente = 1;
+                      ficoBurro = 0;
+                 }
+                 else
+                 {
+                     ficoInteligente = 0;
+                     ficoBurro = 1;
+                 }
+            }
+            else
+            {
+                 aprendo = 0;
+                 ficoInteligente = 0;
+                 ficoBurro = 1;
+            }
+			return 0;  
+		}
+
+        </pre>
+    </body>
+</html>

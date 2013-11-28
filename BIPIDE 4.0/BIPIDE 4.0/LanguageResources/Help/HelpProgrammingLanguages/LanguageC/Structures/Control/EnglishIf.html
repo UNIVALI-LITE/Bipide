@@ -1,0 +1,63 @@
+﻿<!doctype html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="../../../../Resources/Scripts/shCore.js"></script>
+	<script type="text/javascript" src="../../../../Resources/Scripts/shBrushC.js"></script>
+	<link type="text/css" rel="stylesheet" href="../../../../Resources/Styles/shCoreDefault.css"/>
+	<link type="text/css" rel="stylesheet" href="../../../../Resources/Styles/HelpStyle.css"/>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+
+    <body style="background: white; font-family: Helvetica">
+        <h1>if</h1>
+        <div class="conteudo">
+            <p> 
+                The if command is used to divert the execution of the program based on
+                a condition.
+            </p>
+            <p>
+                This command has a logical expessão to be evaluated. If this expression is
+                true a specific list of commands will be executed, if false, a list
+                Alternatively the command will be executed (if any). To define the list of commands that
+                will be executed if the condition is not met, you must use the reserved word
+                'senao'.
+            </p>
+        </div>
+
+        <h2>example:</h2> 
+        <pre class="brush: C">
+		int main()
+        {
+            int estudo = 1;
+            int aprendo;
+            int ficoInteligente;
+            int ficoBurro;
+  
+            if (estudo == 1)
+            {
+                 aprendo = 1;
+  
+                 if (aprendo == 1)
+                 {
+                      ficoInteligente = 1;
+                      ficoBurro = 0;
+                 }
+                 else
+                 {
+                     ficoInteligente = 0;
+                     ficoBurro = 1;
+                 }
+            }
+            else
+            {
+                 aprendo = 0;
+                 ficoInteligente = 0;
+                 ficoBurro = 1;
+            }
+			return 0;  
+		}
+        </pre>
+    </body>
+</html>

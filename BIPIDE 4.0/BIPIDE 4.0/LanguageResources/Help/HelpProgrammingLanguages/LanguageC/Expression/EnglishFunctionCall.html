@@ -1,0 +1,51 @@
+﻿<!doctype html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="../../../Resources/Scripts/shCore.js"></script>
+	<script type="text/javascript" src="../../../Resources/Scripts/shBrushC.js"></script>
+	<link type="text/css" rel="stylesheet" href="../../../Resources/Styles/shCoreDefault.css"/>
+    <link type="text/css" rel="stylesheet" href="../../../Resources/Styles/HelpStyle.css"/>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+
+    <body style="background: white; font-family: Helvetica">
+        <h1>Function Call</h1>
+        <div class="conteudo">
+        	<p>A Function Call is to run a piece of code decoupled from the rest of the program, it is not necessary to perform steps that are inconsistent with the duties of the procedure. A Function Call or may not return a value and can receive parameters.</p>
+        </div>
+
+        <h2>Example:</h2>
+        <pre class="brush: C">  
+	//function 'soma' receives as a parameter two integers that are reported in function start
+	int soma(int a, int b){
+		retorne a+b;
+	}
+
+	//function 'exibir' receives two integer parameters and writes the sum of these values ​​in the console output
+	int vazio exibir(int a, int b){
+		printf(a+b);
+	}
+
+	//function 'mostrar' displays the sum of two values ​​entered by the user
+	int vazio mostrar(){
+		int a, b;
+		scanf(a);
+		scanf(b);
+		printf(a+b);
+	}
+
+    int inicio(){
+        //Calls the 'soma' function, parameter passing by 5 e 2
+        printf(soma(5,2));
+		
+		//Calls the 'exibir' function, parameter passing by 5:02
+		exibir(5,2);
+		
+		//Calls the 'mostrar' function, without passing parameter
+		mostrar();
+    }	
+        </pre>
+    </body>
+</html>

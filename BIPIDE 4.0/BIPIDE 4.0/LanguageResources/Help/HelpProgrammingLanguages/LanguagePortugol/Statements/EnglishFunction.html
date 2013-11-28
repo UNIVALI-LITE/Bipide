@@ -1,0 +1,68 @@
+﻿<!doctype html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="../../../Resources/Scripts/shCore.js"></script>
+	<script type="text/javascript" src="../../../Resources/Scripts/shBrushPortugol.js"></script>
+	<link type="text/css" rel="stylesheet" href="../../../Resources/Styles/shCoreDefault.css"/>
+    <link type="text/css" rel="stylesheet" href="../../../Resources/Styles/HelpStyle.css"/>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+
+    <body style="background: white; font-family: Helvetica">
+        <h1>Statement Functions</h1>
+        <div class="conteudo">
+            <p>The function consists of a piece of code that solves a very specific problem, part of a larger problem.</p>
+            <p>Some of the advantages of using functions during programming are:</p>
+            <ul>
+                <li>the reduction of duplicated code in a program;</li>
+                <li>the possibility of reuse the same code without major changes to other programs;</li>
+                <li>decomposition of the major problems in small pieces;</li>
+                <li>improve the visual interpretation of a program;</li>
+                <li>hide or regular a part of the program, keeping the remaining oblivious to the internal code issues resolved within that function;</li>
+            </ul>
+			<p> components of functions are : < / p >
+            <ul>
+                <li> its prototype , which includes the parameters that are passed to the function at the time of invocation </li>
+                <li> body, which contains the block of code that solves the proposed problem </li>
+                <li> A possible return value , which can be used immediately following the function invocation . </li>
+            </ul>
+            <p> function declaration in Portugol is performed as follows : the reserved word <span class="palavra-reservada"> function </span> , followed by the return type , when the return type should be used is concealed the Portugol assumes that the return type is empty , then the function name followed by parentheses opens , a list of parameters can be included before the closing parenthesis to complete the declaration must create the function body. </p>
+            <p> The function body consists of structures within the open and close braces.
+               When a function possessing a different kind of empty return is obligatory presence of the command to return the body of the function. </p>
+            <p> The declaration of parameters is similar to variable declaration , vector and array without initialization and must be separated by commas . </p>
+        </div>
+
+        <h2>Example:</h2>
+        <pre class="brush: portugol">
+programa
+{
+    //Function with no return type parameter empty
+    funcao vazio imprime(inteiro var)
+    {
+        escreva(var)	
+    }
+
+    //Function with a return type of void, and with an array as parameter
+    funcao inicio()
+    {
+        //Prints the return of the function 'media'
+        imprime(media(4,9,8))
+
+        inteiro variavel = 123
+
+        //Prints 0
+        imprime(0) 
+    }
+
+    //Function with three parameters and returns an integer type
+    funcao inteiro media(inteiro m1, inteiro m2, inteiro m3) 
+    {
+        retorne (m1 * 2 + m2 * 3 + m3 * 8) / 13
+    }
+
+}
+        </pre>
+    </body>
+</html>

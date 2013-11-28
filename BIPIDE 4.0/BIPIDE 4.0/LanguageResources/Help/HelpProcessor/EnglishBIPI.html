@@ -1,0 +1,135 @@
+﻿<!doctype html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="../Resources/Scripts/shCore.js"></script>
+	<script type="text/javascript" src="../Resources/Scripts/shBrushPortugol.js"></script>
+	<link type="text/css" rel="stylesheet" href="../Resources/Styles/shCoreDefault.css"/>
+    <link type="text/css" rel="stylesheet" href="../Resources/Styles/HelpStyle.css"/>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+
+    <body style="background: white; font-family: Helvetica">
+        <h1>BIP I</h1>
+		<div class="conteudo">
+			<h2>Architecture</h2>
+            <p>The BIP I was grounded in an RISC (Reduced Instruction-Ift Computer) architecture PIC microcontroller architecture. This processor is oriented accumulator and not own register bank as the processor MIPS (Microprocessor without Interlocked Pipeline Stages). All operations in BIP if I use the battery because it has only one registrar to perform data storage, with all require some arithmetic operations using operands placed in memory. (MORANDI et al. 2006).</p>
+            <p>The architecture of the BIP I have a few addressing modes, and all instructions have the same format. The format of instruction consists of an operation code with the size of 5 bits and an operand size of 11 bits, totaling 16 bits of instruction. (MORANDI; RAABE; ZEFERINO, 2006).</p>
+			<table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>BIP I Architecture.</th>
+                        <th/>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Size of the data word</td>
+                        <td>16 bits</td>
+                    </tr>
+                    <tr>
+                        <td>Data Type</td>
+                        <td>16-bit integer with sign: -32768 a +32767</td>
+                    </tr>
+                    <tr>
+                        <td>Size of the instruction word</td>
+                        <td>16 bits</td>
+                    </tr>
+					<tr>
+                        <td>Registers</td>
+                        <td>
+							<p>ACC: Accumulator</p>
+							<p>IR: Instruction Recorder</p>
+							<p>PC: Program Counter</p>
+						</td>
+                    </tr>
+					<tr>
+                        <td>Instruction classo</td>
+                        <td>
+							<p>Memory Access: STO, LD, LDI</p>
+							<p>Arithmetic: ADD, ADDI, SUB, SUBI</p>
+							<p>Control: HLT</p>
+						</td>
+                    </tr>
+                </tbody>
+            </table>
+			<p>Source: Adapted from Morandi (et al., 2006).</p>
+
+			<p>The registers that make up the architecture of the BIP I registrars are (i) PC (Program Counter) that points to the next instruction to be executed, (ii) IR (Instruction Register) that stores the instruction in execution: and (iii) ACC (Accumulator) that is used to store data during the execution of an Arithmetic operation or assignment. (MORANDI; RAABE; ZEFERINO, 2006).</p>
+			<p>The instruction set of BIP I comprises eight instruction being an instruction from Control three-four transfer instructions Arithmetic instructions. This instruction set can be seen below.</p>
+			<table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>Operation Code</th>
+						<th>Instruction</th>
+						<th>Operation</th>
+						<th>Class</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>00000</td>
+                        <td>HLT</td>
+						<td>Stops the execution</td>
+						<td>Control</td>
+                    </tr>
+                    <tr>
+                        <td>00001</td>
+                        <td>STO</td>
+						<td>(address) &larr; ACC</td>
+						<td>Transfer</td>
+                    </tr>
+                    <tr>
+                        <td>00010</td>
+                        <td>LD</td>
+						<td>ACC &larr; (address)</td>
+						<td>Transfer</td>
+                    </tr>
+                    <tr>
+                        <td>00011</td>
+                        <td>LDI</td>
+						<td>ACC &larr; constant</td>
+						<td>Transfer</td>
+                    </tr>
+					<tr>
+                        <td>00100</td>
+                        <td>ADD</td>
+						<td>ACC &larr; ACC + (address)</td>
+						<td>Arithmetic</td>
+                    </tr>
+					<tr>
+                        <td>00101</td>
+                        <td>ADDI</td>
+						<td>ACC &larr; ACC + constant</td>
+						<td>Arithmetic</td>
+                    </tr>
+					<tr>
+                        <td>00110</td>
+                        <td>SUB</td>
+						<td>ACC &larr; ACC - (address)</td>
+						<td>Arithmetic</td>
+                    </tr>
+					<tr>
+                        <td>00111</td>
+                        <td>SUBI</td>
+						<td>ACC &larr; ACC - constant</td>
+						<td>Arithmetic</td>
+                    </tr>
+					<tr>
+                        <td>01000 - 11111</td>
+                        <td>Reserved</td>
+                        <td/>
+                        <td/>
+                    </tr>
+                </tbody>
+            </table>
+			
+			<hr class="separador-topico"/>
+			<h2>Organization</h2>
+			<p>The BIP I have two specifications of organizing one using a Princeton-type structure, with a single memory for storing instruction data and other organization using the Harvard-type structure with separate instruction and data memories. (MORANDI et al. 2006). Despite having two different specifications, the most used is the structure Harvard, illustrated in the picture below.</p>
+			<img src="Resources/BIPIOrganization.png"/>
+            <p>Source: Vieira (2012).</p>
+		</div>
+    </body>
+</html>

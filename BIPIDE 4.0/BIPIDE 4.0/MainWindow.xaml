@@ -258,6 +258,7 @@
                                   ToolTipDescription="{DynamicResource ResourceKey=TipDescriptionButtonSystem}"
                                   ToolTipFooterImageSource="ImageResources/help32.png"
                                   ToolTipFooterTitle="{DynamicResource ResourceKey=TipFooterTitle}"
+                                  Click="_ButtonSystem_Click"
                                   KeyTip="S"/>
 
                     <RibbonButton x:Name="_ButtonPractice" 

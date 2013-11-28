@@ -1,0 +1,105 @@
+﻿<!doctype html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script type="text/javascript" src="../Resources/Scripts/shCore.js"></script>
+    <script type="text/javascript" src="../Resources/Scripts/shBrushPortugol.js"></script>
+    <link type="text/css" rel="stylesheet" href="../Resources/Styles/shCoreDefault.css" />
+    <link type="text/css" rel="stylesheet" href="../Resources/Styles/HelpStyle.css"/>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+
+<body style="background: white; font-family: Helvetica">
+    <h1>Computer Architecture</h1>
+    <div class="conteudo">
+        <p>The term computer architecture refers to those attributes that have direct impact on the logical execution of a system that are visible to the programmer as:</p>
+        <ul>
+            <li>instruction set</li>
+            <li>addressing modes</li>
+            <li>program memory</li>
+            <li>data memory</li>
+            <li>registers </li>
+            <li>input and output ports</li>
+            <li>interruptions</li>
+        </ul>
+
+
+        <h2>Instruction Set</h2>
+
+        <p>An instruction sends to the processor a sequence of micro-operations to be performed.</p>
+        <p>An instruction set refers to the set of instructions recognized by a computer.</p>
+        <p>According to its purpose and form, the instructions can be classified as:</p>
+        <ul>
+            <li>data transfer instructions</li>
+            <li>arithmetic and logical instructions</li>
+            <li>branch instructions (conditional or unconditional)</li>
+            <li>test instructions (or comparison)</li>
+        </ul>
+
+
+        <h2>Registers </h2>
+
+        <p>In a processor there are diverse registers, and some of these should be of knowledge of the programmer, called special registers.</p>
+        <p>Among the special registers normally found in computer architectures there are:</p>
+        <ul>
+            <li>Instruction Pointer (PC) - contains the address of the next instruction to be fetched into memory and executed</li>
+            <li>Recorder Instruction (RI) - stores the instruction code being executed</li>
+            <li>State Recorder (STATUS) - stores information on the results of operations performed by the Arithmetic Logic Unit (ALU)</li>
+        </ul>
+
+        <h2>Interruptions</h2>
+
+        <p>The mechanism of this disruption processors has three main functions:</p>
+        <ul>
+            <li>allow external devices to interrupt the current processing of the processor to suit their needs</li>
+            <li>release the processor of the task from searching all devices by checking if some care needs </li>
+            <li>allow the processor to execute another program operations while the current program waits for a response informing that the processor has completed the task, and then can re-process the same program</li>
+        </ul>
+
+        <h2>Input and output ports</h2>
+        <p>Input/Output Ports (I/O) are the physical paths that allow  the activities of exchange information between the processor and the external environment. </p>
+        <p>Through the I/O ports, the processor can exchange information with the user or to communicate with other devices such as storage devices.</p>
+    </div>
+
+    <hr />
+
+    <h1>Computer Organization</h1>
+    <div class="conteudo">
+        <p> The term computer organization refers to attributes that are not visible to the programmer, in other words, it is how the processor is implemented and contains basic blocks such as:</p>
+        <ul>
+            <li>data path</li>
+            <li>control unit</li>
+        </ul>
+
+
+        <h2>Data Path</h2>
+
+        <p>The data path consists of the required hardware for execution of an instruction, typically formed by the execution unit and the register file.</p>
+        <p>The execution unit consists of one or more ALUs and general and specific use registers, interconnected by a bus.</p>
+        <p>When an instruction is executed in the execution unit, it follows a cycle called instruction cycle.</p>
+
+        <h2>Control Unit</h2>
+
+        <p>The control unit is responsible for managing the internal data flow, the memory and the communication with input and output devices.</p>
+        <p>For this, this unit generate control signals. Each control signal commands a microoperation, e.g., an activation of the memory or the selection of an operation by the ULA, as the current instruction.</p>
+
+        <h2>Memories </h2>
+
+        <p>The memory system serves as a local for storing data and program.</p>
+        <p>The memory is divided into "words" which can be identified by a unique address.</p>
+        <p>There are two basic types of memory: </p>
+        <ul>
+            <li>ROM (Read Only Memory) - allow access only for reading data and is typically used to store the boot program</li>
+            <li>RAM (Random Access Memory), which allows reading and writing data and can be used to store data, programs and operating systems</li>
+        </ul>
+
+        <p>The data memory and instruction memory can be together in the same address space or separated.</p>
+        <p>When memories using the same address space, the architecture is referred as a Princeton (or Von Neumann) architecture.</p>
+        <p>When the data memory uses a different memory space of instruction is referred to as Harvard architecture.</p>
+        <p>The Princeton architecture can result in simpler hardware, while the Harvard architecture can result in better performance because it allows simultaneous access in both memories.</p>
+
+        <img src="Resources/Memory.gif" />
+    </div>
+</body>
+</html>

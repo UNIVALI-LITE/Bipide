@@ -1,0 +1,64 @@
+﻿<!doctype html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="../../../../../Resources/Scripts/shCore.js"></script>
+	<script type="text/javascript" src="../../../../../Resources/Scripts/shBrushC.js"></script>
+	<link type="text/css" rel="stylesheet" href="../../../../../Resources/Styles/shCoreDefault.css"/>
+    <link type="text/css" rel="stylesheet" href="../../../../../Resources/Styles/HelpStyle.css"/>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+
+    <body style="background: white; font-family: Helvetica">
+        <h1>Operação de Bitwise Shift</h1>
+        <div class="conteudo">
+            <p>Em um deslocamento aritmético, os bits que são deslocados para fora de cada extremidade são descartados.</p>
+            <p>Em um deslocamento aritmético à esquerda, zeros são deslocados à direita como demonstra a imagem:</p>
+            <img src="Resources/LeftShift.png">
+            
+            <h3>Exemplo:</h3>
+            <pre>
+   00010111 (decimal +23) LEFT-SHIFT
+=  00101110 (decimal +46)
+            </pre>
+            <p>Em um deslocamento aritmético para a direita, o bit de sinal é deslocado da esquerda, preservando, assim, o sinal do operando como demonstra a imagem:</p>
+            <img src="Resources/RightShift.png">
+
+            <h3>Exemplo:</h3>
+            <pre>
+   10010111 (decimal -105) RIGHT-SHIFT
+=  11001011 (decimal -53)
+            </pre>            
+        </div>
+
+        <h2>Tabela de compatibilidade de tipos da operação de Bitwise SHIFT</h2>
+        <table  class="box-table-a" style="width: auto;">
+            <thead>
+                <tr>
+                    <th>Operando Esquerdo</th>
+                    <th>Operando Direito</th>
+                    <th>Tipo Resultado</th>
+                    <th>Exemplo</th>
+                    <th>Resultado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="tipo">int</span></td>
+                    <td><span class="tipo">int</span></td>
+                    <td><span class="tipo">int</span></td>
+                    <td><span class="int">12</span> <span class="operador">>></span> <span class="int">2</span></td>
+                    <td><span class="int">3</span></td>
+                </tr>
+                <tr>
+                    <td><span class="tipo">int</span></td>
+                    <td><span class="tipo">int</span></td>
+                    <td><span class="tipo">int</span></td>
+                    <td><span class="int">12</span> <span class="operador"><<</span> <span class="int">2</span></td>
+                    <td><span class="int">48</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

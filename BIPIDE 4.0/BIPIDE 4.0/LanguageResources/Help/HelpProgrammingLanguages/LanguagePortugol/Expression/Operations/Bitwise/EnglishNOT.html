@@ -1,0 +1,168 @@
+﻿<!doctype html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="../../../../../Resources/Scripts/shCore.js"></script>
+	<script type="text/javascript" src="../../../../../Resources/Scripts/shBrushPortugol.js"></script>
+	<link type="text/css" rel="stylesheet" href="../../../../../Resources/Styles/shCoreDefault.css"/>
+    <link type="text/css" rel="stylesheet" href="../../../../../Resources/Styles/HelpStyle.css"/>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+
+    <body style="background: white; font-family: Helvetica">
+        <h1>Bitwise NOT Operation</h1>
+        <div class="conteudo">
+            <p>The unary operator NOT, or negation results in binary complement of the operand, ie, one bit is '1 'if the operand is '0', and will be '0 'otherwise, as we can confirm the truth table, where A is the input bit and S-bit is the response, or output bit:</p>
+            <table class="box-table-a" style="width: 300px; ">
+                <thead>
+                    <tr>
+                        <th>A</th>
+                        <th>S</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>0</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Example:</h3>
+            <pre>
+  NOT 0111  (decimal 7)
+    = 1000  (decimal 8)
+            </pre>
+            <p>The Portugol uses two's complement to represent negative integers.</p>
+            <p>Therefore <span class="operador">~</span><span class="inteiro">1</span> <span class="operador">=</span> <span class="operador">-</span><span class="inteiro">2</span></p>
+        </div>
+        
+        <h2>Compatibility Chart types of operation Bitwise NOT</h2>
+        <table class="box-table-a" style="width: auto;">
+            <thead>
+                <tr>
+                    <th>Operand</th>
+                    <th>Result Type</th>
+                    <th>Example</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="tipo">inteiro</span></td>
+                    <td><span class="tipo">inteiro</span></td>
+                    <td><span class="operador">~</span> <span class="inteiro">1</span></td>
+                    <td><span class="inteiro"><span class="operador">-</span>2</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr class="separador-topico"/>
+
+        <h1>Two's complement</h1>
+        <div class="conteudo">
+             <p> computing complement to two or two's complement is a type of binary representation of numbers with sign widely used in the architecture of modern computing devices. </p>
+             <p> The most significant digit (MSB) is the sign that tells you the number. If this digit is <img src="Resources/Zero.png"> the number is positive, and if <img src="Resources/One.png"> is negative. </p>
+             <p> Numbers are written as follows: </p>
+            <ul>
+                <li>
+                    Positives: Its magnitude is directly represented in its binary form, and a sign bit 0 is placed in front of the MSB.
+                    <ul>
+                        <li>(bit 0) + the number in binary.</li>
+                        <li>Examples: 0001 (+1), 0100 (+4) e 0111 (+7)</li>
+                    </ul>
+                </li>
+                <li>
+                    Negatives: Its magnitude is represented as a 2's complement, and a sign bit is placed in front of the MSB.
+                    <ul>
+						<li> We took the number in binary and "reversed" (0100 reversing have up in 1011) and </li>
+                        <li> We add one to the value "inverted" (1011 + 0001 = 1100). </li>
+                    </ul>
+                </li>
+            </ul>
+            <p> Thus, there is only one representation for the number zero (<img src="Resources/BinaryZero.png">). </p>
+            <p> The advantages of using 2's complement is that there is only one zero and that the rules for addition and subtraction are the same. The downside is the fact that an asymmetric code. </P>
+		</div>
+
+        <h2>Example Table of two's complement for binary integer of 4 bits</h2>
+        <table  class="box-table-a" style="width: 300px; ">
+            <thead>
+                <tr>
+                    <th>Two's complement</th>
+                    <th>Decimal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0111</td>
+                    <td>7</td>
+                </tr>
+                <tr>
+                    <td>0110</td>
+                    <td>6</td>
+                </tr>
+                <tr>
+                    <td>0101</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>0100</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>0011</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>0010</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>0001</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>0000</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>1111</td>
+                    <td>-1</td>
+                </tr>
+                <tr>
+                    <td>1110</td>
+                    <td>-2</td>
+                </tr>
+                    <tr>
+                    <td>1101</td>
+                    <td>-3</td>
+                </tr>
+                    <tr>
+                    <td>1100</td>
+                    <td>-4</td>
+                </tr>
+                    <tr>
+                    <td>1011</td>
+                    <td>-5</td>
+                </tr>
+                    <tr>
+                    <td>1010</td>
+                    <td>-6</td>
+                </tr>
+                    <tr>
+                    <td>1001</td>
+                    <td>-7</td>
+                </tr>
+                    <tr>
+                    <td>1000</td>
+                    <td>-8</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

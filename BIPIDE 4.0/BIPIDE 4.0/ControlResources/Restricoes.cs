@@ -168,19 +168,23 @@ namespace BIPIDE_4._0
                 coluna = _ParameterColumn;
 
                 valor = parametro.aceitar(this);
-                if (nome.Equals(_ReadFunction))                
-                    if (valor != null)                    
+                if (nome.Equals(_ReadFunction))
+                {
+                    if (valor != null)
+                    {
                         if (valor.GetType() != typeof(string))
                         {
-                             mensagem = (string)Application.Current.FindResource("NotSupportedErrors.7");
+                            mensagem = (string)Application.Current.FindResource("NotSupportedErrors.7");
                             _ErrorList.Add(new CompilationError((linha == 0) ? "" : linha.ToString(), (coluna == 0) ? "" : coluna.ToString(), mensagem));
-                        }                    
+                        }
+                    }
                     else
                     {//expressao dentro de leia
-                         mensagem = (string)Application.Current.FindResource("NotSupportedErrors.8");
+                        mensagem = (string)Application.Current.FindResource("NotSupportedErrors.8");
                         _ErrorList.Add(new CompilationError((linha == 0) ? "" : linha.ToString(), (coluna == 0) ? "" : coluna.ToString(), mensagem));
 
-                     }
+                    }
+                }
             }
                   
              return null;

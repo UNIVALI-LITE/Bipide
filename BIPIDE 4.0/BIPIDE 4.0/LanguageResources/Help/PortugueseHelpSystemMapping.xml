@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfAnyType xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpSystem/PortugueseSystem.html">
+    <Name>Funcionalidades do Sistema</Name>
+	<Items>
+          <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpSystem/PortugueseProgrammingModule.html">
+            <Name>Módulo Programação</Name>
+          </anyType>
+          <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpSystem/PortugueseSimulationModule.html">
+            <Name>Módulo Simulação</Name>
+          </anyType>
+          <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpSystem/PortugueseSimulator.html">
+            <Name>Simulador</Name>
+          </anyType>
+          <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpSystem/PortugueseInstructionSimulator.html">
+            <Name>Simulador de Instruções</Name>
+          </anyType>		  
+          <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpSystem/.html">
+            <Name>Ajuda</Name>
+          </anyType>
+    </Items>
+  </anyType>  
+</ArrayOfAnyType>

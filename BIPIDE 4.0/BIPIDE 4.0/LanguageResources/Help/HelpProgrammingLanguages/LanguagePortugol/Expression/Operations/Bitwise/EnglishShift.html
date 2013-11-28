@@ -1,0 +1,64 @@
+﻿<!doctype html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="../../../../../Resources/Scripts/shCore.js"></script>
+	<script type="text/javascript" src="../../../../../Resources/Scripts/shBrushPortugol.js"></script>
+	<link type="text/css" rel="stylesheet" href="../../../../../Resources/Styles/shCoreDefault.css"/>
+    <link type="text/css" rel="stylesheet" href="../../../../../Resources/Styles/HelpStyle.css"/>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+
+    <body style="background: white; font-family: Helvetica">
+        <h1>Bitwise Shift Operation</h1>
+        <div class="conteudo">
+            <p>In an arithmetic shift, the bits that are shifted out are discarded from each end.</p>
+            <p>In an arithmetic shift left, zeros are shifted to the right as shown in the picture:</p>
+            <img src="Resources/LeftShift.png">
+            
+            <h3>Example:</h3>
+            <pre>
+   00010111 (decimal +23) LEFT-SHIFT
+=  00101110 (decimal +46)
+            </pre>
+            <p>In an arithmetic right shift, the sign bit is shifted left, thus preserving the sign of the operand as shown in the picture:</p>
+            <img src="Resources/RightShift.png">
+
+            <h3>Example:</h3>
+            <pre>
+   10010111 (decimal -105) RIGHT-SHIFT
+=  11001011 (decimal -53)
+            </pre>            
+        </div>
+
+        <h2>Compatibility Chart types of operation Bitwise Shift</h2>
+        <table  class="box-table-a" style="width: auto;">
+            <thead>
+                <tr>
+                    <th>Left operand</th>
+                    <th>Right operand</th>
+                    <th>Result Type</th>
+                    <th>Example</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="tipo">inteiro</span></td>
+                    <td><span class="tipo">inteiro</span></td>
+                    <td><span class="tipo">inteiro</span></td>
+                    <td><span class="inteiro">12</span> <span class="operador">>></span> <span class="inteiro">2</span></td>
+                    <td><span class="inteiro">3</span></td>
+                </tr>
+                <tr>
+                    <td><span class="tipo">inteiro</span></td>
+                    <td><span class="tipo">inteiro</span></td>
+                    <td><span class="tipo">inteiro</span></td>
+                    <td><span class="inteiro">12</span> <span class="operador"><<</span> <span class="inteiro">2</span></td>
+                    <td><span class="inteiro">48</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

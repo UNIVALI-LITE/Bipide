@@ -1,0 +1,99 @@
+﻿<!doctype html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="../Resources/Scripts/shCore.js"></script>
+	<script type="text/javascript" src="../Resources/Scripts/shBrushPortugol.js"></script>
+	<link type="text/css" rel="stylesheet" href="../Resources/Styles/shCoreDefault.css"/>
+    <link type="text/css" rel="stylesheet" href="../Resources/Styles/HelpStyle.css"/>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+
+    <body style="background: white; font-family: Helvetica">
+        <h1>BIP IV</h1>
+		<div class="conteudo">
+			<h2>Architecture</h2>
+            <p>The architecture of the BIP IV considers the architecture of its predecessors, adding further support for procedures, the possibility of performing manipulation of vectors and Control input and output. To support such functionality was necessary to add four more registers, which they are, (i) the Indr registrar, responsible for storing the base indict the support vectors, (ii) the SP register, which has the function of indicating the stack when calling a procedure, (iii) the IN_PORT registers and (iv) OUT_PORT responsible for mapping input and output, respectively. (RECH, 2011).</p>
+            <p>The table below contains the set of instructions used by BIP IV to perform the operations added to it.</p>
+			
+            <table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>Operation Code</th>
+						<th>Instruction</th>
+						<th>Operation</th>
+						<th>Class</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>00000 - 00111</td>
+                        <td>Ift of instructions for BIP I. </td>
+						<td/>
+						<td/>
+                    </tr>
+                    <tr>
+                        <td>01000 - 01110</td>
+                        <td>Ift of instructions for BIP II. </td>
+						<td/>
+						<td/>
+                    </tr>
+                    <tr>
+                        <td>01111 - 10111</td>
+                        <td>Ift of instructions for BIP III. </td>
+						<td/>
+						<td/>
+                    </tr>
+                    <tr>
+                        <td>11000</td>
+                        <td>STOV</td>
+						<td>(address + INDR) &larr; ACC</td>
+						<td>Vectors Manipulating</td>
+                    </tr>
+                    <tr>
+                        <td>11001</td>
+                        <td>LDV</td>
+						<td>ACC &larr; (address + INDR)</td>
+						<td>Vectors Manipulating</td>
+                    </tr>
+                    <tr>
+                        <td>11010</td>
+                        <td>RETURN</td>
+						<td>PC &larr; (Top of Stack)</td>
+						<td>Procedures Support</td>
+                    </tr>
+                    <tr>
+                        <td>11011</td>
+                        <td>Not used</td>
+						<td/>
+						<td/>
+                    </tr>
+                    <tr>
+                        <td>11100</td>
+                        <td>CALL</td>
+						<td>
+                            <p>PC &larr; constant</p>
+                            <p>(Top of Stack) &larr; PC+1</p>
+						</td>
+						<td>Procedures Support</td>
+                    </tr>
+                    <tr>
+                        <td>11101 - 11111</td>
+                        <td>Reserved</td>
+						<td/>
+						<td/>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Source: Adapted from Rech (2011).</p>
+			
+			<hr class="separador-topico"/>
+			<h2>Organization</h2>
+
+			<p>The organization of the specified BIP IV was based on the organization of the BIP III. For IV BIP specification, in addition to the BIP specification III μBIP some components were used. Such components, such as the stack, which is responsible for giving Procedures Support Vectors Manipulating unit and can be found in the figure below illustrates the organization of the BIP IV. (RECH, 2011).</p>
+			<img src="Resources/BIPIVOrganization.png"/>
+            <p>Source: Vieira (2012).</p>
+		</div>
+    </body>
+</html>

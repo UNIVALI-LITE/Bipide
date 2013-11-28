@@ -1,0 +1,118 @@
+﻿<!doctype html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="../Resources/Scripts/shCore.js"></script>
+	<script type="text/javascript" src="../Resources/Scripts/shBrushPortugol.js"></script>
+	<link type="text/css" rel="stylesheet" href="../Resources/Styles/shCoreDefault.css"/>
+    <link type="text/css" rel="stylesheet" href="../Resources/Styles/HelpStyle.css"/>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+
+    <body style="background: white; font-family: Helvetica">
+        <h1>BIP III</h1>
+		<div class="conteudo">
+			<h2>Architecture</h2>
+            <p>The same way the BIP II is an extension of the BIP I, BIP III is an extension of the BIP II, coming to add new features to the processor. Implementations performed on the model of BIP II who came to give the BIP III were designed primarily to provide support for logical bitwise operations. To make this possible, the expansion of existing class instruction hitherto been necessary. Held in the expansion were added to class instruction relating to Boolean logic and logical shift according to the table below. (RECH, 2011).</p>
+            
+			<table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>Operation Code</th>
+						<th>Instruction</th>
+						<th>Operation</th>
+						<th>Class</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>00000 - 00111</td>
+                        <td>Ift of instructions for BIP I. </td>
+						<td/>
+						<td/>
+                    </tr>
+                    <tr>
+                        <td>01000 - 01110</td>
+                        <td>Ift of instructions for BIP II. </td>
+						<td/>
+						<td/>
+                    </tr>
+                    <tr>
+                        <td>01111</td>
+                        <td>NOT</td>
+						<td>ACC &larr; NOT (ACC)</td>
+						<td>Boolean logic</td>
+                    </tr>
+                    <tr>
+                        <td>10000</td>
+                        <td>AND</td>
+						<td>ACC &larr; ACC AND (address)</td>
+						<td>Boolean logic</td>
+                    </tr>
+                    <tr>
+                        <td>10001</td>
+                        <td>ANDI</td>
+						<td>ACC &larr; ACC ANDI constant</td>
+						<td>Boolean logic</td>
+                    </tr>
+                    <tr>
+                        <td>10010</td>
+                        <td>OR</td>
+						<td>ACC &larr; ACC OR (address)</td>
+						<td>Boolean logic</td>
+                    </tr>
+                    <tr>
+                        <td>10011</td>
+                        <td>ORI</td>
+						<td>ACC &larr; ACC ORI constant</td>
+						<td>Boolean logic</td>
+                    </tr>
+                    <tr>
+                        <td>10100</td>
+                        <td>XOR</td>
+						<td>ACC &larr; ACC XOR (address)</td>
+						<td>Boolean logic</td>
+                    </tr>
+                    <tr>
+                        <td>10101</td>
+                        <td>XORI</td>
+						<td>ACC &larr; ACC XORI constant</td>
+						<td>Boolean logic</td>
+                    </tr>
+                    <tr>
+                        <td>10110</td>
+                        <td>SLL</td>
+						<td>ACC &larr; ACC SLL constant</td>
+						<td>Logical shift</td>
+                    </tr>
+                    <tr>
+                        <td>10111</td>
+                        <td>SLR</td>
+						<td>ACC &larr; ACC SLR constant</td>
+						<td>Logical shift</td>
+                    </tr>
+                    <tr>
+                        <td>01111 - 11111</td>
+                        <td>Reserved</td>
+						<td/>
+						<td/>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Source: Adapted from Pereira (2008).</p>
+			
+			<hr class="separador-topico"/>
+			<h2>Organization</h2>
+
+			<p>As can be seen in the figure below, the organizational structure of BIP III is very similar to the structure of the organization of BIP II, differing from each other only in the ALU (Arithmetic Logic Unit).</p>
+			<img src="Resources/BIPIIIOrganization.png"/>
+            <p>Source: Vieira (2012).</p>
+
+            <p>In BIP II ULA performed only arithmetic operations addition and subtraction, with the addition of new functions the ALU control logic needed to be changed to support such operations were possible. By combining this in BIP II arithmetic unit and the addition of features Boolean logic and logical shift proposed by BIP III ULA shall be an identity of the Unit presented in the figure below. (PEREIRA, 2008).</p>
+            <img src="Resources/BIPIIIULA.png">
+            <p>Source: Adapted from Pereira (2008).</p>
+
+		</div>
+    </body>
+</html>

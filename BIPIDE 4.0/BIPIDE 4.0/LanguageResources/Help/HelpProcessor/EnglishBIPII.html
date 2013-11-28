@@ -1,0 +1,127 @@
+﻿<!doctype html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="../Resources/Scripts/shCore.js"></script>
+	<script type="text/javascript" src="../Resources/Scripts/shBrushPortugol.js"></script>
+	<link type="text/css" rel="stylesheet" href="../Resources/Styles/shCoreDefault.css"/>
+    <link type="text/css" rel="stylesheet" href="../Resources/Styles/HelpStyle.css"/>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+
+    <body style="background: white; font-family: Helvetica">
+        <h1>BIP II</h1>
+		<div class="conteudo">
+			<h2>Architecture</h2>
+            <p>The BIP II consists of an extension of the BIP I, so it has the same architectural characteristics. Its specification was designed to include support for control structures, with such became possible to implement conditional branches, unconditional deviations and ties repetition support. With this instruction set was complemented by performing the addition of the Class of instructions comprising instructions for deviations of comparison, conditional branch instructions and unconditional jump instruction, described in the table below. Instructions BIP II inherited the format specified in the instructions I BIP. (MORANDI; RAABE; ZEFERINO, 2006).</p>
+            <p>To make it possible to carry out operations II added to the BIP adding a new recording was made also required. The recording in question is a status register, which has two flags, they are Z (Zero) and N (Negative). Every statement of comparison and conditional branch should be performed after a subtraction instruction and depending on the result of subtracting the flags are triggered. The flag values ​​are verified by comparison statements and standard deviation to determine if the deviation should be performed or not, according to the type of comparison associated. (MORANDI; RAABE; ZEFERINO, 2006).</p>
+			
+			<table class="box-table-a"  >
+                <thead>
+                    <tr>
+                        <th>Operation Code</th>
+						<th>Instruction</th>
+						<th>Operation</th>
+						<th>Class</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>00000 - 00111</td>
+                        <td>Ift of instructions for BIP I. </td>
+						<td/>
+						<td/>
+                    </tr>
+                    <tr>
+                        <td>01000</td>
+                        <td>BEQ</td>
+						<td>
+                            <p>If (STATUS.Z=1) so</p>
+                            <p>  PC &larr; (address) </p>
+                            <p>If not </p>
+                            <p>  PC &larr; PC + 1</p>
+						</td>
+						<td>Conditional branch</td>
+                    </tr>
+                    <tr>
+                        <td>01001</td>
+                        <td>BNE</td>
+						<td>
+                            <p>If (STATUS.Z=0) so</p>
+                            <p>  PC &larr; (address) </p>
+                            <p>If not </p>
+                            <p>  PC &larr; PC + 1</p>
+						</td>
+						<td>Conditional branch</td>
+                    </tr>
+                    <tr>
+                        <td>01010</td>
+                        <td>BGT</td>
+						<td>
+                            <p>If (STATUS.Z=0) e (STATUS.N=0) so</p>
+                            <p>  PC &larr; (address) </p>
+                            <p>If not </p>
+                            <p>  PC &larr; PC + 1</p>
+						</td>
+						<td>Conditional branch</td>
+                    </tr>
+                    <tr>
+                        <td>01011</td>
+                        <td>BGE</td>
+						<td>
+                            <p>If (STATUS.N=0) so</p>
+                            <p>  PC &larr; (address) </p>
+                            <p>If not </p>
+                            <p>  PC &larr; PC + 1</p>
+						</td>
+						<td>Conditional branch</td>
+                    </tr>
+                    <tr>
+                        <td>01100</td>
+                        <td>BLT</td>
+						<td>
+                            <p>If (STATUS.N=1) so</p>
+                            <p>  PC &larr; (address) </p>
+                            <p>If not </p>
+                            <p>  PC &larr; PC + 1</p>
+						</td>
+						<td>Conditional branch</td>
+                    </tr>
+                    <tr>
+                        <td>01101</td>
+                        <td>BLE</td>
+						<td>
+                            <p>If (STATUS.Z=1) ou (STATUS.N=1) so</p>
+                            <p>  PC &larr; (address) </p>
+                            <p>If not </p>
+                            <p>  PC &larr; PC + 1</p>
+						</td>
+						<td>Conditional branch</td>
+                    </tr>
+                    <tr>
+                        <td>01110</td>
+                        <td>JMP</td>
+						<td>
+                            <p>PC &larr; (address) </p>
+						</td>
+						<td>Unconditional branch</td>
+                    </tr>
+                    <tr>
+                        <td>01111 - 11111</td>
+                        <td>Reserved</td>
+						<td/>
+						<td/>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Source: Adapted from Morandi, Raabe e Zeferino (2006).</p>
+			
+			<hr class="separador-topico"/>
+			<h2>Organization</h2>
+			<p>The organization of the BIP II, as well as the architecture is an extension of the BIP I, where we included the status register and made ​​some modifications to update the PC circuit, as can be seen in the figure below. These changes have added an additional degree of complexity, however, still with an easy understanding. (MORANDI; RAABE; ZEFERINO, 2006).</p>
+			<img src="Resources/BIPIIOrganization.png"/>
+            <p>Source: Vieira (2012).</p>
+		</div>
+    </body>
+</html>

@@ -100,6 +100,9 @@
     <Compile Include="SplashScreen.xaml.cs">
       <DependentUpon>SplashScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewResources\UCHelpSystem.xaml.cs">
+      <DependentUpon>UCHelpSystem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewResources\FormNewDocument.xaml.cs">
       <DependentUpon>FormNewDocument.xaml</DependentUpon>
     </Compile>
@@ -472,6 +475,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ViewResources\UCHelpSystem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="ViewResources\FormNewDocument.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -586,9 +593,7 @@
     <Resource Include="ImageResources\logout16.png" />
     <Resource Include="ImageResources\logout32.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="LanguageResources\Help\HelpSystem\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="ImageResources\instruction16.png" />
     <Resource Include="ImageResources\instruction32.png" />
@@ -869,6 +874,147 @@
     </Resource>
     <Resource Include="ImageResources\sourceCode.png" />
     <Resource Include="ImageResources\processorUBip32.png" />
+    <Resource Include="LanguageResources\Help\EnglishHelpMapping.xml" />
+    <Resource Include="LanguageResources\Help\EnglishHelpSystemMapping.xml" />
+    <Content Include="LanguageResources\Help\HelpFundamentals\EnglishFundamentals.html" />
+    <Content Include="LanguageResources\Help\HelpProcessor\EnglishBIPI.html" />
+    <Content Include="LanguageResources\Help\HelpProcessor\EnglishBIPII.html" />
+    <Content Include="LanguageResources\Help\HelpProcessor\EnglishBIPIII.html" />
+    <Content Include="LanguageResources\Help\HelpProcessor\EnglishBIPInstructions.html" />
+    <Content Include="LanguageResources\Help\HelpProcessor\EnglishBIPIV.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\DataTypes\EnglishDataTypes.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\DataTypes\EnglishInteger.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\DataTypes\EnglishVoid.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\DataTypes\PortugueseDataTypes.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\DataTypes\PortugueseInteger.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\DataTypes\PortugueseVoid.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\EnglishLanguageC.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Expression\EnglishExpression.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Expression\EnglishFunctionCall.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Expression\Operations\Arithmetic\EnglishAddition.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Expression\Operations\Arithmetic\EnglishArithmetic.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Expression\Operations\Arithmetic\EnglishSubtraction.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Expression\Operations\Arithmetic\PortugueseAddition.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Expression\Operations\Arithmetic\PortugueseSubtraction.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Expression\Operations\Arithmetic\PotugueseArithmetic.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Expression\Operations\Bitwise\EnglishAND.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Expression\Operations\Bitwise\EnglishBitwise.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Expression\Operations\Bitwise\EnglishNOT.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Expression\Operations\Bitwise\EnglishOR.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Expression\Operations\Bitwise\EnglishShift.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Expression\Operations\Bitwise\EnglishXOR.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Expression\Operations\Bitwise\PortugueseAND.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Expression\Operations\Bitwise\PortugueseBitwise.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Expression\Operations\Bitwise\PortugueseNOT.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Expression\Operations\Bitwise\PortugueseOR.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Expression\Operations\Bitwise\PortugueseShift.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Expression\Operations\Bitwise\PortugueseXOR.html" />
+    <Resource Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Expression\Operations\Bitwise\Resources\BinaryZero.png" />
+    <Resource Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Expression\Operations\Bitwise\Resources\LeftShift.png" />
+    <Resource Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Expression\Operations\Bitwise\Resources\One.png" />
+    <Resource Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Expression\Operations\Bitwise\Resources\RightShift.png" />
+    <Resource Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Expression\Operations\Bitwise\Resources\Zero.png" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Expression\Operations\EnglishAttribution.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Expression\Operations\EnglishOperation.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Expression\Operations\EnglishRelational.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Expression\Operations\PotugueseAttribution.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Expression\Operations\PotugueseOperation.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Expression\Operations\PotugueseRelational.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Expression\PotugueseExpression.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Expression\PotugueseFunctionCall.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\InputOutput\EnglishInputOutput.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\InputOutput\EnglishRead.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\InputOutput\EnglishWrite.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\InputOutput\PortugueseInputOutput.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\InputOutput\PortugueseRead.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\InputOutput\PortugueseWrite.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\PortugueseLanguageC.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Statements\EnglishConstant.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Statements\EnglishFunction.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Statements\EnglishStatements.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Statements\EnglishVariable.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Statements\EnglishVector.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Statements\PortugueseConstant.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Statements\PortugueseFunction.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Statements\PortugueseStatements.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Statements\PortugueseVariable.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Statements\PortugueseVector.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Structures\Control\EnglishControl.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Structures\Control\EnglishIf.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Structures\Control\PortugueseControl.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Structures\Control\PortugueseIf.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Structures\Loop\EnglishDoWhile.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Structures\Loop\EnglishFor.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Structures\Loop\EnglishLoop.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Structures\Loop\EnglishWhile.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Structures\Loop\PortugueseDoWhile.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Structures\Loop\PortugueseFor.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Structures\Loop\PortugueseLoop.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguageC\Structures\Loop\PortugueseWhile.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\DataTypes\EnglishDataTypes.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\DataTypes\EnglishInteger.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\DataTypes\EnglishVoid.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\EnglishLanguagePortugol.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Expression\EnglishExpression.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Expression\EnglishFunctionCall.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Expression\Operations\Arithmetic\EnglishAddition.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Expression\Operations\Arithmetic\EnglishArithmetic.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Expression\Operations\Arithmetic\EnglishSubtraction.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Expression\Operations\Bitwise\EnglishAND.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Expression\Operations\Bitwise\EnglishBitwise.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Expression\Operations\Bitwise\EnglishNOT.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Expression\Operations\Bitwise\EnglishOR.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Expression\Operations\Bitwise\EnglishShift.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Expression\Operations\Bitwise\EnglishXOR.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Expression\Operations\EnglishAttribution.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Expression\Operations\EnglishOperation.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Expression\Operations\EnglishRelational.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\InputOutput\EnglishInputOutput.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\InputOutput\EnglishRead.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\InputOutput\EnglishWrite.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Statements\EnglishConstant.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Statements\EnglishFunction.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Statements\EnglishStatements.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Statements\EnglishVariable.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Statements\EnglishVector.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Structures\Control\EnglishControl.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Structures\Control\EnglishIf.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Structures\Loop\EnglishDoWhile.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Structures\Loop\EnglishFor.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Structures\Loop\EnglishLoop.html" />
+    <Content Include="LanguageResources\Help\HelpProgrammingLanguages\LanguagePortugol\Structures\Loop\EnglishWhile.html" />
+    <Resource Include="LanguageResources\Help\PortugueseHelpSystemMapping.xml" />
+    <Content Include="LanguageResources\Help\HelpSystem\EnglishProgrammingModule.html" />
+    <Content Include="LanguageResources\Help\HelpSystem\EnglishSystem.html" />
+    <Content Include="LanguageResources\Help\HelpSystem\PortugueseHelp.html" />
+    <Content Include="LanguageResources\Help\HelpSystem\PortugueseInstructionSimulator.html" />
+    <Content Include="LanguageResources\Help\HelpSystem\PortugueseProgrammingModule.html" />
+    <Content Include="LanguageResources\Help\HelpSystem\PortugueseSimulationModule.html" />
+    <Content Include="LanguageResources\Help\HelpSystem\PortugueseSimulator.html" />
+    <Content Include="LanguageResources\Help\HelpSystem\PortugueseSystem.html" />
+    <Resource Include="LanguageResources\Help\HelpSystem\Resources\MenuArquivo.png" />
+    <Resource Include="LanguageResources\Help\HelpSystem\Resources\Editor.png" />
+    <Resource Include="LanguageResources\Help\HelpSystem\Resources\EditorAbas.png" />
+    <Resource Include="LanguageResources\Help\HelpSystem\Resources\EditorMensagens.png" />
+    <Resource Include="LanguageResources\Help\HelpSystem\Resources\EditorProgramacao.png" />
+    <Resource Include="LanguageResources\Help\HelpSystem\Resources\EnquadramentodeAbas.png" />
+    <Resource Include="LanguageResources\Help\HelpSystem\Resources\MenuAjuda.png" />
+    <Resource Include="LanguageResources\Help\HelpSystem\Resources\MenuArquivoAbrir.png" />
+    <Resource Include="LanguageResources\Help\HelpSystem\Resources\MenuCompilar.png" />
+    <Resource Include="LanguageResources\Help\HelpSystem\Resources\MenuDesfazer.png" />
+    <Resource Include="LanguageResources\Help\HelpSystem\Resources\MenuPratica.png" />
+    <Resource Include="LanguageResources\Help\HelpSystem\Resources\MenuSimulação.png" />
+    <Resource Include="LanguageResources\Help\HelpSystem\Resources\MenuSimulaçãoBip.png" />
+    <Resource Include="LanguageResources\Help\HelpSystem\Resources\MenuSimulaçãoVelocidade.png" />
+    <Resource Include="LanguageResources\Help\HelpSystem\Resources\Simulador.png" />
+    <Resource Include="LanguageResources\Help\HelpSystem\Resources\SimulaçãoAssembly.png" />
+    <Resource Include="LanguageResources\Help\HelpSystem\Resources\SimulaçãoDescrição.png" />
+    <Resource Include="LanguageResources\Help\HelpSystem\Resources\SimulaçãoIO.png" />
+    <Resource Include="LanguageResources\Help\HelpSystem\Resources\SimulaçãoPortugol.png" />
+    <Resource Include="LanguageResources\Help\HelpSystem\Resources\SimulaçãoRegistradores.png" />
+    <Resource Include="LanguageResources\Help\HelpSystem\Resources\SimulaçãoSimulador.png" />
+    <Resource Include="LanguageResources\Help\HelpSystem\Resources\TeclasdeAtalho.png" />
+    <Content Include="LanguageResources\Help\Resources\Scripts\shBrushC.js" />
     <Content Include="ProgrammingLanguagesResources\antlr-runtime-3.4.jar" />
     <Content Include="ProgrammingLanguagesResources\CResources\CompilerResources\c-nucleo.jar" />
     <Content Include="ProgrammingLanguagesResources\IIOPChannel.dll" />

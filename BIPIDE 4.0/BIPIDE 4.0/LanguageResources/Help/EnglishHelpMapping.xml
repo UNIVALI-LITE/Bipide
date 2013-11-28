@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ArrayOfAnyType xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpFundamentals/EnglishFundamentals.html">
+        <Name>Fundamentals</Name>
+    </anyType>
+    <anyType xsi:type="TreeItem" Uri="">
+        <Name>Processors</Name>
+        <Items>
+            <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProcessor/EnglishBIPInstructions.html">
+                <Name>Processors BIP Instructions</Name>
+            </anyType>
+            <anyType xsi:type="TreeItem" Uri="">
+                <Name>Processors BIP</Name>
+                <Items>
+                    <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProcessor/EnglishBIPI.html">
+                        <Name>BIP I</Name>
+                    </anyType>
+                    <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProcessor/EnglishBIPII.html">
+                        <Name>BIP II</Name>
+                    </anyType>
+                    <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProcessor/EnglishBIPIII.html">
+                        <Name>BIP III</Name>
+                    </anyType>
+                    <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProcessor/EnglishBIPIV.html">
+                        <Name>BIP IV</Name>
+                    </anyType>
+                </Items>
+            </anyType>
+        </Items>
+    </anyType>
+    <anyType xsi:type="TreeItem" Uri="">
+        <Name>Programming Languages</Name>
+        <Items>
+            <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguagePortugol/EnglishLanguagePortugol.html">
+                <Name>Portugol</Name>
+                <Items>
+                    <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguagePortugol/DataTypes/EnglishDataTypes.html">
+                        <Name>Data Types</Name>
+                        <Items>
+                            <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguagePortugol/DataTypes/EnglishInteger.html">
+                                <Name>Inteiro</Name>
+                            </anyType>
+                            <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguagePortugol/DataTypes/EnglishVoid.html">
+                                <Name>Vazio</Name>
+                            </anyType>
+                        </Items>
+                    </anyType>
+                    <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguagePortugol/InputOutput/EnglishInputOutput.html">
+                        <Name>Input/Output</Name>
+                        <Items>
+                            <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguagePortugol/InputOutput/EnglishRead.html">
+                                <Name>Leia</Name>
+                            </anyType>
+                            <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguagePortugol/InputOutput/EnglishWrite.html">
+                                <Name>Escreva</Name>
+                            </anyType>
+                        </Items>
+                    </anyType>
+                    <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguagePortugol/Expression/EnglishExpression.html">
+                        <Name>Expressions</Name>
+                        <Items>
+                            <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguagePortugol/Expression/Operations/EnglishOperation.html">
+                                <Name>Operators</Name>
+                                <Items>
+                                    <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguagePortugol/Expression/Operations/Arithmetic/EnglishArithmetic.html">
+                                        <Name>Arithmetics</Name>
+                                        <Items>
+                                            <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguagePortugol/Expression/Operations/Arithmetic/EnglishAddition.html">
+                                                <Name>Addition</Name>
+                                            </anyType>
+                                            <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguagePortugol/Expression/Operations/Arithmetic/EnglishSubtraction.html">
+                                                <Name>Subtraction</Name>
+                                            </anyType>
+                                        </Items>
+                                    </anyType>
+                                    <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguagePortugol/Expression/Operations/Bitwise/EnglishBitwise.html">
+                                        <Name>Bitwise</Name>
+                                        <Items>
+                                            <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguagePortugol/Expression/Operations/Bitwise/EnglishAND.html">
+                                                <Name>AND</Name>
+                                            </anyType>
+                                            <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguagePortugol/Expression/Operations/Bitwise/EnglishOR.html">
+                                                <Name>OR</Name>
+                                            </anyType>
+                                            <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguagePortugol/Expression/Operations/Bitwise/EnglishXOR.html">
+                                                <Name>XOR</Name>
+                                            </anyType>
+                                            <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguagePortugol/Expression/Operations/Bitwise/EnglishNOT.html">
+                                                <Name>NOT</Name>
+                                            </anyType>
+                                            <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguagePortugol/Expression/Operations/Bitwise/EnglishShift.html">
+                                                <Name>Shift</Name>
+                                            </anyType>
+                                        </Items>
+                                    </anyType>
+                                    <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguagePortugol/Expression/Operations/EnglishAttribution.html">
+                                        <Name>Assignments</Name>
+                                    </anyType>
+                                    <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguagePortugol/Expression/Operations/EnglishRelational.html">
+                                        <Name>Relationals</Name>
+                                    </anyType>
+                                </Items>
+                            </anyType>
+                            <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguagePortugol/Expression/EnglishFunctionCall.html">
+                                <Name>Function Calls</Name>
+                            </anyType>
+                        </Items>
+                    </anyType>
+                    <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguagePortugol/Statements/EnglishStatements.html">
+                        <Name>Statements</Name>
+                        <Items>
+                            <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguagePortugol/Statements/EnglishVariable.html">
+                                <Name>Cariables</Name>
+                            </anyType>
+                            <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguagePortugol/Statements/EnglishConstant.html">
+                                <Name>Constants</Name>
+                            </anyType>
+                            <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguagePortugol/Statements/EnglishFunction.html">
+                                <Name>Functions</Name>
+                            </anyType>
+                            <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguagePortugol/Statements/EnglishVector.html">
+                                <Name>Vectors</Name>
+                            </anyType>
+                        </Items>
+                    </anyType>
+                </Items>
+            </anyType>
+			<anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/EnglishLanguageC.html">
+				<Name>C</Name>
+				<Items>
+					<anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/DataTypes/EnglishDataTypes.html">
+						<Name>Data Types</Name>
+						<Items>
+							<anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/DataTypes/EnglishInteger.html">
+								<Name>Int</Name>
+							</anyType>
+							<anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/DataTypes/EnglishVoid.html">
+								<Name>Void</Name>
+							</anyType>
+						</Items>
+					</anyType>
+					<anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/InputOutput/EnglishInputOutput.html">
+						<Name>Scanf/Printf</Name>
+						<Items>
+							<anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/InputOutput/EnglishRead.html">
+								<Name>Scanf</Name>
+							</anyType>
+							<anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/InputOutput/EnglishWrite.html">
+								<Name>Printf</Name>
+							</anyType>
+						</Items>
+					</anyType>
+					<anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Expression/EnglishExpression.html">
+						<Name>Expressions</Name>
+						<Items>
+							<anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Expression/Operations/EnglishOperation.html">
+								<Name>Operators</Name>
+								<Items>
+									<anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Expression/Operations/Arithmetic/EnglishArithmetic.html">
+										<Name>Arithmetics</Name>
+										<Items>
+											<anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Expression/Operations/Arithmetic/EnglishAddition.html">
+												<Name>Addition</Name>
+											</anyType>
+											<anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Expression/Operations/Arithmetic/EnglishSubtraction.html">
+												<Name>Subtraction</Name>
+											</anyType>
+										</Items>
+									</anyType>
+									<anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Expression/Operations/Bitwise/EnglishBitwise.html">
+										<Name>Bitwise</Name>
+										<Items>
+											<anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Expression/Operations/Bitwise/EnglishAND.html">
+												<Name>AND</Name>
+											</anyType>
+											<anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Expression/Operations/Bitwise/EnglishOR.html">
+												<Name>OR</Name>
+											</anyType>
+											<anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Expression/Operations/Bitwise/EnglishXOR.html">
+												<Name>XOR</Name>
+											</anyType>
+											<anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Expression/Operations/Bitwise/EnglishNOT.html">
+												<Name>NOT</Name>
+											</anyType>
+											<anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Expression/Operations/Bitwise/EnglishShift.html">
+												<Name>Shift</Name>
+											</anyType>
+										</Items>
+									</anyType>
+									<anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Expression/Operations/EnglishAttribution.html">
+										<Name>Assignments</Name>
+									</anyType>
+									<anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Expression/Operations/EnglishRelational.html">
+										<Name>Relationals</Name>
+									</anyType>
+								</Items>
+							</anyType>
+							<anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Expression/EnglishFunctionCall.html">
+								<Name>Function Calls</Name>
+							</anyType>
+						</Items>
+					</anyType>
+					<anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Statements/EnglishStatements.html">
+						<Name>Statements</Name>
+						<Items>
+							<anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Statements/EnglishVariable.html">
+								<Name>Cariables</Name>
+							</anyType>
+							<anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Statements/EnglishConstant.html">
+								<Name>Constants</Name>
+							</anyType>
+							<anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Statements/EnglishFunction.html">
+								<Name>Functions</Name>
+							</anyType>
+							<anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Statements/EnglishVector.html">
+								<Name>Vectors</Name>
+							</anyType>
+						</Items>
+					</anyType>
+				</Items>
+			</anyType>
+        </Items>
+    </anyType>
+</ArrayOfAnyType>

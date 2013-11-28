@@ -364,6 +364,11 @@ namespace BIPIDE_4._0
                 {
                     iLayoutDocument.Title = (String)FindResource("ButtonPractice");
                 }
+                if (iLayoutDocument.Content.GetType() == typeof(UCHelpSystem))
+                {
+                    iLayoutDocument.Title = (String)FindResource("ButtonSystem");
+                    (iLayoutDocument.Content as UCHelpSystem).ReloadFundamentals((_RibbonMenuButtonLanguages.Tag as LanguageMapping).HelpMapping);
+                }
                 else if (iLayoutDocument.Content.GetType() == typeof(UCProgrammingDocument))
                 {
                     (iLayoutDocument.Content as UCProgrammingDocument)._TabItemProgramming.Header   =
@@ -423,10 +428,25 @@ namespace BIPIDE_4._0
                     // Pós-Processador
                     if (pSelectedDocument.ProgrammingLanguage == "C")
                     {
-                        List<Codigo> iAssemblys = iPreProcessor.RunPosProcessor(iTextoFonte);
-                        foreach (Codigo iCodigo in iAssemblys)
+                        Codigo iAssemblys = iPreProcessor.RunPosProcessor(iTextoFonte);
+                        //inclui instrução #asm uma por uma
+                        foreach (InstrucaoASM iInject in iAssemblys.listaTextASM)
                         {
+                            int linha = iAssembly.listaInstrucaoASM.Count();
 
+                            //na lista final, procura pela instrução com linha mais próxima à instrução
+                            foreach (InstrucaoASM iASM in iAssembly.listaTextASM)
+                            {
+                                if (iASM.NrLinha < iInject.NrLinha || (iASM.NrLinha == null))
+                                    linha = iASM.IndexArquivo + 1;
+                                if (iASM.NrLinha >= iInject.NrLinha)
+                                    break;
+                                if (linha >= iAssembly.listaInstrucaoASM.Count())
+                                    break;
+                            }
+
+                            iAssembly.InjectInstruction(iInject, linha);
+                            
                         }
                     }
 
@@ -821,6 +841,29 @@ namespace BIPIDE_4._0
                 foreach (LayoutDocument iDocument in _DocumentPane.Children)
                 {
                     if (iDocument.Content.GetType() == typeof(UCHelpFundamentals))
+                        iDocument.IsActive = true;
+                }
+            }
+
+        }
+        private void _ButtonSystem_Click(object sender, RoutedEventArgs e)
+        {
+            UCHelpSystem iHelp = new UCHelpSystem((_RibbonMenuButtonLanguages.Tag as LanguageMapping).HelpSystemMapping);
+
+            LayoutDocument iLayoutDocument = new LayoutDocument();
+            iLayoutDocument.Title = (String)FindResource("ButtonSystem");
+            iLayoutDocument.Content = iHelp;
+
+            if (_DocumentPane.Children.Count(x => x.Content.GetType() == typeof(UCHelpSystem)) == 0)
+            {
+                _DocumentPane.Children.Add(iLayoutDocument);
+                iLayoutDocument.IsActive = true;
+            }
+            else
+            {
+                foreach (LayoutDocument iDocument in _DocumentPane.Children)
+                {
+                    if (iDocument.Content.GetType() == typeof(UCHelpSystem))
                         iDocument.IsActive = true;
                 }
             }

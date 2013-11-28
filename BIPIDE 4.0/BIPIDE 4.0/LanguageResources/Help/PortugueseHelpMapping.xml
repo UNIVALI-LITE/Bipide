@@ -123,8 +123,102 @@
               </anyType>
             </Items>
           </anyType>
+          </Items>
+      </anyType>
+        <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/PortugueseLanguageC.html">
+        <Name>C</Name>
+        <Items>
+          <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/DataTypes/PortugueseDataTypes.html">
+            <Name>Tipos de Dados</Name>
+            <Items>
+              <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/DataTypes/PortugueseInteger.html">
+                <Name>Int</Name>
+              </anyType>
+              <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/DataTypes/PortugueseVoid.html">
+                <Name>Void</Name>
+              </anyType>
+            </Items>
+          </anyType>
+          <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/InputOutput/PortugueseInputOutput.html">
+            <Name>Printf/Scanf</Name>
+            <Items>
+              <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/InputOutput/PortugueseRead.html">
+                <Name>Printf</Name>
+              </anyType>
+              <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/InputOutput/PortugueseWrite.html">
+                <Name>Scanf</Name>
+              </anyType>
+            </Items>
+          </anyType>
+          <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Expression/PotugueseExpression.html">
+            <Name>Expressões</Name>
+            <Items>
+              <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Expression/Operations/PotugueseOperation.html">
+                <Name>Operadores</Name>
+                <Items>
+                  <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Expression/Operations/Arithmetic/PotugueseArithmetic.html">
+                    <Name>Aritméticas</Name>
+                    <Items>
+                      <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Expression/Operations/Arithmetic/PortugueseAddition.html">
+                        <Name>Adição</Name>
+                      </anyType>
+                      <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Expression/Operations/Arithmetic/PortugueseSubtraction.html">
+                        <Name>Subtração</Name>
+                      </anyType>
+                    </Items>
+                  </anyType>
+                  <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Expression/Operations/Bitwise/PortugueseBitwise.html">
+                    <Name>Bitwise</Name>
+                    <Items>
+                      <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Expression/Operations/Bitwise/PortugueseAND.html">
+                        <Name>AND</Name>
+                      </anyType>
+                      <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Expression/Operations/Bitwise/PortugueseOR.html">
+                        <Name>OR</Name>
+                      </anyType>
+                      <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Expression/Operations/Bitwise/PortugueseXOR.html">
+                        <Name>XOR</Name>
+                      </anyType>
+                      <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Expression/Operations/Bitwise/PortugueseNOT.html">
+                        <Name>NOT</Name>
+                      </anyType>
+                      <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Expression/Operations/Bitwise/PortugueseShift.html">
+                        <Name>Shift</Name>
+                      </anyType>
+                    </Items>
+                  </anyType>
+                  <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Expression/Operations/PotugueseAttribution.html">
+                    <Name>Atribuições</Name>
+                  </anyType>
+                  <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Expression/Operations/PotugueseRelational.html">
+                    <Name>Relacionais</Name>
+                  </anyType>
+                </Items>
+              </anyType>
+              <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Expression/PotugueseFunctionCall.html">
+                <Name>Chamada de Função</Name>
+              </anyType>
+            </Items>
+          </anyType>
+          <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Statements/PortugueseStatements.html">
+            <Name>Declarações</Name>
+            <Items>
+              <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Statements/PortugueseVariable.html">
+                <Name>Variáveis</Name>
+              </anyType>
+              <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Statements/PortugueseConstant.html">
+                <Name>Constantes</Name>
+              </anyType>
+              <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Statements/PortugueseFunction.html">
+                <Name>Funções</Name>
+              </anyType>
+              <anyType xsi:type="TreeItem" Uri="/LanguageResources/Help/HelpProgrammingLanguages/LanguageC/Statements/PortugueseVector.html">
+                <Name>Vetores</Name>
+              </anyType>
+            </Items>
+          </anyType>
         </Items>
       </anyType>
-    </Items>
+     </Items>
   </anyType>
 </ArrayOfAnyType>

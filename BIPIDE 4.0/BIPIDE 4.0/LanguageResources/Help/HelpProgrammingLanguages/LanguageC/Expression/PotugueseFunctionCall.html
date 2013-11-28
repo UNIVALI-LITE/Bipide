@@ -1,0 +1,53 @@
+﻿<!doctype html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="../../../Resources/Scripts/shCore.js"></script>
+	<script type="text/javascript" src="../../../Resources/Scripts/shBrushC.js"></script>
+	<link type="text/css" rel="stylesheet" href="../../../Resources/Styles/shCoreDefault.css"/>
+    <link type="text/css" rel="stylesheet" href="../../../Resources/Styles/HelpStyle.css"/>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+
+    <body style="background: white; font-family: Helvetica">
+        <h1>Chamada de Função</h1>
+        <div class="conteudo">
+        	<p>Uma chamada de função consiste em executar uma porção de código de forma desacoplada do resto do programa, não sendo necessário executar etapas que não estejam de acordo com as atribuições do procedimento. Uma chamada de função pode ou não retornar um valor e pode ou não receber parâmetros</p>
+        </div>
+
+        <h2>Exemplo:</h2>
+        <pre class="brush: C">            
+
+	//Função soma, recebe como parâmetro dois números ints que são informados na função inicio
+	int soma(int a, int b){
+		retorne a+b;
+	}
+
+	//Função exibir, recebe dois parâmetros ints e escreve a soma destes valores na saída do console
+	int vazio exibir(int a, int b){
+		printf(a+b);
+	}
+
+	//Função mostrar, exibe a soma de dois valores informados pelo usuário
+	int vazio mostrar(){
+		int a, b;
+		scanf(a);
+		scanf(b);
+		printf(a+b);
+	}
+
+    int inicio(){
+        //Chama a função soma, passando por parâmetro 5 e 2
+        printf(soma(5,2));
+		
+		//Chama a função exibir, passando por parâmetro 5 e 2
+		exibir(5,2);
+		
+		//Chama a função mostrar, sem passar parâmetros
+		mostrar();
+    }
+
+        </pre>
+    </body>
+</html>

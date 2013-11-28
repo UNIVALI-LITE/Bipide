@@ -15,7 +15,7 @@ programa
 		
 		para(i = 0; i < 4; i++)
 		{
-			para(j = i+1; j < 4; i++)
+			para(j = i+1; j < 4; j++)
 			{
 				se (vetor[i] > vetor[j]) 
 				{ 

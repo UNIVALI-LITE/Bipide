@@ -1,0 +1,42 @@
+﻿<!doctype html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="../../../../Resources/Scripts/shCore.js"></script>
+	<script type="text/javascript" src="../../../../Resources/Scripts/shBrushC.js"></script>
+	<link type="text/css" rel="stylesheet" href="../../../../Resources/Styles/shCoreDefault.css"/>
+	<link type="text/css" rel="stylesheet" href="../../../../Resources/Styles/HelpStyle.css"/>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+
+    <body style="background: white; font-family: Helvetica">
+        <h1>Laço while (Pré-Testado)</h1>
+        <div class="conteudo">
+        	<p>Nesta estrutura de repetição o programador deve definir uma condição que será verificada a cada iteração do loop <strong>B</strong>, caso essa condição seja verdadeira então é executado o bloco de código <strong>D</strong> e então a variável de controle deve ser alterada para evitar que o laço de repetição seja executado infinitamente.</p>
+        </div>
+
+        <h2>Exemplo:</h2>
+        <pre class="brush: C">
+
+    int main()
+    {
+        //Escreve no console o valor da variável passo durante as execuções
+        int passo = 0;
+        while(passo &#60; 5){
+        	printf(passo);
+        	passo = passo + 1;
+        }
+
+		passo = 0;
+        //Escreve no console o valor de passo multiplicado por 5
+        while (passo &#60; 10){
+        	printf(passo*5);
+        	passo = passo + 1;
+        }
+		return 0;
+    }
+
+        </pre>
+    </body>
+</html>
