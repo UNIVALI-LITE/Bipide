@@ -8,7 +8,7 @@ programa
 	{ 
 		inteiro i, result 
 		result = 0 
-		para(i = 1; i<c; i++)
+		para(i = 1; i<=c; i++)
 		{
 			result = result+a 
 		} 
