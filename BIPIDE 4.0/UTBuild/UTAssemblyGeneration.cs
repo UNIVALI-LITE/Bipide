@@ -191,7 +191,7 @@ namespace UTBuild
             try
             {
                 var iReturn = executa("programa  {  funcao inicio()  {  inteiro vetor[5] = {5,3,4,2,1}  inteiro i, j, aux  para (i = 0; i<= 4; i++){  para (j = i+1; j <= 4; j++){  se (vetor[i] > vetor[j]){  aux = vetor[i]  vetor[i] = vetor[j]  vetor[j] = aux  }  }  }   }  }  ");
-                Assert.AreEqual(".DATAVETOR5VETOR3VETOR4VETOR2VETOR1I0J0AUX0T_VETOR10T_VETOR20T_VETOR30T_VETOR40.TEXT_INICIOLDI0STOIPARA1LDISUBI4BGTFIMPARA1PARA2LDIADDI1STOJSUBI4BGTFIMPARA2LDISTO$INDRLDVVETORSTOT_VETOR1LDJSTO$INDRLDVVETORSTOT_VETOR2LDT_VETOR1SUBT_VETOR2BLEFIMSE1LDISTO$INDRLDVVETORSTOT_VETOR3STOAUXLDJSTO$INDRLDVVETORSTOT_VETOR4LDISTO$INDRLDVT_VETOR4STOVVETORLDJSTO$INDRLDAUXSTOVVETORFIMSE1LDJADDI1STOJJMPPARA2FIMPARA2LDIADDI1STOIJMPPARA1FIMPARA1HLT0".ToUpper(), iReturn.ToUpper());
+                Assert.AreEqual(".DATAVETOR5VETOR3VETOR4VETOR2VETOR1I0J0AUX0T_VETOR10T_VETOR20T_VETOR30T_VETOR40.TEXT_INICIOLDI0STOIPARA1LDISUBI4BGTFIMPARA1LDIADDI1STOJPARA2LDJSUBI4BGTFIMPARA2LDISTO$INDRLDVVETORSTOT_VETOR1LDJSTO$INDRLDVVETORSTOT_VETOR2LDT_VETOR1SUBT_VETOR2BLEFIMSE1LDISTO$INDRLDVVETORSTOT_VETOR3STOAUXLDJSTO$INDRLDVVETORSTOT_VETOR4LDISTO$INDRLDT_VETOR4STOVVETORLDJSTO$INDRLDAUXSTOVVETORFIMSE1LDJADDI1STOJJMPPARA2FIMPARA2LDIADDI1STOIJMPPARA1FIMPARA1HLT0".ToUpper(), iReturn.ToUpper());
                 //vetor no formato NOME0NOME0 ao invés de NOME 0,...
             }
             catch (Exception e)
@@ -406,7 +406,7 @@ namespace UTBuild
             try
             {
                 var iReturn = executa("programa{   funcao inteiro soma(inteiro a, inteiro b){   retorne a+b }   funcao vazio exibir(inteiro a, inteiro b){   escreva(a+b)   }   funcao vazio mostrar(){   inteiro a, b   leia(a)   leia(b)   escreva(a+b) }   funcao inicio(){   escreva(soma(5,2))   exibir(5,2)   mostrar()   }  } ");
-                Assert.AreEqual(".datasoma_a0soma_b0exibir_a0exibir_b0mostrar_a0mostrar_b0.textJMP_INICIO_SOMALDsoma_aADDsoma_bRETURN0_EXIBIRLDexibir_aADDexibir_bSTO$out_port_MOSTRARLD$in_portSTOmostrar_aLD$in_portSTOmostrar_bLDmostrar_aADDmostrar_bSTO$out_port_INICIOLDI5STOsoma_aLDI2STOsoma_bCALL_SOMASTO$out_portLDI5STOexibir_aLDI2STOexibir_bCALL_EXIBIRCALL_MOSTRARHLT0".ToUpper(), iReturn.ToUpper());
+                Assert.AreEqual(".DATASOMA_A0SOMA_B0EXIBIR_A0EXIBIR_B0MOSTRAR_A0MOSTRAR_B0.TEXTJMP_INICIO_SOMALDSOMA_AADDSOMA_BRETURN0_EXIBIRLDEXIBIR_AADDEXIBIR_BSTO$OUT_PORTRETURN0_MOSTRARLD$IN_PORTSTOMOSTRAR_ALD$IN_PORTSTOMOSTRAR_BLDMOSTRAR_AADDMOSTRAR_BSTO$OUT_PORTRETURN0_INICIOLDI5STOSOMA_ALDI2STOSOMA_BCALL_SOMASTO$OUT_PORTLDI5STOEXIBIR_ALDI2STOEXIBIR_BCALL_EXIBIRCALL_MOSTRARHLT0".ToUpper(), iReturn.ToUpper());
             }
             catch (Exception e)
             {
@@ -585,7 +585,7 @@ namespace UTBuild
             try
             {
                 var iReturn = executaC("int main()  {  int vetor[5] = {5,3,4,2,1};  int i, j, aux;   for (i = 0; i<= 4; i++){  for (j = i+1; j <= 4; j++){  if (vetor[i] > vetor[j]){  aux = vetor[i];  vetor[i] = vetor[j];  vetor[j] = aux;  }  }  }  }  ");
-                Assert.AreEqual(".DATAVETOR5VETOR3VETOR4VETOR2VETOR1I0J0AUX0T_VETOR10T_VETOR20T_VETOR30T_VETOR40.TEXT_MAINLDI0STOIPARA1LDISUBI4BGTFIMPARA1PARA2LDIADDI1STOJSUBI4BGTFIMPARA2LDISTO$INDRLDVVETORSTOT_VETOR1LDJSTO$INDRLDVVETORSTOT_VETOR2LDT_VETOR1SUBT_VETOR2BLEFIMSE1LDISTO$INDRLDVVETORSTOT_VETOR3STOAUXLDJSTO$INDRLDVVETORSTOT_VETOR4LDISTO$INDRLDVT_VETOR4STOVVETORLDJSTO$INDRLDAUXSTOVVETORFIMSE1LDJADDI1STOJJMPPARA2FIMPARA2LDIADDI1STOIJMPPARA1FIMPARA1HLT0".ToUpper(), iReturn.ToUpper());
+                Assert.AreEqual(".DATAVETOR5VETOR3VETOR4VETOR2VETOR1I0J0AUX0T_VETOR10T_VETOR20T_VETOR30T_VETOR40.TEXT_MAINLDI0STOIPARA1LDISUBI4BGTFIMPARA1LDIADDI1STOJPARA2LDJSUBI4BGTFIMPARA2LDISTO$INDRLDVVETORSTOT_VETOR1LDJSTO$INDRLDVVETORSTOT_VETOR2LDT_VETOR1SUBT_VETOR2BLEFIMSE1LDISTO$INDRLDVVETORSTOT_VETOR3STOAUXLDJSTO$INDRLDVVETORSTOT_VETOR4LDISTO$INDRLDT_VETOR4STOVVETORLDJSTO$INDRLDAUXSTOVVETORFIMSE1LDJADDI1STOJJMPPARA2FIMPARA2LDIADDI1STOIJMPPARA1FIMPARA1HLT0".ToUpper(), iReturn.ToUpper());
                 //vetor no formato NOME0NOME0 ao invés de NOME 0,...
             }
             catch (Exception e)
@@ -766,7 +766,7 @@ namespace UTBuild
                 Assert.Fail("UTF" + e.Message);
             }
         }
-        /*
+        
         [TestMethod]
         public void UTFCAtribuicao()
         {
@@ -796,7 +796,7 @@ namespace UTBuild
             }
         }
       
-        */
+        
         [AssemblyCleanup]
         public static void Cleanup()
         {

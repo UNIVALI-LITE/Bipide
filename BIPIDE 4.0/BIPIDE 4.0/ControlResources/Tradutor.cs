@@ -675,11 +675,15 @@ namespace BIPIDE_4._0
 
             _Returned = true;
 
-            Object e = noRetorne.getExpressao().aceitar(this);
-            if (e != null)
-                AppendInstructionScope("LD", e, noRetorne.getExpressao().getTrechoCodigoFonte().getLinha());
+            if (!_IsInterrupt)
+            {
+                Object e = noRetorne.getExpressao().aceitar(this);
+                if (e != null)
+                    AppendInstructionScope("LD", e, noRetorne.getExpressao().getTrechoCodigoFonte().getLinha());
 
-            AppendInstruction("RETURN", "0", noRetorne.getExpressao().getTrechoCodigoFonte().getLinha());
+                AppendInstruction("RETURN", "0", noRetorne.getExpressao().getTrechoCodigoFonte().getLinha());  
+            }
+           
 
             _WhenIncrementSeparate = false;
             return null;
@@ -1175,7 +1179,7 @@ namespace BIPIDE_4._0
             //necessário para vetores em escopo de outras funções
             _IncludeScope(ref nome);
             
-            _ObjectCode.AddInstrucaoASM(  nome + _LabelTemp.ToString(), "0", BIPIDE.Classes.eTipo.Variavel, null);
+            _ObjectCode.AddInstrucaoASM(  nome + (++_LabelTemp).ToString(), "0", BIPIDE.Classes.eTipo.Variavel, null);
             return _LabelTemp.ToString();
         }
         private string AddsTempBitwise()

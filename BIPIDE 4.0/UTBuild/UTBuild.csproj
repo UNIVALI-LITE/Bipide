@@ -39,9 +39,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Classes">
-      <HintPath>..\BIPIDE 4.0\BIPIDE 4.0\Resources\Classes.dll</HintPath>
-    </Reference>
     <Reference Include="IIOPChannel">
       <HintPath>..\BIPIDE 4.0\ProgrammingLanguagesResources\PortugolResources\CompilerResources\IIOPChannel.dll</HintPath>
     </Reference>
@@ -70,9 +67,12 @@
   <ItemGroup>
     <Compile Include="UTAssemblyGeneration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UTAssemblyGeneration_C.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Visual Studio 2012\Projects\BIPIDE 4.0\Classes\Classes.csproj">
+      <Project>{a6eccfe5-9e6b-4156-92a2-33ea07f850c2}</Project>
+      <Name>Classes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BIPIDE 4.0\BIPIDE 4.0.csproj">
       <Project>{c8f144cb-8c0c-4920-bc89-f417aa8b2dc2}</Project>
       <Name>BIPIDE 4.0</Name>

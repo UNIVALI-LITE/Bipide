@@ -519,6 +519,14 @@ namespace BIPIDE_4._0
                     _RadioButtonSimulationBipIII.IsEnabled  = false;
                     _RadioButtonSimulationBipIV.IsEnabled   = true;
                     break;
+
+                case Restricoes.Processadores.uBIP:
+                    _RadioButtonSimulationBipI.IsEnabled = false;
+                    _RadioButtonSimulationBipII.IsEnabled = false;
+                    _RadioButtonSimulationBipIII.IsEnabled = false;
+                    _RadioButtonSimulationBipIV.IsEnabled = false;
+                    _RadioButtonSimulationBipV.IsEnabled = true;
+                    break;
             }
         }
 
@@ -584,6 +592,10 @@ namespace BIPIDE_4._0
 
                 case SimulationControl.Processors.psBipIV:
                     _RadioButtonSimulationBipIV.IsChecked = true;
+                    break;
+
+                case SimulationControl.Processors.psUBip:
+                    _RadioButtonSimulationBipV.IsChecked = true;
                     break;
             }
         }

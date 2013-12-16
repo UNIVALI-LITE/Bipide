@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ucBip", "ucBip\ucBip.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UTBuild", "UTBuild\UTBuild.csproj", "{DA65DC39-FE48-4C20-B0A0-7B625FCFF854}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Classes", "Classes\Classes.csproj", "{A6ECCFE5-9E6B-4156-92A2-33EA07F850C2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Classes", "..\..\..\Visual Studio 2012\Projects\BIPIDE 4.0\Classes\Classes.csproj", "{A6ECCFE5-9E6B-4156-92A2-33EA07F850C2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIP", "BIP\BIP.csproj", "{C177E513-EE40-4E54-B446-C0B686D7BF56}"
 EndProject
@@ -51,12 +51,12 @@ Global
 		SccProjectUniqueName6 = UTBuild\\UTBuild.csproj
 		SccProjectName6 = UTBuild
 		SccLocalPath6 = UTBuild
-		SccProjectUniqueName7 = Classes\\Classes.csproj
-		SccProjectName7 = Classes
-		SccLocalPath7 = Classes
-		SccProjectUniqueName8 = BIP\\BIP.csproj
-		SccProjectName8 = BIP
-		SccLocalPath8 = BIP
+		SccProjectUniqueName7 = BIP\\BIP.csproj
+		SccProjectName7 = BIP
+		SccLocalPath7 = BIP
+		SccProjectUniqueName8 = ..\\..\\..\\Visual\u0020Studio\u00202012\\Projects\\BIPIDE\u00204.0\\Classes\\Classes.csproj
+		SccProjectName8 = Classes
+		SccLocalPath8 = ..\\..\\..\\Visual\u0020Studio\u00202012\\Projects\\BIPIDE\u00204.0\\Classes
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

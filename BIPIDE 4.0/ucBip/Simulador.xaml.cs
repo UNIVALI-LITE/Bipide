@@ -289,7 +289,7 @@ namespace ucBip
         #region verifica acesso à memória
         public void verificaAcessoMemoria(int posicao, int index)
         {
-            if (posicao+index >= 1024)
+           /* if (posicao+index >= 1024)
             {
                 throw new Exception("Violação de acesso à memória ("+(posicao+index).ToString()+").");
             }
@@ -298,12 +298,12 @@ namespace ucBip
             {
                 if (i.IndexMemoria == posicao)
                 {
-                    if (posicao + index < posicao || posicao + index >= posicao + /*i.Indice)*/i.Tamanho)
+                    if (posicao + index < posicao || posicao + index >= posicao + i.Tamanho)
                     {
                         throw new Exception("Violação de acesso à memória. Variável "+i.Instrucao+" na posição "+(posicao+index).ToString());
                     }
                 }
-            }
+            }*/
         }
         #endregion
 
@@ -2679,10 +2679,9 @@ Para retorno do procedimento, o valor armazenado no topo da pilha é recuperado 
             {
                 this._PC = Convert.ToInt32(operand);
             }
-            catch
+            catch(Exception e)
             {
                 //buscar endereço na lista de rotulos
-
             }
             this.rPC1.Text = "1";
 

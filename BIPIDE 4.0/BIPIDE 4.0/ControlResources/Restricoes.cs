@@ -195,6 +195,13 @@ namespace BIPIDE_4._0
 
             _CurrentFunction = declaracaoFuncao.getNome();
 
+            //trata interrupt no C
+            if (_ProgrammingLanguage == "C")
+                if (_CurrentFunction.ToLower() == "interrupt")
+                {
+                    Processador = Processadores.uBIP;
+                }
+
             foreach (NoDeclaracaoParametro parametro in declaracaoFuncao.getParametros())
                 parametro.aceitar(this);
             
