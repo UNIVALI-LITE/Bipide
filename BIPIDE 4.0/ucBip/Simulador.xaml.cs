@@ -583,7 +583,7 @@ namespace ucBip
             rPC_operand.Text = "0";
             rPC1.Text = "0";
             rRegistrador.Text = "0";
-            rInterruptAddress.Text = "0x0001";
+            rInterruptAddress.Text = "1";
             this.pilhaSubrotina.Clear();
             try
             {
