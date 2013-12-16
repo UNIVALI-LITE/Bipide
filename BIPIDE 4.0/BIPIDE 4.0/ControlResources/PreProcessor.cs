@@ -1,6 +1,7 @@
 ﻿using BIPIDE.Classes;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -34,7 +35,7 @@ namespace BIPIDE_4._0.ControlResources
 
         }
 
-        public string RunPreProcessor(string pCommandText)
+        public string RunPreProcessor(string pCommandText, string pSavedPath)
         {
             _Parser = new TokenParser();
             _LineCount = 0;
@@ -133,7 +134,17 @@ namespace BIPIDE_4._0.ControlResources
                 }
 
                 if (_INCLUDE)
-                { }
+                {
+                    if (iToken.TokenName == TokenParser.Tokens.INCLUDEFILE)
+                    {
+                        string iFileName = iToken.TokenValue.Replace("<", "").Replace(">", "");
+                        iFileName = iFileName.Replace("\"", "").Replace("\"", "");
+                        string iPath = Path.GetDirectoryName(pSavedPath);
+
+                        if (File.Exists(iPath + "\\" + iFileName))
+                            pCommandText = pCommandText.Replace("#include" + iToken.TokenValue, File.ReadAllText(iPath + "\\" + iFileName));
+                    }
+                }
             }
 
             foreach (DefineStructure iDefineStructure in _Defines.Where(x => x.MethodName != null))

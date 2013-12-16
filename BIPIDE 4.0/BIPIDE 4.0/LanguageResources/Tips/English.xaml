@@ -2,34 +2,34 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
-    <system:String x:Key="TipTitleButtonNew">New</system:String>
+    <system:String x:Key="TipTitleButtonNew">New (Ctrl+N)</system:String>
     <system:String x:Key="TipDescriptionButtonNew">Creates a new document.</system:String>
 
-    <system:String x:Key="TipTitleButtonOpen">Open</system:String>
+    <system:String x:Key="TipTitleButtonOpen">Open (Ctrl+O)</system:String>
     <system:String x:Key="TipDescriptionButtonOpen">Opens an existing file.</system:String>
 
-    <system:String x:Key="TipTitleButtonSave">Save</system:String>
+    <system:String x:Key="TipTitleButtonSave">Save (Ctrl+S)</system:String>
     <system:String x:Key="TipDescriptionButtonSave">Save the current document.</system:String>
 
-    <system:String x:Key="TipTitleButtonSaveAs">Save As</system:String>
+    <system:String x:Key="TipTitleButtonSaveAs">Save As (Ctrl+Shift+S)</system:String>
     <system:String x:Key="TipDescriptionButtonSaveAs">Saves a copy of the current document.</system:String>
 
-    <system:String x:Key="TipTitleButtonPrint">Print</system:String>
+    <system:String x:Key="TipTitleButtonPrint">Print  (Ctrl+P)</system:String>
     <system:String x:Key="TipDescriptionButtonPrint">Prints the current document.</system:String>
 
     <system:String x:Key="TipTitleButtonExamples">Examples</system:String>
     <system:String x:Key="TipDescriptionButtonExamples">Enables to open sample programs.</system:String>
 
-    <system:String x:Key="TipTitleButtonExport">Export</system:String>
+    <system:String x:Key="TipTitleButtonExport">Export  (Ctrl+E)</system:String>
     <system:String x:Key="TipDescriptionButtonExport">Allows you to export the program in the formats: Assembly, Binary, Hexadecimal, MIF e VHDL.</system:String>
 
-    <system:String x:Key="TipTitleButtonCompile">Build</system:String>
+    <system:String x:Key="TipTitleButtonCompile">Compile (Ctrl+B)</system:String>
     <system:String x:Key="TipDescriptionButtonCompile">Build the program.</system:String>
 
-    <system:String x:Key="TipTitleButtonFundamentals">Fundamentals</system:String>
+    <system:String x:Key="TipTitleButtonFundamentals">Theory (Ctrl+F1)</system:String>
     <system:String x:Key="TipDescriptionButtonFundamentals">Displays information about Architecture and Computer Organization, processors BIP and languages ​​offered by the tool.</system:String>
 
-    <system:String x:Key="TipTitleButtonSystem">System</system:String>
+    <system:String x:Key="TipTitleButtonSystem">Bipide (F1)</system:String>
     <system:String x:Key="TipDescriptionButtonSystem">Displays information about the system functionalities.</system:String>
 
     <system:String x:Key="TipTitleButtonPractice">Practice</system:String>

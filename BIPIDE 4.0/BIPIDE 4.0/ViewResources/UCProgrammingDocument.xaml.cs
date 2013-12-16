@@ -172,6 +172,9 @@ namespace BIPIDE_4._0.UIResources
         private void _Simulator_RequestFimPrograma()
         {
             _SimulationControl.Control = SimulationControl.SimulationControls.scStop;
+            UCProgrammingDocument.LineDebugASM.SourceCodeReferencedLine.Clear();
+            UCProgrammingDocument.LineDebugASM.CurrentLine  = 1;
+            UCProgrammingDocument.LineDebugSourceCode       = 1;
         }
 
         void _Simulator_RequestEnderecoPrograma(int intEndereco)

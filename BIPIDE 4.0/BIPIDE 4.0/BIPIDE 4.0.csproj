@@ -37,6 +37,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>pe32.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ICSharpCode.AvalonEdit, Version=4.3.1.9429, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -593,7 +596,12 @@
     <Resource Include="ImageResources\logout16.png" />
     <Resource Include="ImageResources\logout32.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Classes\Classes.csproj">
+      <Project>{a6eccfe5-9e6b-4156-92a2-33ea07f850c2}</Project>
+      <Name>Classes</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="ImageResources\instruction16.png" />
     <Resource Include="ImageResources\instruction32.png" />
@@ -1041,6 +1049,7 @@
     <Resource Include="LanguageResources\Help\HelpSystem\Resources\SimulaçãoSimuladorEnglish.png" />
     <Resource Include="LanguageResources\Help\HelpSystem\Resources\TeclasdeAtalhoEnglish.png" />
     <Content Include="LanguageResources\Help\Resources\Scripts\shBrushC.js" />
+    <Resource Include="pe32.ico" />
     <Content Include="ProgrammingLanguagesResources\antlr-runtime-3.4.jar" />
     <Content Include="ProgrammingLanguagesResources\CResources\CompilerResources\c-nucleo.jar" />
     <Content Include="ProgrammingLanguagesResources\CResources\ExamplesResources\fatorial.c" />
@@ -1178,12 +1187,6 @@
     <Content Include="LanguageResources\Help\Resources\Styles\shThemeMDUltra.css" />
     <Content Include="LanguageResources\Help\Resources\Styles\shThemeMidnight.css" />
     <Content Include="LanguageResources\Help\Resources\Styles\shThemeRDark.css" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Visual Studio 2012\Projects\BIPIDE 4.0\Classes\Classes.csproj">
-      <Project>{a6eccfe5-9e6b-4156-92a2-33ea07f850c2}</Project>
-      <Name>Classes</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

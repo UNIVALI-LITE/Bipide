@@ -76,7 +76,8 @@
                                             <AvalonDock:LayoutDocument.Content>
                                                 <ucBip:Simulador x:Name="_Simulator"
                                                                  Height="Auto" 
-                                                                 Width="Auto" RequestFimPrograma="_Simulator_RequestFimPrograma" />
+                                                                 Width="Auto" 
+                                                                 RequestFimPrograma="_Simulator_RequestFimPrograma" />
                                             </AvalonDock:LayoutDocument.Content>
                                         </AvalonDock:LayoutDocument>
                                     </AvalonDockLayout:LayoutDocumentPane.Children>

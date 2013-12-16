@@ -38,7 +38,6 @@ namespace BIPIDE_4._0
     public partial class MainWindow : RibbonWindow
     {
         private static SimulationControl    _SimulationControl;
-        private StringBuilder               _ErrorMessages;
         private ArrayList                   _LanguagesMapping;
         private ArrayList                   _ProgrammingLanguages;
         private CorbaController             _CorbaController;
@@ -403,7 +402,7 @@ namespace BIPIDE_4._0
 
             string iTextoFonte = string.Empty;
             if (pSelectedDocument.ProgrammingLanguage == "C")
-                iTextoFonte = iPreProcessor.RunPreProcessor(pSelectedDocument._TextEditorSourceCode.Text);
+                iTextoFonte = iPreProcessor.RunPreProcessor(pSelectedDocument._TextEditorSourceCode.Text, pSelectedDocument.FilePath);
             else
                 iTextoFonte = pSelectedDocument._TextEditorSourceCode.Text;
             

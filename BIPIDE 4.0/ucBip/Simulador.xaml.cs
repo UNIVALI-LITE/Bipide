@@ -139,6 +139,7 @@ namespace ucBip
         int z_ant;
         int _indr_ant;
         bool overflow;
+        bool interrupt = false;
         //ListView dados_ant;
         //ListView programa_ant;
 
@@ -263,11 +264,31 @@ namespace ucBip
             {
                 if (strVar.Replace("$", "").ToLower() == "in_port")
                 {
-                    return 1024;
+                    return 1025;
                 }
                 if (strVar.Replace("$", "").ToLower() == "out_port")
                 {
-                    return 1025;
+                    return 1027;
+                }
+                if (strVar.Replace("$", "").ToLower() == "tmr0_config")
+                {
+                    return 1040;
+                }
+                if (strVar.Replace("$", "").ToLower() == "tmr0_value")
+                {
+                    return 1041;
+                }
+                if (strVar.Replace("$", "").ToLower() == "int_config")
+                {
+                    return 1056;
+                }
+                if (strVar.Replace("$", "").ToLower() == "int_status")
+                {
+                    return 1057;
+                }
+                if (strVar.Replace("$", "").ToLower() == "mcu_config")
+                {
+                    return 1072;
                 }
                 if (strVar.Replace("$", "").ToLower() == "indr")
                 {
@@ -454,7 +475,7 @@ namespace ucBip
                     if (!isRepeat) contadorInstrucoes.CALL++;
                     this.CALL(Convert.ToInt32(intOperando));
                 }
-                else if (instrucao == "RETURN")
+                else if (instrucao == "RETURN" || instrucao == "RETINT")
                 {
                     if (!isRepeat) contadorInstrucoes.RETURN++;
                     this.RETURN();
@@ -536,6 +557,7 @@ namespace ucBip
 
             this.lblN.Content = 0;
             this.lblZ.Content = 0;
+            this.lblC.Content = 0;
             rAcumulador_In.Background = Brushes.Khaki;
             rAcumulador_out.Background = Brushes.Khaki;
             
@@ -561,6 +583,7 @@ namespace ucBip
             rPC_operand.Text = "0";
             rPC1.Text = "0";
             rRegistrador.Text = "0";
+            rInterruptAddress.Text = "0x0001";
             this.pilhaSubrotina.Clear();
             try
             {
@@ -574,6 +597,17 @@ namespace ucBip
             txtACC.Text = "0";
             txtZ.Text = "0";
             txtN.Text = "0";
+            txtC.Text = "0";
+
+            txtMCUConfig.Text = BIP.Montador.Funcoes.IntToHex(0, 4).ToUpper();
+            txtINTStatus.Text = BIP.Montador.Funcoes.IntToHex(0, 4).ToUpper();
+            txtINTConfig.Text = BIP.Montador.Funcoes.IntToHex(0, 4).ToUpper();
+            txtTMR0Value.Text = BIP.Montador.Funcoes.IntToHex(0, 4).ToUpper();
+            txtTMR0Config.Text = BIP.Montador.Funcoes.IntToHex(0, 4).ToUpper();
+            txtPorta1Data.Text = BIP.Montador.Funcoes.IntToHex(0, 4).ToUpper();
+            txtPorta1Dir.Text = BIP.Montador.Funcoes.IntToHex(0, 4).ToUpper();
+            txtPorta0Data.Text = BIP.Montador.Funcoes.IntToHex(0, 4).ToUpper();
+            txtPorta0Dir.Text = BIP.Montador.Funcoes.IntToHex(65535, 4).ToUpper();
 
             //Preenche grid Memoria de Programa
 
@@ -907,57 +941,69 @@ Para retorno do procedimento, o valor armazenado no topo da pilha é recuperado 
             
             if (this.Processor == 1)
             {
-                this.status.Visibility = Visibility.Hidden;
-                this.linhaBIP2.Visibility = Visibility.Hidden;
-                this.blocoBIP2.Visibility = Visibility.Hidden; 
-                this.linhaBIP2_2.Visibility = Visibility.Hidden;
-                this.linhaStatus1.Visibility = Visibility.Hidden;
-                this.linhaStatus2.Visibility = Visibility.Hidden;
-                this.linhaStatus3.Visibility = Visibility.Hidden;
-                this.linhaStatus4.Visibility = Visibility.Hidden;
-                this.linhaStatus5.Visibility = Visibility.Hidden;
-                this.setaStatus1.Visibility = Visibility.Hidden;
-                this.setaStatus2.Visibility = Visibility.Hidden;
-                this.setaStatus3.Visibility = Visibility.Hidden;
-                this.setaStatus4.Visibility = Visibility.Hidden;
-                this.setaStatus5.Visibility = Visibility.Hidden;
-                this.lblZ.Visibility = Visibility.Hidden;
-                this.lblN.Visibility = Visibility.Hidden;
-                this.ES_grid.Visibility = Visibility.Hidden;
+                this.status.Visibility          = Visibility.Hidden;
+                this.linhaBIP2.Visibility       = Visibility.Hidden;
+                this.blocoBIP2.Visibility       = Visibility.Hidden; 
+                this.linhaBIP2_2.Visibility     = Visibility.Hidden;
+                this.linhaStatus1.Visibility    = Visibility.Hidden;
+                this.linhaStatus2.Visibility    = Visibility.Hidden;
+                this.linhaStatus3.Visibility    = Visibility.Hidden;
+                this.linhaStatus4.Visibility    = Visibility.Hidden;
+                this.linhaStatus5.Visibility    = Visibility.Hidden;
+                this.linhaStatus6.Visibility    = Visibility.Hidden;
+                this.linhaStatus7.Visibility    = Visibility.Hidden;
+                this.setaStatus1.Visibility     = Visibility.Hidden;
+                this.setaStatus2.Visibility     = Visibility.Hidden;
+                this.setaStatus3.Visibility     = Visibility.Hidden;
+                this.setaStatus4.Visibility     = Visibility.Hidden;
+                this.setaStatus5.Visibility     = Visibility.Hidden;
+                this.setaStatus6.Visibility     = Visibility.Hidden;
+                this.setaStatus7.Visibility     = Visibility.Hidden;
+                this.lblZ.Visibility            = Visibility.Hidden;
+                this.lblN.Visibility            = Visibility.Hidden;
+                this.ES_grid.Visibility         = Visibility.Hidden;
                 this.DescBip.Content = "BIP I";
                 DescUla.Content = "+ -";
                 DescUla.FontSize = 22;
-                this.pilha_grid.Visibility = Visibility.Hidden;
-                this.es_grid2.Visibility = Visibility.Hidden;
-                this.vetor_grid.Visibility = Visibility.Hidden;
+                this.pilha_grid.Visibility      = Visibility.Hidden;
+                this.es_grid2.Visibility        = Visibility.Hidden;
+                this.vetor_grid.Visibility      = Visibility.Hidden;
 				
-				this.OrGate.Visibility = Visibility.Hidden;
-				this.linhaInterrupcao1.Visibility = Visibility.Hidden;
-				this.linhaInterrupcao2.Visibility = Visibility.Hidden;
-				this.linhaInterrupcao3.Visibility = Visibility.Hidden;
-				this.linhaInterrupcao4.Visibility = Visibility.Hidden;
-				this.InterruptBlock.Visibility = Visibility.Hidden;
-				this.DescInterrupt.Visibility = Visibility.Hidden;
-				this.blocoSelPC.Visibility = Visibility.Hidden;
+				this.OrGate.Visibility                  = Visibility.Hidden;
+				this.linhaInterrupcao1.Visibility       = Visibility.Hidden;
+				this.linhaInterrupcao2.Visibility       = Visibility.Hidden;
+				this.linhaInterrupcao3.Visibility       = Visibility.Hidden;
+				this.linhaInterrupcao4.Visibility       = Visibility.Hidden;
+				this.InterruptBlock.Visibility          = Visibility.Hidden;
+				this.DescInterrupt.Visibility           = Visibility.Hidden;
+                this.blocoSelPC.Visibility              = Visibility.Hidden;
+                this.setaInterrupcao3.Visibility        = Visibility.Hidden;
+                this.path18.Visibility                  = Visibility.Hidden;
+                this.InterseccaoInterrupcao1.Visibility = Visibility.Hidden;
+                this.InterseccaoInterrupcao2.Visibility = Visibility.Hidden;
             }
             else if (this.Processor == 2)
             {
-                this.status.Visibility = Visibility.Visible;
-                this.linhaBIP2.Visibility = Visibility.Visible;
-                this.blocoBIP2.Visibility = Visibility.Visible;
-                this.linhaBIP2_2.Visibility = Visibility.Visible;
-                this.linhaStatus1.Visibility = Visibility.Visible;
-                this.linhaStatus2.Visibility = Visibility.Visible;
-                this.linhaStatus3.Visibility = Visibility.Visible;
-                this.linhaStatus4.Visibility = Visibility.Visible;
-                this.linhaStatus5.Visibility = Visibility.Visible;
-                this.setaStatus1.Visibility = Visibility.Visible;
-                this.setaStatus2.Visibility = Visibility.Visible;
-                this.setaStatus3.Visibility = Visibility.Visible;
-                this.setaStatus4.Visibility = Visibility.Visible;
-                this.setaStatus5.Visibility = Visibility.Visible;
-                this.lblZ.Visibility = Visibility.Visible;
-                this.lblN.Visibility = Visibility.Visible;
+                this.status.Visibility          = Visibility.Visible;
+                this.linhaBIP2.Visibility       = Visibility.Visible;
+                this.blocoBIP2.Visibility       = Visibility.Visible;
+                this.linhaBIP2_2.Visibility     = Visibility.Visible;
+                this.linhaStatus1.Visibility    = Visibility.Visible;
+                this.linhaStatus2.Visibility    = Visibility.Visible;
+                this.linhaStatus3.Visibility    = Visibility.Visible;
+                this.linhaStatus4.Visibility    = Visibility.Visible;
+                this.linhaStatus5.Visibility    = Visibility.Visible;
+                this.linhaStatus6.Visibility    = Visibility.Visible;
+                this.linhaStatus7.Visibility    = Visibility.Visible;
+                this.setaStatus1.Visibility     = Visibility.Visible;
+                this.setaStatus2.Visibility     = Visibility.Visible;
+                this.setaStatus3.Visibility     = Visibility.Visible;
+                this.setaStatus4.Visibility     = Visibility.Visible;
+                this.setaStatus5.Visibility     = Visibility.Visible;
+                this.setaStatus6.Visibility     = Visibility.Visible;
+                this.setaStatus7.Visibility     = Visibility.Visible;
+                this.lblZ.Visibility            = Visibility.Visible;
+                this.lblN.Visibility            = Visibility.Visible;
                 this.ES_grid.Visibility = Visibility.Hidden;
                 this.DescBip.Content = "BIP II";
                 DescUla.Content = "+ -";
@@ -972,27 +1018,35 @@ Para retorno do procedimento, o valor armazenado no topo da pilha é recuperado 
 				this.linhaInterrupcao4.Visibility = Visibility.Hidden;
 				this.InterruptBlock.Visibility = Visibility.Hidden;
 				this.DescInterrupt.Visibility = Visibility.Hidden;
-				this.blocoSelPC.Visibility = Visibility.Hidden;
+                this.blocoSelPC.Visibility = Visibility.Hidden;
+                this.setaInterrupcao3.Visibility = Visibility.Hidden;
+                this.path18.Visibility = Visibility.Hidden;
+                this.InterseccaoInterrupcao1.Visibility = Visibility.Hidden;
+                this.InterseccaoInterrupcao2.Visibility = Visibility.Hidden;
             }
             else if (this.Processor == 3)
             {
                 this.DescBip.Content = "BIP III";
                 DescUla.Content = "ULA";
                 DescUla.FontSize = 18;
-                this.status.Visibility = Visibility.Visible;
-                this.linhaBIP2.Visibility = Visibility.Visible;
-                this.blocoBIP2.Visibility = Visibility.Visible;
-                this.linhaBIP2_2.Visibility = Visibility.Visible;
-                this.linhaStatus1.Visibility = Visibility.Visible;
-                this.linhaStatus2.Visibility = Visibility.Visible;
-                this.linhaStatus3.Visibility = Visibility.Visible;
-                this.linhaStatus4.Visibility = Visibility.Visible;
-                this.linhaStatus5.Visibility = Visibility.Visible;
-                this.setaStatus1.Visibility = Visibility.Visible;
-                this.setaStatus2.Visibility = Visibility.Visible;
-                this.setaStatus3.Visibility = Visibility.Visible;
-                this.setaStatus4.Visibility = Visibility.Visible;
-                this.setaStatus5.Visibility = Visibility.Visible;
+                this.status.Visibility          = Visibility.Visible;
+                this.linhaBIP2.Visibility       = Visibility.Visible;
+                this.blocoBIP2.Visibility       = Visibility.Visible;
+                this.linhaBIP2_2.Visibility     = Visibility.Visible;
+                this.linhaStatus1.Visibility    = Visibility.Visible;
+                this.linhaStatus2.Visibility    = Visibility.Visible;
+                this.linhaStatus3.Visibility    = Visibility.Visible;
+                this.linhaStatus4.Visibility    = Visibility.Visible;
+                this.linhaStatus5.Visibility    = Visibility.Visible;
+                this.linhaStatus6.Visibility    = Visibility.Visible;
+                this.linhaStatus7.Visibility    = Visibility.Visible;
+                this.setaStatus1.Visibility     = Visibility.Visible;
+                this.setaStatus2.Visibility     = Visibility.Visible;
+                this.setaStatus3.Visibility     = Visibility.Visible;
+                this.setaStatus4.Visibility     = Visibility.Visible;
+                this.setaStatus5.Visibility     = Visibility.Visible;
+                this.setaStatus6.Visibility     = Visibility.Visible;
+                this.setaStatus7.Visibility     = Visibility.Visible;
                 this.lblZ.Visibility = Visibility.Visible;
                 this.lblN.Visibility = Visibility.Visible;
                 this.ES_grid.Visibility = Visibility.Hidden;
@@ -1006,24 +1060,32 @@ Para retorno do procedimento, o valor armazenado no topo da pilha é recuperado 
 				this.linhaInterrupcao4.Visibility = Visibility.Hidden;
 				this.InterruptBlock.Visibility = Visibility.Hidden;
 				this.DescInterrupt.Visibility = Visibility.Hidden;
-				this.blocoSelPC.Visibility = Visibility.Hidden;
+                this.blocoSelPC.Visibility = Visibility.Hidden;
+                this.setaInterrupcao3.Visibility = Visibility.Hidden;
+                this.path18.Visibility = Visibility.Hidden;
+                this.InterseccaoInterrupcao1.Visibility = Visibility.Hidden;
+                this.InterseccaoInterrupcao2.Visibility = Visibility.Hidden;
             }
             else if (this.Processor == 4)
             {
-                this.status.Visibility = Visibility.Visible;
-                this.linhaBIP2.Visibility = Visibility.Visible;
-                this.blocoBIP2.Visibility = Visibility.Visible;
-                this.linhaBIP2_2.Visibility = Visibility.Visible;
-                this.linhaStatus1.Visibility = Visibility.Visible;
-                this.linhaStatus2.Visibility = Visibility.Visible;
-                this.linhaStatus3.Visibility = Visibility.Visible;
-                this.linhaStatus4.Visibility = Visibility.Visible;
-                this.linhaStatus5.Visibility = Visibility.Visible;
-                this.setaStatus1.Visibility = Visibility.Visible;
-                this.setaStatus2.Visibility = Visibility.Visible;
-                this.setaStatus3.Visibility = Visibility.Visible;
-                this.setaStatus4.Visibility = Visibility.Visible;
-                this.setaStatus5.Visibility = Visibility.Visible;
+                this.status.Visibility          = Visibility.Visible;
+                this.linhaBIP2.Visibility       = Visibility.Visible;
+                this.blocoBIP2.Visibility       = Visibility.Visible;
+                this.linhaBIP2_2.Visibility     = Visibility.Visible;
+                this.linhaStatus1.Visibility    = Visibility.Visible;
+                this.linhaStatus2.Visibility    = Visibility.Visible;
+                this.linhaStatus3.Visibility    = Visibility.Visible;
+                this.linhaStatus4.Visibility    = Visibility.Visible;
+                this.linhaStatus5.Visibility    = Visibility.Visible;
+                this.linhaStatus6.Visibility    = Visibility.Visible;
+                this.linhaStatus7.Visibility    = Visibility.Visible;
+                this.setaStatus1.Visibility     = Visibility.Visible;
+                this.setaStatus2.Visibility     = Visibility.Visible;
+                this.setaStatus3.Visibility     = Visibility.Visible;
+                this.setaStatus4.Visibility     = Visibility.Visible;
+                this.setaStatus5.Visibility     = Visibility.Visible;
+                this.setaStatus6.Visibility     = Visibility.Visible;
+                this.setaStatus7.Visibility     = Visibility.Visible;
                 this.lblZ.Visibility = Visibility.Visible;
                 this.lblN.Visibility = Visibility.Visible;
                 this.ES_grid.Visibility = Visibility.Visible;
@@ -1040,28 +1102,33 @@ Para retorno do procedimento, o valor armazenado no topo da pilha é recuperado 
 				this.linhaInterrupcao4.Visibility = Visibility.Hidden;
 				this.InterruptBlock.Visibility = Visibility.Hidden;
 				this.DescInterrupt.Visibility = Visibility.Hidden;
-				this.blocoSelPC.Visibility = Visibility.Hidden;
+                this.blocoSelPC.Visibility = Visibility.Hidden;
+                this.setaInterrupcao3.Visibility = Visibility.Hidden;
+                this.path18.Visibility = Visibility.Hidden;
+                this.InterseccaoInterrupcao1.Visibility = Visibility.Hidden;
+                this.InterseccaoInterrupcao2.Visibility = Visibility.Hidden;
 
             } 
 			else if (this.Processor == 5)
 			{
-				this.status.Visibility = Visibility.Visible;
-                this.linhaBIP2.Visibility = Visibility.Visible;
-                this.blocoBIP2.Visibility = Visibility.Visible;
-                this.linhaBIP2_2.Visibility = Visibility.Visible;
-                this.linhaStatus1.Visibility = Visibility.Visible;
-                this.linhaStatus2.Visibility = Visibility.Visible;
-                this.linhaStatus3.Visibility = Visibility.Visible;
-                this.linhaStatus4.Visibility = Visibility.Visible;
-                this.linhaStatus5.Visibility = Visibility.Visible;
-                this.setaStatus1.Visibility = Visibility.Visible;
-                this.setaStatus2.Visibility = Visibility.Visible;
-                this.setaStatus3.Visibility = Visibility.Visible;
-                this.setaStatus4.Visibility = Visibility.Visible;
-                this.setaStatus5.Visibility = Visibility.Visible;
-                this.lblZ.Visibility = Visibility.Visible;
-                this.lblN.Visibility = Visibility.Visible;
-                this.ES_grid.Visibility = Visibility.Visible;
+				this.status.Visibility          = Visibility.Visible;
+                this.linhaBIP2.Visibility       = Visibility.Visible;
+                this.blocoBIP2.Visibility       = Visibility.Visible;
+                this.linhaBIP2_2.Visibility     = Visibility.Visible;
+                this.linhaStatus1.Visibility    = Visibility.Visible;
+                this.linhaStatus2.Visibility    = Visibility.Visible;
+                this.linhaStatus3.Visibility    = Visibility.Visible;
+                this.linhaStatus4.Visibility    = Visibility.Visible;
+                this.linhaStatus5.Visibility    = Visibility.Visible;
+                this.linhaStatus6.Visibility    = Visibility.Visible;
+                this.linhaStatus7.Visibility    = Visibility.Visible;
+                this.setaStatus1.Visibility     = Visibility.Visible;
+                this.setaStatus2.Visibility     = Visibility.Visible;
+                this.setaStatus3.Visibility     = Visibility.Visible;
+                this.setaStatus4.Visibility     = Visibility.Visible;
+                this.setaStatus5.Visibility     = Visibility.Visible;
+                this.setaStatus6.Visibility     = Visibility.Visible;
+                this.setaStatus7.Visibility     = Visibility.Visible;
                 this.DescBip.Content = "µBIP";
                 DescUla.Content = "ULA";
                 DescUla.FontSize = 18;
@@ -1075,7 +1142,11 @@ Para retorno do procedimento, o valor armazenado no topo da pilha é recuperado 
 				this.linhaInterrupcao4.Visibility = Visibility.Visible;
 				this.InterruptBlock.Visibility = Visibility.Visible;
 				this.DescInterrupt.Visibility = Visibility.Visible;
-				this.blocoSelPC.Visibility = Visibility.Visible;
+                this.blocoSelPC.Visibility = Visibility.Visible;
+                this.setaInterrupcao3.Visibility = Visibility.Visible;
+                this.path18.Visibility = Visibility.Visible;
+                this.InterseccaoInterrupcao1.Visibility = Visibility.Visible;
+                this.InterseccaoInterrupcao2.Visibility = Visibility.Visible;
 			}
         }
         #endregion
@@ -1295,6 +1366,7 @@ Para retorno do procedimento, o valor armazenado no topo da pilha é recuperado 
                 this.status_N = 1;
             else
                 this.status_N = 0;
+                
             this.lblN.Content = this.status_N.ToString();
         }
         #endregion
@@ -1976,7 +2048,7 @@ Para retorno do procedimento, o valor armazenado no topo da pilha é recuperado 
         public void LD(int position)
         {
             string resource = "LD";
-            if (position == 1024 && !this.entradaOK && this.breakpoint)
+            if (position == 1025 && !this.entradaOK && this.breakpoint)
             {
                 this.DestacaGridPrograma(this._PC.ToString());
                 this.SetEndereco(this._PC);
@@ -1998,7 +2070,7 @@ Para retorno do procedimento, o valor armazenado no topo da pilha é recuperado 
             this.setEntrada();
             this.entradaOK = false;
             this.instrucaoAtual = Instrucao.LD.ToString();
-            if (position == 1024)
+            if (position == 1025)
                 resource = "LD_INPORT";
             this.rImediato.Text = "imediato";
             this.rInstrucao.Text = "LD "+ position;
@@ -2117,7 +2189,7 @@ Para retorno do procedimento, o valor armazenado no topo da pilha é recuperado 
         public void STO(int position)
         {
             string resource = "STO";
-            if (position == 1025)
+            if (position == 1027)
                 resource = "STO_OUTPORT";
             if (position == 1073)
                 resource = "STO_INDR";
@@ -2177,13 +2249,16 @@ Para retorno do procedimento, o valor armazenado no topo da pilha é recuperado 
                 //armazena no registrador
                 switch (position)
                 {
-                    case 1025:
-                    this._outport = this.ACC;
-                    break;
+                    case 1027:
+                        this._outport = this.ACC;
+                        break;
                     case 1073:
-                    this._indr = this.ACC;
-                    this.rINDR.Text = "+"+this._indr.ToString();
-                    break;
+                        this._indr = this.ACC;
+                        this.rINDR.Text = "+"+this._indr.ToString();
+                        break;
+                    case 1056:
+                        this.txtINTConfig.Text = BIP.Montador.Funcoes.IntToHex(this.ACC, 4);
+                        break;
                 }
             }
             //-----------------------------------------------
@@ -2635,7 +2710,16 @@ Para retorno do procedimento, o valor armazenado no topo da pilha é recuperado 
             ////this.ACC = Convert.ToInt32(this.rRegistrador.Text);
             ////this.rAcumulador_out.Text = this.ACC.ToString();
 
-            Storyboard sbAnimaPC = (Storyboard)FindResource("CALL");
+            Storyboard sbAnimaPC;
+            if (interrupt)
+            {
+                interrupt = false;
+                sbAnimaPC = (Storyboard)FindResource("INTERRUPT");
+            }
+            else
+            {
+                sbAnimaPC = (Storyboard)FindResource("CALL");
+            }
 
             sbAnimaPC.Completed -= new EventHandler(sbAnimaCALL_Completed);
             sbAnimaPC.Completed += new EventHandler(sbAnimaCALL_Completed);
@@ -2784,6 +2868,7 @@ Para retorno do procedimento, o valor armazenado no topo da pilha é recuperado 
         {
             this._inportBits[x - 1] = !this._inportBits[x - 1];
             this.botoesEntrada();
+
             //seta o valor do campo
             string bin = "";
             for (int i = 0; i < 16; i++)
@@ -2797,7 +2882,18 @@ Para retorno do procedimento, o valor armazenado no topo da pilha é recuperado 
                     bin += "0";
                 }
             }
+
             this.in_port.Text = BIP.Montador.Funcoes.BinToInt(bin, false).ToString();
+            this.txtPorta0Data.Text = BIP.Montador.Funcoes.IntToHex(Convert.ToInt32(this.in_port.Text), 4).ToUpper();
+
+            if (Convert.ToInt32(txtPorta0Data.Text) > 0 && Convert.ToInt32(txtINTStatus.Text) == 0)
+            {
+                txtINTStatus.Text = "0002";
+            }
+            else
+            {
+                txtINTStatus.Text = "0000";
+            }
         }
 
         void setEntrada()
@@ -2857,12 +2953,14 @@ Para retorno do procedimento, o valor armazenado no topo da pilha é recuperado 
             {
                 //registradores
                 switch (position){
-                    case 1024:
+                    case 1025:
                         if (this.in_port.Text == "")
                             this.in_port.Text = "0";
                         return Convert.ToInt32(this.in_port.Text);
-                    case 1025:
+                    case 1027:
                         return Convert.ToInt32(this.out_port.Text);
+                    case 1056:
+                        return BIP.Montador.Funcoes.HexToInt(this.txtINTConfig.Text);
                     case 1073:
                         return 0;
                 }
@@ -3024,12 +3122,22 @@ Para retorno do procedimento, o valor armazenado no topo da pilha é recuperado 
             this.ArrayLinha.Add(new String[] { posicao, value });
         }
 
+        private bool HouveInterrupcao()
+        {
+            if (this.txtINTStatus.Text == "0002" && this.txtINTConfig.Text == "0005")
+                return true;
+            else
+                return false;
+        }
+
         //==========================================================
         /// <summary>
         /// Busca proxima instrução a ser executada na Memória de Programa
         /// </summary>
         public void getNovaInstrucao()
         {
+
+
             if (overflow)
             {
                 overflow = false;
@@ -3052,6 +3160,13 @@ Para retorno do procedimento, o valor armazenado no topo da pilha é recuperado 
                 _indr_ant = _indr;
                 //dados_ant = gridMemoDados;
                 //programa_ant = gridMemoPrograma;
+
+                if (HouveInterrupcao())
+                {
+                    txtINTStatus.Text = "0000";
+                    interrupt = true;
+                    this.verificaInstrucao("CALL", "_INTERRUPT");
+                }
 
                 this.LimpaCorGridDados();
                 try

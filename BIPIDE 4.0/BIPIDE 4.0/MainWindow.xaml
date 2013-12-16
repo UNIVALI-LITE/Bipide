@@ -22,16 +22,45 @@
                 <ResourceDictionary Source="LanguageResources\Component\Portuguese.xaml"/>
                 <ResourceDictionary Source="LanguageResources\Tips\Portuguese.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <RoutedUICommand x:Key="NewFile"></RoutedUICommand>
+            <RoutedUICommand x:Key="OpenFile"></RoutedUICommand>
+            <RoutedUICommand x:Key="SaveFile"></RoutedUICommand>
+            <RoutedUICommand x:Key="SaveFileAs"></RoutedUICommand>
+            <RoutedUICommand x:Key="PrintFile"></RoutedUICommand>
+            <RoutedUICommand x:Key="ExportFile"></RoutedUICommand>
+            <RoutedUICommand x:Key="CompileFile"></RoutedUICommand>
+            
+            <RoutedUICommand x:Key="HelpBipide"></RoutedUICommand>
             <RoutedUICommand x:Key="HelpTheory"></RoutedUICommand>
         </ResourceDictionary>
     </Window.Resources>
 
     <Window.CommandBindings>
+        <CommandBinding Command="{StaticResource NewFile}" Executed="_MenuItemNew_Click"></CommandBinding>
+        <CommandBinding Command="{StaticResource OpenFile}" Executed="_ButtonOpen_Click"></CommandBinding>
+        <CommandBinding Command="{StaticResource SaveFile}" Executed="_ButtonSave_Click"></CommandBinding>
+        <CommandBinding Command="{StaticResource SaveFileAs}" Executed="_ButtonSaveAs_Click"></CommandBinding>
+        <CommandBinding Command="{StaticResource PrintFile}" Executed="_ButtonPrint_Click"></CommandBinding>
+        <CommandBinding Command="{StaticResource ExportFile}" Executed="_ButtonSystem_Click"></CommandBinding>
+        <CommandBinding Command="{StaticResource CompileFile}" Executed="_ButtonBuild_Click"></CommandBinding>
+        
+        <CommandBinding Command="{StaticResource HelpBipide}" Executed="_ButtonSystem_Click"></CommandBinding>
         <CommandBinding Command="{StaticResource HelpTheory}" Executed="_ButtonFundamentals_Click"></CommandBinding>
     </Window.CommandBindings>
 
     <Window.InputBindings>
-        <KeyBinding  Key="F1" Command="{StaticResource HelpTheory}"></KeyBinding>
+        <KeyBinding Modifiers="Control" Key="N" Command="{StaticResource NewFile}"></KeyBinding>
+        <KeyBinding Modifiers="Control" Key="O" Command="{StaticResource OpenFile}"></KeyBinding>
+        <KeyBinding Modifiers="Control" Key="S" Command="{StaticResource SaveFile}"></KeyBinding>
+        <KeyBinding Modifiers="Control+Shift" Key="S" Command="{StaticResource SaveFileAs}"></KeyBinding>
+        <KeyBinding Modifiers="Control" Key="P" Command="{StaticResource PrintFile}"></KeyBinding>
+        <KeyBinding Modifiers="Control" Key="E" Command="{StaticResource ExportFile}"></KeyBinding>
+        <KeyBinding Modifiers="Control" Key="B" Command="{StaticResource CompileFile}"></KeyBinding>
+        <!--<KeyBinding Modifiers="Control" Key="Z" Command="{StaticResource }"></KeyBinding>
+        <KeyBinding Modifiers="Control" Key="Y" Command="{StaticResource }"></KeyBinding>-->
+
+        <KeyBinding Key="F1" Command="{StaticResource HelpBipide}"></KeyBinding>
+        <KeyBinding Modifiers="Control" Key="F1" Command="{StaticResource HelpTheory}"></KeyBinding>
     </Window.InputBindings>
 
     <Grid>

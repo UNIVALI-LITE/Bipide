@@ -3,9 +3,10 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:ucBip="clr-namespace:ucBip" xmlns:ec="http://schemas.microsoft.com/expression/2010/controls"
 	mc:Ignorable="d"
 	x:Class="ucBip.Simulador"
-	x:Name="BipI" xmlns:ucBip="clr-namespace:ucBip" Visibility="Visible" Focusable="False" Foreground="{x:Null}" Margin="0,0,0,0" Loaded="BipI_Loaded" Height="507.205" Width="1284.255" Background="#FFE0E8EB">
+	x:Name="BipI" Visibility="Visible" Focusable="False" Foreground="{x:Null}" Margin="0,0,0,0" Loaded="BipI_Loaded" Height="507.205" Width="1284.255" Background="#FFE0E8EB">
 	<UserControl.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
@@ -306,10 +307,17 @@
 					<SplineColorKeyFrame KeyTime="0:0:9" Value="#FFA70000"/>
 					<SplineColorKeyFrame KeyTime="0:0:9.1" Value="Black"/>
 				</ColorAnimationUsingKeyFrames>
-				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="es_in3">
-					<SplineColorKeyFrame KeyTime="0:0:0.1" Value="#FFA70000"/>
-					<SplineColorKeyFrame KeyTime="0:0:9" Value="#FFA70000"/>
-					<SplineColorKeyFrame KeyTime="0:0:9.1" Value="Black"/>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="linhaStatus6">
+					<EasingColorKeyFrame KeyTime="0:0:9.1" Value="#FF606060"/>
+					<EasingColorKeyFrame KeyTime="0:0:9.8" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:16.2" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:16.3" Value="#FF606060"/>
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="setaStatus6">
+					<EasingColorKeyFrame KeyTime="0:0:9.1" Value="#FF606060"/>
+					<EasingColorKeyFrame KeyTime="0:0:9.8" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:16.2" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:16.3" Value="#FF606060"/>
 				</ColorAnimationUsingKeyFrames>
 			</Storyboard>
 			<Storyboard x:Key="SUB_ADD">
@@ -343,14 +351,14 @@
 						<PathGeometry Figures="M-1.1117674,-24.422314 L130.99744,-25.60186 131.662,51.757"/>
 					</DoubleAnimationUsingPath.PathGeometry>
 				</DoubleAnimationUsingPath>
-				<DoubleAnimationUsingPath BeginTime="00:00:06.1000000" Duration="00:00:06.9000000" Storyboard.TargetName="rRegistrador" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+				<DoubleAnimationUsingPath BeginTime="00:00:06.1000000" Duration="00:00:06.9000000" Storyboard.TargetName="rRegistrador" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Source="X">
 					<DoubleAnimationUsingPath.PathGeometry>
-						<PathGeometry Figures="M-4.3301174,-2.7528372 L-5.5096639,-80.602907 6.2858012,-99.475651 5.1062547,-209.17348 -13.766489,-210.35302 -13.766489,-167.88935 -24.382408,-149.0166 -25.582036,-133.7915 -45.082036,-133.2915 -44.434699,-113.63021 -79.582036,-93.2915"/>
+						<PathGeometry Figures="M37.559131,1.3751667 L36.892464,-73.958167 7.5856741,-74.822961 6.892464,-212.62483 -14.440869,-212.62483 -13.766489,-167.88935 -25.774203,-151.2915 -26.440869,-134.62483 -45.107536,-135.2915 -45.107536,-113.95817 -79.582036,-93.2915"/>
 					</DoubleAnimationUsingPath.PathGeometry>
 				</DoubleAnimationUsingPath>
 				<DoubleAnimationUsingPath BeginTime="00:00:06.1000000" Duration="00:00:06.9000000" Storyboard.TargetName="rRegistrador" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Source="Y">
 					<DoubleAnimationUsingPath.PathGeometry>
-						<PathGeometry Figures="M-4.3301174,-2.7528372 L-5.5096639,-80.602907 6.2858012,-99.475651 5.1062547,-209.17348 -13.766489,-210.35302 -13.766489,-167.88935 -24.382408,-149.0166 -25.582036,-133.7915 -45.082036,-133.2915 -44.434699,-113.63021 -79.582036,-93.2915"/>
+						<PathGeometry Figures="M37.559131,1.3751667 L36.892464,-73.958167 7.5856741,-74.822961 6.892464,-212.62483 -14.440869,-212.62483 -13.766489,-167.88935 -25.774203,-151.2915 -26.440869,-134.62483 -45.107536,-135.2915 -45.107536,-113.95817 -79.582036,-93.2915"/>
 					</DoubleAnimationUsingPath.PathGeometry>
 				</DoubleAnimationUsingPath>
 				<DoubleAnimationUsingPath BeginTime="00:00:06.1000000" Duration="00:00:13.4000000" Storyboard.TargetName="rAcumulador_out" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Source="X">
@@ -517,23 +525,34 @@
 					<SplineColorKeyFrame KeyTime="0:0:13" Value="#FFA70000"/>
 					<SplineColorKeyFrame KeyTime="0:0:13.1" Value="Black"/>
 				</ColorAnimationUsingKeyFrames>
-				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="es_in3">
-					<SplineColorKeyFrame KeyTime="0" Value="Black"/>
-					<SplineColorKeyFrame KeyTime="0:0:5.9" Value="Black"/>
-					<SplineColorKeyFrame KeyTime="0:0:6" Value="#FFA70000"/>
-					<SplineColorKeyFrame KeyTime="0:0:13" Value="#FFA70000"/>
-					<SplineColorKeyFrame KeyTime="0:0:13.1" Value="Black"/>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="linhaStatus6">
+					<EasingColorKeyFrame KeyTime="0:0:12.9" Value="sc#1, 0.116970666, 0.116970666, 0.116970666"/>
+					<EasingColorKeyFrame KeyTime="0:0:13.1" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:18.8" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:19" Value="sc#1, 0.116970666, 0.116970666, 0.116970666"/>
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="setaStatus6">
+					<EasingColorKeyFrame KeyTime="0:0:12.9" Value="sc#1, 0.116970666, 0.116970666, 0.116970666"/>
+					<EasingColorKeyFrame KeyTime="0:0:13.1" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:18.8" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:19" Value="sc#1, 0.116970666, 0.116970666, 0.116970666"/>
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="path4_1">
+					<EasingColorKeyFrame KeyTime="0:0:5.9" Value="Black"/>
+					<EasingColorKeyFrame KeyTime="0:0:6" Value="#FFA70000"/>
+					<EasingColorKeyFrame KeyTime="0:0:13" Value="sc#1, 0.386429429, 0, 0"/>
+					<EasingColorKeyFrame KeyTime="0:0:13.1" Value="Black"/>
 				</ColorAnimationUsingKeyFrames>
 			</Storyboard>
 			<Storyboard x:Key="LD">
 				<DoubleAnimationUsingPath BeginTime="00:00:05.1000000" Duration="00:00:04.9000000" Storyboard.TargetName="rRegistrador" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Source="X">
 					<DoubleAnimationUsingPath.PathGeometry>
-						<PathGeometry Figures="M-5.5096639,-2.7528372 L-5.5096639,-80.602907 6.2858012,-101.83474 6.2858012,-209.17348 -96.334745,-207.99393 -97.514292,-192.65983 -110.4893,-184.403 -110.4893,-153.73479"/>
+						<PathGeometry Figures="M37.559131,0.041833333 L37.559131,-73.958167 7.5591307,-75.2915 6.2257973,-211.2915 -97.107536,-211.95817 -97.514292,-192.65983 -110.4893,-184.403 -110.4893,-153.73479"/>
 					</DoubleAnimationUsingPath.PathGeometry>
 				</DoubleAnimationUsingPath>
 				<DoubleAnimationUsingPath BeginTime="00:00:05.1000000" Duration="00:00:04.9000000" Storyboard.TargetName="rRegistrador" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Source="Y">
 					<DoubleAnimationUsingPath.PathGeometry>
-						<PathGeometry Figures="M-5.5096639,-2.7528372 L-5.5096639,-80.602907 6.2858012,-101.83474 6.2858012,-209.17348 -96.334745,-207.99393 -97.514292,-192.65983 -110.4893,-184.403 -110.4893,-153.73479"/>
+						<PathGeometry Figures="M37.559131,0.041833333 L37.559131,-73.958167 7.5591307,-75.2915 6.2257973,-211.2915 -97.107536,-211.95817 -97.514292,-192.65983 -110.4893,-184.403 -110.4893,-153.73479"/>
 					</DoubleAnimationUsingPath.PathGeometry>
 				</DoubleAnimationUsingPath>
 				<DoubleAnimationUsingPath BeginTime="00:00:00" Duration="00:00:04.7000000" Storyboard.TargetName="rInstrucao" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Source="X">
@@ -654,6 +673,12 @@
 					<SplineColorKeyFrame KeyTime="00:00:00.1000000" Value="sc#1, 0.064803265, 0.238397568, 0.07227185"/>
 					<SplineColorKeyFrame KeyTime="00:00:04.9000000" Value="sc#1, 0.064803265, 0.238397568, 0.07227185"/>
 					<SplineColorKeyFrame KeyTime="00:00:05" Value="sc#1, 0, 0, 0"/>
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="path4_1">
+					<EasingColorKeyFrame KeyTime="0:0:4.9" Value="Black"/>
+					<EasingColorKeyFrame KeyTime="0:0:5" Value="#FFA70000"/>
+					<EasingColorKeyFrame KeyTime="0:0:9.9" Value="sc#1, 0.386429429, 0, 0"/>
+					<EasingColorKeyFrame KeyTime="0:0:10" Value="Black"/>
 				</ColorAnimationUsingKeyFrames>
 			</Storyboard>
 			<Storyboard x:Key="PC+1">
@@ -1075,9 +1100,21 @@
 					<SplineColorKeyFrame KeyTime="0:0:10.9" Value="#FF48864C"/>
 					<SplineColorKeyFrame KeyTime="0:0:11" Value="Black"/>
 				</ColorAnimationUsingKeyFrames>
-				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path14">
-					<SplineColorKeyFrame KeyTime="0:0:9.4" Value="White"/>
-					<SplineColorKeyFrame KeyTime="0:0:11" Value="Black"/>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="linhaStatus7">
+					<EasingColorKeyFrame KeyTime="0:0:0.1" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:10.9" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:11" Value="sc#1, 0.116970666, 0.116970666, 0.116970666"/>
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="setaStatus7">
+					<EasingColorKeyFrame KeyTime="0:0:0.1" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:10.9" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:11" Value="sc#1, 0.116970666, 0.116970666, 0.116970666"/>
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="linhaStatus8">
+					<EasingColorKeyFrame KeyTime="0:0:1.6" Value="#FF3B3E45"/>
+					<EasingColorKeyFrame KeyTime="0:0:1.7" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:10.9" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:11" Value="sc#1, 0.116970666, 0.116970666, 0.116970666"/>
 				</ColorAnimationUsingKeyFrames>
 			</Storyboard>
 			<LinearGradientBrush x:Key="fundo" EndPoint="0.5,1" StartPoint="0.5,0">
@@ -1236,21 +1273,16 @@
 					<SplineColorKeyFrame KeyTime="0:0:3.9" Value="#FFA70000"/>
 					<SplineColorKeyFrame KeyTime="0:0:4" Value="Black"/>
 				</ColorAnimationUsingKeyFrames>
-				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="es_in3">
-					<SplineColorKeyFrame KeyTime="0:0:0.1" Value="#FFA70000"/>
-					<SplineColorKeyFrame KeyTime="0:0:3.9" Value="#FFA70000"/>
-					<SplineColorKeyFrame KeyTime="0:0:4" Value="Black"/>
-				</ColorAnimationUsingKeyFrames>
 			</Storyboard>
 			<Storyboard x:Key="LD_INPORT">
 				<DoubleAnimationUsingPath BeginTime="00:00:05.1000000" Duration="00:00:04.9000000" Storyboard.TargetName="rRegistrador" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Source="X">
 					<DoubleAnimationUsingPath.PathGeometry>
-						<PathGeometry Figures="M44.03129,-113.63021 L44.03129,-58.191523 21.619906,-60.550616 20.440359,-80.602907 6.2858012,-101.83474 6.2858012,-209.17348 -96.334745,-207.99393 -97.514292,-192.65983 -110.4893,-184.403 -110.4893,-153.73479"/>
+						<PathGeometry Figures="M41.392464,-113.7915 L40.892464,-86.2915 32.225797,-85.958167 16.392464,-74.2915 7.392464,-75.2915 6.392464,-211.7915 -98.107536,-210.7915 -97.514292,-192.65983 -110.4893,-184.403 -110.4893,-153.73479"/>
 					</DoubleAnimationUsingPath.PathGeometry>
 				</DoubleAnimationUsingPath>
 				<DoubleAnimationUsingPath BeginTime="00:00:05.1000000" Duration="00:00:04.9000000" Storyboard.TargetName="rRegistrador" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Source="Y">
 					<DoubleAnimationUsingPath.PathGeometry>
-						<PathGeometry Figures="M44.03129,-113.63021 L44.03129,-58.191523 21.619906,-60.550616 20.440359,-80.602907 6.2858012,-101.83474 6.2858012,-209.17348 -96.334745,-207.99393 -97.514292,-192.65983 -110.4893,-184.403 -110.4893,-153.73479"/>
+						<PathGeometry Figures="M41.392464,-113.7915 L40.892464,-86.2915 32.225797,-85.958167 16.392464,-74.2915 7.392464,-75.2915 6.392464,-211.7915 -98.107536,-210.7915 -97.514292,-192.65983 -110.4893,-184.403 -110.4893,-153.73479"/>
 					</DoubleAnimationUsingPath.PathGeometry>
 				</DoubleAnimationUsingPath>
 				<DoubleAnimationUsingPath BeginTime="00:00:00" Duration="00:00:04.7000000" Storyboard.TargetName="rInstrucao" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Source="X">
@@ -1372,12 +1404,6 @@
 					<SplineColorKeyFrame KeyTime="0:0:4.9" Value="sc#1, 0.064803265, 0.238397568, 0.07227185"/>
 					<SplineColorKeyFrame KeyTime="0:0:5" Value="Black"/>
 				</ColorAnimationUsingKeyFrames>
-				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="es_acc">
-					<SplineColorKeyFrame KeyTime="0:0:4.9" Value="Black"/>
-					<SplineColorKeyFrame KeyTime="0:0:5" Value="#FFA70000"/>
-					<SplineColorKeyFrame KeyTime="0:0:9.9" Value="#FFA70000"/>
-					<SplineColorKeyFrame KeyTime="0:0:10" Value="Black"/>
-				</ColorAnimationUsingKeyFrames>
 				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="es_sel">
 					<SplineColorKeyFrame KeyTime="0:0:4.9" Value="#FF606060"/>
 					<SplineColorKeyFrame KeyTime="0:0:5" Value="Red"/>
@@ -1386,14 +1412,26 @@
 				</ColorAnimationUsingKeyFrames>
 				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="es_seta_status">
 					<SplineColorKeyFrame KeyTime="0:0:4.9" Value="White"/>
-					<SplineColorKeyFrame KeyTime="0:0:5" Value="Red"/>
-					<SplineColorKeyFrame KeyTime="0:0:9.9" Value="Red"/>
-					<SplineColorKeyFrame KeyTime="0:0:10" Value="#FF606060"/>
+					<SplineColorKeyFrame KeyTime="0:0:5" Value="White"/>
+					<SplineColorKeyFrame KeyTime="0:0:9.9" Value="White"/>
+					<SplineColorKeyFrame KeyTime="0:0:10" Value="White"/>
 				</ColorAnimationUsingKeyFrames>
 				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="ellipse_es">
 					<SplineColorKeyFrame KeyTime="0:0:0.1" Value="#FF48864C"/>
 					<SplineColorKeyFrame KeyTime="0:0:4.9" Value="#FF48864C"/>
 					<SplineColorKeyFrame KeyTime="0:0:5" Value="Black"/>
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="es_acc">
+					<EasingColorKeyFrame KeyTime="0:0:4.9" Value="Black"/>
+					<EasingColorKeyFrame KeyTime="0:0:5" Value="#FFA70000"/>
+					<EasingColorKeyFrame KeyTime="0:0:9.9" Value="sc#1, 0.386429429, 0, 0"/>
+					<EasingColorKeyFrame KeyTime="0:0:10" Value="Black"/>
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="es_seta_status">
+					<EasingColorKeyFrame KeyTime="0:0:4.9" Value="#FF3B3E45"/>
+					<EasingColorKeyFrame KeyTime="0:0:5" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:9.9" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:10" Value="#FF606060"/>
 				</ColorAnimationUsingKeyFrames>
 			</Storyboard>
 			<Storyboard x:Key="STO_INDR">
@@ -1540,12 +1578,12 @@
 			<Storyboard x:Key="LDV">
 				<DoubleAnimationUsingPath BeginTime="00:00:05.1000000" Duration="00:00:04.9000000" Storyboard.TargetName="rRegistrador" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Source="X">
 					<DoubleAnimationUsingPath.PathGeometry>
-						<PathGeometry Figures="M-5.5096639,-2.7528372 L-5.5096639,-80.602907 6.2858012,-101.83474 6.2858012,-209.17348 -96.334745,-207.99393 -97.514292,-192.65983 -110.4893,-184.403 -110.4893,-153.73479"/>
+						<PathGeometry Figures="M42.892464,2.7085 L41.559131,-64.624833 6.892464,-75.2915 5.892464,-212.2915 -97.107536,-212.2915 -97.514292,-192.65983 -110.4893,-184.403 -110.4893,-153.73479"/>
 					</DoubleAnimationUsingPath.PathGeometry>
 				</DoubleAnimationUsingPath>
 				<DoubleAnimationUsingPath BeginTime="00:00:05.1000000" Duration="00:00:04.9000000" Storyboard.TargetName="rRegistrador" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Source="Y">
 					<DoubleAnimationUsingPath.PathGeometry>
-						<PathGeometry Figures="M-5.5096639,-2.7528372 L-5.5096639,-80.602907 6.2858012,-101.83474 6.2858012,-209.17348 -96.334745,-207.99393 -97.514292,-192.65983 -110.4893,-184.403 -110.4893,-153.73479"/>
+						<PathGeometry Figures="M42.892464,2.7085 L41.559131,-64.624833 6.892464,-75.2915 5.892464,-212.2915 -97.107536,-212.2915 -97.514292,-192.65983 -110.4893,-184.403 -110.4893,-153.73479"/>
 					</DoubleAnimationUsingPath.PathGeometry>
 				</DoubleAnimationUsingPath>
 				<DoubleAnimationUsingPath BeginTime="00:00:00" Duration="00:00:04.7000000" Storyboard.TargetName="rInstrucao" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Source="X">
@@ -1673,6 +1711,12 @@
 					<DiscreteObjectKeyFrame KeyTime="0:0:5.4" Value="{x:Static Visibility.Visible}"/>
 					<DiscreteObjectKeyFrame KeyTime="0:0:5.5" Value="{x:Static Visibility.Hidden}"/>
 				</ObjectAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="path4_1">
+					<EasingColorKeyFrame KeyTime="0:0:4.9" Value="Black"/>
+					<EasingColorKeyFrame KeyTime="0:0:5" Value="#FFA70000"/>
+					<EasingColorKeyFrame KeyTime="0:0:9.9" Value="sc#1, 0.386429429, 0, 0"/>
+					<EasingColorKeyFrame KeyTime="0:0:10" Value="Black"/>
+				</ColorAnimationUsingKeyFrames>
 			</Storyboard>
 			<Storyboard x:Key="STOV">
 				<DoubleAnimationUsingPath BeginTime="00:00:00" Duration="00:00:07" Storyboard.TargetName="rAcumulador_out" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Source="X">
@@ -1947,12 +1991,12 @@
 				</DoubleAnimationUsingPath>
 				<DoubleAnimationUsingPath BeginTime="00:00:00" Duration="00:00:11.7000000" Storyboard.TargetName="rPC" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Source="X">
 					<DoubleAnimationUsingPath.PathGeometry>
-						<PathGeometry Figures="M-1.4175,0.22883333 L-0.9175,17.8955 93.8325,18.6455 92.3325,-149.3545 67.8325,-149.6045 66.5825,-128.43783 52.5825,-105.77117 z"/>
+						<PathGeometry Figures="M-1.4175,0.22883333 L-0.9175,17.8955 93.8325,18.6455 92.3325,-149.3545 67.8325,-149.6045 66.5825,-128.43783 52.5825,-105.77117 C52.5825,-105.77117 -1.4175,0.22883333 -1.4175,0.22883333 z"/>
 					</DoubleAnimationUsingPath.PathGeometry>
 				</DoubleAnimationUsingPath>
 				<DoubleAnimationUsingPath BeginTime="00:00:00" Duration="00:00:11.7000000" Storyboard.TargetName="rPC" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Source="Y">
 					<DoubleAnimationUsingPath.PathGeometry>
-						<PathGeometry Figures="M-1.4175,0.22883333 L-0.9175,17.8955 93.8325,18.6455 92.3325,-149.3545 67.8325,-149.6045 66.5825,-128.43783 52.5825,-105.77117 z"/>
+						<PathGeometry Figures="M-1.4175,0.22883333 L-0.9175,17.8955 93.8325,18.6455 92.3325,-149.3545 67.8325,-149.6045 66.5825,-128.43783 52.5825,-105.77117 C52.5825,-105.77117 -1.4175,0.22883333 -1.4175,0.22883333 z"/>
 					</DoubleAnimationUsingPath.PathGeometry>
 				</DoubleAnimationUsingPath>
 				<ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rPC" Storyboard.TargetProperty="(UIElement.Visibility)">
@@ -2053,6 +2097,22 @@
 					<DiscreteObjectKeyFrame KeyTime="0:0:9.5" Value="{x:Static Visibility.Visible}"/>
 					<DiscreteObjectKeyFrame KeyTime="0:0:10.7" Value="{x:Static Visibility.Hidden}"/>
 				</ObjectAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="linhaStatus7">
+					<EasingColorKeyFrame KeyTime="0:0:0.1" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:10.9" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:11" Value="#FF606060"/>
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="setaStatus7">
+					<EasingColorKeyFrame KeyTime="0:0:0.1" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:10.9" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:11" Value="#FF606060"/>
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="linhaStatus8">
+					<EasingColorKeyFrame KeyTime="0:0:1.6" Value="#FF3B3E45"/>
+					<EasingColorKeyFrame KeyTime="0:0:1.7" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:10.9" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:11" Value="sc#1, 0.116970666, 0.116970666, 0.116970666"/>
+				</ColorAnimationUsingKeyFrames>
 			</Storyboard>
 			<Storyboard x:Key="RETURN">
 				<DoubleAnimationUsingPath BeginTime="00:00:00" Duration="00:00:11" Storyboard.TargetName="rPC_operand" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Source="X">
@@ -2245,12 +2305,6 @@
 					<SplineColorKeyFrame KeyTime="0:0:9.3" Value="#FF48864C"/>
 					<SplineColorKeyFrame KeyTime="0:0:9.4" Value="Black"/>
 				</ColorAnimationUsingKeyFrames>
-				<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="ControlBlock">
-					<EasingDoubleKeyFrame KeyTime="0:0:11.7" Value="1.051"/>
-				</DoubleAnimationUsingKeyFrames>
-				<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="ControlBlock">
-					<EasingDoubleKeyFrame KeyTime="0:0:11.7" Value="0.834"/>
-				</DoubleAnimationUsingKeyFrames>
 				<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="DataPathBlock">
 					<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1"/>
 					<EasingDoubleKeyFrame KeyTime="0:0:11.7" Value="1.015"/>
@@ -2259,33 +2313,22 @@
 					<EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
 					<EasingDoubleKeyFrame KeyTime="0:0:11.7" Value="-2.5"/>
 				</DoubleAnimationUsingKeyFrames>
-				<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="pilha">
-					<EasingDoubleKeyFrame KeyTime="0:0:11.7" Value="1.196"/>
-				</DoubleAnimationUsingKeyFrames>
-				<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="pilha">
-					<EasingDoubleKeyFrame KeyTime="0:0:11.7" Value="-3.334"/>
-				</DoubleAnimationUsingKeyFrames>
-				<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="InterruptBlock">
-					<EasingDoubleKeyFrame KeyTime="0:0:11.7" Value="1.208"/>
-				</DoubleAnimationUsingKeyFrames>
-				<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="InterruptBlock">
-					<EasingDoubleKeyFrame KeyTime="0:0:11.7" Value="-3.333"/>
-				</DoubleAnimationUsingKeyFrames>
-				<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="InterruptBlock">
-					<EasingDoubleKeyFrame KeyTime="0:0:11.7" Value="0.89"/>
-				</DoubleAnimationUsingKeyFrames>
-				<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="InterruptBlock">
-					<EasingDoubleKeyFrame KeyTime="0:0:11.7" Value="-4.333"/>
-				</DoubleAnimationUsingKeyFrames>
-				<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="DescPilha">
-					<EasingDoubleKeyFrame KeyTime="0:0:11.7" Value="1.11"/>
-				</DoubleAnimationUsingKeyFrames>
-				<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="DescPilha">
-					<EasingDoubleKeyFrame KeyTime="0:0:11.7" Value="-3.667"/>
-				</DoubleAnimationUsingKeyFrames>
-				<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="DescPilha">
-					<EasingDoubleKeyFrame KeyTime="0:0:11.7" Value="0.5"/>
-				</DoubleAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="setaStatus7">
+					<EasingColorKeyFrame KeyTime="0:0:0.1" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:10.9" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:11" Value="sc#1, 0.116970666, 0.116970666, 0.116970666"/>
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="linhaStatus7">
+					<EasingColorKeyFrame KeyTime="0:0:0.1" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:10.9" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:11" Value="sc#1, 0.116970666, 0.116970666, 0.116970666"/>
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="linhaStatus8">
+					<EasingColorKeyFrame KeyTime="0:0:1.6" Value="#FF3B3E45"/>
+					<EasingColorKeyFrame KeyTime="0:0:1.7" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:10.9" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:11" Value="sc#1, 0.116970666, 0.116970666, 0.116970666"/>
+				</ColorAnimationUsingKeyFrames>
 			</Storyboard>
 			<Storyboard x:Key="NOT">
 				<DoubleAnimationUsingPath BeginTime="00:00:01.8000000" Duration="00:00:07.4000000" Storyboard.TargetName="rImediato" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Source="X">
@@ -2470,21 +2513,212 @@
 					<SplineColorKeyFrame KeyTime="0:0:8.9" Value="#FFA70000"/>
 					<SplineColorKeyFrame KeyTime="0:0:9" Value="Black"/>
 				</ColorAnimationUsingKeyFrames>
-				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="es_in3">
-					<SplineColorKeyFrame KeyTime="0:0:0.1" Value="#FFA70000"/>
-					<SplineColorKeyFrame KeyTime="0:0:8.9" Value="#FFA70000"/>
-					<SplineColorKeyFrame KeyTime="0:0:9" Value="Black"/>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="linhaStatus6">
+					<EasingColorKeyFrame KeyTime="0:0:9.1" Value="#FF606060"/>
+					<EasingColorKeyFrame KeyTime="0:0:9.8" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:16.2" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:16.3" Value="#FF606060"/>
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="setaStatus6">
+					<EasingColorKeyFrame KeyTime="0:0:9.1" Value="#FF606060"/>
+					<EasingColorKeyFrame KeyTime="0:0:9.8" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:16.2" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:16.3" Value="#FF606060"/>
 				</ColorAnimationUsingKeyFrames>
 			</Storyboard>
             <LinearGradientBrush x:Key="gradienteAzul" EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="WhiteSmoke" Offset="0.401" />
                 <GradientStop Color="#FFD3E3E8" Offset="0.866" />
             </LinearGradientBrush>
+			<Storyboard x:Key="INTERRUPT">
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="path18">
+					<EasingColorKeyFrame KeyTime="0:0:5.32" Value="#FF606060"/>
+					<EasingColorKeyFrame KeyTime="0:0:5.34" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:12.94" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:13" Value="#FF606060"/>
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="linhaInterrupcao3">
+					<EasingColorKeyFrame KeyTime="0:0:5.32" Value="#FF606060"/>
+					<EasingColorKeyFrame KeyTime="0:0:5.34" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:12.94" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:13" Value="#FF606060"/>
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="setaInterrupcao3">
+					<EasingColorKeyFrame KeyTime="0:0:5.32" Value="#FF606060"/>
+					<EasingColorKeyFrame KeyTime="0:0:5.34" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:12.94" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:13" Value="#FF606060"/>
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="linhaInterrupcao4">
+					<EasingColorKeyFrame KeyTime="0:0:5.32" Value="#FF606060"/>
+					<EasingColorKeyFrame KeyTime="0:0:5.34" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:12.96" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:13.02" Value="#FF606060"/>
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="linhaStatus8">
+					<EasingColorKeyFrame KeyTime="0:0:5.32" Value="#FF606060"/>
+					<EasingColorKeyFrame KeyTime="0:0:5.34" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:12.96" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:13.02" Value="#FF606060"/>
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="setaStatus5">
+					<EasingColorKeyFrame KeyTime="0:0:5.32" Value="#FF606060"/>
+					<EasingColorKeyFrame KeyTime="0:0:5.34" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:12.94" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:13" Value="#FF606060"/>
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="InterseccaoInterrupcao2">
+					<EasingColorKeyFrame KeyTime="0:0:5.32" Value="#FF606060"/>
+					<EasingColorKeyFrame KeyTime="0:0:5.34" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:12.94" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:13" Value="#FF606060"/>
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="linhaInterrupcao1">
+					<EasingColorKeyFrame KeyTime="0:0:5.32" Value="#FF606060"/>
+					<EasingColorKeyFrame KeyTime="0:0:5.34" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:12.94" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:13" Value="#FF606060"/>
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="linhaInterrupcao2">
+					<EasingColorKeyFrame KeyTime="0:0:5.32" Value="#FF606060"/>
+					<EasingColorKeyFrame KeyTime="0:0:5.34" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:12.94" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:13" Value="#FF606060"/>
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="InterseccaoInterrupcao1">
+					<EasingColorKeyFrame KeyTime="0:0:5.32" Value="#FF606060"/>
+					<EasingColorKeyFrame KeyTime="0:0:5.34" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:12.94" Value="Red"/>
+					<EasingColorKeyFrame KeyTime="0:0:13" Value="#FF606060"/>
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="path12">
+					<EasingColorKeyFrame KeyTime="0" Value="sc#1, 0.064803265, 0.238397568, 0.07227185"/>
+					<EasingColorKeyFrame KeyTime="0:0:5.3" Value="sc#1, 0.064803265, 0.238397568, 0.07227185"/>
+					<EasingColorKeyFrame KeyTime="0:0:5.34" Value="Black"/>
+					<EasingColorKeyFrame KeyTime="0:0:9.16" Value="Black"/>
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="path13">
+					<EasingColorKeyFrame KeyTime="0" Value="sc#1, 0.064803265, 0.238397568, 0.07227185"/>
+					<EasingColorKeyFrame KeyTime="0:0:5.3" Value="sc#1, 0.064803265, 0.238397568, 0.07227185"/>
+					<EasingColorKeyFrame KeyTime="0:0:5.34" Value="Black"/>
+					<EasingColorKeyFrame KeyTime="0:0:9.16" Value="Black"/>
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="ellipse2_Copy">
+					<EasingColorKeyFrame KeyTime="0" Value="sc#1, 0.064803265, 0.238397568, 0.07227185"/>
+					<EasingColorKeyFrame KeyTime="0:0:5.3" Value="sc#1, 0.064803265, 0.238397568, 0.07227185"/>
+					<EasingColorKeyFrame KeyTime="0:0:5.34" Value="Black"/>
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="pilha_in1">
+					<EasingColorKeyFrame KeyTime="0:0:5.32" Value="Black"/>
+					<EasingColorKeyFrame KeyTime="0:0:5.34" Value="sc#1, 0.064803265, 0.238397568, 0.07227185"/>
+					<EasingColorKeyFrame KeyTime="0:0:13" Value="sc#1, 0.064803265, 0.238397568, 0.07227185"/>
+					<EasingColorKeyFrame KeyTime="0:0:13.02" Value="Black"/>
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="pilha_in2">
+					<EasingColorKeyFrame KeyTime="0:0:5.34" Value="sc#1, 0.064803265, 0.238397568, 0.07227185"/>
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="pilha_in3">
+					<EasingColorKeyFrame KeyTime="0:0:5.32" Value="Black"/>
+					<EasingColorKeyFrame KeyTime="0:0:5.34" Value="sc#1, 0.064803265, 0.238397568, 0.07227185"/>
+					<EasingColorKeyFrame KeyTime="0:0:13" Value="sc#1, 0.064803265, 0.238397568, 0.07227185"/>
+					<EasingColorKeyFrame KeyTime="0:0:13.02" Value="Black"/>
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="pilha_in4">
+					<EasingColorKeyFrame KeyTime="0:0:5.32" Value="Black"/>
+					<EasingColorKeyFrame KeyTime="0:0:5.34" Value="sc#1, 0.064803265, 0.238397568, 0.07227185"/>
+					<EasingColorKeyFrame KeyTime="0:0:13" Value="sc#1, 0.064803265, 0.238397568, 0.07227185"/>
+					<EasingColorKeyFrame KeyTime="0:0:13.02" Value="Black"/>
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="pilha_in2">
+					<EasingColorKeyFrame KeyTime="0:0:5.32" Value="Black"/>
+					<EasingColorKeyFrame KeyTime="0:0:5.34" Value="sc#1, 0.064803265, 0.238397568, 0.07227185"/>
+					<EasingColorKeyFrame KeyTime="0:0:13" Value="sc#1, 0.064803265, 0.238397568, 0.07227185"/>
+					<EasingColorKeyFrame KeyTime="0:0:13.02" Value="Black"/>
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="linha10">
+					<EasingColorKeyFrame KeyTime="0" Value="sc#1, 0.064803265, 0.238397568, 0.07227185"/>
+					<EasingColorKeyFrame KeyTime="0:0:5.3" Value="sc#1, 0.064803265, 0.238397568, 0.07227185"/>
+					<EasingColorKeyFrame KeyTime="0:0:5.34" Value="Black"/>
+					<EasingColorKeyFrame KeyTime="0:0:9.16" Value="Black"/>
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="pilha_out4">
+					<EasingColorKeyFrame KeyTime="0:0:5.306" Value="Black"/>
+					<EasingColorKeyFrame KeyTime="0:0:5.34" Value="sc#1, 0.064803265, 0.238397568, 0.07227185"/>
+					<EasingColorKeyFrame KeyTime="0:0:13" Value="sc#1, 0.064803265, 0.238397568, 0.07227185"/>
+					<EasingColorKeyFrame KeyTime="0:0:13.02" Value="Black"/>
+				</ColorAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="path14">
+					<EasingColorKeyFrame KeyTime="0:0:5.3" Value="Black"/>
+					<EasingColorKeyFrame KeyTime="0:0:5.32" Value="sc#1, 0.064803265, 0.238397568, 0.07227185"/>
+					<EasingColorKeyFrame KeyTime="0:0:13" Value="sc#1, 0.064803265, 0.238397568, 0.07227185"/>
+					<EasingColorKeyFrame KeyTime="0:0:13.02" Value="Black"/>
+				</ColorAnimationUsingKeyFrames>
+				<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="path15_Copy">
+					<DiscreteObjectKeyFrame KeyTime="0:0:5.34" Value="{x:Static Visibility.Visible}"/>
+				</ObjectAnimationUsingKeyFrames>
+				<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="rInterruptAddress">
+					<DiscreteObjectKeyFrame KeyTime="0:0:5.34" Value="{x:Static Visibility.Visible}"/>
+					<DiscreteObjectKeyFrame KeyTime="0:0:13.02" Value="{x:Static Visibility.Hidden}"/>
+				</ObjectAnimationUsingKeyFrames>
+				<DoubleAnimationUsingPath Duration="0:0:5.36" Source="X" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rPC">
+					<DoubleAnimationUsingPath.PathGeometry>
+						<PathGeometry Figures="M-1.75,0.5625 L-1.6244745,18.406318 93.7495,18.3955 92.2495,-149.6045 66.7495,-149.1045 65.7495,-121.6045 44.2495,-108.1045"/>
+					</DoubleAnimationUsingPath.PathGeometry>
+				</DoubleAnimationUsingPath>
+				<DoubleAnimationUsingPath Duration="0:0:5.36" Source="Y" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="rPC">
+					<DoubleAnimationUsingPath.PathGeometry>
+						<PathGeometry Figures="M-1.75,0.5625 L-1.6244745,18.406318 93.7495,18.3955 92.2495,-149.6045 66.7495,-149.1045 65.7495,-121.6045 44.2495,-108.1045"/>
+					</DoubleAnimationUsingPath.PathGeometry>
+				</DoubleAnimationUsingPath>
+				<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="rPC">
+					<DiscreteObjectKeyFrame KeyTime="0:0:5.331" Value="{x:Static Visibility.Hidden}"/>
+				</ObjectAnimationUsingKeyFrames>
+				<DoubleAnimationUsingPath BeginTime="0:0:5.34" Duration="0:0:7.66" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rInterruptAddress" Source="X">
+					<DoubleAnimationUsingPath.PathGeometry>
+						<PathGeometry Figures="M0.037,1.0605 C0.18261932,1.0605 0.037,18.3105 0.287,18.3105 0.287,18.3105 16.037,22.3105 15.787,22.3105 15.787,22.3105 15.787,81.3105 15.787,81.3105"/>
+					</DoubleAnimationUsingPath.PathGeometry>
+				</DoubleAnimationUsingPath>
+				<DoubleAnimationUsingPath BeginTime="0:0:5.34" Duration="0:0:7.66" Source="Y" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="rInterruptAddress">
+					<DoubleAnimationUsingPath.PathGeometry>
+						<PathGeometry Figures="M0.037,1.0605 C0.18261932,1.0605 0.037,18.3105 0.287,18.3105 0.287,18.3105 16.037,22.3105 15.787,22.3105 15.787,22.3105 15.787,81.3105 15.787,81.3105"/>
+					</DoubleAnimationUsingPath.PathGeometry>
+				</DoubleAnimationUsingPath>
+				<DoubleAnimationUsingPath BeginTime="0:0:5.32" Duration="0:0:7.66" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rPC_in">
+					<DoubleAnimationUsingPath.PathGeometry>
+						<PathGeometry Figures="M-1.2115,-0.469 C-1.2115,-0.52668634 -0.9615,21.781 -0.9615,21.781 -0.9615,21.781 -64.4615,21.531 -64.4615,21.281 -64.4615,21.281 -66.158714,-85.692607 -65.7115,-85.469 -65.2115,-85.219 -92.4615,-86.469 -92.7115,-86.469 -93.2115,-86.469 -109.7115,-74.219 -109.7115,-74.219"/>
+					</DoubleAnimationUsingPath.PathGeometry>
+				</DoubleAnimationUsingPath>
+				<DoubleAnimationUsingPath BeginTime="0:0:5.32" Duration="0:0:7.66" Source="Y" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="rPC_in">
+					<DoubleAnimationUsingPath.PathGeometry>
+						<PathGeometry Figures="M-1.2115,-0.469 C-1.2115,-0.52668634 -0.9615,21.781 -0.9615,21.781 -0.9615,21.781 -64.4615,21.531 -64.4615,21.281 -64.4615,21.281 -66.158714,-85.692607 -65.7115,-85.469 -65.2115,-85.219 -92.4615,-86.469 -92.7115,-86.469 -93.2115,-86.469 -109.7115,-74.219 -109.7115,-74.219"/>
+					</DoubleAnimationUsingPath.PathGeometry>
+				</DoubleAnimationUsingPath>
+				<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="rPC_in">
+					<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}"/>
+					<DiscreteObjectKeyFrame KeyTime="0:0:5.331" Value="{x:Static Visibility.Visible}"/>
+					<DiscreteObjectKeyFrame KeyTime="0:0:13.02" Value="{x:Static Visibility.Hidden}"/>
+				</ObjectAnimationUsingKeyFrames>
+				<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="path15_Copy">
+					<EasingColorKeyFrame KeyTime="0:0:5.34" Value="#FF48864C"/>
+					<EasingColorKeyFrame KeyTime="0:0:13" Value="sc#1, 0.064803265, 0.238397568, 0.07227185"/>
+					<EasingColorKeyFrame KeyTime="0:0:13.02" Value="Black"/>
+				</ColorAnimationUsingKeyFrames>
+				<DoubleAnimationUsingPath Duration="0:0:5.36" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="rPC1">
+					<DoubleAnimationUsingPath.PathGeometry>
+						<PathGeometry Figures="M-1.9613333,1.3938333 L22.872,34.0605"/>
+					</DoubleAnimationUsingPath.PathGeometry>
+				</DoubleAnimationUsingPath>
+				<DoubleAnimationUsingPath Duration="0:0:5.36" Source="Y" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="rPC1">
+					<DoubleAnimationUsingPath.PathGeometry>
+						<PathGeometry Figures="M-1.9613333,1.3938333 L22.872,34.0605"/>
+					</DoubleAnimationUsingPath.PathGeometry>
+				</DoubleAnimationUsingPath>
+				<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="rPC1">
+					<DiscreteObjectKeyFrame KeyTime="0:0:5.331" Value="{x:Static Visibility.Hidden}"/>
+				</ObjectAnimationUsingKeyFrames>
+			</Storyboard>
         </ResourceDictionary>
 	</UserControl.Resources>
-	<UserControl.Triggers>
-		<EventTrigger RoutedEvent="FrameworkElement.Loaded"/>
-    </UserControl.Triggers>
 
 	<Viewbox Width="Auto" Height="Auto" Stretch="Uniform" x:Name="vBox" MaxWidth="Infinity" MaxHeight="Infinity" MinHeight="200">
 
@@ -2512,7 +2746,7 @@
 					</LinearGradientBrush>
 				</Rectangle.Stroke>
 			</Rectangle>
-			<Rectangle Margin="86,49.08,0,207.71" Fill="#FFFFFFFF" Stroke="#FF000000" x:Name="ControlBlock" RadiusY="12.357" RadiusX="12.357" HorizontalAlignment="Left" Width="320" RenderTransformOrigin="0.5,0.5" >
+			<Rectangle Margin="84.997,49.08,0,207.71" Fill="#FFFFFFFF" Stroke="#FF000000" x:Name="ControlBlock" RadiusY="12.357" RadiusX="12.357" HorizontalAlignment="Left" Width="320" RenderTransformOrigin="0.5,0.5" >
 				<Rectangle.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
@@ -2546,12 +2780,12 @@
 			<Path Margin="180.972,159.307,0,0" Fill="{x:Null}" Stretch="Fill" Stroke="#FF606060" StrokeThickness="2" Data="M600.6652,211.2687 L585.79401,211.2687" HorizontalAlignment="Left" VerticalAlignment="Top" Width="14.687" Height="2"/>
 			<Label FontSize="9" Foreground="#FF606060" Margin="163.615,145.524,0,0" Content="op" HorizontalAlignment="Left" VerticalAlignment="Top" Width="20.753" Height="21.415"/>
 			<Rectangle Margin="284.873,126.667,0,0" x:Name="Decoder" Stroke="#FF000000" d:LayoutOverrides="HorizontalAlignment" Fill="{DynamicResource BlueGradiente}" ToolTip="Decodificador" RadiusY="0" RadiusX="0" HorizontalAlignment="Left" Width="97.127" Height="118.171" VerticalAlignment="Top" />
-			<Path HorizontalAlignment="Left" Margin="171.206,207.254,0,235.038" Width="3.166" Fill="#FFFFFFFF" Stretch="None" Stroke="#FF000000" StrokeThickness="3" Data="M1.5000001,63.412667 C1.5000001,63.412667 1.6660233,1.5 1.6660233,1.5" x:Name="path14"/>
+			<Path HorizontalAlignment="Left" Margin="171.206,207.254,0,235.038" Width="3.166" Stretch="None" Stroke="#FF000000" StrokeThickness="3" Data="M1.5000001,63.412667 C1.5000001,63.412667 1.6660233,1.5 1.6660233,1.5" x:Name="path14"/>
 			<Path HorizontalAlignment="Left" Margin="170.586,172.75,0,0" Width="50.182" Fill="#FFFFFFFF" Stretch="None" Stroke="#FF000000" StrokeThickness="3" Data="M48.5365,1.5 C48.5365,1.5 48.473979,26.423164 48.473979,26.423164 C28.666889,26.29859 18.799841,26.59336 18.799841,26.59336 C18.799594,34.725612 18.406659,34.850186 18.406659,34.850186 L1.5,34.850302" x:Name="path15" Height="39.077" VerticalAlignment="Top"/>
-			<Label Opacity="0.2" FontFamily="./Fonts\#Segoe UI" FontSize="14" FontWeight="Bold" Foreground="#FF335EAE" HorizontalContentAlignment="Center" Margin="276.501,121.667,0,0" Content="Decodificador" HorizontalAlignment="Left" Width="113" x:Name="DescDecoder" Height="29.474" VerticalAlignment="Top" />
+			<Label Opacity="0.2" FontFamily="/ucBipI;component/Fonts/#Segoe UI" FontSize="14" FontWeight="Bold" Foreground="#FF335EAE" HorizontalContentAlignment="Center" Margin="276.501,121.667,0,0" Content="Decodificador" HorizontalAlignment="Left" Width="113" x:Name="DescDecoder" Height="29.474" VerticalAlignment="Top" />
 			<Rectangle Stroke="#FF000000" HorizontalAlignment="Left" Margin="129.104,0,0,221.424" x:Name="PC" Width="91.56" Fill="{DynamicResource BlueGradiente}" ToolTip="PC" Height="27.015" VerticalAlignment="Bottom" OpacityMask="#FF609FF7" d:LayoutOverrides="VerticalAlignment"/>
 			<Path HorizontalAlignment="Left" Margin="182.167,144.367,0,0" Width="73.893" Stretch="Fill" Stroke="#FF000000" Data="M127.61993,117.75706 L153.60906,117.80016 164.49187,130.09052 179.273,130.09052 189.34366,117.80016 215.87789,117.88369 189.85311,152.70585 153.39327,152.83248 z" Fill="{DynamicResource BlueGradiente}" x:Name="ulaPC" VerticalAlignment="Top" Height="29.956"/>
-			<Label Opacity="0.2" FontFamily="./Fonts\#Segoe UI" FontSize="24" FontWeight="Bold" Foreground="#FF335EAE" HorizontalContentAlignment="Center" Margin="174,138,0,0" Content="+" x:Name="DescUlaPC" RenderTransformOrigin="0.5,0.5" Width="88" HorizontalAlignment="Left" VerticalAlignment="Top" Height="34.965" >
+			<Label Opacity="0.2" FontFamily="/ucBipI;component/Fonts/#Segoe UI" FontSize="24" FontWeight="Bold" Foreground="#FF335EAE" HorizontalContentAlignment="Center" Margin="174,138,0,0" Content="+" x:Name="DescUlaPC" RenderTransformOrigin="0.5,0.5" Width="88" HorizontalAlignment="Left" VerticalAlignment="Top" Height="34.965" >
 				<Label.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform ScaleX="1" ScaleY="1"/>
@@ -2563,17 +2797,17 @@
 			</Label>
 			<Path HorizontalAlignment="Right" Margin="0,179.007,423,0" Width="4.333" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" StrokeThickness="4" Data="M2.333,20.339 L2.0416666,31.547333" x:Name="path2_Copy" Height="36.274" VerticalAlignment="Top"/>
 			<Rectangle HorizontalAlignment="Right" Margin="0,175.557,371.415,0" VerticalAlignment="Top" Width="109.587" Height="27.31" Fill="{DynamicResource BlueGradiente}" Stroke="#FF000000" x:Name="blocoACC" ToolTip="Acumulador" d:LayoutOverrides="VerticalAlignment"/>
-			<Label Opacity="0.2" FontFamily="./Fonts\#Segoe UI" FontSize="15" FontWeight="Bold" Foreground="#FF335EAE" HorizontalContentAlignment="Center" Margin="0,176.057,445.165,0" Content="ACC" x:Name="DescAcc" Width="39.501" HorizontalAlignment="Right" Height="30.037" VerticalAlignment="Top" />
+			<Label Opacity="0.2" FontFamily="/ucBipI;component/Fonts/#Segoe UI" FontSize="15" FontWeight="Bold" Foreground="#FF335EAE" HorizontalContentAlignment="Center" Margin="0,176.057,445.165,0" Content="ACC" x:Name="DescAcc" Width="39.501" HorizontalAlignment="Right" Height="30.037" VerticalAlignment="Top" />
 			<Path HorizontalAlignment="Right" Margin="0,139.348,397,0" Width="57.25" Fill="{DynamicResource BlueGradiente}" Stretch="Fill" Stroke="#FF000000" Data="M538.75,141.25 L595,141.25 577.223,157.03033 556.38967,157.02999 z" Height="16.88" VerticalAlignment="Top"/>
 			<Rectangle HorizontalAlignment="Right" Margin="0,75.857,382.001,0" Width="86" Fill="{DynamicResource BlueGradiente}" Stroke="#FF000000" VerticalAlignment="Top" Height="18.504" x:Name="extSinal" RadiusX="13.375" RadiusY="13.375"/>
-			<Label Opacity="0.2" FontFamily="./Fonts\#Segoe UI" FontSize="13" FontWeight="Bold" Foreground="#FF335EAE" HorizontalContentAlignment="Center" Margin="0,71.035,367.5,0" Content="Ext. Sinal" x:Name="DescExtSinal" Height="34.965" VerticalAlignment="Top" HorizontalAlignment="Right" Width="128.667" />
+			<Label Opacity="0.2" FontFamily="/ucBipI;component/Fonts/#Segoe UI" FontSize="13" FontWeight="Bold" Foreground="#FF335EAE" HorizontalContentAlignment="Center" Margin="0,71.035,367.5,0" Content="Ext. Sinal" x:Name="DescExtSinal" Height="34.965" VerticalAlignment="Top" HorizontalAlignment="Right" Width="128.667" />
 			<Path HorizontalAlignment="Right" Margin="0,249.487,415.395,0" VerticalAlignment="Top" Width="12.687" Height="1" Fill="{x:Null}" Stretch="Fill" Stroke="#FF606060" StrokeThickness="2" Data="M577.68613,226.01304 L562.81494,226.01304"/>
 			<Label FontSize="9" Foreground="#FF606060" HorizontalAlignment="Right" Margin="0,237.454,422.416,248.336" Width="20.753" Content="op"/>
 			<Path Margin="0,0,346,246.491" Fill="{DynamicResource BlueGradiente}" Stroke="#FF000000" Data="M0.510056,0.51909602 L27.021264,0.56384185 L38.122691,13.323524 L53.200749,13.323524 L63.473712,0.56331807 L90.54097,0.65003777 L63.993396,36.802448 L26.801139,36.933913 z" HorizontalAlignment="Right" Width="91.051" Height="37.453" VerticalAlignment="Bottom" ToolTip="ULA" x:Name="ula"/>
-			<Label Opacity="0.2" FontFamily="./Fonts\#Segoe UI" FontSize="22" FontWeight="Bold" Foreground="#FF335EAE" HorizontalContentAlignment="Center" Margin="0,229,349,243" Content="+ -" HorizontalAlignment="Right" Width="88" x:Name="DescUla" />
+			<Label Opacity="0.2" FontFamily="/ucBipI;component/Fonts/#Segoe UI" FontSize="22" FontWeight="Bold" Foreground="#FF335EAE" HorizontalContentAlignment="Center" Margin="0,229,349,243" Content="+ -" HorizontalAlignment="Right" Width="88" x:Name="DescUla" />
 			<Path Margin="0,171.827,311,0" Fill="#FFE7EEF8" Stretch="Fill" Stroke="#FF000000" Data="M538.75,141.25 L595,141.25 577.223,157.03033 556.38967,157.02999 z" HorizontalAlignment="Right" Width="57.25" x:Name="bloco" VerticalAlignment="Top" Height="16.78"/>
-			<Path HorizontalAlignment="Right" Margin="0,0,367.5,226.727" x:Name="linhaStatus1" VerticalAlignment="Bottom" Width="19.102" Height="20.978" Fill="{x:Null}" Stretch="None" Stroke="#FF606060" StrokeThickness="1" Data="M18.58777,20.4775 L18.601778,12.225343 L0.93800477,12.184415 L1,1"/>
-			<Path Fill="#FFFFFFFF" Margin="0,0,363.757,225.356" Stretch="None" Stroke="#FF606060" Data="M4.2075487,5.6355901 L8.0611697,0.39071934 0.37990104,0.38697926 z" x:Name="setaStatus1" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="8.439" Height="7.378" >
+			<Path HorizontalAlignment="Right" Margin="0,0,345.805,226.976" x:Name="linhaStatus1" VerticalAlignment="Bottom" Width="37.614" Height="20.104" Fill="{x:Null}" Stretch="None" Stroke="#FF606060" StrokeThickness="1" Data="M37.113504,19.603596 L37.083167,9 0.49999999,8.9166667 0.5415,0.5"/>
+			<Path Fill="#FFFFFFFF" Margin="0,0,342.007,225.689" Stretch="None" Stroke="#FF606060" Data="M4.2075487,5.6355901 L8.0611697,0.39071934 0.37990104,0.38697926 z" x:Name="setaStatus1" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="8.439" Height="7.378" >
 				<Path.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform ScaleX="1" ScaleY="1"/>
@@ -2583,8 +2817,8 @@
 					</TransformGroup>
 				</Path.RenderTransform>
 			</Path>
-			<Path HorizontalAlignment="Right" Margin="0,0,337.902,226.728" x:Name="linhaStatus2" VerticalAlignment="Bottom" Width="44.2" Height="20.977" Fill="{x:Null}" Stretch="None" Stroke="#FF606060" StrokeThickness="1" Data="M1,1 L0.90900002,7.2159913 L43.700087,7.1741687 L43.697815,20.4765"/>
-			<Path Fill="#FFFFFFFF" Margin="0,0,334.151,225.356" Stretch="None" Stroke="#FF606060" Data="M4.2075487,5.6355901 L8.0611697,0.39071934 0.37990104,0.38697926 z" x:Name="setaStatus2" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom" Height="7.378" HorizontalAlignment="Right" Width="8.439" >
+			<Path HorizontalAlignment="Right" Margin="0,0,368.795,226.479" x:Name="linhaStatus2" VerticalAlignment="Bottom" Width="18.207" Height="20.643" Fill="{x:Null}" Stretch="None" Stroke="#FF606060" StrokeThickness="1" Data="M0.54166647,0.5 L0.50000001,11.875 17.666167,11.833667 17.706582,20.143253"/>
+			<Path Fill="#FFFFFFFF" Margin="0,0,365.151,225.439" Stretch="None" Stroke="#FF606060" Data="M4.2075487,5.6355901 L8.0611697,0.39071934 0.37990104,0.38697926 z" x:Name="setaStatus2" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom" Height="7.378" HorizontalAlignment="Right" Width="8.439" >
 				<Path.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform ScaleX="1" ScaleY="1"/>
@@ -2594,8 +2828,19 @@
 					</TransformGroup>
 				</Path.RenderTransform>
 			</Path>
-			<Path Margin="359.134,242.854,367.391,199.065" x:Name="linhaStatus4" Fill="{x:Null}" Stretch="Fill" Stroke="#FF606060" StrokeThickness="1" Data="M713.47497,269.37582 L713.47497,283.4253 440.95016,283.42508 440.95044,222.1703"/>
-			<Path Fill="#FFFFFFFF" Margin="354.365,242.799,0,0" VerticalAlignment="Top" Height="7.878" Stretch="None" Stroke="#FF3B3E45" Data="M4.5397907,6.0381855 L8.7387435,0.38215248 0.3691387,0.3781192 z" x:Name="setaStatus4" HorizontalAlignment="Left" Width="9.106" RenderTransformOrigin="0.5,0.5" >
+            <Path HorizontalAlignment="Right" Margin="0,0,321.565,227.08" x:Name="linhaStatus6" VerticalAlignment="Bottom" Width="58.104" Height="20.042" Fill="{x:Null}" Stretch="None" Stroke="#FF606060" StrokeThickness="1" Data="M57.604,19.542 L57.4165,5.7295 0.5415,5.620125 0.49999999,0.50000002"/>
+            <Path Fill="#FFFFFFFF" Margin="0,0,317.945,225.815" Stretch="None" Stroke="#FF606060" Data="M4.2075487,5.6355901 L8.0611697,0.39071934 0.37990104,0.38697926 z" x:Name="setaStatus6" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="8.439" Height="7.378" >
+            	<Path.RenderTransform>
+            		<TransformGroup>
+            			<ScaleTransform ScaleX="1" ScaleY="1"/>
+            			<SkewTransform AngleX="0" AngleY="0"/>
+            			<RotateTransform Angle="359.686"/>
+            			<TranslateTransform X="0" Y="0"/>
+            		</TransformGroup>
+            	</Path.RenderTransform>
+            </Path>
+			<Path Margin="336.539,249.833,345.461,198.899" x:Name="linhaStatus4" Fill="{x:Null}" Stretch="Fill" Stroke="#FF606060" StrokeThickness="1" Data="M735.40935,269.47589 L735.40915,283.4253 418.51774,283.58389 418.35087,228.82032"/>
+			<Path Fill="#FFFFFFFF" Margin="331.865,242.799,0,0" VerticalAlignment="Top" Height="7.878" Stretch="None" Stroke="#FF3B3E45" Data="M4.5397907,6.0381855 L8.7387435,0.38215248 0.3691387,0.3781192 z" x:Name="setaStatus4" HorizontalAlignment="Left" Width="9.106" RenderTransformOrigin="0.5,0.5" >
 				<Path.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform ScaleX="1" ScaleY="1"/>
@@ -2605,7 +2850,18 @@
 					</TransformGroup>
 				</Path.RenderTransform>
 			</Path>
-			<Path Margin="346.125,243.602,337.902,195.527" x:Name="linhaStatus3" Fill="{x:Null}" Stretch="Fill" Stroke="#FF606060" StrokeThickness="1" Data="M742.87879,265.06869 L742.87841,284.8821 428.17565,285.43196 428.14196,222.89551" OpacityMask="#FF000000"/>
+            <Path Margin="355.944,249.458,320.815,195.705" x:Name="linhaStatus7" Fill="{x:Null}" Stretch="Fill" Stroke="#FF606060" StrokeThickness="1" Data="M759.74692,270.11077 L760.05865,286.56731 438.02171,286.62687 437.75984,228.46291"/>
+            <Path Fill="#FFFFFFFF" Margin="351.365,242.882,0,0" VerticalAlignment="Top" Height="7.878" Stretch="None" Stroke="#FF3B3E45" Data="M4.5397907,6.0381855 L8.7387435,0.38215248 0.3691387,0.3781192 z" x:Name="setaStatus7" HorizontalAlignment="Left" Width="9.106" RenderTransformOrigin="0.5,0.5" >
+            	<Path.RenderTransform>
+            		<TransformGroup>
+            			<ScaleTransform ScaleX="1" ScaleY="1"/>
+            			<SkewTransform AngleX="0" AngleY="0"/>
+            			<RotateTransform Angle="180.586"/>
+            			<TranslateTransform X="0" Y="0"/>
+            		</TransformGroup>
+            	</Path.RenderTransform>
+            </Path>
+			<Path Margin="346.039,250,368.128,202.504" x:Name="linhaStatus3" Stretch="Fill" Stroke="#FF606060" StrokeThickness="1" Data="M712.51041,265.99766 L712.67642,278.68804 428.23359,278.92678 428.05682,228.86016" OpacityMask="#FF000000"/>
 			<Path Fill="#FFFFFFFF" Margin="341.615,242.799,0,0" Stretch="None" Stroke="#FF3B3E45" Data="M4.5397907,6.0381855 L8.7387435,0.38215248 0.3691387,0.3781192 z" x:Name="setaStatus3" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="9.106" Height="7.878" >
 				<Path.RenderTransform>
 					<TransformGroup>
@@ -2616,25 +2872,46 @@
 					</TransformGroup>
 				</Path.RenderTransform>
 			</Path>
-			<Path Margin="196.356,92.87,0,0" Fill="{x:Null}" Stretch="None" Stroke="#FF606060" StrokeThickness="1" Data="M185.66233,58.025945 L198.41313,57.963446 198.41313,0.63011193 79.614975,0.50000003 79.529919,124.83334 0.50000001,125.34621" x:Name="linhaStatus5" HorizontalAlignment="Left" Width="198.913" Height="125.846" VerticalAlignment="Top" />
-			<Path Fill="#FFFFFFFF" Margin="190.223,214.144,0,0" Stretch="None" Stroke="#FF3B3E45" Data="M4.2621399,0.50000022 L7.5791764,6.2686481 L0.8333332,6.2648999 z" x:Name="setaStatus5" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="8.079" VerticalAlignment="Top" Height="6.769" >
+			<Path Margin="89.559,67.583,0,0" Fill="{x:Null}" Stretch="None" Stroke="#FF606060" StrokeThickness="1" Data="M292.459,83.312263 L305.2098,83.249764 305.31267,0.66666664 0.64600541,0.49999999 0.5,153.12502 37.480167,153.08367" x:Name="linhaStatus5" HorizontalAlignment="Left" Width="305.813" Height="153.625" VerticalAlignment="Top" />
+			<Path Fill="#FFFFFFFF" Margin="148.973,212.873,0,0" Stretch="None" Stroke="#FF606060" Data="M4.2621399,0.50000022 L7.5791764,6.2686481 L0.8333332,6.2648999 z" x:Name="setaStatus5" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="8.079" VerticalAlignment="Top" Height="6.769" >
 				<Path.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform ScaleY="1"/>
 						<SkewTransform AngleX="0" AngleY="0"/>
-						<RotateTransform Angle="269.951"/>
+						<RotateTransform Angle="449.566"/>
 						<TranslateTransform X="-0.66559472566957023" Y="0.4439742552185475"/>
 					</TransformGroup>
 				</Path.RenderTransform>
 			</Path>
-			<Border HorizontalAlignment="Right" Margin="0,0,279.375,208.399" VerticalAlignment="Bottom" Width="57" Height="22.451" x:Name="borderStatus">
-				<Grid x:Name="status" Margin="-45,0,0,0" HorizontalAlignment="Left" Width="57">
-					<Rectangle Fill="#FFFFFFFF" Stroke="#FF000000" ToolTip="Status" Margin="0,3.344,3.791,5.044" x:Name="blocoStatus" RadiusX="2.791" RadiusY="2.791"/>
-					<Path HorizontalAlignment="Left" Margin="25.998,3.868,0,5.326" Width="1" Fill="#FFFFFFFF" Stretch="Fill" Stroke="#FF000000" Data="M772.33333,253 L772.33365,266.66666"/>
-					<Label FontSize="12" FontWeight="Bold" Foreground="#FFCCCCCC" Margin="-2.834,-1.543,25.75,1.543" Content="Z"/>
-					<Label FontSize="12" FontWeight="Bold" Foreground="#FFCCCCCC" Content="N" Margin="23.458,-1.501,11,1.501"/>
-					<Label HorizontalAlignment="Right" Margin="0,-1.418,4.374,-1.745" Width="16.959" Content="0" x:Name="lblN" Visibility="Hidden" Foreground="#FF000000" Panel.ZIndex="1" FontWeight="Normal"/>
-					<Label HorizontalAlignment="Left" Margin="8.666,-1.578,0,-1.585" Width="16.959" Content="0" x:Name="lblZ" Visibility="Hidden" FontWeight="Normal"/>
+            <Path x:Name="linhaStatus8" Data="M126.01829,220.25328 L125.99767,215.95884 148.74455,215.93695" HorizontalAlignment="Left" Height="5.314" Margin="126.018,215.936,0,0" Stretch="Fill" Stroke="#FF606060" VerticalAlignment="Top" Width="23.792"/>
+            <Path x:Name="linhaInterrupcao1" Data="M0.52084882,0.49999999 L0.50001841,16.895337 L24.562998,16.957835 L24.520828,80.917031" Fill="{x:Null}" HorizontalAlignment="Left" Height="81.417" Margin="103.435,111.104,0,0" Stroke="#FF606060" StrokeThickness="1" VerticalAlignment="Top" Width="25.063"/>
+            <Path x:Name="linhaInterrupcao2" Data="M113.99732,110.93698 L114.06004,127.8125" Fill="{x:Null}" HorizontalAlignment="Left" Height="17.874" Margin="113.997,110.938,0,0" Stretch="Fill" Stroke="#FF606060" StrokeThickness="1" VerticalAlignment="Top" Width="1.063"/>
+            <Path x:Name="linhaInterrupcao3" Data="M127.37049,191.46907 L127.49616,205.87552" HorizontalAlignment="Left" Height="15.406" Margin="127.372,191.469,0,0" Stretch="Fill" Stroke="#FF606060" VerticalAlignment="Top" Width="1.126"/>
+            <Path Fill="#FFFFFFFF" Margin="122.381,201.505,0,0" Stretch="None" Stroke="#FF606060" Data="M2.1065049,0.49999997 L3.6950228,3.9337514 0.50000001,3.893941 z" x:Name="setaInterrupcao3" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="4.195" VerticalAlignment="Top" Height="4.434" >
+            	<Path.RenderTransform>
+            		<TransformGroup>
+            			<ScaleTransform ScaleY="1"/>
+            			<SkewTransform AngleX="0" AngleY="0"/>
+            			<RotateTransform Angle="539.333"/>
+            			<TranslateTransform X="3.2318646495872887" Y="2.7562881622445037"/>
+            		</TransformGroup>
+            	</Path.RenderTransform>
+            </Path>
+            <Ellipse x:Name="InterseccaoInterrupcao1" HorizontalAlignment="Left" Height="2.166" Margin="113.55,126.928,0,0" Stroke="#FF606060" VerticalAlignment="Top" Width="2.067"/>
+            <Ellipse x:Name="InterseccaoInterrupcao2" HorizontalAlignment="Left" Height="1.728" Margin="127.009,190.965,0,0" Stroke="#FF606060" VerticalAlignment="Top" Width="1.755"/>
+            <Path x:Name="path18" Data="M0.50000001,0.7495 L4.7495,0.68750001" Fill="{x:Null}" HorizontalAlignment="Left" Height="2" Margin="123.06,191.188,0,0" Stroke="#FF606060" StrokeThickness="1" VerticalAlignment="Top" Width="5.25"/>
+            <Path x:Name="linhaInterrupcao4" Data="M115.3881,201.48425 L115.373,211.16671 122.88937,211.16671" HorizontalAlignment="Left" Height="10.683" Margin="115.373,201.484,0,0" Stretch="Fill" Stroke="#FF606060" VerticalAlignment="Top" Width="8.531"/>
+			<Border HorizontalAlignment="Right" Margin="0,0,311,207.703" VerticalAlignment="Bottom" Width="70.375" Height="22.451" x:Name="borderStatus">
+				<Grid x:Name="status">
+					<Rectangle Fill="#FFFFFFFF" Stroke="#FF000000" ToolTip="Status" Margin="0,3.344,0,5.044" x:Name="blocoStatus" RadiusX="2.791" RadiusY="2.791"/>
+					<Path HorizontalAlignment="Left" Margin="23.458,3.868,0,5.326" Width="1" Fill="#FFFFFFFF" Stretch="Fill" Stroke="#FF000000" Data="M772.33333,253 L772.33365,266.66666"/>
+					<Path HorizontalAlignment="Right" Margin="0,3.868,22.167,5.326" Width="1" Fill="#FFFFFFFF" Stretch="Fill" Stroke="#FF000000" Data="M772.33333,253 L772.33365,266.66666"/>
+					<Label FontSize="12" FontWeight="Bold" Foreground="#FFCCCCCC" Margin="-3.082,-2.411,0,1.578" Content="C" HorizontalAlignment="Left" Width="18"/>
+					<Label Margin="7.499,-2.411,0,-0.752" Content="0" x:Name="lblC" FontWeight="Normal" HorizontalAlignment="Left" Width="16.959"/>
+					<Label FontSize="12" FontWeight="Bold" Foreground="#FFCCCCCC" Content="N" Margin="19.917,-2.411,31.416,1.578"/>
+					<Label Margin="31.249,-2.411,22.167,-0.752" Content="0" x:Name="lblN" Foreground="#FF000000" Panel.ZIndex="1" FontWeight="Normal"/>
+					<Label FontSize="12" FontWeight="Bold" Foreground="#FFCCCCCC" Margin="0,-2.411,-5.935,1.578" Content="Z" HorizontalAlignment="Right" Width="31.375"/>
+					<Label Margin="0,-2.411,-1.667,-0.752" Content="0" x:Name="lblZ" FontWeight="Normal" HorizontalAlignment="Right" Width="16.959"/>
 				</Grid>
 			</Border>
 			<Rectangle Margin="432.25,0,261.001,100.083" x:Name="MemDadosBlock" Fill="{DynamicResource BlueEscuro}" Stroke="#FF000000" d:LayoutOverrides="HorizontalAlignment" Height="78.04" VerticalAlignment="Bottom"/>
@@ -2644,14 +2921,14 @@
 			<Path HorizontalAlignment="Right" Margin="0,91.875,423.354,0" VerticalAlignment="Top" Width="4.021" Height="15.792" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" StrokeThickness="4" Data="M2.0209999,13.792108 L2,2" x:Name="linha2"/>
 			<Path HorizontalAlignment="Right" Margin="0,147.667,423,0" VerticalAlignment="Top" Width="4.104" Height="30.188" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" StrokeThickness="4" Data="M2.062,7.9275973 L2.0205,28.1875" x:Name="path1"/>
 			<Path HorizontalAlignment="Right" Margin="0,191.661,423,0" Width="4.333" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" StrokeThickness="4" Data="M2.333,20.339 L2.0416666,31.547333" x:Name="path2" Height="36.274" VerticalAlignment="Top"/>
-			<Path HorizontalAlignment="Left" Margin="240.179,121.959,0,213.913" Width="29.527" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" Data="M1.5011084,22.278806 L1.5,1.5002016 26.664767,1.5 28.026833,169.83267" StrokeThickness="3" x:Name="path13"/>
+			<Path HorizontalAlignment="Left" Margin="240.179,121.959,0,213.913" Width="29.527" Stretch="None" Stroke="#FF000000" Data="M1.5011084,22.278806 L1.5,1.5002016 26.664767,1.5 28.026833,169.83267" StrokeThickness="3" x:Name="path13"/>
 			<Path HorizontalAlignment="Right" Margin="0,186.667,337.902,0" Width="23.732" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" StrokeThickness="4" Data="M21.73262,2 L21.659527,17.001364 2,17.001364 2.09766,36.666333" x:Name="path5" Height="41.393" VerticalAlignment="Top"/>
 			<Path HorizontalAlignment="Right" Margin="0,212.06,423,175.811" Width="54.271" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" Data="M52.2705,2.1041717 L4.2705,2.167 L3.98925,111.792" StrokeThickness="4" x:Name="path10"/>
 			<Path HorizontalAlignment="Right" Margin="0,107.667,349,0" VerticalAlignment="Top" Width="79.042" Height="71" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" StrokeThickness="4" Data="M2,2 L77.012556,2 77.042,64.708" x:Name="path8"/>
 			<Path HorizontalAlignment="Right" Margin="0,126.667,325,0" VerticalAlignment="Top" Width="4.864" Height="47.896" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" StrokeThickness="4" Data="M1.9999999,45.896088 L2.0624999,2.6460884" x:Name="path3"/>
 			<Path Margin="451.711,59.125,423.75,247.606" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" StrokeThickness="3" Data="M122.91392,14.375 L123.03892,1.625 1.5389223,1.5 1.5,196.24682" x:Name="path7"/>
 			<Path HorizontalAlignment="Left" Margin="266.622,0,0,181.478" VerticalAlignment="Bottom" Width="3.213" Height="34.977" Fill="#FFFFFFFF" Stretch="None" Stroke="#FF000000" StrokeThickness="3" Data="M1.7125783,33.476635 L1.5,1.5"/>
-			<Ellipse Margin="264.166,0,0,211.601" Fill="#FF000000" Stroke="{x:Null}" VerticalAlignment="Bottom" Height="7.625" x:Name="ellipse2_Copy" HorizontalAlignment="Left" Width="7.875" />
+			<Ellipse Margin="264.166,0,0,211.601" Fill="#FF000000" VerticalAlignment="Bottom" Height="7.625" x:Name="ellipse2_Copy" HorizontalAlignment="Left" Width="7.875" />
 			<Path HorizontalAlignment="Right" Margin="0,67.872,419.83,0" VerticalAlignment="Top" Width="11.336" Height="8.361" Stretch="None" Stroke="{x:Null}" Data="M5.6663333,8.3610018 L11.336667,0.0060104456 5.0329084E-09,1.3963961E-09 z" Fill="#FF000000" x:Name="path11_Copy"/>
 			<Path HorizontalAlignment="Right" Margin="0,124.333,305,0" VerticalAlignment="Top" Width="109.667" Height="17.417" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" StrokeThickness="4" Data="M107.55281,2.792 L2.3048218,3.0003358 2.2667551,15.417" x:Name="path9"/>
 			<Path HorizontalAlignment="Left" Margin="190.5,127.334,0,0" VerticalAlignment="Top" Width="4.667" Height="18.83" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" StrokeThickness="3" Data="M1.7640222,17.329915 L1.5,1.5" x:Name="linha10"/>
@@ -2676,7 +2953,8 @@
 			</Path>
 			<Path x:Name="path16" Data="M1.5,1.5 L5.175679,1.5" Fill="{x:Null}" HorizontalAlignment="Right" Height="3" Margin="0,64.954,422.416,0" Stroke="#FF040202" StrokeThickness="3" VerticalAlignment="Top" Width="5.857" Visibility="Hidden" Stretch="Fill"/>
 			<Path HorizontalAlignment="Left" Margin="144.5,206.043,0,0" Width="57.25" Fill="{DynamicResource BlueGradiente}" Stretch="None" Stroke="#FF000000" Data="M0.5,0.50296971 L12.083,0.50296971 L56.75,0.50296971 L38.973,16.377026 L18.13967,16.376684 z" x:Name="blocoBIP2" VerticalAlignment="Top" Height="16.88"/>
-			<Path HorizontalAlignment="Right" Margin="0,125,305.734,176.205" Width="31.891" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" StrokeThickness="4" Data="M9.023,2 L29.875,2.1250001 C29.875,2.1250001 29.890837,128.6025 29.890837,128.6025 C18.685145,128.6025 18.685145,128.6025 18.685145,128.6025 C18.685145,201.14461 18.523,204 18.523,204" x:Name="path4"/>
+			<Path HorizontalAlignment="Right" Margin="0,125,274.128,176.205" Width="56.474" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" StrokeThickness="4" Data="M2,2 L23.4745,2.125 C23.4745,2.125 24.100081,139.33516 24.100081,139.33516 C24.100081,139.33516 43.4745,139.66667 43.4745,139.66667 L43.5995,150.66667" x:Name="path4"/>
+            <Path x:Name="path4_1" Data="M17.000013,65.666667 L16.667167,9.6665128 L2,9.6666667" Fill="{x:Null}" HorizontalAlignment="Right" Height="67.667" Margin="0,0,268.127,175.538" Stroke="#FF000000" StrokeThickness="4" VerticalAlignment="Bottom" Width="20.334"/>
 			<Path HorizontalAlignment="Right" Margin="0,212.06,423,175.811" Width="54.271" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" StrokeThickness="4" x:Name="path10_Copy" Visibility="Hidden">
 				<Path.Data>
 					<PathGeometry>
@@ -2688,24 +2966,12 @@
 			</Path>
 			<Path HorizontalAlignment="Left" Margin="170.586,173.073,0,0" Width="50.182" Stretch="None" Stroke="#FF48864C" StrokeThickness="3" Data="M48.681686,1.5 C48.681686,1.5 48.473979,10.766831 48.473979,10.766831" x:Name="path15_Copy" Visibility="Hidden" Height="38.754" VerticalAlignment="Top"/>
 			<Grid x:Name="es_grid2" Margin="329.115,59.336,255.001,193.168" Visibility="Visible">
-				<Path Margin="0,0,27.846,54.626" Fill="#FFE7EEF8" Stretch="Fill" Stroke="#FF000000" Data="M538.75,141.25 L595,141.25 577.223,157.03033 556.38967,157.02999 z" HorizontalAlignment="Right" Width="47.814" x:Name="es_mes_sel" Height="19.139" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5">
-					<Path.RenderTransform>
-						<TransformGroup>
-							<ScaleTransform/>
-							<SkewTransform/>
-							<RotateTransform Angle="180"/>
-							<TranslateTransform/>
-						</TransformGroup>
-					</Path.RenderTransform>
-				</Path>
 				<Rectangle Margin="381.758,95.576,0,79.698" x:Name="es_reg" Stroke="#FF000000" Fill="{DynamicResource BlueGradiente}" ToolTip="E/S" RadiusY="0" RadiusX="0" HorizontalAlignment="Left" Width="34.126" />
-				<Path x:Name="es_acc" Data="M706.4204,255.37182 C707.01017,278.37298 707.01058,278.3728 707.01058,278.3728 734.73707,278.37278 734.73707,278.3728 734.73707,278.3728 733.52644,224.11355 733.52644,232.76399 733.52644,232.76399" Fill="{x:Null}" HorizontalAlignment="Right" Height="50.115" Margin="0,0,13.577,30.937" Stretch="Fill" Stroke="#FF000000" StrokeThickness="4" VerticalAlignment="Bottom" Width="27.002"/>
 				<Path x:Name="es_camho_ext" Data="M711.13858,202.882 C711.13858,202.882 699.93252,203.472 699.93252,202.29246 699.93252,201.11291 700.52229,121.52444 700.52229,121.52444 L700.52229,81.435391 699.93252,71.413909 607.92803,71.413909 607.92803,61.391707 574.90079,61.391288" Fill="{x:Null}" HorizontalAlignment="Right" Margin="0,0,31.86,106.28" Stretch="Fill" Stroke="#FF000000" StrokeThickness="4" Width="140.238"/>
 				<Path x:Name="es_in1" Data="M575.09721,211.53164 C707.99279,211.53164 711.92507,211.53165 711.92507,211.53165" Fill="{x:Null}" HorizontalAlignment="Right" Height="4" Margin="0,0,31.074,97.778" Stretch="Fill" Stroke="#FF000000" StrokeThickness="4" VerticalAlignment="Bottom" Width="140.827"/>
 				<Ellipse HorizontalAlignment="Right" Margin="0,0,165.999,95.693" Width="8.75" Fill="Black" x:Name="es_in2" Height="8.75" VerticalAlignment="Bottom"/>
-				<Ellipse HorizontalAlignment="Right" Margin="0,0,99.916,95.693" Width="8.75" Fill="Black" Stroke="{x:Null}" x:Name="es_in3" Height="8.75" VerticalAlignment="Bottom"/>
-				<Path Margin="4.658,0,66.388,0" x:Name="es_sel" VerticalAlignment="Bottom" Height="70.002" Fill="{x:Null}" Stretch="Fill" Stroke="#FF606060" StrokeThickness="1" Data="M759.3792,226.59663 L747.29821,226.59663 746.70888,244.74249 755.25414,244.74297 755.2543,287.63132 415.79921,287.63225 415.79966,223.29828" OpacityMask="#FF000000"/>
-				<Path Fill="#FFFFFFFF" Margin="0,0,0,63.36" Stretch="None" Stroke="#FF3B3E45" Data="M4.5397907,6.0381855 L8.7387435,0.38215248 0.3691387,0.3781192 z" x:Name="es_seta_status" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="9.106" Height="7.878" >
+				<Path Margin="52.132,0,35.211,-1.842" x:Name="es_sel" VerticalAlignment="Bottom" Height="75.88" Fill="{x:Null}" Stretch="Fill" Stroke="#FF606060" StrokeThickness="1" Data="M790.36531,254.11135 L790.53093,289.34937 471.35761,288.6231 471.35789,219.53656 463.23956,219.53749" OpacityMask="#FF000000"/>
+				<Path Fill="#FFFFFFFF" Margin="0,0,32.028,30.36" Stretch="None" Stroke="#FF3B3E45" Data="M4.5397907,6.0381855 L8.7387435,0.38215248 0.3691387,0.3781192 z" x:Name="es_seta_status" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="9.106" Height="7.878" >
 					<Path.RenderTransform>
 						<TransformGroup>
 							<ScaleTransform/>
@@ -2715,7 +2981,18 @@
 						</TransformGroup>
 					</Path.RenderTransform>
 				</Path>
-				<Label Margin="0,124.909,-2.087,101.778" Content="E/S" FontWeight="Bold" FontSize="9.333" FontFamily="./Fonts\#Segoe UI" Foreground="#FF335EAE" Opacity="0.2" Width="42.666" HorizontalAlignment="Right" HorizontalContentAlignment="Center" Background="#007876C6" x:Name="DescES" />
+				<Label Margin="0,124.909,-2.087,101.778" Content="E/S" FontWeight="Bold" FontSize="9.333" FontFamily="/ucBipI;component/Fonts/#Segoe UI" Foreground="#FF335EAE" Opacity="0.2" Width="42.666" HorizontalAlignment="Right" HorizontalContentAlignment="Center" Background="#007876C6" x:Name="DescES" />
+				<Path x:Name="es_acc" Data="M398.05474,174.91643 L398.11676,194.13879 390.50603,194.16478" Fill="{x:Null}" HorizontalAlignment="Right" Height="23.248" Margin="0,0,15.767,58.537" Stretch="Fill" Stroke="#FF000000" StrokeThickness="4" VerticalAlignment="Bottom" Width="11.609"/>
+				<Path Margin="0,0,10.513,42.959" Fill="#FFE7EEF8" Stretch="Fill" Stroke="#FF000000" Data="M538.75,141.25 L595,141.25 577.223,157.03033 556.38967,157.02999 z" HorizontalAlignment="Right" Width="47.814" x:Name="es_mes_sel" Height="19.139" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5">
+					<Path.RenderTransform>
+						<TransformGroup>
+							<ScaleTransform/>
+							<SkewTransform/>
+							<RotateTransform Angle="89.899"/>
+							<TranslateTransform/>
+						</TransformGroup>
+					</Path.RenderTransform>
+				</Path>
             </Grid>
 			<Ellipse HorizontalAlignment="Right" Margin="0,56.622,421,0" Width="8.75" Fill="#FF000000" Stroke="{x:Null}" x:Name="ellipse_es" Height="8.75" VerticalAlignment="Top"/>
 			<Grid x:Name="pilha_grid" HorizontalAlignment="Left" Margin="92.664,80,0,0" Width="309.934" Height="128.395" VerticalAlignment="Top">
@@ -2737,9 +3014,9 @@
 				<Ellipse HorizontalAlignment="Left" Margin="122.022,0,0,19.244" Width="8.75" Fill="Black" Stroke="{x:Null}" x:Name="pilha_in1" Height="8.75" VerticalAlignment="Bottom"/>
 				<Path x:Name="pilha_in2" Data="M1.5371873,1.9867117 C28.935895,1.9867117 30.918062,2.076449 30.918062,2.076449" Fill="#FFFFFFFF" Height="3.862" Margin="32.087,-4.529,0,0" Stroke="#FF000000" StrokeThickness="3" VerticalAlignment="Top" HorizontalAlignment="Left" Width="32.488"/>
 				<Path x:Name="pilha_in3" Data="M153.99943,92.790995 C155.07163,175.25248 155.07224,182.32926 155.07224,182.32926" Fill="#FFFFFFFF" Margin="60.336,-4.529,0,21.338" Stretch="Fill" Stroke="#FF000000" StrokeThickness="3" HorizontalAlignment="Left" Width="4.072"/>
-				<Path Margin="24.334,24.812,3.021,49.823" Fill="{x:Null}" Stretch="None" Stroke="#FF606060" StrokeThickness="1" Data="M264.77685,53.259832 L281.95971,53.259832 282.07966,12.646407 163.32083,12.429259 0.51950016,12.551061 0.49999999,0.49999981" x:Name="pilha_status1" />
-				<Path Margin="14.047,24.812,-0.274,42.758" Fill="{x:Null}" Stretch="None" Stroke="#FF606060" StrokeThickness="1" Data="M274.94139,60.250636 L295.38655,60.324621 295.66127,16.187667 171.92734,16.187994 0.50000001,16.187431 0.5365,0.5" x:Name="pilha_status2" />
-				<Label Content="Pilha" FontWeight="Bold" FontSize="9.333" FontFamily="./Fonts\#Segoe UI" Foreground="#FF335EAE" Opacity="0.2" Width="42.666" Height="28.014" VerticalAlignment="Top" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Background="#007876C6" x:Name="DescPilha" Margin="-5.333,-11,0,0" RenderTransformOrigin="0.5,0.5" >
+				<Path Margin="24.209,24.625,3.145,49.885" Fill="{x:Null}" Stretch="None" Stroke="#FF606060" StrokeThickness="1" Data="M264.77735,53.384832 L281.96021,53.384832 282.08016,12.771407 163.32133,12.554259 0.52000015,12.676061 0.49999999,0.5" x:Name="pilha_status1" />
+				<Path Margin="13.834,24.75,-0.275,42.758" Fill="{x:Null}" Stretch="None" Stroke="#FF606060" StrokeThickness="1" Data="M275.15579,60.313136 L295.60095,60.387121 295.87567,16.250167 172.14174,16.250494 0.71439893,16.249931 0.49999999,0.5" x:Name="pilha_status2" />
+				<Label Content="Pilha" FontWeight="Bold" FontSize="9.333" FontFamily="/ucBipI;component/Fonts/#Segoe UI" Foreground="#FF335EAE" Opacity="0.2" Width="33.793" Height="21.139" VerticalAlignment="Top" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Background="#007876C6" x:Name="DescPilha" Margin="0,-8,0,0" RenderTransformOrigin="0.5,0.5" >
 					<Label.RenderTransform>
 						<TransformGroup>
 							<ScaleTransform/>
@@ -2754,8 +3031,8 @@
 				<Rectangle x:Name="vetor_acces" Stroke="#FF000000" Fill="{DynamicResource BlueGradiente}" ToolTip="Manipulação de Vetores" RadiusY="0" RadiusX="0" HorizontalAlignment="Left" Width="42.859" d:LayoutOverrides="HorizontalAlignment" />
 				<Path x:Name="vetor_data_in" Data="M475.22927,1664990.4 C541.28387,1664990.4 525.16429,274.44296 525.16429,274.44296" Fill="{x:Null}" Margin="39.979,9.899,1.707,8.02" Stretch="Fill" Stroke="#FF000000" StrokeThickness="4"/>
 				<Ellipse Margin="0,7.583,0,6.711" Fill="Black" Stroke="{x:Null}" x:Name="vetor_data_in2" HorizontalAlignment="Right" Width="7.875" />
-				<Label Margin="0.193,-1.095,0,-5" Content="Vetor" FontWeight="Bold" FontSize="9.333" FontFamily="./Fonts\#Segoe UI" Foreground="#FF335EAE" Opacity="0.2" Width="42.666" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Background="#007876C6" x:Name="DescVetorAccess" />
-				<TextBox RenderTransformOrigin="0.5,0.5" Background="{x:Null}" BorderThickness="0.8,0.8,0.8,0.8" FontFamily="./Fonts\#Segoe UI" FontSize="10" FontStyle="Normal" FontWeight="Bold" Foreground="#FFEF0606" Margin="7.811,1.34,0,0" x:Name="rINDR" d:IsStaticText="False" Text="+0" TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" Width="28.168" VerticalContentAlignment="Center" IsReadOnly="True" Cursor="Arrow" Visibility="Hidden" BorderBrush="{x:Null}">
+				<Label Margin="0.193,-1.095,0,-5" Content="Vetor" FontWeight="Bold" FontSize="9.333" FontFamily="/ucBipI;component/Fonts/#Segoe UI" Foreground="#FF335EAE" Opacity="0.2" Width="42.666" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Background="#007876C6" x:Name="DescVetorAccess" />
+				<TextBox RenderTransformOrigin="0.5,0.5" Background="{x:Null}" BorderThickness="0.8,0.8,0.8,0.8" FontFamily="/ucBipI;component/Fonts/#Segoe UI" FontSize="10" FontStyle="Normal" FontWeight="Bold" Foreground="#FFEF0606" Margin="7.811,1.34,0,0" x:Name="rINDR" d:IsStaticText="False" Text="+0" TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" Width="28.168" VerticalContentAlignment="Center" IsReadOnly="True" Cursor="Arrow" Visibility="Hidden" BorderBrush="{x:Null}">
 					<TextBox.RenderTransform>
 						<TransformGroup>
 							<ScaleTransform ScaleX="1" ScaleY="1"/>
@@ -2765,7 +3042,7 @@
 						</TransformGroup>
 					</TextBox.RenderTransform>
 				</TextBox>
-				<Label Margin="-353.026,-113.323,0,0" Content="Interrupções" FontWeight="Bold" FontSize="9.333" FontFamily="./Fonts\#Segoe UI" Foreground="#FF335EAE" Opacity="0.2" HorizontalContentAlignment="Center" Background="#007876C6" x:Name="DescInterrupt" HorizontalAlignment="Left" Width="66.135" Height="36.334" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" >
+				<Label Margin="-361.359,-112.99,0,0" Content="Interrupções" FontWeight="Bold" FontSize="9.333" FontFamily="/ucBipI;component/Fonts/#Segoe UI" Foreground="#FF335EAE" Opacity="0.2" HorizontalContentAlignment="Center" Background="#007876C6" x:Name="DescInterrupt" HorizontalAlignment="Left" Width="66.135" Height="36.334" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" >
 					<Label.RenderTransform>
 						<TransformGroup>
 							<ScaleTransform/>
@@ -2780,7 +3057,7 @@
 			<Path Margin="139.898,108.119,424.242,0" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" Data="M434.35994,1.5 L1.8107674,3.047822 1.5,82.547667" StrokeThickness="3" x:Name="linhaBIP2_2" Height="84.048" VerticalAlignment="Top"/>
 			<Path HorizontalAlignment="Right" Margin="0,109.25,423,0" VerticalAlignment="Top" Width="4.417" Height="31.75" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" StrokeThickness="4" Data="M2,29.75 L2,2" x:Name="linha3"/>
 			<Ellipse HorizontalAlignment="Right" Margin="0,105.292,421,0" VerticalAlignment="Top" Width="8.75" Height="8.75" Fill="#FF000000" Stroke="{x:Null}" x:Name="ellipse3"/>
-			<TextBox RenderTransformOrigin="0.527,0.5" Background="#FFF5F7C3" BorderThickness="0.8,0.8,0.8,0.8" FontFamily="./Fonts\#Segoe UI" FontSize="9" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" Margin="298,0,0,155.669" x:Name="rLDI" VerticalAlignment="Bottom" Height="20.419" d:IsStaticText="False" Text="" TextAlignment="Center" TextWrapping="Wrap" IsEnabled="True" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="49" IsReadOnly="True" Cursor="Arrow">
+			<TextBox RenderTransformOrigin="0.527,0.5" Background="#FFF5F7C3" BorderThickness="0.8,0.8,0.8,0.8" FontFamily="/ucBipI;component/Fonts/#Segoe UI" FontSize="9" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" Margin="298,0,0,155.669" x:Name="rLDI" VerticalAlignment="Bottom" Height="20.419" d:IsStaticText="False" Text="" TextAlignment="Center" TextWrapping="Wrap" IsEnabled="True" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="49" IsReadOnly="True" Cursor="Arrow">
 				<TextBox.BorderBrush>
 					<SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
 				</TextBox.BorderBrush>
@@ -2794,7 +3071,7 @@
 				</TextBox.RenderTransform>
 			</TextBox>
 			<Button Margin="427,19,0,0" VerticalAlignment="Top" Height="20" Content="LDI" Click="Button_Click_1" Visibility="Hidden" HorizontalAlignment="Left" Width="35" />
-			<TextBox RenderTransformOrigin="0.527,0.5" Background="#FFF5F7C3" BorderThickness="0.8,0.8,0.8,0.8" FontFamily="./Fonts\#Segoe UI" FontSize="11" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" HorizontalAlignment="Right" Margin="0,179.675,400.75,0" x:Name="rAcumulador_out" Width="48.668" d:IsStaticText="False" Text="" TextAlignment="Center" TextWrapping="Wrap" IsEnabled="True" VerticalContentAlignment="Center" IsReadOnly="True" Cursor="Arrow" VerticalAlignment="Top" Height="20.419">
+			<TextBox RenderTransformOrigin="0.527,0.5" Background="#FFF5F7C3" BorderThickness="0.8,0.8,0.8,0.8" FontFamily="/ucBipI;component/Fonts/#Segoe UI" FontSize="11" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" HorizontalAlignment="Right" Margin="0,179.675,400.75,0" x:Name="rAcumulador_out" Width="48.668" d:IsStaticText="False" Text="" TextAlignment="Center" TextWrapping="Wrap" IsEnabled="True" VerticalContentAlignment="Center" IsReadOnly="True" Cursor="Arrow" VerticalAlignment="Top" Height="20.419">
 				<TextBox.BorderBrush>
 					<SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
 				</TextBox.BorderBrush>
@@ -2807,7 +3084,7 @@
 					</TransformGroup>
 				</TextBox.RenderTransform>
 			</TextBox>
-			<TextBox RenderTransformOrigin="0.527,0.5" Background="#FFF5F7C3" BorderThickness="0.8,0.8,0.8,0.8" FontFamily="./Fonts\#Segoe UI" FontSize="11" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" HorizontalAlignment="Right" Margin="0,239.461,369.75,247.325" x:Name="rAcumulador_In" Width="48.668" d:IsStaticText="False" Text="" TextAlignment="Center" TextWrapping="Wrap" IsEnabled="True" VerticalContentAlignment="Center" IsReadOnly="True" Cursor="Arrow">
+			<TextBox RenderTransformOrigin="0.527,0.5" Background="#FFF5F7C3" BorderThickness="0.8,0.8,0.8,0.8" FontFamily="/ucBipI;component/Fonts/#Segoe UI" FontSize="11" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" HorizontalAlignment="Right" Margin="0,239.461,369.75,247.325" x:Name="rAcumulador_In" Width="48.668" d:IsStaticText="False" Text="" TextAlignment="Center" TextWrapping="Wrap" IsEnabled="True" VerticalContentAlignment="Center" IsReadOnly="True" Cursor="Arrow">
 				<TextBox.BorderBrush>
 					<SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
 				</TextBox.BorderBrush>
@@ -2823,7 +3100,7 @@
 			<Button HorizontalAlignment="Right" Margin="0,19,363,0" VerticalAlignment="Top" Width="35" Height="20" Content="SUBI" Click="Button_Click_2" RenderTransformOrigin="0.747,0.347" Visibility="Hidden" />
 			<TextBox Margin="386,19,0,0" VerticalAlignment="Top" Height="20" Text="" TextWrapping="Wrap" x:Name="txtTeste" VerticalContentAlignment="Center" Visibility="Hidden" HorizontalAlignment="Left" Width="40" IsReadOnly="False" />
 			<Button HorizontalAlignment="Right" Margin="0,19,328,0" VerticalAlignment="Top" Width="35" Height="20" Content="ADDI" Click="Button_Click_3" Visibility="Hidden" />
-			<TextBox Margin="303,0,0,213.235" VerticalAlignment="Bottom" Height="17" Text="" TextWrapping="Wrap" Background="#FFF5F7C3" Foreground="#FF000000" BorderThickness="0.8,0.8,0.8,0.8" FontSize="10" FontFamily="./Fonts\#Segoe UI" FontStyle="Normal" d:IsStaticText="False" TextAlignment="Center" FontWeight="Bold" x:Name="rOperando" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="40" Visibility="Hidden" VerticalContentAlignment="Center" IsReadOnly="True" Cursor="Arrow">
+			<TextBox Margin="303,0,0,213.235" VerticalAlignment="Bottom" Height="17" Text="" TextWrapping="Wrap" Background="#FFF5F7C3" Foreground="#FF000000" BorderThickness="0.8,0.8,0.8,0.8" FontSize="10" FontFamily="/ucBipI;component/Fonts/#Segoe UI" FontStyle="Normal" d:IsStaticText="False" TextAlignment="Center" FontWeight="Bold" x:Name="rOperando" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="40" Visibility="Hidden" VerticalContentAlignment="Center" IsReadOnly="True" Cursor="Arrow">
 				<TextBox.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform ScaleX="1" ScaleY="1"/>
@@ -2836,7 +3113,7 @@
 					<SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
 				</TextBox.BorderBrush>
 			</TextBox>
-			<TextBox Margin="305.664,0,0,213.154" VerticalAlignment="Bottom" Height="17" Text="" TextWrapping="Wrap" Background="#FFF5F7C3" Foreground="#FF000000" BorderThickness="0.8,0.8,0.8,0.8" FontSize="10" FontFamily="./Fonts\#Segoe UI" FontStyle="Normal" TextAlignment="Center" FontWeight="Bold" x:Name="rOpcode" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="38.5" d:IsStaticText="True" IsEnabled="True" Visibility="Hidden" d:LayoutOverrides="HorizontalAlignment" VerticalContentAlignment="Center" IsReadOnly="True" Cursor="Arrow">
+			<TextBox Margin="305.664,0,0,213.154" VerticalAlignment="Bottom" Height="17" Text="" TextWrapping="Wrap" Background="#FFF5F7C3" Foreground="#FF000000" BorderThickness="0.8,0.8,0.8,0.8" FontSize="10" FontFamily="/ucBipI;component/Fonts/#Segoe UI" FontStyle="Normal" TextAlignment="Center" FontWeight="Bold" x:Name="rOpcode" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="38.5" d:IsStaticText="True" IsEnabled="True" Visibility="Hidden" d:LayoutOverrides="HorizontalAlignment" VerticalContentAlignment="Center" IsReadOnly="True" Cursor="Arrow">
 				<TextBox.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform ScaleX="1" ScaleY="1"/>
@@ -2849,7 +3126,7 @@
 					<SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
 				</TextBox.BorderBrush>
 			</TextBox>
-			<TextBox RenderTransformOrigin="0.527,0.5" Background="#FFF5F7C3" BorderThickness="0.8,0.8,0.8,0.8" FontFamily="./Fonts\#Segoe UI" FontSize="10" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" Margin="288.644,0,0,155.504" x:Name="rInstrucao" VerticalAlignment="Bottom" Height="20.419" d:IsStaticText="False" Text="" TextAlignment="Center" TextWrapping="Wrap" IsEnabled="True" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="68.5" IsReadOnly="True" Cursor="Arrow">
+			<TextBox RenderTransformOrigin="0.527,0.5" Background="#FFF5F7C3" BorderThickness="0.8,0.8,0.8,0.8" FontFamily="/ucBipI;component/Fonts/#Segoe UI" FontSize="10" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" Margin="288.644,0,0,155.504" x:Name="rInstrucao" VerticalAlignment="Bottom" Height="20.419" d:IsStaticText="False" Text="" TextAlignment="Center" TextWrapping="Wrap" IsEnabled="True" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="68.5" IsReadOnly="True" Cursor="Arrow">
 				<TextBox.BorderBrush>
 					<SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
 				</TextBox.BorderBrush>
@@ -2862,7 +3139,7 @@
 					</TransformGroup>
 				</TextBox.RenderTransform>
 			</TextBox>
-			<TextBox RenderTransformOrigin="0.527,0.5" Background="#FFF5F7C3" BorderThickness="0.8,0.8,0.8,0.8" FontFamily="./Fonts\#Segoe UI" FontSize="11" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" Margin="0,0,291,157.704" x:Name="rRegistrador" VerticalAlignment="Bottom" Height="20.419" d:IsStaticText="False" Text="" TextAlignment="Center" TextWrapping="Wrap" IsEnabled="True" HorizontalAlignment="Right" Width="48.668" VerticalContentAlignment="Center" IsReadOnly="True" Cursor="Arrow">
+			<TextBox RenderTransformOrigin="0.527,0.5" Background="#FFF5F7C3" BorderThickness="0.8,0.8,0.8,0.8" FontFamily="/ucBipI;component/Fonts/#Segoe UI" FontSize="11" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" Margin="0,0,291,157.704" x:Name="rRegistrador" VerticalAlignment="Bottom" Height="20.419" d:IsStaticText="False" Text="" TextAlignment="Center" TextWrapping="Wrap" IsEnabled="True" HorizontalAlignment="Right" Width="48.668" VerticalContentAlignment="Center" IsReadOnly="True" Cursor="Arrow">
 				<TextBox.BorderBrush>
 					<SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
 				</TextBox.BorderBrush>
@@ -2890,7 +3167,7 @@
 			</ComboBox>
 			<Button HorizontalAlignment="Left" Margin="462,19,0,0" VerticalAlignment="Top" Width="35" Height="20" Content="LD" Click="Button_Click_7" Visibility="Hidden" />
 			<Path HorizontalAlignment="Left" Margin="138.898,188.5,0,0" Width="42.333" Fill="{x:Null}" Stretch="None" Stroke="#FF000000" StrokeThickness="3" Data="M1.5,1.5000775 L40.5,1.5 40.833333,18.166667" x:Name="linhaBIP2" Height="19.667" VerticalAlignment="Top"/>
-			<TextBox RenderTransformOrigin="0.5,0.5" Background="#FFF5F7C3" BorderThickness="0.8,0.8,0.8,0.8" FontFamily="./Fonts\#Segoe UI" FontSize="10" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" HorizontalAlignment="Left" Margin="178.5,120.895,0,0" x:Name="rPC1" VerticalAlignment="Top" Width="27.001" Height="18.855" d:IsStaticText="False" Text="" TextAlignment="Center" TextWrapping="Wrap" VerticalContentAlignment="Center" IsReadOnly="True" Cursor="Arrow">
+			<TextBox RenderTransformOrigin="0.5,0.5" Background="#FFF5F7C3" BorderThickness="0.8,0.8,0.8,0.8" FontFamily="/ucBipI;component/Fonts/#Segoe UI" FontSize="10" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" HorizontalAlignment="Left" Margin="180,121.512,0,0" x:Name="rPC1" VerticalAlignment="Top" Width="27.001" Height="18.855" d:IsStaticText="False" Text="" TextAlignment="Center" TextWrapping="Wrap" VerticalContentAlignment="Center" IsReadOnly="True" Cursor="Arrow">
 				<TextBox.BorderBrush>
 					<SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
 				</TextBox.BorderBrush>
@@ -2903,7 +3180,7 @@
 					</TransformGroup>
 				</TextBox.RenderTransform>
 			</TextBox>
-			<TextBox RenderTransformOrigin="0.5,0.5" Background="#FFF5F7C3" BorderThickness="0.8,0.8,0.8,0.8" FontFamily="./Fonts\#Segoe UI" FontSize="10" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" Margin="160.206,0,0,223.811" x:Name="rPC" d:IsStaticText="False" Text="" TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" Width="28.168" VerticalContentAlignment="Center" IsReadOnly="True" Cursor="Arrow" Height="20.579" VerticalAlignment="Bottom">
+			<TextBox RenderTransformOrigin="0.5,0.5" Background="#FFF5F7C3" BorderThickness="0.8,0.8,0.8,0.8" FontFamily="/ucBipI;component/Fonts/#Segoe UI" FontSize="10" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" Margin="160.539,0,0,223.811" x:Name="rPC" d:IsStaticText="False" Text="" TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" Width="28.168" VerticalContentAlignment="Center" IsReadOnly="True" Cursor="Arrow" Height="20.579" VerticalAlignment="Bottom">
 				<TextBox.BorderBrush>
 					<SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
 				</TextBox.BorderBrush>
@@ -2916,7 +3193,7 @@
 					</TransformGroup>
 				</TextBox.RenderTransform>
 			</TextBox>
-			<TextBox RenderTransformOrigin="0.5,0.5" Background="#FFF5F7C3" BorderThickness="0.8,0.8,0.8,0.8" FontFamily="./Fonts\#Segoe UI" FontSize="10" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" Margin="206.5,153.331,0,0" x:Name="rPC_in" d:IsStaticText="False" Text="" TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" Width="26.668" VerticalContentAlignment="Center" IsReadOnly="True" Cursor="Arrow" VerticalAlignment="Top" Height="20.276">
+			<TextBox RenderTransformOrigin="0.5,0.5" Background="#FFF5F7C3" BorderThickness="0.8,0.8,0.8,0.8" FontFamily="/ucBipI;component/Fonts/#Segoe UI" FontSize="10" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" Margin="206.5,153.331,0,0" x:Name="rPC_in" d:IsStaticText="False" Text="" TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" Width="26.668" VerticalContentAlignment="Center" IsReadOnly="True" Cursor="Arrow" VerticalAlignment="Top" Height="20.276">
 				<TextBox.BorderBrush>
 					<SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
 				</TextBox.BorderBrush>
@@ -2951,14 +3228,14 @@
 			<Button HorizontalAlignment="Left" Margin="350,19,0,0" VerticalAlignment="Top" Width="30" Height="20" Content="JMP" Click="Button_Click_15" Visibility="Hidden" />
 			<Button Height="21.92" Margin="0,146,939,0" x:Name="button2" VerticalAlignment="Top" Click="button2_Click" HorizontalAlignment="Right" Width="56" Visibility="Hidden" Content="Simular"/>
 			<Path HorizontalAlignment="Left" Margin="323,234.727,0,222.478" Width="0.5" Fill="#FF000000" Stretch="None" Stroke="{x:Null}" Data="M0.5,50 L0,0"/>
-			<Label Margin="126.206,0,0,223.811" Content="PC" FontWeight="Bold" FontSize="17" FontFamily="./Fonts\#Segoe UI" Foreground="#FF335EAE" Opacity="0.2" Width="30" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Background="#007876C6" x:Name="DescPC" Height="28.014" VerticalAlignment="Bottom" />
-			<Label Opacity="0.595" FontFamily="./Fonts\#Segoe UI" FontSize="18" FontWeight="Bold" Foreground="#FF0D3681" HorizontalContentAlignment="Center" Margin="67.501,14.115,0,0" Content="BIP II" HorizontalAlignment="Left" Width="88" VerticalAlignment="Top" Height="34.965" x:Name="DescBip" />
-			<Grid Margin="0,0,42.469,90" VerticalAlignment="Bottom" Height="169" x:Name="gridComentario" HorizontalAlignment="Right" Width="169">
-				<Label BorderThickness="1,1,1,1" FontSize="14" x:Name="blocoComentario2" Background="{StaticResource gradienteAzul}" BorderBrush="LightSlateGray">
+			<Label Margin="126.206,0,0,223.811" Content="PC" FontWeight="Bold" FontSize="17" FontFamily="/ucBipI;component/Fonts/#Segoe UI" Foreground="#FF335EAE" Opacity="0.2" Width="30" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Background="#007876C6" x:Name="DescPC" Height="28.014" VerticalAlignment="Bottom" />
+			<Label Opacity="0.595" FontFamily="/ucBipI;component/Fonts/#Segoe UI" FontSize="18" FontWeight="Bold" Foreground="#FF0D3681" HorizontalContentAlignment="Center" Margin="67.501,14.115,0,0" Content="BIP II" HorizontalAlignment="Left" Width="88" VerticalAlignment="Top" Height="34.965" x:Name="DescBip" />
+			<Grid Margin="-5.667,0,-77.333,88.205" VerticalAlignment="Bottom" Height="169" x:Name="gridComentario" Grid.ColumnSpan="2" Grid.Column="1">
+				<Label BorderThickness="1,1,1,1" FontSize="14" x:Name="blocoComentario2" Background="{StaticResource gradienteAzul}" BorderBrush="LightSlateGray" Visibility="Hidden">
 					<TextBlock TextWrapping="Wrap" x:Name="blocoComentario" FontSize="13"/>  
 				</Label>
             </Grid>
-			<TextBox RenderTransformOrigin="0.5,0.5" Background="#FFF5F7C3" BorderThickness="0.8,0.8,0.8,0.8" FontFamily="./Fonts\#Segoe UI" FontSize="10" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" Margin="308.667,0,0,171.507" x:Name="rPC_operand" VerticalAlignment="Bottom" Height="20.579" d:IsStaticText="False" Text="" TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" Width="28.501" Visibility="Hidden" VerticalContentAlignment="Center" IsReadOnly="True" Cursor="Arrow">
+			<TextBox RenderTransformOrigin="0.5,0.5" Background="#FFF5F7C3" BorderThickness="0.8,0.8,0.8,0.8" FontFamily="/ucBipI;component/Fonts/#Segoe UI" FontSize="10" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" Margin="308.667,0,0,171.507" x:Name="rPC_operand" VerticalAlignment="Bottom" Height="20.579" d:IsStaticText="False" Text="" TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Left" Width="28.501" Visibility="Hidden" VerticalContentAlignment="Center" IsReadOnly="True" Cursor="Arrow">
 				<TextBox.BorderBrush>
 					<SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
 				</TextBox.BorderBrush>
@@ -2971,34 +3248,56 @@
 					</TransformGroup>
 				</TextBox.RenderTransform>
 			</TextBox>
-			<Label Opacity="0.32" FontFamily="./Fonts\#Segoe UI" FontSize="13" FontWeight="Bold" Foreground="#FF335EAE" HorizontalContentAlignment="Center" Margin="61.333,46.892,0,0" Content="Controle" HorizontalAlignment="Left" Width="128.667" x:Name="DescControle" VerticalAlignment="Top" Height="29.108" />
-			<Label Opacity="0.32" FontFamily="./Fonts\#Segoe UI" FontSize="13" FontWeight="Bold" Foreground="#FF335EAE" HorizontalContentAlignment="Center" Margin="0,46.892,248,0" Content="Caminho de Dados" HorizontalAlignment="Right" Width="138.341" x:Name="DescCaminhoDados" VerticalAlignment="Top" Height="34.965" />
-			<Border HorizontalAlignment="Right" Height="219.521" Margin="0,24.316,42.469,0" Width="169" BorderBrush="LightSlateGray" BorderThickness="1" VerticalAlignment="Top" d:LayoutOverrides="Height" >
-				<Grid x:Name="blocoRegistradores" Background="{StaticResource gradienteAzul}" Margin="0.016,0.016,0.031,0.047">
+			<Label Opacity="0.32" FontFamily="/ucBipI;component/Fonts/#Segoe UI" FontSize="13" FontWeight="Bold" Foreground="#FF335EAE" HorizontalContentAlignment="Center" Margin="61.333,46.892,0,0" Content="Controle" HorizontalAlignment="Left" Width="128.667" x:Name="DescControle" VerticalAlignment="Top" Height="29.108" />
+			<Label Opacity="0.32" FontFamily="/ucBipI;component/Fonts/#Segoe UI" FontSize="13" FontWeight="Bold" Foreground="#FF335EAE" HorizontalContentAlignment="Center" Margin="0,46.892,248,0" Content="Caminho de Dados" HorizontalAlignment="Right" Width="138.341" x:Name="DescCaminhoDados" VerticalAlignment="Top" Height="34.965" />
+			<Border HorizontalAlignment="Right" Margin="0,19,17.667,28.316" Width="201.802" BorderBrush="LightSlateGray" BorderThickness="1" >
+				<Grid x:Name="blocoRegistradores" Background="{StaticResource gradienteAzul}" Margin="0.016,0.016,0.031,0.333">
                 
-					<Label Margin="3.996,11.339,76.624,0" VerticalAlignment="Top" Height="31.75" Content="PC" d:LayoutOverrides="GridBox" />
-					<Label Margin="3.996,45.835,76.624,0" VerticalAlignment="Top" Height="31.75" Content="Acumulador" d:LayoutOverrides="GridBox" x:Name="lblAcumulador" />
-					<Label Margin="3.996,81.782,76.624,71.238" Content="Status_Z" d:LayoutOverrides="GridBox" />
-					<TextBox Margin="77.366,82.543,10.587,0" Text="" TextWrapping="Wrap" x:Name="txtZ" IsReadOnly="True" Cursor="Arrow" Height="25.409" VerticalAlignment="Top"/>
-					<TextBox Margin="77.366,10.419,10.587,0" VerticalAlignment="Top" Height="25.409" Text="" TextWrapping="Wrap" x:Name="txtPC" IsReadOnly="True" Cursor="Arrow"/>
-					<Label Margin="3.996,0,76.624,72.592" Content="Status_N" d:LayoutOverrides="GridBox" Height="31.75" VerticalAlignment="Bottom" />
-					<TextBox Margin="77.366,46.415,10.587,0" Text="" TextWrapping="Wrap" x:Name="txtACC" IsReadOnly="True" Cursor="Arrow" VerticalAlignment="Top" Height="25.409"/>
-					<TextBox Margin="77.366,0,10.587,76.802" Text="" TextWrapping="Wrap" x:Name="txtN" IsReadOnly="True" Cursor="Arrow" VerticalAlignment="Bottom" Height="25.409"/>
-					<TextBox Margin="77.366,0,10.587,40.135" Text="" TextWrapping="Wrap" x:Name="SP" IsReadOnly="True" Cursor="Arrow" VerticalAlignment="Bottom" Height="25.409"/>
-					<TextBox Margin="77.366,0,10.587,4.196" Text="" TextWrapping="Wrap" x:Name="INDR" IsReadOnly="True" Cursor="Arrow" VerticalAlignment="Bottom" Height="25.409"/>
-					<Label Margin="3.996,0,76.624,34.573" Content="SP" d:LayoutOverrides="GridBox" Height="31.75" VerticalAlignment="Bottom" />
-					<Label Margin="3.996,0,76.624,0" Content="INDR" Height="30.305" VerticalAlignment="Bottom" d:LayoutOverrides="GridBox" />
+					<Label Margin="5.031,5.828,89.587,0" VerticalAlignment="Top" Height="30" Content="$pc" d:LayoutOverrides="GridBox" FontWeight="Bold" FontSize="14.667" FontFamily="/ucBipI;component/Fonts/#Segoe UI" />
+					<TextBox Margin="0,10.419,10.587,0" VerticalAlignment="Top" Height="25.409" Text="" TextWrapping="Wrap" x:Name="txtPC" IsReadOnly="True" Cursor="Arrow" HorizontalAlignment="Right" Width="75"/>
+					<Label Margin="5.031,35.237,89.587,0" VerticalAlignment="Top" Height="30" Content="$acc" d:LayoutOverrides="GridBox" x:Name="lblAcumulador" FontWeight="Bold" FontFamily="/ucBipI;component/Fonts/#Segoe UI" FontSize="14.667" />
+					<TextBox Margin="0,39.828,10.587,0" Text="" TextWrapping="Wrap" x:Name="txtACC" IsReadOnly="True" Cursor="Arrow" VerticalAlignment="Top" Height="25.409" HorizontalAlignment="Right" Width="75"/>
+					<Label Margin="5.031,64.055,89.587,0" Content="$status" d:LayoutOverrides="GridBox" Height="30" VerticalAlignment="Top" FontFamily="/ucBipI;component/Fonts/#Segoe UI" FontSize="14.667" FontWeight="Bold" />
+					<TextBox Margin="0,69.237,10.587,0" Text="" TextWrapping="Wrap" x:Name="txtStatus" IsReadOnly="True" Cursor="Arrow" VerticalAlignment="Top" Height="25.409" HorizontalAlignment="Right" Width="75"/>
+					<Label Margin="21.5,94.055,0,0" Content="N" d:LayoutOverrides="GridBox" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="24.635" FontWeight="Bold" FontSize="14.667" />
+					<TextBox Margin="46.135,98.646,0,0" Text="" TextWrapping="Wrap" x:Name="txtN" IsReadOnly="True" Cursor="Arrow" VerticalAlignment="Top" Height="25.409" HorizontalAlignment="Left" Width="24.642"/>
+					<Label Margin="74.889,94.055,0,0" Content="Z" Height="30" VerticalAlignment="Top" d:LayoutOverrides="GridBox" HorizontalAlignment="Left" Width="24.635" FontWeight="Bold" FontSize="14.667" />
+					<TextBox Margin="99.524,98.646,0,0" Text="" TextWrapping="Wrap" x:Name="txtZ" IsReadOnly="True" Cursor="Arrow" Height="25.409" VerticalAlignment="Top" HorizontalAlignment="Left" Width="24.642"/>
+					<Label Margin="0,94.055,46.954,0" Content="C" Height="30" VerticalAlignment="Top" d:LayoutOverrides="GridBox" HorizontalAlignment="Right" Width="24.635" FontWeight="Bold" FontSize="14.667" />
+					<TextBox Margin="0,98.646,18.312,0" Text="" TextWrapping="Wrap" x:Name="txtC" IsReadOnly="True" Cursor="Arrow" Height="25.409" VerticalAlignment="Top" HorizontalAlignment="Right" Width="24.642"/>
+					<Label Margin="5.031,123.464,89.587,0" Content="$sp" d:LayoutOverrides="GridBox" Height="30" VerticalAlignment="Top" FontWeight="Bold" FontFamily="/ucBipI;component/Fonts/#Segoe UI" FontSize="14.667" />
+					<TextBox Margin="0,128.055,10.587,0" Text="" TextWrapping="Wrap" x:Name="SP" IsReadOnly="True" Cursor="Arrow" Height="25.409" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75"/>
+					<Label Margin="5.031,152.873,89.587,0" Content="$indr" d:LayoutOverrides="Height, GridBox" Height="30" FontWeight="Bold" FontSize="14.667" VerticalAlignment="Top" />
+					<TextBox Margin="0,157.464,10.587,0" Text="" TextWrapping="Wrap" x:Name="INDR" IsReadOnly="True" Cursor="Arrow" Height="25.409" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75"/>
+					<Label Margin="5.031,182.873,89.587,0" Content="$mcu__config" Height="30" FontWeight="Bold" FontSize="14.667" d:LayoutOverrides="Height, GridBox" FontFamily="/ucBipI;component/Fonts/#Segoe UI" VerticalAlignment="Top" />
+					<TextBox Margin="0,187.464,10.587,0" Text="" TextWrapping="Wrap" x:Name="txtMCUConfig" IsReadOnly="True" Cursor="Arrow" HorizontalAlignment="Right" Width="75" Height="25.409" VerticalAlignment="Top"/>
+					<Label Margin="5.031,212.282,89.587,0" Content="$int__status" Height="30" FontWeight="Bold" FontSize="14.667" FontFamily="/ucBipI;component/Fonts/#Segoe UI" d:LayoutOverrides="Height, GridBox" VerticalAlignment="Top" />
+					<TextBox Margin="0,216.873,10.587,0" Text="" TextWrapping="Wrap" x:Name="txtINTStatus" IsReadOnly="True" Cursor="Arrow" HorizontalAlignment="Right" Width="75" Height="25.409" VerticalAlignment="Top" d:LayoutOverrides="Height"/>
+					<Label Margin="5.031,241.691,89.587,0" Content="$int__config" Height="30" FontWeight="Bold" FontSize="14.667" FontFamily="/ucBipI;component/Fonts/#Segoe UI" d:LayoutOverrides="Height, GridBox" VerticalAlignment="Top" />
+					<TextBox Margin="0,246.282,10.587,0" Text="" TextWrapping="Wrap" x:Name="txtINTConfig" IsReadOnly="True" Cursor="Arrow" HorizontalAlignment="Right" Width="75" Height="25.409" VerticalAlignment="Top"/>
+					<Label Margin="5.031,271.1,89.587,0" Content="$tmr0__value" Height="30" FontWeight="Bold" FontSize="14.667" FontFamily="/ucBipI;component/Fonts/#Segoe UI" d:LayoutOverrides="Height, GridBox" VerticalAlignment="Top" />
+					<TextBox Margin="0,275.691,10.587,0" Text="" TextWrapping="Wrap" x:Name="txtTMR0Value" IsReadOnly="True" Cursor="Arrow" HorizontalAlignment="Right" Width="75" Height="25.409" VerticalAlignment="Top"/>
+					<Label Margin="5.031,300.509,89.587,0" Content="$tmr0__config" Height="30" FontWeight="Bold" FontSize="14.667" FontFamily="/ucBipI;component/Fonts/#Segoe UI" d:LayoutOverrides="Height, GridBox" VerticalAlignment="Top" />
+					<TextBox Margin="0,305.1,10.587,0" Text="" TextWrapping="Wrap" x:Name="txtTMR0Config" IsReadOnly="True" Cursor="Arrow" HorizontalAlignment="Right" Width="75" Height="25.409" VerticalAlignment="Top"/>
+					<Label Margin="4.531,329.918,90.087,0" Content="$port1__data" Height="30" FontWeight="Bold" FontSize="14.667" FontFamily="/ucBipI;component/Fonts/#Segoe UI" VerticalAlignment="Top" d:LayoutOverrides="Height, GridBox" />
+					<TextBox Margin="0,334.509,10.587,0" Text="" TextWrapping="Wrap" x:Name="txtPorta1Data" IsReadOnly="True" Cursor="Arrow" HorizontalAlignment="Right" Width="75" Height="25.409" VerticalAlignment="Top"/>
+					<Label Margin="5.031,359.327,89.587,0" Content="$port1__dir" Height="30" FontWeight="Bold" FontSize="14.667" FontFamily="/ucBipI;component/Fonts/#Segoe UI" VerticalAlignment="Top" d:LayoutOverrides="Height, GridBox" />
+					<TextBox Margin="0,363.918,10.587,0" Text="" TextWrapping="Wrap" x:Name="txtPorta1Dir" IsReadOnly="True" Cursor="Arrow" HorizontalAlignment="Right" Width="75" Height="25.409" VerticalAlignment="Top"/>
+					<Label Margin="5.031,388.736,89.587,0" Content="$port0__data" Height="30" FontWeight="Bold" FontSize="14.667" FontFamily="/ucBipI;component/Fonts/#Segoe UI" VerticalAlignment="Top" d:LayoutOverrides="Height, GridBox" />
+					<TextBox Margin="0,393.327,10.587,0" Text="" TextWrapping="Wrap" x:Name="txtPorta0Data" IsReadOnly="True" Cursor="Arrow" HorizontalAlignment="Right" Width="75" Height="25.409" VerticalAlignment="Top"/>
+					<Label Margin="5.031,418.145,89.587,0" Content="$port0__dir" Height="30" FontWeight="Bold" FontSize="14.667" FontFamily="/ucBipI;component/Fonts/#Segoe UI" VerticalAlignment="Top" d:LayoutOverrides="Height, GridBox" />
+					<TextBox Margin="0,422.736,10.587,0" Text="" TextWrapping="Wrap" x:Name="txtPorta0Dir" IsReadOnly="True" Cursor="Arrow" HorizontalAlignment="Right" Width="75" Height="25.409" VerticalAlignment="Top"/>
                 
 				</Grid>
             
 			</Border>
             
             <Button HorizontalAlignment="Left" Margin="40,0,0,110.963" VerticalAlignment="Bottom" Width="70" Height="20.899" Content="Button" Click="aspecto" Visibility="Hidden"/>
-            <Grid x:Name="ES_grid" Margin="69.333,0,42.469,8" Height="74.478" VerticalAlignment="Bottom">
+            <Grid x:Name="ES_grid" Margin="69.333,0,234.853,8" Height="74.478" VerticalAlignment="Bottom">
 				<Grid.Background>
 					<ImageBrush/>
 				</Grid.Background>
-				<Rectangle x:Name="blocoES" Margin="0,42.498,192.284,3.5" RadiusY="7.25" RadiusX="7.25" Stroke="#FF9D9D9D" Height="28.48" d:LayoutOverrides="GridBox">
+				<Rectangle x:Name="blocoES" Margin="0,42.498,8,3.5" RadiusY="7.25" RadiusX="7.25" Stroke="#FF9D9D9D" Height="28.48" d:LayoutOverrides="GridBox">
 					<Rectangle.Fill>
 						<LinearGradientBrush EndPoint="0.866,0.551" StartPoint="0.021,0.507">
 							<GradientStop Color="White" Offset="0.352"/>
@@ -3007,7 +3306,7 @@
 						</LinearGradientBrush>
 					</Rectangle.Fill>
 				</Rectangle>
-				<Rectangle x:Name="blocoES_2" Margin="0,6.498,192.284,39.5" RadiusY="7.25" RadiusX="7.25" Stroke="#FF9D9D9D" Height="28.48" d:LayoutOverrides="GridBox">
+				<Rectangle x:Name="blocoES_2" Margin="0,6.498,8,39.5" RadiusY="7.25" RadiusX="7.25" Stroke="#FF9D9D9D" Height="28.48" d:LayoutOverrides="GridBox">
 					<Rectangle.Fill>
 						<LinearGradientBrush EndPoint="0.866,0.551" StartPoint="0.021,0.507">
 							<GradientStop Color="White" Offset="0.352"/>
@@ -3016,56 +3315,56 @@
 						</LinearGradientBrush>
 					</Rectangle.Fill>
 				</Rectangle>
-				<TextBox x:Name="out_port" Margin="0,8.589,315.82,0" TextWrapping="Wrap" Height="25.409" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment, Height" Text="0" IsReadOnly="True" IsEnabled="False" HorizontalAlignment="Right" Width="52.818" />
-				<TextBox x:Name="in_port" Margin="0,42.998,315.82,6.071" TextWrapping="Wrap" Text="0" Height="25.409" KeyDown="in_port_KeyDown" TextChanged="in_port_TextChanged" AutoWordSelection="True" TextInput="in_port_TextInput" HorizontalAlignment="Right" Width="52.818" />
-				<Ellipse x:Name="elipse1" Fill="{DynamicResource fundo}" HorizontalAlignment="Left" Margin="142.078,10.138,0,0" Stroke="#FF9D9D9D" Width="22" RenderTransformOrigin="-0.083,0.308" Height="22" VerticalAlignment="Top" d:LayoutOverrides="Height"/>
-				<Ellipse x:Name="out_port_1_on" Fill="#FF1FE419" Margin="144.668,12.589,727.04,0" Stroke="#FF9D9D9D" Height="16.49" VerticalAlignment="Top"/>
-				<Ellipse x:Name="out_port_1_off" Fill="#FF135620" Margin="144.667,12.588,727.04,45.4" Stroke="#FF9D9D9D" Height="16.49" Width="16.49"/>
+				<TextBox x:Name="out_port" Margin="0,8.069,113.328,0" TextWrapping="Wrap" Height="25.409" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment" Text="0" IsReadOnly="True" IsEnabled="False" HorizontalAlignment="Right" Width="52.818" />
+				<TextBox x:Name="in_port" Margin="0,43.998,113.328,5.071" TextWrapping="Wrap" Text="0" Height="25.409" KeyDown="in_port_KeyDown" TextChanged="in_port_TextChanged" AutoWordSelection="True" TextInput="in_port_TextInput" HorizontalAlignment="Right" Width="52.818" d:LayoutOverrides="HorizontalAlignment" />
+				<Ellipse x:Name="elipse1" Fill="{DynamicResource fundo}" HorizontalAlignment="Left" Margin="141.667,10.138,0,0" Stroke="#FF9D9D9D" Width="22" RenderTransformOrigin="-0.083,0.308" Height="22" VerticalAlignment="Top" d:LayoutOverrides="Height"/>
+				<Ellipse x:Name="out_port_1_on" Fill="#FF1FE419" Margin="144.814,12.589,534.737,0" Stroke="#FF9D9D9D" Height="16.49" VerticalAlignment="Top"/>
+				<Ellipse x:Name="out_port_1_off" Fill="#FF135620" Margin="144.667,12.588,534.737,45.4" Stroke="#FF9D9D9D" Height="16.49"/>
 				<Ellipse x:Name="elipse2" Fill="{DynamicResource fundo}" HorizontalAlignment="Left" Margin="165.078,10.138,0,0" Stroke="#FF9D9D9D" Width="22" RenderTransformOrigin="-0.083,0.308" Height="22" VerticalAlignment="Top" d:LayoutOverrides="Height"/>
-				<Ellipse x:Name="out_port_2_on" Fill="#FF1FE419" Margin="167.668,12.589,704.04,0" Stroke="#FF9D9D9D" Height="16.49" VerticalAlignment="Top"/>
-				<Ellipse x:Name="out_port_2_off" Fill="#FF135620" Margin="167.667,12.588,704.04,45.4" Stroke="#FF9D9D9D" Height="16.49" Width="16.49"/>
+				<Ellipse x:Name="out_port_2_on" Fill="#FF1FE419" Margin="167.814,12.589,511.736,0" Stroke="#FF9D9D9D" Height="16.49" VerticalAlignment="Top"/>
+				<Ellipse x:Name="out_port_2_off" Fill="#FF135620" Margin="167.667,12.588,511.736,45.4" Stroke="#FF9D9D9D" Height="16.49"/>
 				<Ellipse x:Name="elipse3" Fill="{DynamicResource fundo}" HorizontalAlignment="Left" Margin="188.078,10.138,0,0" Stroke="#FF9D9D9D" Width="22" RenderTransformOrigin="-0.083,0.308" Height="22" VerticalAlignment="Top" d:LayoutOverrides="Height"/>
-				<Ellipse x:Name="out_port_3_on" Fill="#FF1FE419" Margin="190.668,12.589,681.04,0" Stroke="#FF9D9D9D" Height="16.49" VerticalAlignment="Top"/>
-				<Ellipse x:Name="out_port_3_off" Fill="#FF135620" Margin="190.667,12.588,681.04,45.4" Stroke="#FF9D9D9D" Height="16.49" Width="16.49"/>
+				<Ellipse x:Name="out_port_3_on" Fill="#FF1FE419" Margin="191.078,12.589,488.736,0" Stroke="#FF9D9D9D" Height="16.49" VerticalAlignment="Top"/>
+				<Ellipse x:Name="out_port_3_off" Fill="#FF135620" Margin="190.667,12.588,488.736,45.4" Stroke="#FF9D9D9D" Height="16.49"/>
 				<Ellipse x:Name="elipse4" Fill="{DynamicResource fundo}" HorizontalAlignment="Left" Margin="211.078,10.138,0,0" Stroke="#FF9D9D9D" Width="22" RenderTransformOrigin="-0.083,0.308" Height="22" VerticalAlignment="Top" d:LayoutOverrides="Height"/>
-				<Ellipse x:Name="out_port_4_on" Fill="#FF1FE419" Margin="213.668,12.589,658.04,0" Stroke="#FF9D9D9D" Height="16.49" VerticalAlignment="Top"/>
-				<Ellipse x:Name="out_port_4_off" Fill="#FF135620" Margin="213.667,12.588,658.04,45.4" Stroke="#FF9D9D9D" Height="16.49" Width="16.49"/>
+				<Ellipse x:Name="out_port_4_on" Fill="#FF1FE419" Margin="214.078,12.589,465.736,0" Stroke="#FF9D9D9D" Height="16.49" VerticalAlignment="Top"/>
+				<Ellipse x:Name="out_port_4_off" Fill="#FF135620" Margin="213.667,12.588,465.736,45.4" Stroke="#FF9D9D9D" Height="16.49"/>
 				<Ellipse x:Name="elipse5" Fill="{DynamicResource fundo}" HorizontalAlignment="Left" Margin="234.078,10.138,0,0" Stroke="#FF9D9D9D" Width="22" RenderTransformOrigin="-0.083,0.308" Height="22" VerticalAlignment="Top" d:LayoutOverrides="Height"/>
-				<Ellipse x:Name="out_port_5_on" Fill="#FF1FE419" Margin="236.668,12.589,635.04,0" Stroke="#FF9D9D9D" Height="16.49" VerticalAlignment="Top"/>
-				<Ellipse x:Name="out_port_5_off" Fill="#FF135620" Margin="236.667,12.588,635.04,45.4" Stroke="#FF9D9D9D" Height="16.49" Width="16.49"/>
+				<Ellipse x:Name="out_port_5_on" Fill="#FF1FE419" Margin="237.078,12.589,442.736,0" Stroke="#FF9D9D9D" Height="16.49" VerticalAlignment="Top"/>
+				<Ellipse x:Name="out_port_5_off" Fill="#FF135620" Margin="237.078,12.588,442.657,45.4" Stroke="#FF9D9D9D" Height="16.49"/>
 				<Ellipse x:Name="elipse6" Fill="{DynamicResource fundo}" HorizontalAlignment="Left" Margin="257.078,10.138,0,0" Stroke="#FF9D9D9D" Width="22" RenderTransformOrigin="-0.083,0.308" Height="22" VerticalAlignment="Top" d:LayoutOverrides="Height"/>
-				<Ellipse x:Name="out_port_6_on" Fill="#FF1FE419" Margin="259.668,12.589,612.04,0" Stroke="#FF9D9D9D" Height="16.49" VerticalAlignment="Top"/>
-				<Ellipse x:Name="out_port_6_off" Fill="#FF135620" Margin="259.667,12.588,612.04,45.4" Stroke="#FF9D9D9D" Height="16.49" Width="16.49"/>
+				<Ellipse x:Name="out_port_6_on" Fill="#FF1FE419" Margin="260.078,12.589,419.736,0" Stroke="#FF9D9D9D" Height="16.49" VerticalAlignment="Top"/>
+				<Ellipse x:Name="out_port_6_off" Fill="#FF135620" Margin="260.078,12.588,419.736,45.4" Stroke="#FF9D9D9D" Height="16.49"/>
 				<Ellipse x:Name="elipse7" Fill="{DynamicResource fundo}" HorizontalAlignment="Left" Margin="280.078,10.138,0,0" Stroke="#FF9D9D9D" Width="22" RenderTransformOrigin="-0.083,0.308" Height="22" VerticalAlignment="Top" d:LayoutOverrides="Height"/>
-				<Ellipse x:Name="out_port_7_on" Fill="#FF1FE419" Margin="282.668,12.589,589.04,0" Stroke="#FF9D9D9D" Height="16.49" VerticalAlignment="Top"/>
-				<Ellipse x:Name="out_port_7_off" Fill="#FF135620" Margin="282.667,12.588,589.04,45.4" Stroke="#FF9D9D9D" Height="16.49" Width="16.49"/>
+				<Ellipse x:Name="out_port_7_on" Fill="#FF1FE419" Margin="283.078,12.589,396.736,0" Stroke="#FF9D9D9D" Height="16.49" VerticalAlignment="Top"/>
+				<Ellipse x:Name="out_port_7_off" Fill="#FF135620" Margin="283.078,12.588,396.657,45.4" Stroke="#FF9D9D9D" Height="16.49"/>
 				<Ellipse x:Name="elipse8" Fill="{DynamicResource fundo}" HorizontalAlignment="Left" Margin="303.078,10.138,0,0" Stroke="#FF9D9D9D" Width="22" RenderTransformOrigin="-0.083,0.308" Height="22" VerticalAlignment="Top" d:LayoutOverrides="Height"/>
-				<Ellipse x:Name="out_port_8_on" Fill="#FF1FE419" Margin="305.668,12.589,566.04,0" Stroke="#FF9D9D9D" Height="16.49" VerticalAlignment="Top"/>
-				<Ellipse x:Name="out_port_8_off" Fill="#FF135620" Margin="305.667,12.088,566.04,45.9" Stroke="#FF9D9D9D" Height="16.49" Width="16.49"/>
+				<Ellipse x:Name="out_port_8_on" Fill="#FF1FE419" Margin="306.078,12.589,373.736,0" Stroke="#FF9D9D9D" Height="16.49" VerticalAlignment="Top"/>
+				<Ellipse x:Name="out_port_8_off" Fill="#FF135620" Margin="306.078,12.589,373.657,45.4" Stroke="#FF9D9D9D"/>
 				<Ellipse x:Name="elipse9" Fill="{DynamicResource fundo}" Margin="326.078,10.138,0,0" Stroke="#FF9D9D9D" RenderTransformOrigin="-0.083,0.308" Height="22" VerticalAlignment="Top" d:LayoutOverrides="Height" HorizontalAlignment="Left" Width="22"/>
-				<Ellipse x:Name="out_port_9_on" Fill="#FF1FE419" Margin="328.668,11.589,543.04,0" Stroke="#FF9D9D9D" Height="16.49" VerticalAlignment="Top"/>
-				<Ellipse x:Name="out_port_9_off" Fill="#FF135620" Margin="328.667,12.588,543.04,45.4" Stroke="#FF9D9D9D" Height="16.49" Width="16.49"/>
+				<Ellipse x:Name="out_port_9_on" Fill="#FF1FE419" Margin="329.078,12.589,350.657,0" Stroke="#FF9D9D9D" Height="16.49" VerticalAlignment="Top"/>
+				<Ellipse x:Name="out_port_9_off" Fill="#FF135620" Margin="329.078,12.588,350.657,45.4" Stroke="#FF9D9D9D" Height="16.49"/>
 				<Ellipse x:Name="elipse10" Fill="{DynamicResource fundo}" Margin="349.078,10.138,0,0" Stroke="#FF9D9D9D" RenderTransformOrigin="-0.083,0.308" Height="22" VerticalAlignment="Top" d:LayoutOverrides="Height" HorizontalAlignment="Left" Width="22"/>
-				<Ellipse x:Name="out_port_10_on" Fill="#FF1FE419" Margin="351.668,12.589,520.04,0" Stroke="#FF9D9D9D" Height="16.49" VerticalAlignment="Top"/>
-				<Ellipse x:Name="out_port_10_off" Fill="#FF135620" Margin="351.667,12.588,520.04,45.4" Stroke="#FF9D9D9D" Height="16.49" Width="16.49"/>
+				<Ellipse x:Name="out_port_10_on" Fill="#FF1FE419" Margin="352.078,12.589,327.657,0" Stroke="#FF9D9D9D" Height="16.49" VerticalAlignment="Top"/>
+				<Ellipse x:Name="out_port_10_off" Fill="#FF135620" Margin="352.078,12.588,327.657,45.4" Stroke="#FF9D9D9D" Height="16.49"/>
 				<Ellipse x:Name="elipse11" Fill="{DynamicResource fundo}" Margin="372.078,10.138,0,0" Stroke="#FF9D9D9D" RenderTransformOrigin="-0.083,0.308" Height="22" VerticalAlignment="Top" d:LayoutOverrides="Height" HorizontalAlignment="Left" Width="22"/>
-				<Ellipse x:Name="out_port_11_on" Fill="#FF1FE419" Margin="374.668,12.589,497.04,0" Stroke="#FF9D9D9D" Height="16.49" VerticalAlignment="Top"/>
-				<Ellipse x:Name="out_port_11_off" Fill="#FF135620" Margin="374.667,12.588,497.04,45.4" Stroke="#FF9D9D9D" Height="16.49" Width="16.49"/>
+				<Ellipse x:Name="out_port_11_on" Fill="#FF1FE419" Margin="375.078,12.589,304.736,0" Stroke="#FF9D9D9D" Height="16.49" VerticalAlignment="Top"/>
+				<Ellipse x:Name="out_port_11_off" Fill="#FF135620" Margin="375.078,12.588,304.657,45.4" Stroke="#FF9D9D9D" Height="16.49"/>
 				<Ellipse x:Name="elipse12" Fill="{DynamicResource fundo}" Margin="395.078,10.138,0,0" Stroke="#FF9D9D9D" RenderTransformOrigin="-0.083,0.308" Height="22" VerticalAlignment="Top" d:LayoutOverrides="Height" HorizontalAlignment="Left" Width="22"/>
-				<Ellipse x:Name="out_port_12_on" Fill="#FF1FE419" Margin="397.668,12.589,474.04,0" Stroke="#FF9D9D9D" Height="16.49" VerticalAlignment="Top"/>
-				<Ellipse x:Name="out_port_12_off" Fill="#FF135620" Margin="397.667,12.588,474.04,45.4" Stroke="#FF9D9D9D" Height="16.49" Width="16.49"/>
+				<Ellipse x:Name="out_port_12_on" Fill="#FF1FE419" Margin="398.078,12.589,281.736,0" Stroke="#FF9D9D9D" Height="16.49" VerticalAlignment="Top"/>
+				<Ellipse x:Name="out_port_12_off" Fill="#FF135620" Margin="398.078,12.588,281.657,45.4" Stroke="#FF9D9D9D" Height="16.49"/>
 				<Ellipse x:Name="elipse13" Fill="{DynamicResource fundo}" Margin="418.078,10.138,0,0" Stroke="#FF9D9D9D" RenderTransformOrigin="-0.083,0.308" Height="22" VerticalAlignment="Top" d:LayoutOverrides="Height" HorizontalAlignment="Left" Width="22"/>
-				<Ellipse x:Name="out_port_13_on" Fill="#FF1FE419" Margin="420.668,12.589,451.04,0" Stroke="#FF9D9D9D" Height="16.49" VerticalAlignment="Top"/>
-				<Ellipse x:Name="out_port_13_off" Fill="#FF135620" Margin="420.667,12.588,451.04,45.4" Stroke="#FF9D9D9D" Height="16.49" Width="16.49"/>
-				<Ellipse x:Name="elipse14" Fill="{DynamicResource fundo}" Margin="441.078,10.138,425.12,0" Stroke="#FF9D9D9D" RenderTransformOrigin="-0.083,0.308" Height="22" VerticalAlignment="Top" d:LayoutOverrides="Height"/>
-				<Ellipse x:Name="out_port_14_on" Fill="#FF1FE419" Margin="443.668,12.589,428.04,0" Stroke="#FF9D9D9D" Height="16.49" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment"/>
-				<Ellipse x:Name="out_port_14_off" Fill="#FF135620" Margin="443.667,12.588,428.04,45.4" Stroke="#FF9D9D9D" Height="16.49" Width="16.49" d:LayoutOverrides="HorizontalAlignment"/>
-				<Ellipse x:Name="elipse15" Fill="{DynamicResource fundo}" Margin="0,10.138,402.12,0" Stroke="#FF9D9D9D" RenderTransformOrigin="-0.083,0.308" Height="22" VerticalAlignment="Top" d:LayoutOverrides="Height" HorizontalAlignment="Right" Width="22"/>
-				<Ellipse x:Name="out_port_15_on" Fill="#FF1FE419" Margin="466.668,12.589,405.04,0" Stroke="#FF9D9D9D" Height="16.49" VerticalAlignment="Top"/>
-				<Ellipse x:Name="out_port_15_off" Fill="#FF135620" Margin="466.667,12.588,405.04,45.4" Stroke="#FF9D9D9D" Height="16.49" Width="16.49"/>
-				<Ellipse x:Name="elipse16" Fill="{DynamicResource fundo}" Margin="0,10.138,379.12,0" Stroke="#FF9D9D9D" RenderTransformOrigin="-0.083,0.308" Height="22" VerticalAlignment="Top" d:LayoutOverrides="Height" HorizontalAlignment="Right" Width="22"/>
-				<Ellipse x:Name="out_port_16_on" Fill="#FF1FE419" Margin="489.668,12.589,382.04,0" Stroke="#FF9D9D9D" Height="16.49" VerticalAlignment="Top"/>
-				<Ellipse x:Name="out_port_16_off" Fill="#FF135620" Margin="489.667,12.588,382.04,45.4" Stroke="#FF9D9D9D" Height="16.49" Width="16.49"/>
+				<Ellipse x:Name="out_port_13_on" Fill="#FF1FE419" Margin="421.078,12.589,258.736,0" Stroke="#FF9D9D9D" Height="16.49" VerticalAlignment="Top"/>
+				<Ellipse x:Name="out_port_13_off" Fill="#FF135620" Margin="421.078,12.588,258.657,45.4" Stroke="#FF9D9D9D" Height="16.49"/>
+				<Ellipse x:Name="elipse14" Fill="{DynamicResource fundo}" Margin="441.078,10.138,232.564,0" Stroke="#FF9D9D9D" RenderTransformOrigin="-0.083,0.308" Height="22" VerticalAlignment="Top" d:LayoutOverrides="Height"/>
+				<Ellipse x:Name="out_port_14_on" Fill="#FF1FE419" Margin="444.078,12.589,235.657,0" Stroke="#FF9D9D9D" Height="16.49" VerticalAlignment="Top"/>
+				<Ellipse x:Name="out_port_14_off" Fill="#FF135620" Margin="444.064,12.589,235.657,45.399" Stroke="#FF9D9D9D"/>
+				<Ellipse x:Name="elipse15" Fill="{DynamicResource fundo}" Margin="0,10.138,209.657,0" Stroke="#FF9D9D9D" RenderTransformOrigin="-0.083,0.308" Height="22" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment, Height" HorizontalAlignment="Right" Width="22"/>
+				<Ellipse x:Name="out_port_15_on" Fill="#FF1FE419" Margin="467.25,12.589,212.564,0" Stroke="#FF9D9D9D" Height="16.49" VerticalAlignment="Top"/>
+				<Ellipse x:Name="out_port_15_off" Fill="#FF135620" Margin="467.25,12.589,212.564,45.399" Stroke="#FF9D9D9D" Height="16.49"/>
+				<Ellipse x:Name="elipse16" Fill="{DynamicResource fundo}" Margin="0,10.138,186.564,0" Stroke="#FF9D9D9D" RenderTransformOrigin="-0.083,0.308" Height="22" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment, Height" HorizontalAlignment="Right" Width="22"/>
+				<Ellipse x:Name="out_port_16_on" Fill="#FF1FE419" Margin="490.157,12.589,189.564,0" Stroke="#FF9D9D9D" Height="16.49" VerticalAlignment="Top"/>
+				<Ellipse x:Name="out_port_16_off" Fill="#FF135620" Margin="490.157,12.588,189.564,45.4" Stroke="#FF9D9D9D" Height="16.49"/>
 				<Viewbox x:Name="chave_1" HorizontalAlignment="Left" Margin="144.814,0,0,8.216" Width="16.264" RenderTransformOrigin="0.5,0.5" MouseRightButtonUp="chave_1_MouseRightButtonUp" MouseLeftButtonDown="chave_1_MouseLeftButtonDown" Height="17.897" VerticalAlignment="Bottom">
 					<Viewbox.RenderTransform>
 						<TransformGroup>
@@ -3420,7 +3719,7 @@
 						<Path x:Name="led_chave_6" Width="11.063" Height="5.494" Canvas.Left="3.722" Canvas.Top="12.01" Stretch="Fill" StrokeThickness="0.5" StrokeLineJoin="Round" Stroke="#FFF1FF00" Data="F1 M0.26140545,1.2386873 L12.241495,1.239115 13.439536,6.0402773 1.6339091,6.2322621 0.26140545,1.2386873 z" Fill="#FFF1FF00" Visibility="Hidden"/>
 					</Canvas>
 				</Viewbox>
-				<Viewbox x:Name="chave_7" HorizontalAlignment="Left" Margin="282.814,0,0,8.216" Width="16.264" RenderTransformOrigin="0.5,0.5" MouseLeftButtonDown="chave_7_MouseLeftButtonDown" Height="17.897" VerticalAlignment="Bottom">
+				<Viewbox x:Name="chave_7" HorizontalAlignment="Left" Margin="283.078,0,0,8.216" Width="16.264" RenderTransformOrigin="0.5,0.5" MouseLeftButtonDown="chave_7_MouseLeftButtonDown" Height="17.897" VerticalAlignment="Bottom">
 					<Viewbox.RenderTransform>
 						<TransformGroup>
 							<ScaleTransform ScaleY="1" ScaleX="1"/>
@@ -3479,7 +3778,7 @@
 						<Path x:Name="led_chave_7" Width="11.063" Height="5.494" Canvas.Left="3.722" Canvas.Top="12.01" Stretch="Fill" StrokeThickness="0.5" StrokeLineJoin="Round" Stroke="#FFF1FF00" Data="F1 M0.26140545,1.2386873 L12.241495,1.239115 13.439536,6.0402773 1.6339091,6.2322621 0.26140545,1.2386873 z" Fill="#FFF1FF00" Visibility="Hidden"/>
 					</Canvas>
 				</Viewbox>
-				<Viewbox x:Name="chave_8" HorizontalAlignment="Left" Margin="305.814,0,0,8.216" Width="16.264" RenderTransformOrigin="0.5,0.5" MouseLeftButtonDown="chave_8_MouseLeftButtonDown" Height="17.897" VerticalAlignment="Bottom">
+				<Viewbox x:Name="chave_8" HorizontalAlignment="Left" Margin="306.078,0,0,8.216" Width="16.264" RenderTransformOrigin="0.5,0.5" MouseLeftButtonDown="chave_8_MouseLeftButtonDown" Height="17.897" VerticalAlignment="Bottom">
 					<Viewbox.RenderTransform>
 						<TransformGroup>
 							<ScaleTransform ScaleY="1" ScaleX="1"/>
@@ -3538,7 +3837,7 @@
 						<Path x:Name="led_chave_8" Width="11.063" Height="5.494" Canvas.Left="3.722" Canvas.Top="12.01" Stretch="Fill" StrokeThickness="0.5" StrokeLineJoin="Round" Stroke="#FFF1FF00" Data="F1 M0.26140545,1.2386873 L12.241495,1.239115 13.439536,6.0402773 1.6339091,6.2322621 0.26140545,1.2386873 z" Fill="#FFF1FF00" Visibility="Hidden"/>
 					</Canvas>
 				</Viewbox>
-				<Viewbox x:Name="chave_9" Margin="328.814,0,0,8.216" RenderTransformOrigin="0.5,0.5" MouseLeftButtonDown="chave_9_MouseLeftButtonDown" Height="17.897" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="16.264">
+				<Viewbox x:Name="chave_9" Margin="329.078,0,0,8.216" RenderTransformOrigin="0.5,0.5" MouseLeftButtonDown="chave_9_MouseLeftButtonDown" Height="17.897" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="16.264">
 					<Viewbox.RenderTransform>
 						<TransformGroup>
 							<ScaleTransform ScaleY="1" ScaleX="1"/>
@@ -3597,7 +3896,7 @@
 						<Path x:Name="led_chave_9" Width="11.063" Height="5.494" Canvas.Left="3.722" Canvas.Top="12.01" Stretch="Fill" StrokeThickness="0.5" StrokeLineJoin="Round" Stroke="#FFF1FF00" Data="F1 M0.26140545,1.2386873 L12.241495,1.239115 13.439536,6.0402773 1.6339091,6.2322621 0.26140545,1.2386873 z" Fill="#FFF1FF00" Visibility="Hidden"/>
 					</Canvas>
 				</Viewbox>
-				<Viewbox x:Name="chave_10" Margin="351.814,0,0,8.216" RenderTransformOrigin="0.5,0.5" MouseLeftButtonDown="chave_10_MouseLeftButtonDown" Height="17.897" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="16.264">
+				<Viewbox x:Name="chave_10" Margin="352.078,0,0,8.216" RenderTransformOrigin="0.5,0.5" MouseLeftButtonDown="chave_10_MouseLeftButtonDown" Height="17.897" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="16.264">
 					<Viewbox.RenderTransform>
 						<TransformGroup>
 							<ScaleTransform ScaleY="1" ScaleX="1"/>
@@ -3656,7 +3955,7 @@
 						<Path x:Name="led_chave_10" Width="11.063" Height="5.494" Canvas.Left="3.722" Canvas.Top="12.01" Stretch="Fill" StrokeThickness="0.5" StrokeLineJoin="Round" Stroke="#FFF1FF00" Data="F1 M0.26140545,1.2386873 L12.241495,1.239115 13.439536,6.0402773 1.6339091,6.2322621 0.26140545,1.2386873 z" Fill="#FFF1FF00" Visibility="Hidden"/>
 					</Canvas>
 				</Viewbox>
-				<Viewbox x:Name="chave_11" Margin="374.814,0,0,8.216" RenderTransformOrigin="0.5,0.5" MouseLeftButtonDown="chave_11_MouseLeftButtonDown" Height="17.897" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="16.264">
+				<Viewbox x:Name="chave_11" Margin="375.078,0,0,8.216" RenderTransformOrigin="0.5,0.5" MouseLeftButtonDown="chave_11_MouseLeftButtonDown" Height="17.897" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="16.264">
 					<Viewbox.RenderTransform>
 						<TransformGroup>
 							<ScaleTransform ScaleY="1" ScaleX="1"/>
@@ -3715,7 +4014,7 @@
 						<Path x:Name="led_chave_11" Width="11.063" Height="5.494" Canvas.Left="3.722" Canvas.Top="12.01" Stretch="Fill" StrokeThickness="0.5" StrokeLineJoin="Round" Stroke="#FFF1FF00" Data="F1 M0.26140545,1.2386873 L12.241495,1.239115 13.439536,6.0402773 1.6339091,6.2322621 0.26140545,1.2386873 z" Fill="#FFF1FF00" Visibility="Hidden"/>
 					</Canvas>
 				</Viewbox>
-				<Viewbox x:Name="chave_12" Margin="398.064,0,0,8.216" RenderTransformOrigin="0.5,0.5" MouseLeftButtonDown="chave_12_MouseLeftButtonDown" Height="17.897" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="16.264">
+				<Viewbox x:Name="chave_12" Margin="398.078,0,0,8.216" RenderTransformOrigin="0.5,0.5" MouseLeftButtonDown="chave_12_MouseLeftButtonDown" Height="17.897" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="16.264">
 					<Viewbox.RenderTransform>
 						<TransformGroup>
 							<ScaleTransform ScaleY="1" ScaleX="1"/>
@@ -3774,7 +4073,7 @@
 						<Path x:Name="led_chave_12" Width="11.063" Height="5.494" Canvas.Left="3.722" Canvas.Top="12.01" Stretch="Fill" StrokeThickness="0.5" StrokeLineJoin="Round" Stroke="#FFF1FF00" Data="F1 M0.26140545,1.2386873 L12.241495,1.239115 13.439536,6.0402773 1.6339091,6.2322621 0.26140545,1.2386873 z" Fill="#FFF1FF00" Visibility="Hidden"/>
 					</Canvas>
 				</Viewbox>
-				<Viewbox x:Name="chave_13" Margin="420.814,0,0,8.216" RenderTransformOrigin="0.5,0.5" MouseLeftButtonDown="chave_13_MouseLeftButtonDown" Height="17.897" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="16.264">
+				<Viewbox x:Name="chave_13" Margin="421.078,0,0,8.216" RenderTransformOrigin="0.5,0.5" MouseLeftButtonDown="chave_13_MouseLeftButtonDown" Height="17.897" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="16.264">
 					<Viewbox.RenderTransform>
 						<TransformGroup>
 							<ScaleTransform ScaleY="1" ScaleX="1"/>
@@ -3833,7 +4132,7 @@
 						<Path x:Name="led_chave_13" Width="11.063" Height="5.494" Canvas.Left="3.722" Canvas.Top="12.01" Stretch="Fill" StrokeThickness="0.5" StrokeLineJoin="Round" Stroke="#FFF1FF00" Data="F1 M0.26140545,1.2386873 L12.241495,1.239115 13.439536,6.0402773 1.6339091,6.2322621 0.26140545,1.2386873 z" Fill="#FFF1FF00" Visibility="Hidden"/>
 					</Canvas>
 				</Viewbox>
-				<Viewbox x:Name="chave_14" Margin="444.064,0,427.87,8.216" RenderTransformOrigin="0.5,0.5" MouseLeftButtonDown="chave_14_MouseLeftButtonDown" Height="17.897" VerticalAlignment="Bottom">
+				<Viewbox x:Name="chave_14" Margin="444.064,0,235.657,8" RenderTransformOrigin="0.5,0.5" MouseLeftButtonDown="chave_14_MouseLeftButtonDown" Height="17.897" VerticalAlignment="Bottom">
 					<Viewbox.RenderTransform>
 						<TransformGroup>
 							<ScaleTransform ScaleY="1" ScaleX="1"/>
@@ -3892,7 +4191,7 @@
 						<Path x:Name="led_chave_14" Width="11.063" Height="5.494" Canvas.Left="3.722" Canvas.Top="12.01" Stretch="Fill" StrokeThickness="0.5" StrokeLineJoin="Round" Stroke="#FFF1FF00" Data="F1 M0.26140545,1.2386873 L12.241495,1.239115 13.439536,6.0402773 1.6339091,6.2322621 0.26140545,1.2386873 z" Fill="#FFF1FF00" Visibility="Hidden"/>
 					</Canvas>
 				</Viewbox>
-				<Viewbox x:Name="chave_15" Margin="0,0,405.12,8.216" RenderTransformOrigin="0.5,0.5" MouseLeftButtonDown="chave_15_MouseLeftButtonDown" Height="17.897" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="16.264">
+				<Viewbox x:Name="chave_15" Margin="0,0,215.393,8.216" RenderTransformOrigin="0.5,0.5" MouseLeftButtonDown="chave_15_MouseLeftButtonDown" Height="17.897" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="16.264" d:LayoutOverrides="HorizontalAlignment">
 					<Viewbox.RenderTransform>
 						<TransformGroup>
 							<ScaleTransform ScaleY="1" ScaleX="1"/>
@@ -3951,7 +4250,7 @@
 						<Path x:Name="led_chave_15" Width="11.063" Height="5.494" Canvas.Left="3.722" Canvas.Top="12.01" Stretch="Fill" StrokeThickness="0.5" StrokeLineJoin="Round" Stroke="#FFF1FF00" Data="F1 M0.26140545,1.2386873 L12.241495,1.239115 13.439536,6.0402773 1.6339091,6.2322621 0.26140545,1.2386873 z" Fill="#FFF1FF00" Visibility="Hidden"/>
 					</Canvas>
 				</Viewbox>
-				<Viewbox x:Name="chave_16" Margin="0,0,381.62,8.216" RenderTransformOrigin="0.5,0.5" MouseLeftButtonDown="chave_16_MouseLeftButtonDown" Height="17.897" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="16.264">
+				<Viewbox x:Name="chave_16" Margin="0,0,192.629,8" RenderTransformOrigin="0.5,0.5" MouseLeftButtonDown="chave_16_MouseLeftButtonDown" Height="17.897" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="16.264" d:LayoutOverrides="HorizontalAlignment">
 					<Viewbox.RenderTransform>
 						<TransformGroup>
 							<ScaleTransform ScaleY="1" ScaleX="1"/>
@@ -4013,7 +4312,7 @@
 				<Label Content="$out__port" HorizontalAlignment="Left" Margin="16.667,6.273,0,0" Width="111.398" FontSize="16" Height="29.225" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FF335EAE"/>
 				<Label Content="$in__port" HorizontalAlignment="Left" Margin="16.667,0,0,2.98" Width="111.398" FontSize="16" FontWeight="Bold" Foreground="#FF335EAE" Height="29.225" VerticalAlignment="Bottom"/>
             </Grid>
-			<TextBox RenderTransformOrigin="0.527,0.5" Background="#FFF5F7C3" BorderThickness="0.8,0.8,0.8,0.8" FontFamily="./Fonts\#Segoe UI" FontSize="11" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" Margin="298,0,0,157.84" x:Name="rImediato" VerticalAlignment="Bottom" Height="20.419" d:IsStaticText="False" Text="" TextAlignment="Center" TextWrapping="Wrap" IsEnabled="True" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="49" IsReadOnly="True" Cursor="Arrow">
+			<TextBox RenderTransformOrigin="0.527,0.5" Background="#FFF5F7C3" BorderThickness="0.8,0.8,0.8,0.8" FontFamily="/ucBipI;component/Fonts/#Segoe UI" FontSize="11" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" Margin="298,0,0,157.84" x:Name="rImediato" VerticalAlignment="Bottom" Height="20.419" d:IsStaticText="False" Text="" TextAlignment="Center" TextWrapping="Wrap" IsEnabled="True" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="49" IsReadOnly="True" Cursor="Arrow">
 				<TextBox.BorderBrush>
 					<SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
 				</TextBox.BorderBrush>
@@ -4037,8 +4336,8 @@
                 <Image Height="16" HorizontalAlignment="Right" MouseLeftButtonUp="Button_Click_16" Margin="0,12,13,0" x:Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="16" Source="/ucBipI;component/Images/close.png" />
             </Grid>
             <Path Data="M-1.0172533E-07,-5.086263E-06" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="1" Margin="126.206,144.667,0,0" Stroke="#FF000000" VerticalAlignment="Top" Width="1"/>
-            <Path x:Name="OrGate" Data="M0.50000001,7.2937802 C1.3487409,3.7787937 0.75303978,0.69386135 4.2809305,0.50000002 7.565342,0.84698562 7.1882484,4.0826089 7.7500001,7.3759998 4.3568031,5.6944199 3.5903748,5.5854619 0.50000001,7.2937802 z M11,7.2937802 C11.848741,3.7787937 11.25304,0.69386135 14.78093,0.50000002 18.065342,0.84698562 17.688248,4.0826089 18.25,7.3759998 14.856803,5.6944199 14.090375,5.5854619 11,7.2937802 z" HorizontalAlignment="Left" Height="7.876" Margin="101.375,105.167,0,0" Stroke="#FF000000" VerticalAlignment="Top" Width="18.75" Fill="{DynamicResource BlueGradiente}" Stretch="Fill"/>
-            <Path HorizontalAlignment="Left" Margin="116.913,210.741,0,0" Width="20.93" Fill="{DynamicResource BlueGradiente}" Stretch="None" Stroke="#FF000000" Data="M0.5,0.50141113 L4.6039283,0.50141113 20.429722,0.50141113 14.131221,8.0443353 6.7498438,8.0441728 z" x:Name="blocoSelPC" VerticalAlignment="Top" Height="8.545" RenderTransformOrigin="0.5,0.5">
+            <Path x:Name="OrGate" Data="M14.780931,0.5 C18.065342,0.8469857 17.688249,4.0826092 18.25,7.3760005 14.856803,5.6944199 14.090375,5.5854617 11,7.2937804 11.848741,3.7787941 11.25304,0.69386148 14.780931,0.5 z M4.2809305,0.5 C7.5653419,0.8469857 7.1882484,4.0826092 7.7500002,7.376 4.3568029,5.6944199 3.5903749,5.5854622 0.5,7.2937804 1.3487406,3.7787939 0.75303936,0.69386142 4.2809305,0.5 z" Fill="{DynamicResource BlueGradiente}" HorizontalAlignment="Left" Height="7.876" Margin="101.375,105.167,0,0" Stretch="Fill" Stroke="#FF000000" VerticalAlignment="Top" Width="18.75"/>
+            <Path HorizontalAlignment="Left" Margin="116.83,211.574,0,0" Width="20.93" Fill="{DynamicResource BlueGradiente}" Stretch="None" Stroke="#FF000000" Data="M0.5,0.50141113 L4.6039283,0.50141113 20.429722,0.50141113 14.131221,8.0443353 6.7498438,8.0441728 z" x:Name="blocoSelPC" VerticalAlignment="Top" Height="8.545" RenderTransformOrigin="0.5,0.5">
             	<Path.RenderTransform>
             		<TransformGroup>
             			<ScaleTransform/>
@@ -4048,10 +4347,19 @@
             		</TransformGroup>
             	</Path.RenderTransform>
             </Path>
-            <Path x:Name="linhaInterrupcao4" Data="M381.45647,231.49987 L391.54015,231.54167 391.49864,252.77522 114.65545,252.98021 114.60848,220.99532 122.52543,220.99532" HorizontalAlignment="Left" Margin="114.991,221.016,0,253.205" Stretch="Fill" Stroke="#FF606060" Width="277.918"/>
-            <Path x:Name="linhaInterrupcao3" Data="M115.3881,201.48425 L115.373,208.2501 122.88937,208.2501" HorizontalAlignment="Left" Height="7.766" Margin="115.373,201.484,0,0" Stretch="Fill" Stroke="#FF606060" VerticalAlignment="Top" Width="8.531"/>
-            <Path x:Name="linhaInterrupcao2" Data="M131.28881,215.58334 L155.03832,215.66667" HorizontalAlignment="Left" Height="1.084" Margin="131.289,215.583,0,0" Stretch="Fill" Stroke="#FF606060" VerticalAlignment="Top" Width="24.594"/>
-            <Path x:Name="linhaInterrupcao1" Data="M0.52083043,0.66599945 L0.5,17.06133 24.563,17.123828 24.520829,81.083001 20.109377,81.046372 M11.061995,0.5 L11.124994,17.374001 M11.626998,16.916501 C11.626998,17.203965 11.40314,17.437001 11.126998,17.437001 C10.850855,17.437001 10.626998,17.203965 10.626998,16.916501 C10.626998,16.629037 10.850855,16.396001 11.126998,16.396001 C11.40314,16.396001 11.626998,16.629037 11.626998,16.916501 z M24.921998,80.937501 C24.921998,81.224965 24.69814,81.458001 24.421998,81.458001 C24.145855,81.458001 23.921998,81.224965 23.921998,80.937501 C23.921998,80.650037 24.145855,80.417001 24.421998,80.417001 C24.69814,80.417001 24.921998,80.650037 24.921998,80.937501 z M24.436997,81.031001 L24.561999,97.608999" Fill="{x:Null}" HorizontalAlignment="Left" Height="98.109" Margin="103.435,110.938,0,0" Stretch="Fill" Stroke="#FF606060" StrokeThickness="1" VerticalAlignment="Top" Width="25.422"/>
+            <TextBox RenderTransformOrigin="0.5,0.5" Background="#FFF5F7C3" BorderThickness="0.8,0.8,0.8,0.8" FontFamily="/ucBipI;component/Fonts/#Segoe UI" FontSize="10" FontStyle="Normal" FontWeight="Bold" Foreground="#FF000000" HorizontalAlignment="Left" Margin="143.585,184.012,0,0" x:Name="rInterruptAddress" VerticalAlignment="Top" Width="27.001" Height="18.855" d:IsStaticText="False" Text="" TextAlignment="Center" TextWrapping="Wrap" VerticalContentAlignment="Center" IsReadOnly="True" Cursor="Arrow" Visibility="Hidden">
+            	<TextBox.BorderBrush>
+            		<SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}"/>
+            	</TextBox.BorderBrush>
+            	<TextBox.RenderTransform>
+            		<TransformGroup>
+            			<ScaleTransform ScaleX="1" ScaleY="1"/>
+            			<SkewTransform AngleX="0" AngleY="0"/>
+            			<RotateTransform Angle="0"/>
+            			<TranslateTransform X="0" Y="0"/>
+            		</TransformGroup>
+            	</TextBox.RenderTransform>
+            </TextBox>
         </Grid>
 	</Viewbox>
 </UserControl>
